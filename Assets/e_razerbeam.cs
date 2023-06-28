@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class spiderAttack : MonoBehaviour
+public class e_razerbeam : MonoBehaviour
 {
     [Header("플레이어")]
     public Transform Player;
@@ -15,35 +15,37 @@ public class spiderAttack : MonoBehaviour
     [Header("레이저 딜레이")]
     [Range(0f, 1f)]
     public float razerDelay;
-    Vector3 beamPos;
-    bool isRazer;
 
+    float distance;
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        //StartCoroutine(playerOneSecBefore(Player.transform.position, beamPos));
+        Vector3 enumBeamPos = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
         transform.LookAt(Player.transform.position);
-        if (Input.GetMouseButton(0) && !isRazer)
+        razerBeaaam();
+    }
+
+    void razerBeaaam()
+    {
+        distance = Vector3.Distance(transform.position, Player.position);
+        if (distance <= razerDistance)
         {
             StartCoroutine(razerbeam(transform.position, razerBeamDuration, razerDelay));
-
         }
-        else if (Input.GetMouseButton(0) && isRazer)
+        else if(distance > razerDistance) 
         {
-            isRazer = false;
+            StopAllCoroutines();
         }
     }
 
     // playerPos : 1초전 플레이어 위치
     IEnumerator razerbeam(Vector3 startPos, float duration, float delayTime)
     {
-        isRazer = true;
         transform.position = startPos;
         duration = razerBeamDuration;
         delayTime = razerDelay;
@@ -51,15 +53,7 @@ public class spiderAttack : MonoBehaviour
         for (float curTime = 0; curTime < duration; curTime += Time.deltaTime)
         {
             yield return new WaitForSeconds(delayTime);
-            Debug.DrawRay(transform.position, transform.forward * razerDistance, Color.red, razerDuration);
+            Debug.DrawLine(transform.position, transform.forward * razerDistance, Color.red, razerDuration);
         }
     }
-
-    //IEnumerator playerOneSecBefore(Vector3 playerPreviusPos, Vector3 razerBeamPos)
-    //{
-    //    playerPreviusPos = Player.transform.position;
-    //    yield return new WaitForSeconds(1);
-    //    razerBeamPos = playerPreviusPos;
-    //    yield return razerBeamPos;
-    //}
 }
