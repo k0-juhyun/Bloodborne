@@ -18,7 +18,7 @@ public class e_razerbeam : MonoBehaviour
     public float razerDelay;
 
     NavMeshAgent agent;
-    float distance;
+    public float distance;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,16 +31,23 @@ public class e_razerbeam : MonoBehaviour
         transform.LookAt(Player.transform.position);
         razerBeaaam();
         agent.SetDestination(Player.transform.position);
+        if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
+        {
+            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+            {
+                Debug.Log("더 이상 갈 수 없음");
+            }
+        }
     }
 
     void razerBeaaam()
     {
         distance = Vector3.Distance(transform.position, Player.position);
-        if (distance <= razerDistance && distance >= 8f)
+        if (distance <= razerDistance && distance >= 6)
         {
             StartCoroutine(razerbeam(transform.position, razerBeamDuration, razerDelay));
         }
-        else if(distance > razerDistance) 
+        else if (distance > razerDistance && distance < 6)
         {
             StopAllCoroutines();
         }
