@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class e_razerbeam : MonoBehaviour
 {
@@ -16,24 +17,26 @@ public class e_razerbeam : MonoBehaviour
     [Range(0f, 1f)]
     public float razerDelay;
 
+    NavMeshAgent agent;
     float distance;
     // Start is called before the first frame update
     void Start()
     {
+        agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 enumBeamPos = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
         transform.LookAt(Player.transform.position);
         razerBeaaam();
+        agent.SetDestination(Player.transform.position);
     }
 
     void razerBeaaam()
     {
         distance = Vector3.Distance(transform.position, Player.position);
-        if (distance <= razerDistance)
+        if (distance <= razerDistance && distance >= 8f)
         {
             StartCoroutine(razerbeam(transform.position, razerBeamDuration, razerDelay));
         }
