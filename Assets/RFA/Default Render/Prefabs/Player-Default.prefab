@@ -67,8 +67,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: RFA_Model
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5866666021909216657, guid: 02165b8c9e350f749ba899eb7f5b1f18, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02165b8c9e350f749ba899eb7f5b1f18, type: 3}
 --- !u!1001 &6794406922981030032
 PrefabInstance:

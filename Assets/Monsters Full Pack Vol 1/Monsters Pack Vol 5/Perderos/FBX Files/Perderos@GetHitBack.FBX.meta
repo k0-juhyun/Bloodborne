@@ -1,127 +1,359 @@
 fileFormatVersion: 2
 guid: 41ee12ecb267f7641938693ea9714e7f
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: //RootNode
-    100002: Perderos_
-    100004: Perderos_ L Calf
-    100006: Perderos_ L Clavicle
-    100008: Perderos_ L Finger0
-    100010: Perderos_ L Finger01
-    100012: Perderos_ L Finger1
-    100014: Perderos_ L Finger11
-    100016: Perderos_ L Finger2
-    100018: Perderos_ L Finger21
-    100020: Perderos_ L Foot
-    100022: Perderos_ L Forearm
-    100024: Perderos_ L Hand
-    100026: Perderos_ L Thigh
-    100028: Perderos_ L Toe0
-    100030: Perderos_ L Toe1
-    100032: Perderos_ L Toe2
-    100034: Perderos_ L UpperArm
-    100036: Perderos_ Neck
-    100038: Perderos_ Pelvis
-    100040: Perderos_ R Calf
-    100042: Perderos_ R Clavicle
-    100044: Perderos_ R Finger0
-    100046: Perderos_ R Finger01
-    100048: Perderos_ R Finger1
-    100050: Perderos_ R Finger11
-    100052: Perderos_ R Finger2
-    100054: Perderos_ R Finger21
-    100056: Perderos_ R Foot
-    100058: Perderos_ R Forearm
-    100060: Perderos_ R Hand
-    100062: Perderos_ R Thigh
-    100064: Perderos_ R Toe0
-    100066: Perderos_ R Toe1
-    100068: Perderos_ R Toe2
-    100070: Perderos_ R UpperArm
-    100072: Perderos_ Spine
-    100074: Perderos_ Spine1
-    100076: Perderos_ Tail
-    100078: Perderos_ Tail1
-    100080: Perderos_ Tail2
-    100082: Perderos_JawLeft
-    100084: Perderos_JawLower
-    100086: Perderos_JawRight
-    100088: Perderos_Tongue_01
-    100090: Perderos_Tongue_02
-    100092: Perderos_Tongue_03
-    100094: Perderos_Tongue_04
-    100096: Perderos_Tongue_05
-    100098: Perderos_Tongue_06
-    100100: Perderos_Tongue_Left_01
-    100102: Perderos_Tongue_Left_02
-    100104: Perderos_Tongue_Left_03
-    100106: Perderos_Tongue_Right_01
-    100108: Perderos_Tongue_Right_02
-    100110: Perderos_Tongue_Right_03
-    100112: root
-    400000: //RootNode
-    400002: Perderos_
-    400004: Perderos_ L Calf
-    400006: Perderos_ L Clavicle
-    400008: Perderos_ L Finger0
-    400010: Perderos_ L Finger01
-    400012: Perderos_ L Finger1
-    400014: Perderos_ L Finger11
-    400016: Perderos_ L Finger2
-    400018: Perderos_ L Finger21
-    400020: Perderos_ L Foot
-    400022: Perderos_ L Forearm
-    400024: Perderos_ L Hand
-    400026: Perderos_ L Thigh
-    400028: Perderos_ L Toe0
-    400030: Perderos_ L Toe1
-    400032: Perderos_ L Toe2
-    400034: Perderos_ L UpperArm
-    400036: Perderos_ Neck
-    400038: Perderos_ Pelvis
-    400040: Perderos_ R Calf
-    400042: Perderos_ R Clavicle
-    400044: Perderos_ R Finger0
-    400046: Perderos_ R Finger01
-    400048: Perderos_ R Finger1
-    400050: Perderos_ R Finger11
-    400052: Perderos_ R Finger2
-    400054: Perderos_ R Finger21
-    400056: Perderos_ R Foot
-    400058: Perderos_ R Forearm
-    400060: Perderos_ R Hand
-    400062: Perderos_ R Thigh
-    400064: Perderos_ R Toe0
-    400066: Perderos_ R Toe1
-    400068: Perderos_ R Toe2
-    400070: Perderos_ R UpperArm
-    400072: Perderos_ Spine
-    400074: Perderos_ Spine1
-    400076: Perderos_ Tail
-    400078: Perderos_ Tail1
-    400080: Perderos_ Tail2
-    400082: Perderos_JawLeft
-    400084: Perderos_JawLower
-    400086: Perderos_JawRight
-    400088: Perderos_Tongue_01
-    400090: Perderos_Tongue_02
-    400092: Perderos_Tongue_03
-    400094: Perderos_Tongue_04
-    400096: Perderos_Tongue_05
-    400098: Perderos_Tongue_06
-    400100: Perderos_Tongue_Left_01
-    400102: Perderos_Tongue_Left_02
-    400104: Perderos_Tongue_Left_03
-    400106: Perderos_Tongue_Right_01
-    400108: Perderos_Tongue_Right_02
-    400110: Perderos_Tongue_Right_03
-    400112: root
-    7400000: GetHitBack
-    9500000: //RootNode
+  serializedVersion: 19301
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      1: 100002
+    second: Perderos_
+  - first:
+      1: 100004
+    second: Perderos_ L Calf
+  - first:
+      1: 100006
+    second: Perderos_ L Clavicle
+  - first:
+      1: 100008
+    second: Perderos_ L Finger0
+  - first:
+      1: 100010
+    second: Perderos_ L Finger01
+  - first:
+      1: 100012
+    second: Perderos_ L Finger1
+  - first:
+      1: 100014
+    second: Perderos_ L Finger11
+  - first:
+      1: 100016
+    second: Perderos_ L Finger2
+  - first:
+      1: 100018
+    second: Perderos_ L Finger21
+  - first:
+      1: 100020
+    second: Perderos_ L Foot
+  - first:
+      1: 100022
+    second: Perderos_ L Forearm
+  - first:
+      1: 100024
+    second: Perderos_ L Hand
+  - first:
+      1: 100026
+    second: Perderos_ L Thigh
+  - first:
+      1: 100028
+    second: Perderos_ L Toe0
+  - first:
+      1: 100030
+    second: Perderos_ L Toe1
+  - first:
+      1: 100032
+    second: Perderos_ L Toe2
+  - first:
+      1: 100034
+    second: Perderos_ L UpperArm
+  - first:
+      1: 100036
+    second: Perderos_ Neck
+  - first:
+      1: 100038
+    second: Perderos_ Pelvis
+  - first:
+      1: 100040
+    second: Perderos_ R Calf
+  - first:
+      1: 100042
+    second: Perderos_ R Clavicle
+  - first:
+      1: 100044
+    second: Perderos_ R Finger0
+  - first:
+      1: 100046
+    second: Perderos_ R Finger01
+  - first:
+      1: 100048
+    second: Perderos_ R Finger1
+  - first:
+      1: 100050
+    second: Perderos_ R Finger11
+  - first:
+      1: 100052
+    second: Perderos_ R Finger2
+  - first:
+      1: 100054
+    second: Perderos_ R Finger21
+  - first:
+      1: 100056
+    second: Perderos_ R Foot
+  - first:
+      1: 100058
+    second: Perderos_ R Forearm
+  - first:
+      1: 100060
+    second: Perderos_ R Hand
+  - first:
+      1: 100062
+    second: Perderos_ R Thigh
+  - first:
+      1: 100064
+    second: Perderos_ R Toe0
+  - first:
+      1: 100066
+    second: Perderos_ R Toe1
+  - first:
+      1: 100068
+    second: Perderos_ R Toe2
+  - first:
+      1: 100070
+    second: Perderos_ R UpperArm
+  - first:
+      1: 100072
+    second: Perderos_ Spine
+  - first:
+      1: 100074
+    second: Perderos_ Spine1
+  - first:
+      1: 100076
+    second: Perderos_ Tail
+  - first:
+      1: 100078
+    second: Perderos_ Tail1
+  - first:
+      1: 100080
+    second: Perderos_ Tail2
+  - first:
+      1: 100082
+    second: Perderos_JawLeft
+  - first:
+      1: 100084
+    second: Perderos_JawLower
+  - first:
+      1: 100086
+    second: Perderos_JawRight
+  - first:
+      1: 100088
+    second: Perderos_Tongue_01
+  - first:
+      1: 100090
+    second: Perderos_Tongue_02
+  - first:
+      1: 100092
+    second: Perderos_Tongue_03
+  - first:
+      1: 100094
+    second: Perderos_Tongue_04
+  - first:
+      1: 100096
+    second: Perderos_Tongue_05
+  - first:
+      1: 100098
+    second: Perderos_Tongue_06
+  - first:
+      1: 100100
+    second: Perderos_Tongue_Left_01
+  - first:
+      1: 100102
+    second: Perderos_Tongue_Left_02
+  - first:
+      1: 100104
+    second: Perderos_Tongue_Left_03
+  - first:
+      1: 100106
+    second: Perderos_Tongue_Right_01
+  - first:
+      1: 100108
+    second: Perderos_Tongue_Right_02
+  - first:
+      1: 100110
+    second: Perderos_Tongue_Right_03
+  - first:
+      1: 100112
+    second: root
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: Perderos_
+  - first:
+      4: 400004
+    second: Perderos_ L Calf
+  - first:
+      4: 400006
+    second: Perderos_ L Clavicle
+  - first:
+      4: 400008
+    second: Perderos_ L Finger0
+  - first:
+      4: 400010
+    second: Perderos_ L Finger01
+  - first:
+      4: 400012
+    second: Perderos_ L Finger1
+  - first:
+      4: 400014
+    second: Perderos_ L Finger11
+  - first:
+      4: 400016
+    second: Perderos_ L Finger2
+  - first:
+      4: 400018
+    second: Perderos_ L Finger21
+  - first:
+      4: 400020
+    second: Perderos_ L Foot
+  - first:
+      4: 400022
+    second: Perderos_ L Forearm
+  - first:
+      4: 400024
+    second: Perderos_ L Hand
+  - first:
+      4: 400026
+    second: Perderos_ L Thigh
+  - first:
+      4: 400028
+    second: Perderos_ L Toe0
+  - first:
+      4: 400030
+    second: Perderos_ L Toe1
+  - first:
+      4: 400032
+    second: Perderos_ L Toe2
+  - first:
+      4: 400034
+    second: Perderos_ L UpperArm
+  - first:
+      4: 400036
+    second: Perderos_ Neck
+  - first:
+      4: 400038
+    second: Perderos_ Pelvis
+  - first:
+      4: 400040
+    second: Perderos_ R Calf
+  - first:
+      4: 400042
+    second: Perderos_ R Clavicle
+  - first:
+      4: 400044
+    second: Perderos_ R Finger0
+  - first:
+      4: 400046
+    second: Perderos_ R Finger01
+  - first:
+      4: 400048
+    second: Perderos_ R Finger1
+  - first:
+      4: 400050
+    second: Perderos_ R Finger11
+  - first:
+      4: 400052
+    second: Perderos_ R Finger2
+  - first:
+      4: 400054
+    second: Perderos_ R Finger21
+  - first:
+      4: 400056
+    second: Perderos_ R Foot
+  - first:
+      4: 400058
+    second: Perderos_ R Forearm
+  - first:
+      4: 400060
+    second: Perderos_ R Hand
+  - first:
+      4: 400062
+    second: Perderos_ R Thigh
+  - first:
+      4: 400064
+    second: Perderos_ R Toe0
+  - first:
+      4: 400066
+    second: Perderos_ R Toe1
+  - first:
+      4: 400068
+    second: Perderos_ R Toe2
+  - first:
+      4: 400070
+    second: Perderos_ R UpperArm
+  - first:
+      4: 400072
+    second: Perderos_ Spine
+  - first:
+      4: 400074
+    second: Perderos_ Spine1
+  - first:
+      4: 400076
+    second: Perderos_ Tail
+  - first:
+      4: 400078
+    second: Perderos_ Tail1
+  - first:
+      4: 400080
+    second: Perderos_ Tail2
+  - first:
+      4: 400082
+    second: Perderos_JawLeft
+  - first:
+      4: 400084
+    second: Perderos_JawLower
+  - first:
+      4: 400086
+    second: Perderos_JawRight
+  - first:
+      4: 400088
+    second: Perderos_Tongue_01
+  - first:
+      4: 400090
+    second: Perderos_Tongue_02
+  - first:
+      4: 400092
+    second: Perderos_Tongue_03
+  - first:
+      4: 400094
+    second: Perderos_Tongue_04
+  - first:
+      4: 400096
+    second: Perderos_Tongue_05
+  - first:
+      4: 400098
+    second: Perderos_Tongue_06
+  - first:
+      4: 400100
+    second: Perderos_Tongue_Left_01
+  - first:
+      4: 400102
+    second: Perderos_Tongue_Left_02
+  - first:
+      4: 400104
+    second: Perderos_Tongue_Left_03
+  - first:
+      4: 400106
+    second: Perderos_Tongue_Right_01
+  - first:
+      4: 400108
+    second: Perderos_Tongue_Right_02
+  - first:
+      4: 400110
+    second: Perderos_Tongue_Right_03
+  - first:
+      4: 400112
+    second: root
+  - first:
+      74: 7400000
+    second: GetHitBack
+  - first:
+      95: 9500000
+    second: //RootNode
   externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -150,6 +382,7 @@ ModelImporter:
     - serializedVersion: 16
       name: GetHitBack
       takeName: Take 001
+      internalID: 0
       firstFrame: 0
       lastFrame: 25
       wrapMode: 0
@@ -158,7 +391,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
@@ -182,25 +415,28 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -209,10 +445,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 1
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -222,14 +458,17 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: root
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: ef9e3e8cca119c1439f6d55bf09d919f,
     type: 3}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 2
   additionalBone: 0
   userData: 
   assetBundleName: 
