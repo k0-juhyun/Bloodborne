@@ -4,48 +4,70 @@ using UnityEngine;
 
 public class b_Controller : MonoBehaviour
 {
+    [Header("플레이어")]
+    public GameObject Player;
+
     string currentDamageAnimation;
-    // Start is called before the first frame update
+
+    // 컴포넌트들
+    Animator animator;
     void Start()
     {
+        animator = GetComponent<Animator>();
+    }
+
+    void Update()
+    {
+        
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
+    float GetAngle(Vector3 from, Vector3 to)
+    {
+        return Quaternion.FromToRotation(transform.forward, to - from).eulerAngles.y;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("p_Weapon"))
+        if (collision.gameObject.CompareTag("p_Weapon"))
         {
-
+            float directionHitFrom = (GetAngle(transform.position, Player.transform.position));
+            WhichDirectionDamageCameFrom(directionHitFrom);
+            animator.Play(currentDamageAnimation);
         }
     }
 
     protected virtual void WhichDirectionDamageCameFrom(float direction)
     {
         //forward
-        if (direction >= 225 && direction <= 315)
+        if (direction >= 0 && direction < 45)
         {
-
+            currentDamageAnimation = "GetHitFront";
+            print("Forward");
         }
-        //right
-        else if (direction >= 315 && direction <= 45)
+        if(direction >= 315 && direction < 360)
         {
-
+            currentDamageAnimation = "GetHitFront";
+            print("Forward");
         }
-        //back
-        else if(direction >= 45 && direction <= 135)
+        //Right
+        else if (direction >= 45 && direction < 135)
         {
-
+            currentDamageAnimation = "GetHitRight";
+            print("Right");
         }
-        //left
-        else if(direction >= 135 && direction <= 225)
+        //Back
+        else if (direction >= 135 && direction < 225)
         {
-
+            currentDamageAnimation = "GetHitBack";
+            print("Back");
+        }
+        //Left
+        else if (direction >= 225 && direction <= 315)
+        {
+            currentDamageAnimation = "GetHitLeft";
+            print("Left");
         }
         return;
     }
