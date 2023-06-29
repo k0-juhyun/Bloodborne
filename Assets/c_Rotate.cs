@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rotate : MonoBehaviour
+public class c_Rotate : MonoBehaviour
 {
     float rx;
     float ry;
