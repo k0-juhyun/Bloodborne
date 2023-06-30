@@ -7,6 +7,7 @@ namespace Retro.ThirdPersonCharacter
     [RequireComponent(typeof(Animator))]
     public class Combat : MonoBehaviour
     {
+        public static bool P_Attack;
         private const string attackTriggerName = "Attack";
         private const string specialAttackTriggerName = "Ability";
 
@@ -36,11 +37,13 @@ namespace Retro.ThirdPersonCharacter
         private void SetAttackStart()
         {
             AttackInProgress = true;
+            P_Attack = true;
         }
 
         private void SetAttackEnd()
         {
             AttackInProgress = false;
+            P_Attack = false;
         }
 
         private void Attack()
