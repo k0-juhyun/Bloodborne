@@ -16,7 +16,7 @@ public class bossMove : MonoBehaviour
         playerTr = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         // 자동회전 끄기
-        agent.updatePosition = false;
+        //agent.updatePosition = false;
     }
     public float speed
     {
@@ -31,8 +31,8 @@ public class bossMove : MonoBehaviour
 
     public void isRotate()
     {
-        Quaternion rot = Quaternion.LookRotation(agent.desiredVelocity);
-        bossTr.rotation = Quaternion.Slerp(bossTr.rotation, rot, Time.deltaTime * damping);
+        //Quaternion rot = Quaternion.LookRotation(agent.desiredVelocity);
+        //bossTr.rotation = Quaternion.Slerp(bossTr.rotation, rot, Time.deltaTime * damping);
     }
     public void traceTransform()
     {
