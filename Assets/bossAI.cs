@@ -114,7 +114,7 @@ public class bossAI : MonoBehaviour
     {
         animator.SetFloat(hashSpeed, bossmove.speed);
         // 시야각 내에 있으면 오브젝트를 바라봄
-        //WhichPositionLookAt(Player.transform.position);
+        WhichPositionLookAt(playerTr.transform.position);
     }
 
     // 상대의 위치와 내 위치를 통해 각도를 계산하는 함수
