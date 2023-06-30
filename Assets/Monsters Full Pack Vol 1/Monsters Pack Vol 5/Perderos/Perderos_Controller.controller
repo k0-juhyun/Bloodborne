@@ -688,7 +688,8 @@ AnimatorState:
   m_Name: ClawsAttack3HitCombo
   m_Speed: 1
   m_CycleOffset: 0
-  m_Transitions: []
+  m_Transitions:
+  - {fileID: 3382722371208133610}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -1512,7 +1513,7 @@ AnimatorStateMachine:
     m_Position: {x: -360, y: -348, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102327940938476130}
-    m_Position: {x: -360, y: -300, z: 0}
+    m_Position: {x: -10, y: 490, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102550538733891082}
     m_Position: {x: -360, y: -252, z: 0}
@@ -1572,7 +1573,7 @@ AnimatorStateMachine:
     m_Position: {x: 340, y: -300, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102255315349532208}
-    m_Position: {x: -80, y: 480, z: 0}
+    m_Position: {x: -250, y: 490, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102498717226683778}
     m_Position: {x: 336, y: -204, z: 0}
@@ -1670,6 +1671,28 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!1101 &3382722371208133610
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions: []
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 1102608418108455290}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.25
+  m_TransitionOffset: 0
+  m_ExitTime: 0.9166667
+  m_HasExitTime: 1
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!1102 &4326385530360585306
 AnimatorState:
   serializedVersion: 6

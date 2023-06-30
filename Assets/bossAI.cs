@@ -79,7 +79,7 @@ public class bossAI : MonoBehaviour
                     break;
                 case State.Attack:
                     bossmove.stopTracing();
-                    animator.SetBool(hashMove, false);
+                    animator.Play("ClawsAttack3HitCombo");
                     break;
                 case State.Die:
                     break;
