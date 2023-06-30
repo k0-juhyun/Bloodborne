@@ -212,7 +212,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &269972834
 RectTransform:
   m_ObjectHideFlags: 0
@@ -227,9 +227,9 @@ RectTransform:
   m_Father: {fileID: 1788185547}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -124.5, y: -148.1}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -121.2, y: 45.4}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &269972835
@@ -708,6 +708,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1615165968}
+  attack1damage: 1
+  attack2damage: 2
+  attack3damage: 3
+  attackDistance: 10
+  hitDistance: 5
+  avoidDistance: 5
+  moveSpeed: 5
+  dashSpeed: 10
+  curTime: 0
+  hitcurrTime: 0
+  hitTime: 2
+  skTime_Sickel1_1: 1
+  skTime_Sickel1_2: 2
+  skTime_Sickel1_3: 3
 --- !u!114 &453225780
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+
+// 대체, 추가 : 나중에 합치면 교체해야 하는 것
 public class Boss : MonoBehaviour
 {
     NavMeshAgent agent;                 // 길찾기
@@ -29,7 +31,7 @@ public class Boss : MonoBehaviour
         Phase2,
         Phase3
     }
-    BossPhase bossPhase;
+    BossPhase bossPhase;                // 보스 페이즈 상태 = 1페이즈(시작), 2페이즈(체력75%이하), 3페이즈(체력 50%이하)
 
 
     public GameObject player;           // 플레이어
@@ -37,28 +39,34 @@ public class Boss : MonoBehaviour
 
     Vector3 dir;                        // 이동 방향
 
-    int phase = 1;                      // 페이즈 변환 변수
     int damage;                         // 데미지 (플레이어한테 어떤 공격인지 상태를 받아오기, 공격에 따라 다른 데미지를 구현)
     int hitCount = 0;                   // 피격 횟수 (맞은 횟수)
-    int attack1damage = 1;              // 플레이어 공격 1번 데미지
-    int attack2damage = 2;              // 플레이어 공격 2번 데미지
-    int attack3damage = 3;              // 플레이어 공격 3번 데미지
 
-    float currDistance;                 // 현재 거리
-    float attackDistance = 10f;         // 공격시작 거리
-    float hitDistance = 5f;             // 피격 거리
-    float avoidDistance = 5f;           // 회피 거리
+    [Header("데미지")]
+    public int attack1damage = 1;              // 플레이어 공격 1번 데미지
+    public int attack2damage = 2;              // 플레이어 공격 2번 데미지
+    public int attack3damage = 3;              // 플레이어 공격 3번 데미지
 
-    float moveSpeed = 5f;               // 이동 속도
-    float dashSpeed = 10f;              // 대시 속도
+    float currDistance;                        // 현재 거리
+    [Header("거리")]
+    public float attackDistance = 10f;         // 공격시작 거리
+    public float hitDistance = 5f;             // 피격 거리
+    public float avoidDistance = 5f;           // 회피 거리
+
+    [Header("속도")]
+    public float moveSpeed = 5f;               // 이동 속도
+    public float dashSpeed = 10f;              // 대시 속도
 
 
-    float curTime;                      // 현재 시간
-    float hitcurrTime;                  // 현재 피격 시간
-    float hitTime = 2f;                      // 피격 2 재생되는 시간
-    float skTime_Sickel1_1 = 1f;        // 낫 스킬1 1번 공격 시작 시간
-    float skTime_Sickel1_2 = 2f;        // 낫 스킬1 2번 공격 시작 시간
-    float skTime_Sickel1_3 = 3f;        // 낫 스킬3 3번 공격 시작 시간
+    [Header("시간")]
+    public float curTime;                      // 현재 시간
+    public float hitcurrTime;                  // 현재 피격 시간
+    public float hitTime = 2f;                 // 피격 2 재생되는 시간
+    public float skTime_Sickel1_1 = 1f;        // 낫 스킬1 1번 공격 시작 시간
+    public float skTime_Sickel1_2 = 2f;        // 낫 스킬1 2번 공격 시작 시간
+    public float skTime_Sickel1_3 = 3f;        // 낫 스킬3 3번 공격 시작 시간
+
+    bool isAttack = false;              // 플레이어 공격상태(대체, 플레이어 스크립트에서 받아오기, 추가하기)
 
     // Start is called before the first frame update
     void Start()
@@ -85,8 +93,15 @@ public class Boss : MonoBehaviour
 
         print("currDistacne : " + currDistance);
 
-        // 플레이어가 없어서
-
+        // 플레이어가 없어서 플레이어 공격 상태를 마우스 우클릭으로 설정한다(대체)
+        if (Input.GetMouseButtonDown(0))
+        {
+            isAttack = true;
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            isAttack = false;
+        }
 
         switch (bossState)
         {
@@ -118,10 +133,15 @@ public class Boss : MonoBehaviour
         switch (bossPhase)
         {
             case BossPhase.Phase1:
+                // 페이즈 1에서 실행할 공격 콤보들 호출?
+                // 낫공격 1,2,3
                 break;
             case BossPhase.Phase2:
+                // 페이즈 2에서 실행할 공격 콤보
+                // 칼 공격 콤보 1,2,3
                 break;
             case BossPhase.Phase3:
+                // 페이즈 3에서 실행할 공격 콤보
                 break;
             default:
                 break;
@@ -144,6 +164,12 @@ public class Boss : MonoBehaviour
         {
             // 낫공격1으로 상태 변화시킨다 (랜덤 뽑기 나중에)
             bossState = BossPatternState.SickelCombo1;
+        }
+        // 만약 현재 거리가 피격거리이고, 플레이어가 공격중이라면(교체)
+        else if (currDistance <= hitDistance && isAttack == true)
+        {
+            // 회피 상태로 변화시킨다
+            bossState = BossPatternState.Avoid;
         }
     }
 
@@ -169,6 +195,24 @@ public class Boss : MonoBehaviour
     {
         // 맞았을때 하는일
         // 만약 플레이어가 공격 상태이고, 플레이어의 무기에 맞았을 때(onCollisionEnter) 호출됨
+        // 보스 페이즈 체력 체크
+        // 만약 현재 체력이 75보다 작다면
+        if (bossHP.HP / bossHP.maxHP * 100 <= 75)
+        {
+            // 현재 페이즈를 2페이즈로 한다
+            bossPhase = BossPhase.Phase2;
+            // 보스 공격 상태를 ?로 바꾼다
+            return;     // 바로가기?? 아마 아래에 있는 피깎이를 위로 올려야할듯? 무적상태가 따로 있나? 없나? 체크필요
+        }
+
+        // 만약 현재 체력이 50보다 작다면
+        if (bossHP.HP / bossHP.maxHP * 100 <= 50)
+        {
+            // 현재 페이즈를 3페이즈로 한다
+            bossPhase = BossPhase.Phase3;
+            // 보스 공격 상태를 ?로 바꾼다
+            return;
+        }
         // 피격 시간을 흐르게 한다
         hitcurrTime += Time.deltaTime;
         // 히트 카운드를 1더한다
@@ -176,15 +220,9 @@ public class Boss : MonoBehaviour
         // 어떤 공격인지에 따라 그 데미지만큼을 현재 체력에서 뺀다
         bossHP.HP -= damage;
         // 피격 1 애니메이션을 실행한다
-        // 만약 히트 카운트가 1일때
-        if (hitCount == 1)
-        {
-            // 시간을 한번 초기화
-            curTime = 0;
-            // 만약 시간이 
-        }
-        // 만약 히트 카운트가 2라면
-        if (hitCount >= 2)
+        
+        // 만약 현재 피격시간이 피격2 시간보다 작을때, 히트 카운트가 2라면
+        if (hitcurrTime <= hitTime && hitCount >= 2)
         {
             // 피격 2 애니메이션을 실행한다
             // 히트 카운트를 0으로 한다
