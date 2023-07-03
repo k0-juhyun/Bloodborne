@@ -8,7 +8,7 @@ public class bossAI : MonoBehaviour
 {
     private Transform playerTr;
     private Transform bossTr;
-    string currentDamageAnimation;
+    private bool attackInProgress;
 
     [Header("공격사거리")]
     public float attackDis;
@@ -22,30 +22,66 @@ public class bossAI : MonoBehaviour
     [Header("보스 이동속도")]
     public float traceSpeed;
 
+    [Header("보스 체력")]
+    public float maxHp;
+    public float curHp;
+
+
     // 컴포넌트들
     private Animator animator;
     private bossMove bossmove;
+    private bossDamage bossdamage;
 
     // 보스 상태
     public enum State
     {
         Idle,
-        Trace, 
+        Trace,
         Attack,
+        Damage,
         Die
     }
     // 처음에는 기본상태
     [Header("현재 보스 상태")]
     public State state = State.Idle;
 
-    private WaitForSeconds waitforsecs;
+    // 보스 공격 패턴
+    public enum Phase1_AttackPattern
+    {
+        OverHeadWheel,
+        SpinningWheel,
+        JumpingSlam,
+        ChargingCombo,
+        Reconstruction
+    }
+
+    [Header("공격 패턴")]
+    public Phase1_AttackPattern attackPattern = Phase1_AttackPattern.Reconstruction;
+
+    // 보스 페이즈
+    public enum Phase
+    {
+        Phase1,
+        Phase2
+    }
+
+    [Header("페이즈")]
+    public Phase phase = Phase.Phase1;
+
+    private WaitForSeconds stateCheckDelay;
+
+    [Header("공격 딜레이")]
+    public float attackDelay;
+
     private readonly int hashMove = Animator.StringToHash("isMove");
     private readonly int hashSpeed = Animator.StringToHash("speed");
-  
+
     void Awake()
     {
+        curHp = maxHp;
         animator = GetComponent<Animator>();
         bossmove = GetComponent<bossMove>();
+        bossdamage = GetComponent<bossDamage>();
 
         var player = GameObject.FindGameObjectWithTag("Player");
 
@@ -56,35 +92,12 @@ public class bossAI : MonoBehaviour
         bossTr = GetComponent<Transform>();
 
         // 0.2초 주기로 상태체크
-        waitforsecs = new WaitForSeconds(0.2f);
+        stateCheckDelay = new WaitForSeconds(0.2f);
     }
     private void OnEnable()
     {
         StartCoroutine(CheckState());
         StartCoroutine(Action());
-    }
-
-    IEnumerator Action()
-    {
-        while(!isDie)
-        {
-            yield return waitforsecs;
-            switch(state) 
-            {
-                case State.Idle:
-                    break;
-                case State.Trace:
-                    bossmove.traceTransform();
-                    animator.SetBool(hashMove, true);
-                    break;
-                case State.Attack:
-                    bossmove.stopTracing();
-                    animator.Play("ClawsAttack3HitCombo");
-                    break;
-                case State.Die:
-                    break;
-            }
-        }
     }
 
     // 보스 상태 체크 코루틴
@@ -98,75 +111,118 @@ public class bossAI : MonoBehaviour
 
             float dis = Vector3.Distance(playerTr.position, bossTr.position);
 
-            if (dis <= attackDis)
+            // 체력이 40퍼센트 이하면 2페이즈로 돌입
+            if (curHp / maxHp <= 0.4)
+            {
+                phase = Phase.Phase2;
+            }
+            
+            // 공격 사거리 내에 들어와있고 피격당하지 않는다면 공격상태
+            if (dis <= attackDis && !bossdamage.isHitted)
             {
                 state = State.Attack;
             }
-            else if (dis <= traceDis)
+
+            // 추적 사거리 내에 있고 피격당하지 않는다면 추적 상태
+            else if (dis <= traceDis && !bossdamage.isHitted)
             {
                 state = State.Trace;
             }
 
-            yield return waitforsecs;
+            // 피격 당했다면 피격상태
+            else if (bossdamage.isHitted)
+            {
+                state = State.Damage;
+            }
+
+            yield return stateCheckDelay;
         }
     }
+
+    // 보스 상태 제어 코루틴
+    IEnumerator Action()
+    {
+        while (!isDie)
+        {
+            yield return stateCheckDelay;
+            switch (state)
+            {
+                case State.Idle:
+                    break;
+                case State.Trace:
+                    bossmove.traceTransform();
+                    animator.SetBool(hashMove, true);
+                    break;
+                case State.Attack:
+                    bossmove.stopTracing();
+                    StartCoroutine(CheckAttackState());
+                    break;
+                case State.Damage:
+                    break;
+                case State.Die:
+                    break;
+            }
+        }
+    }
+
+    IEnumerator CheckAttackState()
+    {
+        if (!attackInProgress)
+        {
+            int randomIndex = Random.Range((int)Phase1_AttackPattern.OverHeadWheel, (int)Phase1_AttackPattern.Reconstruction + 1);
+            attackPattern = (Phase1_AttackPattern)randomIndex;
+
+            // 선택된 attackPattern에 따라 행동 수행
+            switch (attackPattern)
+            {
+                // 전방 오버헤드 채찍 공격 뒤로 1~2회 빠르게 이동
+                case Phase1_AttackPattern.OverHeadWheel:
+                    attackInProgress = true;
+                    animator.Play("OverHeadWheel");
+                    break;
+
+                // 뒤에서 사용하는 2회 360도 회전 공격 몸을 웅크리면서 빠르게 뒤로 물러남
+                case Phase1_AttackPattern.SpinningWheel:
+                    attackInProgress = true;
+                    animator.Play("SpinningWheel");
+                    break;
+
+                // 장거리 점프 공격 앞으로 퀵스텝 1~2회
+                case Phase1_AttackPattern.JumpingSlam:
+                    attackInProgress = true;
+                    animator.Play("JumpingSlam");
+                    print("3");
+                    break;
+
+                // 전방 돌진 콤보 퀵스텝 옆 or 대각선 뒤로
+                case Phase1_AttackPattern.ChargingCombo:
+                    attackInProgress = true;
+                    animator.Play("ChargingCombo");
+                    break;
+
+                // 재건
+                case Phase1_AttackPattern.Reconstruction:
+                    attackInProgress = true;
+                    animator.Play("Reconstruction");
+                    break;
+            }
+
+            yield return new WaitForSeconds(attackDelay);
+            attackInProgress = false;
+        }
+    }
+
     void Update()
     {
         animator.SetFloat(hashSpeed, bossmove.speed);
         // 시야각 내에 있으면 오브젝트를 바라봄
-        WhichPositionLookAt(playerTr.transform.position);
+        //WhichPositionLookAt(playerTr.transform.position);
     }
 
     // 상대의 위치와 내 위치를 통해 각도를 계산하는 함수
     float GetAngle(Vector3 from, Vector3 to)
     {
         return Quaternion.FromToRotation(transform.forward, to - from).eulerAngles.y;
-    }
-
-    // 피격함수
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("p_Weapon") && Combat.P_Attack)
-        {
-            float directionHitFrom = (GetAngle(transform.position, playerTr.transform.position));
-            WhichDirectionDamageCameFrom(directionHitFrom);
-            animator.Play(currentDamageAnimation);
-        }
-    }
-
-    // 피격시 어느 위치에 맞았는지 확인하는 함수
-    protected virtual void WhichDirectionDamageCameFrom(float direction)
-    {
-        //forward
-        if (direction >= 0 && direction < 45)
-        {
-            currentDamageAnimation = "GetHitFront";
-            print("Forward");
-        }
-        if (direction >= 315 && direction < 360)
-        {
-            currentDamageAnimation = "GetHitFront";
-            print("Forward");
-        }
-        //Right
-        else if (direction >= 45 && direction < 135)
-        {
-            currentDamageAnimation = "GetHitRight";
-            print("Right");
-        }
-        //Back
-        else if (direction >= 135 && direction < 225)
-        {
-            currentDamageAnimation = "GetHitBack";
-            print("Back");
-        }
-        //Left
-        else if (direction >= 225 && direction <= 315)
-        {
-            currentDamageAnimation = "GetHitLeft";
-            print("Left");
-        }
-        return;
     }
 
     // 시야 각 내에 있으면 플레이어를 바라보는 함수
