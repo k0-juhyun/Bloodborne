@@ -65,6 +65,7 @@ public class Boss : MonoBehaviour
 
     [Header("시간")]
     public float curTime;                      // 현재 시간
+    public float avoidcurTime;                 // 회피 시간
     public float hitcurrTime;                  // 현재 피격 시간
     public float hitTime = 2f;                 // 피격 2 재생되는 시간
     public float skTime_Sickel1_1 = 1f;        // 낫 스킬1 1번 공격 시작 시간
@@ -124,7 +125,7 @@ public class Boss : MonoBehaviour
                 UpdateMove();
                 break;
             case BossPatternState.Avoid:  // 만약 플레이어와의 거리가 피격 가능 거리이고, 플레이어가 공격 중이라면, 한번 실행
-                if (isAvoid == false) UpdateAvoid();
+                UpdateAvoid();
                 break;
             case BossPatternState.Hit:
                 UpdateHit();
@@ -201,34 +202,27 @@ public class Boss : MonoBehaviour
 
     private void UpdateAvoid()
     {
+        // 시간을 잰다
+        avoidcurTime += Time.deltaTime;
         // 회피 상태임
         isAvoid = true;
-        avoidDir = -transform.forward;
-        // 뒤로 회피
-        transform.position += avoidDir * 1000 * Time.deltaTime;
-        //transform.position = Vector3.Lerp(transform.position, avoidDir, dashSpeed * Time.deltaTime);
         print("Avoid");
-        // 끝나면 상태를 idle로
-        bossState = BossPatternState.Idle;
-        // 회피는 기본적으로 뒤 > 왼쪽 > 오른쪽 순으로
-        // 회피는 낮게 점프해서 빠르게 이동
-        // 회피는 공격 상태인 플레이어와의 거리에 따라 최대 2번까지?? 확인 필요
-        // 회피시 내 몸통의 중심의 위치에서(허리부분) Ray를 나의 뒤로 쏘기
-        //Ray ray = new Ray(rayPos.position, -transform.forward);
-        //Debug.DrawRay(rayPos.position, -transform.forward * hit.distance, Color.blue);
-        //// 만약 회피 거리보다 뒤???(경사지인데..어디로 쏴야하나)로 쏴서 닿은 곳과의 거리가 더 멀다면,
-        //if (hit.distance > avoidDistance)
-        //{
-        //    avoidDir = -transform.forward + transform.up;
-        //    // 뒤로 회피
-        //    rid.AddForce(avoidDir * 100, ForceMode.Impulse);
-        //    isAvoid = true;
-        //}
-        // 아니라면 나의 왼쪽으로 Ray를 쏘기 && 거리가 가능하다면 - alpha
-        // 왼쪽으로 회피
-        // 아니라면 나의 오른쪽으로 Ray를 쏘기 && 거리가 가능하다면 - alpha
-        // 오른쪽으로 회피
+        avoidDir = -transform.forward;
 
+        if (isAvoid == true)
+        {
+            // 뒤로 회피
+            transform.position += avoidDir * 5 * Time.deltaTime;
+            //transform.position = Vector3.Lerp(transform.position, avoidDir, dashSpeed * Time.deltaTime);
+
+            if (avoidcurTime > 1)
+            {
+                // 1초 후 상태를 idle로
+                bossState = BossPatternState.Idle;
+                print("Idle");
+                avoidcurTime = 0;
+            }
+        }
     }
 
     private void UpdateHit()
