@@ -42,12 +42,13 @@ public class bossAI : MonoBehaviour
     // 보스 상태
     public enum State
     {
-        Idle,
-        Retreat,
-        Trace,
-        Attack,
-        Damage,
-        Die
+        Idle, // 기본
+        Retreat, // 후퇴
+        Trace, // 추적
+        Attack, // 공격
+        Damage, // 피격
+        Wait, // 공격 딜레이
+        Die // 죽음
     }
     // 처음에는 기본상태
     [Header("현재 보스 상태")]
@@ -60,11 +61,12 @@ public class bossAI : MonoBehaviour
         LaserBeam,
         JumpingSlam,
         ChargingCombo,
-        Reconstruction
+        RightPunch,
+        LeftPunch
     }
 
     [Header("공격 패턴")]
-    public Phase1_AttackPattern attackPattern = Phase1_AttackPattern.Reconstruction;
+    public Phase1_AttackPattern attackPattern = Phase1_AttackPattern.JumpingSlam;
 
     // 보스 페이즈
     public enum Phase
@@ -162,7 +164,7 @@ public class bossAI : MonoBehaviour
                 case State.Idle:
                     break;
                 case State.Trace:
-                    bossmove.traceTransform();
+                    bossmove.moveToPlayer();
                     animator.SetBool(hashMove, true);
                     break;
                 case State.Attack:
@@ -170,6 +172,12 @@ public class bossAI : MonoBehaviour
                     StartCoroutine(CheckAttackState());
                     break;
                 case State.Damage:
+                    break;
+                case State.Wait:
+                    animator.Play("Roar");
+                    break;
+                case State.Retreat:
+                    bossmove.moveToOrigin();
                     break;
                 case State.Die:
                     break;
@@ -181,7 +189,7 @@ public class bossAI : MonoBehaviour
     {
         if (!attackInProgress)
         {
-            int randomIndex = Random.Range((int)Phase1_AttackPattern.OverHeadWheel, (int)Phase1_AttackPattern.Reconstruction + 1);
+            int randomIndex = Random.Range((int)Phase1_AttackPattern.OverHeadWheel, (int)Phase1_AttackPattern.LeftPunch + 1);
             attackPattern = (Phase1_AttackPattern)randomIndex;
 
             // 선택된 attackPattern에 따라 행동 수행
@@ -196,8 +204,12 @@ public class bossAI : MonoBehaviour
                 // 레이저 쏘기전에 빽무빙 한번만하자
                 case Phase1_AttackPattern.LaserBeam:
                     attackInProgress = true;
+                    state = State.Retreat;
                     animator.Play("LaserBeam");
-                    yield return StartCoroutine(LaserBeam());
+                    yield return StartCoroutine(LaserBeam(() =>
+                    {
+                        attackInProgress = false; // 공격이 완료되었으므로 attackInProgress를 false로 설정
+                    }));
                     break;
 
                 // 장거리 점프 공격 앞으로 퀵스텝 1~2회
@@ -212,23 +224,29 @@ public class bossAI : MonoBehaviour
                     animator.Play("ChargingCombo");
                     break;
 
-                // 재건
-                case Phase1_AttackPattern.Reconstruction:
+                // 오른쪽 펀치
+                case Phase1_AttackPattern.RightPunch:
                     attackInProgress = true;
-                    animator.Play("Reconstruction");
+                    animator.Play("RightPunch");
+                    break;
+
+                // 왼쪽 펀치
+                case Phase1_AttackPattern.LeftPunch:
+                    attackInProgress = true;
+                    animator.Play("LeftPunch");
                     break;
             }
 
+            state = State.Wait;
             yield return new WaitForSeconds(attackDelay);
             attackInProgress = false;
         }
     }
 
+
     void Update()
     {
         animator.SetFloat(hashSpeed, bossmove.speed);
-        // 시야각 내에 있으면 오브젝트를 바라봄
-        //WhichPositionLookAt(playerTr.transform.position);
     }
 
     // 상대의 위치와 내 위치를 통해 각도를 계산하는 함수
@@ -255,11 +273,11 @@ public class bossAI : MonoBehaviour
         return playerPos;
     }
 
-    IEnumerator LaserBeam()
+    IEnumerator LaserBeam(System.Action callback)
     {
         // back move
         LaserEffect[0].SetActive(true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.3f);
         LaserEffect[1].SetActive(true);
         LaserEffect[0].SetActive(false);
         if (LaserEffect[1].activeSelf)
@@ -272,6 +290,6 @@ public class bossAI : MonoBehaviour
                 LaserEffect[1].SetActive(false);
             }
         }
-        yield return 0;
+        yield return callback;
     }
 }

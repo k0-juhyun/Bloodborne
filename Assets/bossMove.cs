@@ -7,11 +7,13 @@ public class bossMove : MonoBehaviour
 {
     private NavMeshAgent agent;
     private Transform playerTr;
+    private Vector3 originTr;
     private float damping = 1.0f;
     private Transform bossTr;
     // Start is called before the first frame update
     void Start()
     {
+        originTr = gameObject.transform.position;
         bossTr = GetComponent<Transform>();
         playerTr = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
@@ -29,7 +31,7 @@ public class bossMove : MonoBehaviour
        
     }
 
-    public void traceTransform()
+    public void moveToPlayer()
     {
         agent.isStopped = false;
         damping = 1.0f;
@@ -40,5 +42,10 @@ public class bossMove : MonoBehaviour
     {
         agent.velocity = Vector3.zero;
         agent.isStopped = true;
+    }
+
+    public void moveToOrigin()
+    {
+        agent.SetDestination(originTr);
     }
 }
