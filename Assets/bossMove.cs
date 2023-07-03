@@ -29,11 +29,6 @@ public class bossMove : MonoBehaviour
        
     }
 
-    public void isRotate()
-    {
-        //Quaternion rot = Quaternion.LookRotation(agent.desiredVelocity);
-        //bossTr.rotation = Quaternion.Slerp(bossTr.rotation, rot, Time.deltaTime * damping);
-    }
     public void traceTransform()
     {
         agent.isStopped = false;

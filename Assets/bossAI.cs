@@ -10,6 +10,7 @@ public class bossAI : MonoBehaviour
     private Transform playerTr;
     private Transform bossTr;
     private bool attackInProgress;
+    private bool isRetreat;
 
     public GameObject[] LaserEffect;
 
@@ -42,6 +43,7 @@ public class bossAI : MonoBehaviour
     public enum State
     {
         Idle,
+        Retreat,
         Trace,
         Attack,
         Damage,
@@ -141,6 +143,10 @@ public class bossAI : MonoBehaviour
                 state = State.Damage;
             }
 
+            else if (isRetreat)
+            {
+                state = State.Retreat;
+            }
             yield return stateCheckDelay;
         }
     }
@@ -191,7 +197,7 @@ public class bossAI : MonoBehaviour
                 case Phase1_AttackPattern.LaserBeam:
                     attackInProgress = true;
                     animator.Play("LaserBeam");
-                    StartCoroutine(LaserBeam());
+                    yield return StartCoroutine(LaserBeam());
                     break;
 
                 // 장거리 점프 공격 앞으로 퀵스텝 1~2회
@@ -251,6 +257,7 @@ public class bossAI : MonoBehaviour
 
     IEnumerator LaserBeam()
     {
+        // back move
         LaserEffect[0].SetActive(true);
         yield return new WaitForSeconds(1f);
         LaserEffect[1].SetActive(true);
@@ -265,5 +272,6 @@ public class bossAI : MonoBehaviour
                 LaserEffect[1].SetActive(false);
             }
         }
+        yield return 0;
     }
 }
