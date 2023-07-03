@@ -3,12 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public class bossAI : MonoBehaviour
 {
     private Transform playerTr;
     private Transform bossTr;
     private bool attackInProgress;
+
+    public GameObject[] LaserEffect;
+
+    float beamTime = 3f;
+    float beamTimeCal = 3f;
 
     [Header("공격사거리")]
     public float attackDis;
@@ -49,7 +55,7 @@ public class bossAI : MonoBehaviour
     public enum Phase1_AttackPattern
     {
         OverHeadWheel,
-        SpinningWheel,
+        LaserBeam,
         JumpingSlam,
         ChargingCombo,
         Reconstruction
@@ -90,7 +96,7 @@ public class bossAI : MonoBehaviour
             playerTr = player.GetComponent<Transform>();
 
         bossTr = GetComponent<Transform>();
-
+        //  transform.position = originPos.transform.position;
         // 0.2초 주기로 상태체크
         stateCheckDelay = new WaitForSeconds(0.2f);
     }
@@ -116,7 +122,7 @@ public class bossAI : MonoBehaviour
             {
                 phase = Phase.Phase2;
             }
-            
+
             // 공격 사거리 내에 들어와있고 피격당하지 않는다면 공격상태
             if (dis <= attackDis && !bossdamage.isHitted)
             {
@@ -181,17 +187,17 @@ public class bossAI : MonoBehaviour
                     animator.Play("OverHeadWheel");
                     break;
 
-                // 뒤에서 사용하는 2회 360도 회전 공격 몸을 웅크리면서 빠르게 뒤로 물러남
-                case Phase1_AttackPattern.SpinningWheel:
+                // 레이저 쏘기전에 빽무빙 한번만하자
+                case Phase1_AttackPattern.LaserBeam:
                     attackInProgress = true;
-                    animator.Play("SpinningWheel");
+                    animator.Play("LaserBeam");
+                    StartCoroutine(LaserBeam());
                     break;
 
                 // 장거리 점프 공격 앞으로 퀵스텝 1~2회
                 case Phase1_AttackPattern.JumpingSlam:
                     attackInProgress = true;
                     animator.Play("JumpingSlam");
-                    print("3");
                     break;
 
                 // 전방 돌진 콤보 퀵스텝 옆 or 대각선 뒤로
@@ -241,5 +247,23 @@ public class bossAI : MonoBehaviour
             print("look");
         }
         return playerPos;
+    }
+
+    IEnumerator LaserBeam()
+    {
+        LaserEffect[0].SetActive(true);
+        yield return new WaitForSeconds(1f);
+        LaserEffect[1].SetActive(true);
+        LaserEffect[0].SetActive(false);
+        if (LaserEffect[1].activeSelf)
+        {
+            gameObject.transform.LookAt(playerTr);
+            beamTimeCal -= Time.deltaTime;
+            if (beamTimeCal <= 0)
+            {
+                beamTimeCal = beamTime;
+                LaserEffect[1].SetActive(false);
+            }
+        }
     }
 }
