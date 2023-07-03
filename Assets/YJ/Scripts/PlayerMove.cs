@@ -7,6 +7,7 @@ public class PlayerMove : MonoBehaviour
     // 이동 속도
     [Header("이동 속도")]
     public float speed = 5f;
+    public bool isAttack = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,5 +22,15 @@ public class PlayerMove : MonoBehaviour
         Vector3 dir = new Vector3(h, 0, v);
         dir.Normalize();
         transform.position += dir * speed * Time.deltaTime;
+
+        // 공격상태
+        if (Input.GetMouseButtonDown(0))
+        {
+            isAttack = true;
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            isAttack = false;
+        }
     }
 }
