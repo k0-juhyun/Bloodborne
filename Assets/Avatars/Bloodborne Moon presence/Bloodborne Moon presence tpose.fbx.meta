@@ -2093,6 +2093,11 @@ ModelImporter:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
+    - name: Body
+      parentName: Bloodborne Moon presence tpose(Clone)
+      position: {x: -0, y: 0.895122, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 100, y: 100, z: 100}
     - name: Armature
       parentName: Bloodborne Moon presence tpose(Clone)
       position: {x: -0, y: 0.895122, z: 0}
@@ -2130,8 +2135,8 @@ ModelImporter:
       scale: {x: 1, y: 0.99999994, z: 1}
     - name: Bone0007
       parentName: Bone0006
-      position: {x: -0.000000007576404, y: -0.00012318492, z: -0.0026897197}
-      rotation: {x: -0.43510747, y: 0, z: -0, w: 0.9003785}
+      position: {x: 0.00024, y: -0.00246, z: -0.00454}
+      rotation: {x: -0.017172573, y: 0.89967704, z: -0.43476838, w: 0.035535626}
       scale: {x: 1, y: 0.99999994, z: 0.99999994}
     - name: Bone0008
       parentName: Bone0007
@@ -2964,7 +2969,7 @@ ModelImporter:
     - name: Bone0148
       parentName: Bone0147
       position: {x: -0.0014252091, y: -0.0013744438, z: -0.0001805814}
-      rotation: {x: 0.026128916, y: -0.0001408917, z: 0.011617792, w: 0.99959105}
+      rotation: {x: 0.026128918, y: -0.0001408917, z: 0.011617793, w: 0.99959105}
       scale: {x: 1, y: 0.99999994, z: 0.99999994}
     - name: Bone0149
       parentName: Bone0148
@@ -3428,18 +3433,13 @@ ModelImporter:
     - name: Bone0321
       parentName: Bone0299
       position: {x: 0.000000004180474, y: -0.00000004538335, z: 0.0000000071153043}
-      rotation: {x: 0.008796004, y: 0.00014404794, z: 0.008813541, w: 0.99992245}
+      rotation: {x: 0.008796005, y: 0.00014404794, z: 0.008813542, w: 0.99992245}
       scale: {x: 0.9999999, y: 1, z: 0.9999998}
     - name: Bone0321_end
       parentName: Bone0321
       position: {x: -0, y: 0.0010000122, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Body
-      parentName: Bloodborne Moon presence tpose(Clone)
-      position: {x: -0, y: 0.895122, z: 0}
-      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-      scale: {x: 100, y: 100, z: 100}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
