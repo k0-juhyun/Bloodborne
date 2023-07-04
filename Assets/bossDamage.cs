@@ -107,7 +107,6 @@ public class bossDamage : MonoBehaviour
         Destroy(blood, 1.0f);
     }
 
-    // 
     private IEnumerator ResetHitted()
     {
         yield return new WaitForSeconds(0.5f);

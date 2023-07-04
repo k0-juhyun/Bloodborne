@@ -19,7 +19,6 @@ public class bossMove : MonoBehaviour
         playerTr = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         // 자동회전 끄기
-        //agent.updatePosition = false;
     }
     public float speed
     {
@@ -34,6 +33,7 @@ public class bossMove : MonoBehaviour
 
     public void moveToPlayer()
     {
+        agent.updateRotation = true;
         print("moveToPlayer");
         agent.isStopped = false;
         damping = 1.0f;
@@ -49,9 +49,10 @@ public class bossMove : MonoBehaviour
 
     public void moveToOrigin()
     {
+        agent.updateRotation = false;
+        Quaternion rot = Quaternion.LookRotation(playerTr.transform.position);
         agent.isStopped = false;
         print("moveToOrigin");
-        print(originTr);
         agent.SetDestination(originTr);
     }
 }

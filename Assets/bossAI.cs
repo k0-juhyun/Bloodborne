@@ -83,6 +83,7 @@ public class bossAI : MonoBehaviour
     public float attackDelay;
 
     private readonly int hashMove = Animator.StringToHash("isMove");
+    private readonly int hashRetreat = Animator.StringToHash("Retreating");
     private readonly int hashSpeed = Animator.StringToHash("speed");
 
     void Awake()
@@ -176,9 +177,10 @@ public class bossAI : MonoBehaviour
                 case State.Damage:
                     break;
                 case State.Retreat:
-                    StartCoroutine(RetreatOff(5f));
+                    StartCoroutine(RetreatOff(0.8f));
                     bossmove.moveToOrigin();
-                    animator.SetBool(hashMove, true);
+                    animator.SetBool(hashMove, false);
+                    animator.Play("Retreating");
                     break;
                 case State.Die:
                     break;
@@ -190,6 +192,7 @@ public class bossAI : MonoBehaviour
     {
         if (!attackInProgress)
         {
+            StartCoroutine(RetreatOn(5f));
             int randomIndex = Random.Range((int)Phase1_AttackPattern.OverHeadWheel, (int)Phase1_AttackPattern.LeftPunch + 1);
             attackPattern = (Phase1_AttackPattern)randomIndex;
 
@@ -237,8 +240,6 @@ public class bossAI : MonoBehaviour
                     animator.Play("LeftPunch");
                     break;
             }
-
-            isRetreat = true;
             yield return new WaitForSeconds(attackDelay);
             attackInProgress = false;
         }
@@ -298,5 +299,11 @@ public class bossAI : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         isRetreat = false;
+    }
+
+    IEnumerator RetreatOn(float time)
+    {
+        yield return new WaitForSeconds(time);
+        isRetreat = true;
     }
 }
