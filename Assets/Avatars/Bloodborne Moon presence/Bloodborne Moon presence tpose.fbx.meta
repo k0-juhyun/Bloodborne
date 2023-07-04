@@ -1,1617 +1,550 @@
 fileFormatVersion: 2
 guid: bc95531e10951c5439f0b5b7d7215d02
+timeCreated: 1543074760
+licenseType: Free
 ModelImporter:
-  serializedVersion: 19301
-  internalIDToNameTable:
-  - first:
-      1: 100000
-    second: Armature
-  - first:
-      1: 100002
-    second: //RootNode
-  - first:
-      1: 100004
-    second: Body
-  - first:
-      1: 100006
-    second: Bone0001
-  - first:
-      1: 100008
-    second: Bone0002
-  - first:
-      1: 100010
-    second: Bone0003
-  - first:
-      1: 100012
-    second: Bone0004
-  - first:
-      1: 100014
-    second: Bone0005
-  - first:
-      1: 100016
-    second: Bone0006
-  - first:
-      1: 100018
-    second: Bone0007
-  - first:
-      1: 100020
-    second: Bone0008
-  - first:
-      1: 100022
-    second: Bone0009
-  - first:
-      1: 100024
-    second: Bone0010
-  - first:
-      1: 100026
-    second: Bone0011
-  - first:
-      1: 100028
-    second: Bone0012
-  - first:
-      1: 100030
-    second: Bone0013
-  - first:
-      1: 100032
-    second: Bone0014
-  - first:
-      1: 100034
-    second: Bone0014_end
-  - first:
-      1: 100036
-    second: Bone0015
-  - first:
-      1: 100038
-    second: Bone0016
-  - first:
-      1: 100040
-    second: Bone0017
-  - first:
-      1: 100042
-    second: Bone0018
-  - first:
-      1: 100044
-    second: Bone0019
-  - first:
-      1: 100046
-    second: Bone0020
-  - first:
-      1: 100048
-    second: Bone0020_end
-  - first:
-      1: 100050
-    second: Bone0021
-  - first:
-      1: 100052
-    second: Bone0022
-  - first:
-      1: 100054
-    second: Bone0023
-  - first:
-      1: 100056
-    second: Bone0024
-  - first:
-      1: 100058
-    second: Bone0025
-  - first:
-      1: 100060
-    second: Bone0026
-  - first:
-      1: 100062
-    second: Bone0026_end
-  - first:
-      1: 100064
-    second: Bone0027
-  - first:
-      1: 100066
-    second: Bone0028
-  - first:
-      1: 100068
-    second: Bone0029
-  - first:
-      1: 100070
-    second: Bone0030
-  - first:
-      1: 100072
-    second: Bone0031
-  - first:
-      1: 100074
-    second: Bone0032
-  - first:
-      1: 100076
-    second: Bone0032_end
-  - first:
-      1: 100078
-    second: Bone0033
-  - first:
-      1: 100080
-    second: Bone0034
-  - first:
-      1: 100082
-    second: Bone0035
-  - first:
-      1: 100084
-    second: Bone0036
-  - first:
-      1: 100086
-    second: Bone0037
-  - first:
-      1: 100088
-    second: Bone0038
-  - first:
-      1: 100090
-    second: Bone0038_end
-  - first:
-      1: 100092
-    second: Bone0039
-  - first:
-      1: 100094
-    second: Bone0040
-  - first:
-      1: 100096
-    second: Bone0041
-  - first:
-      1: 100098
-    second: Bone0042
-  - first:
-      1: 100100
-    second: Bone0043
-  - first:
-      1: 100102
-    second: Bone0044
-  - first:
-      1: 100104
-    second: Bone0044_end
-  - first:
-      1: 100106
-    second: Bone0045
-  - first:
-      1: 100108
-    second: Bone0046
-  - first:
-      1: 100110
-    second: Bone0047
-  - first:
-      1: 100112
-    second: Bone0048
-  - first:
-      1: 100114
-    second: Bone0049
-  - first:
-      1: 100116
-    second: Bone0050
-  - first:
-      1: 100118
-    second: Bone0050_end
-  - first:
-      1: 100120
-    second: Bone0051
-  - first:
-      1: 100122
-    second: Bone0052
-  - first:
-      1: 100124
-    second: Bone0053
-  - first:
-      1: 100126
-    second: Bone0054
-  - first:
-      1: 100128
-    second: Bone0055
-  - first:
-      1: 100130
-    second: Bone0056
-  - first:
-      1: 100132
-    second: Bone0056_end
-  - first:
-      1: 100134
-    second: Bone0057
-  - first:
-      1: 100136
-    second: Bone0058
-  - first:
-      1: 100138
-    second: Bone0059
-  - first:
-      1: 100140
-    second: Bone0060
-  - first:
-      1: 100142
-    second: Bone0061
-  - first:
-      1: 100144
-    second: Bone0062
-  - first:
-      1: 100146
-    second: Bone0062_end
-  - first:
-      1: 100148
-    second: Bone0063
-  - first:
-      1: 100150
-    second: Bone0064
-  - first:
-      1: 100152
-    second: Bone0065
-  - first:
-      1: 100154
-    second: Bone0066
-  - first:
-      1: 100156
-    second: Bone0067
-  - first:
-      1: 100158
-    second: Bone0068
-  - first:
-      1: 100160
-    second: Bone0068_end
-  - first:
-      1: 100162
-    second: Bone0069
-  - first:
-      1: 100164
-    second: Bone0070
-  - first:
-      1: 100166
-    second: Bone0071
-  - first:
-      1: 100168
-    second: Bone0072
-  - first:
-      1: 100170
-    second: Bone0073
-  - first:
-      1: 100172
-    second: Bone0074
-  - first:
-      1: 100174
-    second: Bone0074_end
-  - first:
-      1: 100176
-    second: Bone0075
-  - first:
-      1: 100178
-    second: Bone0076
-  - first:
-      1: 100180
-    second: Bone0077
-  - first:
-      1: 100182
-    second: Bone0078
-  - first:
-      1: 100184
-    second: Bone0079
-  - first:
-      1: 100186
-    second: Bone0080
-  - first:
-      1: 100188
-    second: Bone0080_end
-  - first:
-      1: 100190
-    second: Bone0081
-  - first:
-      1: 100192
-    second: Bone0082
-  - first:
-      1: 100194
-    second: Bone0083
-  - first:
-      1: 100196
-    second: Bone0084
-  - first:
-      1: 100198
-    second: Bone0085
-  - first:
-      1: 100200
-    second: Bone0086
-  - first:
-      1: 100202
-    second: Bone0086_end
-  - first:
-      1: 100204
-    second: Bone0087
-  - first:
-      1: 100206
-    second: Bone0088
-  - first:
-      1: 100208
-    second: Bone0089
-  - first:
-      1: 100210
-    second: Bone0090
-  - first:
-      1: 100212
-    second: Bone0091
-  - first:
-      1: 100214
-    second: Bone0092
-  - first:
-      1: 100216
-    second: Bone0092_end
-  - first:
-      1: 100218
-    second: Bone0093
-  - first:
-      1: 100220
-    second: Bone0094
-  - first:
-      1: 100222
-    second: Bone0095
-  - first:
-      1: 100224
-    second: Bone0096
-  - first:
-      1: 100226
-    second: Bone0097
-  - first:
-      1: 100228
-    second: Bone0098
-  - first:
-      1: 100230
-    second: Bone0098_end
-  - first:
-      1: 100232
-    second: Bone0099
-  - first:
-      1: 100234
-    second: Bone0100
-  - first:
-      1: 100236
-    second: Bone0101
-  - first:
-      1: 100238
-    second: Bone0102
-  - first:
-      1: 100240
-    second: Bone0103
-  - first:
-      1: 100242
-    second: Bone0104
-  - first:
-      1: 100244
-    second: Bone0104_end
-  - first:
-      1: 100246
-    second: Bone0105
-  - first:
-      1: 100248
-    second: Bone0106
-  - first:
-      1: 100250
-    second: Bone0107
-  - first:
-      1: 100252
-    second: Bone0108
-  - first:
-      1: 100254
-    second: Bone0109
-  - first:
-      1: 100256
-    second: Bone0110
-  - first:
-      1: 100258
-    second: Bone0110_end
-  - first:
-      1: 100260
-    second: Bone0111
-  - first:
-      1: 100262
-    second: Bone0112
-  - first:
-      1: 100264
-    second: Bone0113
-  - first:
-      1: 100266
-    second: Bone0114
-  - first:
-      1: 100268
-    second: Bone0115
-  - first:
-      1: 100270
-    second: Bone0116
-  - first:
-      1: 100272
-    second: Bone0116_end
-  - first:
-      1: 100274
-    second: Bone0117
-  - first:
-      1: 100276
-    second: Bone0118
-  - first:
-      1: 100278
-    second: Bone0119
-  - first:
-      1: 100280
-    second: Bone0120
-  - first:
-      1: 100282
-    second: Bone0121
-  - first:
-      1: 100284
-    second: Bone0122
-  - first:
-      1: 100286
-    second: Bone0122_end
-  - first:
-      1: 100288
-    second: Bone0123
-  - first:
-      1: 100290
-    second: Bone0124
-  - first:
-      1: 100292
-    second: Bone0125
-  - first:
-      1: 100294
-    second: Bone0126
-  - first:
-      1: 100296
-    second: Bone0127
-  - first:
-      1: 100298
-    second: Bone0128
-  - first:
-      1: 100300
-    second: Bone0128_end
-  - first:
-      1: 100302
-    second: Bone0129
-  - first:
-      1: 100304
-    second: Bone0130
-  - first:
-      1: 100306
-    second: Bone0131
-  - first:
-      1: 100308
-    second: Bone0132
-  - first:
-      1: 100310
-    second: Bone0133
-  - first:
-      1: 100312
-    second: Bone0134
-  - first:
-      1: 100314
-    second: Bone0134_end
-  - first:
-      1: 100316
-    second: Bone0135
-  - first:
-      1: 100318
-    second: Bone0135_end
-  - first:
-      1: 100320
-    second: Bone0136
-  - first:
-      1: 100322
-    second: Bone0136_end
-  - first:
-      1: 100324
-    second: Bone0137
-  - first:
-      1: 100326
-    second: Bone0138
-  - first:
-      1: 100328
-    second: Bone0139
-  - first:
-      1: 100330
-    second: Bone0140
-  - first:
-      1: 100332
-    second: Bone0141
-  - first:
-      1: 100334
-    second: Bone0142
-  - first:
-      1: 100336
-    second: Bone0143
-  - first:
-      1: 100338
-    second: Bone0143_end
-  - first:
-      1: 100340
-    second: Bone0144
-  - first:
-      1: 100342
-    second: Bone0145
-  - first:
-      1: 100344
-    second: Bone0146
-  - first:
-      1: 100346
-    second: Bone0146_end
-  - first:
-      1: 100348
-    second: Bone0147
-  - first:
-      1: 100350
-    second: Bone0148
-  - first:
-      1: 100352
-    second: Bone0149
-  - first:
-      1: 100354
-    second: Bone0149_end
-  - first:
-      1: 100356
-    second: Bone0150
-  - first:
-      1: 100358
-    second: Bone0151
-  - first:
-      1: 100360
-    second: Bone0152
-  - first:
-      1: 100362
-    second: Bone0152_end
-  - first:
-      1: 100364
-    second: Bone0153
-  - first:
-      1: 100366
-    second: Bone0154
-  - first:
-      1: 100368
-    second: Bone0155
-  - first:
-      1: 100370
-    second: Bone0155_end
-  - first:
-      1: 100372
-    second: Bone0156
-  - first:
-      1: 100374
-    second: Bone0156_end
-  - first:
-      1: 100376
-    second: Bone0157
-  - first:
-      1: 100378
-    second: Bone0157_end
-  - first:
-      1: 100380
-    second: Bone0158
-  - first:
-      1: 100382
-    second: Bone0158_end
-  - first:
-      1: 100384
-    second: Bone0159
-  - first:
-      1: 100386
-    second: Bone0159_end
-  - first:
-      1: 100388
-    second: Bone0160
-  - first:
-      1: 100390
-    second: Bone0160_end
-  - first:
-      1: 100392
-    second: Bone0161
-  - first:
-      1: 100394
-    second: Bone0162
-  - first:
-      1: 100396
-    second: Bone0163
-  - first:
-      1: 100398
-    second: Bone0164
-  - first:
-      1: 100400
-    second: Bone0165
-  - first:
-      1: 100402
-    second: Bone0166
-  - first:
-      1: 100404
-    second: Bone0167
-  - first:
-      1: 100406
-    second: Bone0167_end
-  - first:
-      1: 100408
-    second: Bone0168
-  - first:
-      1: 100410
-    second: Bone0169
-  - first:
-      1: 100412
-    second: Bone0170
-  - first:
-      1: 100414
-    second: Bone0170_end
-  - first:
-      1: 100416
-    second: Bone0171
-  - first:
-      1: 100418
-    second: Bone0172
-  - first:
-      1: 100420
-    second: Bone0173
-  - first:
-      1: 100422
-    second: Bone0173_end
-  - first:
-      1: 100424
-    second: Bone0174
-  - first:
-      1: 100426
-    second: Bone0175
-  - first:
-      1: 100428
-    second: Bone0176
-  - first:
-      1: 100430
-    second: Bone0176_end
-  - first:
-      1: 100432
-    second: Bone0177
-  - first:
-      1: 100434
-    second: Bone0178
-  - first:
-      1: 100436
-    second: Bone0179
-  - first:
-      1: 100438
-    second: Bone0179_end
-  - first:
-      1: 100440
-    second: Bone0180
-  - first:
-      1: 100442
-    second: Bone0180_end
-  - first:
-      1: 100444
-    second: Bone0181
-  - first:
-      1: 100446
-    second: Bone0181_end
-  - first:
-      1: 100448
-    second: Bone0182
-  - first:
-      1: 100450
-    second: Bone0182_end
-  - first:
-      1: 100452
-    second: Bone0183
-  - first:
-      1: 100454
-    second: Bone0183_end
-  - first:
-      1: 100456
-    second: Bone0184
-  - first:
-      1: 100458
-    second: Bone0184_end
-  - first:
-      1: 100460
-    second: Bone0185
-  - first:
-      1: 100462
-    second: Bone0185_end
-  - first:
-      1: 100464
-    second: Bone0272
-  - first:
-      1: 100466
-    second: Bone0272_end
-  - first:
-      1: 100468
-    second: Bone0273
-  - first:
-      1: 100470
-    second: Bone0273_end
-  - first:
-      1: 100472
-    second: Bone0274
-  - first:
-      1: 100474
-    second: Bone0274_end
-  - first:
-      1: 100476
-    second: Bone0275
-  - first:
-      1: 100478
-    second: Bone0275_end
-  - first:
-      1: 100480
-    second: Bone0276
-  - first:
-      1: 100482
-    second: Bone0277
-  - first:
-      1: 100484
-    second: Bone0278
-  - first:
-      1: 100486
-    second: Bone0279
-  - first:
-      1: 100488
-    second: Bone0280
-  - first:
-      1: 100490
-    second: Bone0280_end
-  - first:
-      1: 100492
-    second: Bone0296
-  - first:
-      1: 100494
-    second: Bone0296_end
-  - first:
-      1: 100496
-    second: Bone0297
-  - first:
-      1: 100498
-    second: Bone0297_end
-  - first:
-      1: 100500
-    second: Bone0298
-  - first:
-      1: 100502
-    second: Bone0298_end
-  - first:
-      1: 100504
-    second: Bone0299
-  - first:
-      1: 100506
-    second: Bone0300
-  - first:
-      1: 100508
-    second: Bone0301
-  - first:
-      1: 100510
-    second: Bone0302
-  - first:
-      1: 100512
-    second: Bone0303
-  - first:
-      1: 100514
-    second: Bone0303_end
-  - first:
-      1: 100516
-    second: Bone0319
-  - first:
-      1: 100518
-    second: Bone0319_end
-  - first:
-      1: 100520
-    second: Bone0320
-  - first:
-      1: 100522
-    second: Bone0320_end
-  - first:
-      1: 100524
-    second: Bone0321
-  - first:
-      1: 100526
-    second: Bone0321_end
-  - first:
-      4: 400000
-    second: Armature
-  - first:
-      4: 400002
-    second: //RootNode
-  - first:
-      4: 400004
-    second: Body
-  - first:
-      4: 400006
-    second: Bone0001
-  - first:
-      4: 400008
-    second: Bone0002
-  - first:
-      4: 400010
-    second: Bone0003
-  - first:
-      4: 400012
-    second: Bone0004
-  - first:
-      4: 400014
-    second: Bone0005
-  - first:
-      4: 400016
-    second: Bone0006
-  - first:
-      4: 400018
-    second: Bone0007
-  - first:
-      4: 400020
-    second: Bone0008
-  - first:
-      4: 400022
-    second: Bone0009
-  - first:
-      4: 400024
-    second: Bone0010
-  - first:
-      4: 400026
-    second: Bone0011
-  - first:
-      4: 400028
-    second: Bone0012
-  - first:
-      4: 400030
-    second: Bone0013
-  - first:
-      4: 400032
-    second: Bone0014
-  - first:
-      4: 400034
-    second: Bone0014_end
-  - first:
-      4: 400036
-    second: Bone0015
-  - first:
-      4: 400038
-    second: Bone0016
-  - first:
-      4: 400040
-    second: Bone0017
-  - first:
-      4: 400042
-    second: Bone0018
-  - first:
-      4: 400044
-    second: Bone0019
-  - first:
-      4: 400046
-    second: Bone0020
-  - first:
-      4: 400048
-    second: Bone0020_end
-  - first:
-      4: 400050
-    second: Bone0021
-  - first:
-      4: 400052
-    second: Bone0022
-  - first:
-      4: 400054
-    second: Bone0023
-  - first:
-      4: 400056
-    second: Bone0024
-  - first:
-      4: 400058
-    second: Bone0025
-  - first:
-      4: 400060
-    second: Bone0026
-  - first:
-      4: 400062
-    second: Bone0026_end
-  - first:
-      4: 400064
-    second: Bone0027
-  - first:
-      4: 400066
-    second: Bone0028
-  - first:
-      4: 400068
-    second: Bone0029
-  - first:
-      4: 400070
-    second: Bone0030
-  - first:
-      4: 400072
-    second: Bone0031
-  - first:
-      4: 400074
-    second: Bone0032
-  - first:
-      4: 400076
-    second: Bone0032_end
-  - first:
-      4: 400078
-    second: Bone0033
-  - first:
-      4: 400080
-    second: Bone0034
-  - first:
-      4: 400082
-    second: Bone0035
-  - first:
-      4: 400084
-    second: Bone0036
-  - first:
-      4: 400086
-    second: Bone0037
-  - first:
-      4: 400088
-    second: Bone0038
-  - first:
-      4: 400090
-    second: Bone0038_end
-  - first:
-      4: 400092
-    second: Bone0039
-  - first:
-      4: 400094
-    second: Bone0040
-  - first:
-      4: 400096
-    second: Bone0041
-  - first:
-      4: 400098
-    second: Bone0042
-  - first:
-      4: 400100
-    second: Bone0043
-  - first:
-      4: 400102
-    second: Bone0044
-  - first:
-      4: 400104
-    second: Bone0044_end
-  - first:
-      4: 400106
-    second: Bone0045
-  - first:
-      4: 400108
-    second: Bone0046
-  - first:
-      4: 400110
-    second: Bone0047
-  - first:
-      4: 400112
-    second: Bone0048
-  - first:
-      4: 400114
-    second: Bone0049
-  - first:
-      4: 400116
-    second: Bone0050
-  - first:
-      4: 400118
-    second: Bone0050_end
-  - first:
-      4: 400120
-    second: Bone0051
-  - first:
-      4: 400122
-    second: Bone0052
-  - first:
-      4: 400124
-    second: Bone0053
-  - first:
-      4: 400126
-    second: Bone0054
-  - first:
-      4: 400128
-    second: Bone0055
-  - first:
-      4: 400130
-    second: Bone0056
-  - first:
-      4: 400132
-    second: Bone0056_end
-  - first:
-      4: 400134
-    second: Bone0057
-  - first:
-      4: 400136
-    second: Bone0058
-  - first:
-      4: 400138
-    second: Bone0059
-  - first:
-      4: 400140
-    second: Bone0060
-  - first:
-      4: 400142
-    second: Bone0061
-  - first:
-      4: 400144
-    second: Bone0062
-  - first:
-      4: 400146
-    second: Bone0062_end
-  - first:
-      4: 400148
-    second: Bone0063
-  - first:
-      4: 400150
-    second: Bone0064
-  - first:
-      4: 400152
-    second: Bone0065
-  - first:
-      4: 400154
-    second: Bone0066
-  - first:
-      4: 400156
-    second: Bone0067
-  - first:
-      4: 400158
-    second: Bone0068
-  - first:
-      4: 400160
-    second: Bone0068_end
-  - first:
-      4: 400162
-    second: Bone0069
-  - first:
-      4: 400164
-    second: Bone0070
-  - first:
-      4: 400166
-    second: Bone0071
-  - first:
-      4: 400168
-    second: Bone0072
-  - first:
-      4: 400170
-    second: Bone0073
-  - first:
-      4: 400172
-    second: Bone0074
-  - first:
-      4: 400174
-    second: Bone0074_end
-  - first:
-      4: 400176
-    second: Bone0075
-  - first:
-      4: 400178
-    second: Bone0076
-  - first:
-      4: 400180
-    second: Bone0077
-  - first:
-      4: 400182
-    second: Bone0078
-  - first:
-      4: 400184
-    second: Bone0079
-  - first:
-      4: 400186
-    second: Bone0080
-  - first:
-      4: 400188
-    second: Bone0080_end
-  - first:
-      4: 400190
-    second: Bone0081
-  - first:
-      4: 400192
-    second: Bone0082
-  - first:
-      4: 400194
-    second: Bone0083
-  - first:
-      4: 400196
-    second: Bone0084
-  - first:
-      4: 400198
-    second: Bone0085
-  - first:
-      4: 400200
-    second: Bone0086
-  - first:
-      4: 400202
-    second: Bone0086_end
-  - first:
-      4: 400204
-    second: Bone0087
-  - first:
-      4: 400206
-    second: Bone0088
-  - first:
-      4: 400208
-    second: Bone0089
-  - first:
-      4: 400210
-    second: Bone0090
-  - first:
-      4: 400212
-    second: Bone0091
-  - first:
-      4: 400214
-    second: Bone0092
-  - first:
-      4: 400216
-    second: Bone0092_end
-  - first:
-      4: 400218
-    second: Bone0093
-  - first:
-      4: 400220
-    second: Bone0094
-  - first:
-      4: 400222
-    second: Bone0095
-  - first:
-      4: 400224
-    second: Bone0096
-  - first:
-      4: 400226
-    second: Bone0097
-  - first:
-      4: 400228
-    second: Bone0098
-  - first:
-      4: 400230
-    second: Bone0098_end
-  - first:
-      4: 400232
-    second: Bone0099
-  - first:
-      4: 400234
-    second: Bone0100
-  - first:
-      4: 400236
-    second: Bone0101
-  - first:
-      4: 400238
-    second: Bone0102
-  - first:
-      4: 400240
-    second: Bone0103
-  - first:
-      4: 400242
-    second: Bone0104
-  - first:
-      4: 400244
-    second: Bone0104_end
-  - first:
-      4: 400246
-    second: Bone0105
-  - first:
-      4: 400248
-    second: Bone0106
-  - first:
-      4: 400250
-    second: Bone0107
-  - first:
-      4: 400252
-    second: Bone0108
-  - first:
-      4: 400254
-    second: Bone0109
-  - first:
-      4: 400256
-    second: Bone0110
-  - first:
-      4: 400258
-    second: Bone0110_end
-  - first:
-      4: 400260
-    second: Bone0111
-  - first:
-      4: 400262
-    second: Bone0112
-  - first:
-      4: 400264
-    second: Bone0113
-  - first:
-      4: 400266
-    second: Bone0114
-  - first:
-      4: 400268
-    second: Bone0115
-  - first:
-      4: 400270
-    second: Bone0116
-  - first:
-      4: 400272
-    second: Bone0116_end
-  - first:
-      4: 400274
-    second: Bone0117
-  - first:
-      4: 400276
-    second: Bone0118
-  - first:
-      4: 400278
-    second: Bone0119
-  - first:
-      4: 400280
-    second: Bone0120
-  - first:
-      4: 400282
-    second: Bone0121
-  - first:
-      4: 400284
-    second: Bone0122
-  - first:
-      4: 400286
-    second: Bone0122_end
-  - first:
-      4: 400288
-    second: Bone0123
-  - first:
-      4: 400290
-    second: Bone0124
-  - first:
-      4: 400292
-    second: Bone0125
-  - first:
-      4: 400294
-    second: Bone0126
-  - first:
-      4: 400296
-    second: Bone0127
-  - first:
-      4: 400298
-    second: Bone0128
-  - first:
-      4: 400300
-    second: Bone0128_end
-  - first:
-      4: 400302
-    second: Bone0129
-  - first:
-      4: 400304
-    second: Bone0130
-  - first:
-      4: 400306
-    second: Bone0131
-  - first:
-      4: 400308
-    second: Bone0132
-  - first:
-      4: 400310
-    second: Bone0133
-  - first:
-      4: 400312
-    second: Bone0134
-  - first:
-      4: 400314
-    second: Bone0134_end
-  - first:
-      4: 400316
-    second: Bone0135
-  - first:
-      4: 400318
-    second: Bone0135_end
-  - first:
-      4: 400320
-    second: Bone0136
-  - first:
-      4: 400322
-    second: Bone0136_end
-  - first:
-      4: 400324
-    second: Bone0137
-  - first:
-      4: 400326
-    second: Bone0138
-  - first:
-      4: 400328
-    second: Bone0139
-  - first:
-      4: 400330
-    second: Bone0140
-  - first:
-      4: 400332
-    second: Bone0141
-  - first:
-      4: 400334
-    second: Bone0142
-  - first:
-      4: 400336
-    second: Bone0143
-  - first:
-      4: 400338
-    second: Bone0143_end
-  - first:
-      4: 400340
-    second: Bone0144
-  - first:
-      4: 400342
-    second: Bone0145
-  - first:
-      4: 400344
-    second: Bone0146
-  - first:
-      4: 400346
-    second: Bone0146_end
-  - first:
-      4: 400348
-    second: Bone0147
-  - first:
-      4: 400350
-    second: Bone0148
-  - first:
-      4: 400352
-    second: Bone0149
-  - first:
-      4: 400354
-    second: Bone0149_end
-  - first:
-      4: 400356
-    second: Bone0150
-  - first:
-      4: 400358
-    second: Bone0151
-  - first:
-      4: 400360
-    second: Bone0152
-  - first:
-      4: 400362
-    second: Bone0152_end
-  - first:
-      4: 400364
-    second: Bone0153
-  - first:
-      4: 400366
-    second: Bone0154
-  - first:
-      4: 400368
-    second: Bone0155
-  - first:
-      4: 400370
-    second: Bone0155_end
-  - first:
-      4: 400372
-    second: Bone0156
-  - first:
-      4: 400374
-    second: Bone0156_end
-  - first:
-      4: 400376
-    second: Bone0157
-  - first:
-      4: 400378
-    second: Bone0157_end
-  - first:
-      4: 400380
-    second: Bone0158
-  - first:
-      4: 400382
-    second: Bone0158_end
-  - first:
-      4: 400384
-    second: Bone0159
-  - first:
-      4: 400386
-    second: Bone0159_end
-  - first:
-      4: 400388
-    second: Bone0160
-  - first:
-      4: 400390
-    second: Bone0160_end
-  - first:
-      4: 400392
-    second: Bone0161
-  - first:
-      4: 400394
-    second: Bone0162
-  - first:
-      4: 400396
-    second: Bone0163
-  - first:
-      4: 400398
-    second: Bone0164
-  - first:
-      4: 400400
-    second: Bone0165
-  - first:
-      4: 400402
-    second: Bone0166
-  - first:
-      4: 400404
-    second: Bone0167
-  - first:
-      4: 400406
-    second: Bone0167_end
-  - first:
-      4: 400408
-    second: Bone0168
-  - first:
-      4: 400410
-    second: Bone0169
-  - first:
-      4: 400412
-    second: Bone0170
-  - first:
-      4: 400414
-    second: Bone0170_end
-  - first:
-      4: 400416
-    second: Bone0171
-  - first:
-      4: 400418
-    second: Bone0172
-  - first:
-      4: 400420
-    second: Bone0173
-  - first:
-      4: 400422
-    second: Bone0173_end
-  - first:
-      4: 400424
-    second: Bone0174
-  - first:
-      4: 400426
-    second: Bone0175
-  - first:
-      4: 400428
-    second: Bone0176
-  - first:
-      4: 400430
-    second: Bone0176_end
-  - first:
-      4: 400432
-    second: Bone0177
-  - first:
-      4: 400434
-    second: Bone0178
-  - first:
-      4: 400436
-    second: Bone0179
-  - first:
-      4: 400438
-    second: Bone0179_end
-  - first:
-      4: 400440
-    second: Bone0180
-  - first:
-      4: 400442
-    second: Bone0180_end
-  - first:
-      4: 400444
-    second: Bone0181
-  - first:
-      4: 400446
-    second: Bone0181_end
-  - first:
-      4: 400448
-    second: Bone0182
-  - first:
-      4: 400450
-    second: Bone0182_end
-  - first:
-      4: 400452
-    second: Bone0183
-  - first:
-      4: 400454
-    second: Bone0183_end
-  - first:
-      4: 400456
-    second: Bone0184
-  - first:
-      4: 400458
-    second: Bone0184_end
-  - first:
-      4: 400460
-    second: Bone0185
-  - first:
-      4: 400462
-    second: Bone0185_end
-  - first:
-      4: 400464
-    second: Bone0272
-  - first:
-      4: 400466
-    second: Bone0272_end
-  - first:
-      4: 400468
-    second: Bone0273
-  - first:
-      4: 400470
-    second: Bone0273_end
-  - first:
-      4: 400472
-    second: Bone0274
-  - first:
-      4: 400474
-    second: Bone0274_end
-  - first:
-      4: 400476
-    second: Bone0275
-  - first:
-      4: 400478
-    second: Bone0275_end
-  - first:
-      4: 400480
-    second: Bone0276
-  - first:
-      4: 400482
-    second: Bone0277
-  - first:
-      4: 400484
-    second: Bone0278
-  - first:
-      4: 400486
-    second: Bone0279
-  - first:
-      4: 400488
-    second: Bone0280
-  - first:
-      4: 400490
-    second: Bone0280_end
-  - first:
-      4: 400492
-    second: Bone0296
-  - first:
-      4: 400494
-    second: Bone0296_end
-  - first:
-      4: 400496
-    second: Bone0297
-  - first:
-      4: 400498
-    second: Bone0297_end
-  - first:
-      4: 400500
-    second: Bone0298
-  - first:
-      4: 400502
-    second: Bone0298_end
-  - first:
-      4: 400504
-    second: Bone0299
-  - first:
-      4: 400506
-    second: Bone0300
-  - first:
-      4: 400508
-    second: Bone0301
-  - first:
-      4: 400510
-    second: Bone0302
-  - first:
-      4: 400512
-    second: Bone0303
-  - first:
-      4: 400514
-    second: Bone0303_end
-  - first:
-      4: 400516
-    second: Bone0319
-  - first:
-      4: 400518
-    second: Bone0319_end
-  - first:
-      4: 400520
-    second: Bone0320
-  - first:
-      4: 400522
-    second: Bone0320_end
-  - first:
-      4: 400524
-    second: Bone0321
-  - first:
-      4: 400526
-    second: Bone0321_end
-  - first:
-      43: 4300000
-    second: Body
-  - first:
-      95: 9500000
-    second: //RootNode
-  - first:
-      137: 13700000
-    second: Body
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: assets_textures_5400Body_N__SPRJ_data_Model_chr_c5400_tex_c5400
-    second: {fileID: 2100000, guid: 1f972480cf950bb419bd71dfa97626a7, type: 2}
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Armature
+    100002: //RootNode
+    100004: Body
+    100006: Bone0001
+    100008: Bone0002
+    100010: Bone0003
+    100012: Bone0004
+    100014: Bone0005
+    100016: Bone0006
+    100018: Bone0007
+    100020: Bone0008
+    100022: Bone0009
+    100024: Bone0010
+    100026: Bone0011
+    100028: Bone0012
+    100030: Bone0013
+    100032: Bone0014
+    100034: Bone0014_end
+    100036: Bone0015
+    100038: Bone0016
+    100040: Bone0017
+    100042: Bone0018
+    100044: Bone0019
+    100046: Bone0020
+    100048: Bone0020_end
+    100050: Bone0021
+    100052: Bone0022
+    100054: Bone0023
+    100056: Bone0024
+    100058: Bone0025
+    100060: Bone0026
+    100062: Bone0026_end
+    100064: Bone0027
+    100066: Bone0028
+    100068: Bone0029
+    100070: Bone0030
+    100072: Bone0031
+    100074: Bone0032
+    100076: Bone0032_end
+    100078: Bone0033
+    100080: Bone0034
+    100082: Bone0035
+    100084: Bone0036
+    100086: Bone0037
+    100088: Bone0038
+    100090: Bone0038_end
+    100092: Bone0039
+    100094: Bone0040
+    100096: Bone0041
+    100098: Bone0042
+    100100: Bone0043
+    100102: Bone0044
+    100104: Bone0044_end
+    100106: Bone0045
+    100108: Bone0046
+    100110: Bone0047
+    100112: Bone0048
+    100114: Bone0049
+    100116: Bone0050
+    100118: Bone0050_end
+    100120: Bone0051
+    100122: Bone0052
+    100124: Bone0053
+    100126: Bone0054
+    100128: Bone0055
+    100130: Bone0056
+    100132: Bone0056_end
+    100134: Bone0057
+    100136: Bone0058
+    100138: Bone0059
+    100140: Bone0060
+    100142: Bone0061
+    100144: Bone0062
+    100146: Bone0062_end
+    100148: Bone0063
+    100150: Bone0064
+    100152: Bone0065
+    100154: Bone0066
+    100156: Bone0067
+    100158: Bone0068
+    100160: Bone0068_end
+    100162: Bone0069
+    100164: Bone0070
+    100166: Bone0071
+    100168: Bone0072
+    100170: Bone0073
+    100172: Bone0074
+    100174: Bone0074_end
+    100176: Bone0075
+    100178: Bone0076
+    100180: Bone0077
+    100182: Bone0078
+    100184: Bone0079
+    100186: Bone0080
+    100188: Bone0080_end
+    100190: Bone0081
+    100192: Bone0082
+    100194: Bone0083
+    100196: Bone0084
+    100198: Bone0085
+    100200: Bone0086
+    100202: Bone0086_end
+    100204: Bone0087
+    100206: Bone0088
+    100208: Bone0089
+    100210: Bone0090
+    100212: Bone0091
+    100214: Bone0092
+    100216: Bone0092_end
+    100218: Bone0093
+    100220: Bone0094
+    100222: Bone0095
+    100224: Bone0096
+    100226: Bone0097
+    100228: Bone0098
+    100230: Bone0098_end
+    100232: Bone0099
+    100234: Bone0100
+    100236: Bone0101
+    100238: Bone0102
+    100240: Bone0103
+    100242: Bone0104
+    100244: Bone0104_end
+    100246: Bone0105
+    100248: Bone0106
+    100250: Bone0107
+    100252: Bone0108
+    100254: Bone0109
+    100256: Bone0110
+    100258: Bone0110_end
+    100260: Bone0111
+    100262: Bone0112
+    100264: Bone0113
+    100266: Bone0114
+    100268: Bone0115
+    100270: Bone0116
+    100272: Bone0116_end
+    100274: Bone0117
+    100276: Bone0118
+    100278: Bone0119
+    100280: Bone0120
+    100282: Bone0121
+    100284: Bone0122
+    100286: Bone0122_end
+    100288: Bone0123
+    100290: Bone0124
+    100292: Bone0125
+    100294: Bone0126
+    100296: Bone0127
+    100298: Bone0128
+    100300: Bone0128_end
+    100302: Bone0129
+    100304: Bone0130
+    100306: Bone0131
+    100308: Bone0132
+    100310: Bone0133
+    100312: Bone0134
+    100314: Bone0134_end
+    100316: Bone0135
+    100318: Bone0135_end
+    100320: Bone0136
+    100322: Bone0136_end
+    100324: Bone0137
+    100326: Bone0138
+    100328: Bone0139
+    100330: Bone0140
+    100332: Bone0141
+    100334: Bone0142
+    100336: Bone0143
+    100338: Bone0143_end
+    100340: Bone0144
+    100342: Bone0145
+    100344: Bone0146
+    100346: Bone0146_end
+    100348: Bone0147
+    100350: Bone0148
+    100352: Bone0149
+    100354: Bone0149_end
+    100356: Bone0150
+    100358: Bone0151
+    100360: Bone0152
+    100362: Bone0152_end
+    100364: Bone0153
+    100366: Bone0154
+    100368: Bone0155
+    100370: Bone0155_end
+    100372: Bone0156
+    100374: Bone0156_end
+    100376: Bone0157
+    100378: Bone0157_end
+    100380: Bone0158
+    100382: Bone0158_end
+    100384: Bone0159
+    100386: Bone0159_end
+    100388: Bone0160
+    100390: Bone0160_end
+    100392: Bone0161
+    100394: Bone0162
+    100396: Bone0163
+    100398: Bone0164
+    100400: Bone0165
+    100402: Bone0166
+    100404: Bone0167
+    100406: Bone0167_end
+    100408: Bone0168
+    100410: Bone0169
+    100412: Bone0170
+    100414: Bone0170_end
+    100416: Bone0171
+    100418: Bone0172
+    100420: Bone0173
+    100422: Bone0173_end
+    100424: Bone0174
+    100426: Bone0175
+    100428: Bone0176
+    100430: Bone0176_end
+    100432: Bone0177
+    100434: Bone0178
+    100436: Bone0179
+    100438: Bone0179_end
+    100440: Bone0180
+    100442: Bone0180_end
+    100444: Bone0181
+    100446: Bone0181_end
+    100448: Bone0182
+    100450: Bone0182_end
+    100452: Bone0183
+    100454: Bone0183_end
+    100456: Bone0184
+    100458: Bone0184_end
+    100460: Bone0185
+    100462: Bone0185_end
+    100464: Bone0272
+    100466: Bone0272_end
+    100468: Bone0273
+    100470: Bone0273_end
+    100472: Bone0274
+    100474: Bone0274_end
+    100476: Bone0275
+    100478: Bone0275_end
+    100480: Bone0276
+    100482: Bone0277
+    100484: Bone0278
+    100486: Bone0279
+    100488: Bone0280
+    100490: Bone0280_end
+    100492: Bone0296
+    100494: Bone0296_end
+    100496: Bone0297
+    100498: Bone0297_end
+    100500: Bone0298
+    100502: Bone0298_end
+    100504: Bone0299
+    100506: Bone0300
+    100508: Bone0301
+    100510: Bone0302
+    100512: Bone0303
+    100514: Bone0303_end
+    100516: Bone0319
+    100518: Bone0319_end
+    100520: Bone0320
+    100522: Bone0320_end
+    100524: Bone0321
+    100526: Bone0321_end
+    400000: Armature
+    400002: //RootNode
+    400004: Body
+    400006: Bone0001
+    400008: Bone0002
+    400010: Bone0003
+    400012: Bone0004
+    400014: Bone0005
+    400016: Bone0006
+    400018: Bone0007
+    400020: Bone0008
+    400022: Bone0009
+    400024: Bone0010
+    400026: Bone0011
+    400028: Bone0012
+    400030: Bone0013
+    400032: Bone0014
+    400034: Bone0014_end
+    400036: Bone0015
+    400038: Bone0016
+    400040: Bone0017
+    400042: Bone0018
+    400044: Bone0019
+    400046: Bone0020
+    400048: Bone0020_end
+    400050: Bone0021
+    400052: Bone0022
+    400054: Bone0023
+    400056: Bone0024
+    400058: Bone0025
+    400060: Bone0026
+    400062: Bone0026_end
+    400064: Bone0027
+    400066: Bone0028
+    400068: Bone0029
+    400070: Bone0030
+    400072: Bone0031
+    400074: Bone0032
+    400076: Bone0032_end
+    400078: Bone0033
+    400080: Bone0034
+    400082: Bone0035
+    400084: Bone0036
+    400086: Bone0037
+    400088: Bone0038
+    400090: Bone0038_end
+    400092: Bone0039
+    400094: Bone0040
+    400096: Bone0041
+    400098: Bone0042
+    400100: Bone0043
+    400102: Bone0044
+    400104: Bone0044_end
+    400106: Bone0045
+    400108: Bone0046
+    400110: Bone0047
+    400112: Bone0048
+    400114: Bone0049
+    400116: Bone0050
+    400118: Bone0050_end
+    400120: Bone0051
+    400122: Bone0052
+    400124: Bone0053
+    400126: Bone0054
+    400128: Bone0055
+    400130: Bone0056
+    400132: Bone0056_end
+    400134: Bone0057
+    400136: Bone0058
+    400138: Bone0059
+    400140: Bone0060
+    400142: Bone0061
+    400144: Bone0062
+    400146: Bone0062_end
+    400148: Bone0063
+    400150: Bone0064
+    400152: Bone0065
+    400154: Bone0066
+    400156: Bone0067
+    400158: Bone0068
+    400160: Bone0068_end
+    400162: Bone0069
+    400164: Bone0070
+    400166: Bone0071
+    400168: Bone0072
+    400170: Bone0073
+    400172: Bone0074
+    400174: Bone0074_end
+    400176: Bone0075
+    400178: Bone0076
+    400180: Bone0077
+    400182: Bone0078
+    400184: Bone0079
+    400186: Bone0080
+    400188: Bone0080_end
+    400190: Bone0081
+    400192: Bone0082
+    400194: Bone0083
+    400196: Bone0084
+    400198: Bone0085
+    400200: Bone0086
+    400202: Bone0086_end
+    400204: Bone0087
+    400206: Bone0088
+    400208: Bone0089
+    400210: Bone0090
+    400212: Bone0091
+    400214: Bone0092
+    400216: Bone0092_end
+    400218: Bone0093
+    400220: Bone0094
+    400222: Bone0095
+    400224: Bone0096
+    400226: Bone0097
+    400228: Bone0098
+    400230: Bone0098_end
+    400232: Bone0099
+    400234: Bone0100
+    400236: Bone0101
+    400238: Bone0102
+    400240: Bone0103
+    400242: Bone0104
+    400244: Bone0104_end
+    400246: Bone0105
+    400248: Bone0106
+    400250: Bone0107
+    400252: Bone0108
+    400254: Bone0109
+    400256: Bone0110
+    400258: Bone0110_end
+    400260: Bone0111
+    400262: Bone0112
+    400264: Bone0113
+    400266: Bone0114
+    400268: Bone0115
+    400270: Bone0116
+    400272: Bone0116_end
+    400274: Bone0117
+    400276: Bone0118
+    400278: Bone0119
+    400280: Bone0120
+    400282: Bone0121
+    400284: Bone0122
+    400286: Bone0122_end
+    400288: Bone0123
+    400290: Bone0124
+    400292: Bone0125
+    400294: Bone0126
+    400296: Bone0127
+    400298: Bone0128
+    400300: Bone0128_end
+    400302: Bone0129
+    400304: Bone0130
+    400306: Bone0131
+    400308: Bone0132
+    400310: Bone0133
+    400312: Bone0134
+    400314: Bone0134_end
+    400316: Bone0135
+    400318: Bone0135_end
+    400320: Bone0136
+    400322: Bone0136_end
+    400324: Bone0137
+    400326: Bone0138
+    400328: Bone0139
+    400330: Bone0140
+    400332: Bone0141
+    400334: Bone0142
+    400336: Bone0143
+    400338: Bone0143_end
+    400340: Bone0144
+    400342: Bone0145
+    400344: Bone0146
+    400346: Bone0146_end
+    400348: Bone0147
+    400350: Bone0148
+    400352: Bone0149
+    400354: Bone0149_end
+    400356: Bone0150
+    400358: Bone0151
+    400360: Bone0152
+    400362: Bone0152_end
+    400364: Bone0153
+    400366: Bone0154
+    400368: Bone0155
+    400370: Bone0155_end
+    400372: Bone0156
+    400374: Bone0156_end
+    400376: Bone0157
+    400378: Bone0157_end
+    400380: Bone0158
+    400382: Bone0158_end
+    400384: Bone0159
+    400386: Bone0159_end
+    400388: Bone0160
+    400390: Bone0160_end
+    400392: Bone0161
+    400394: Bone0162
+    400396: Bone0163
+    400398: Bone0164
+    400400: Bone0165
+    400402: Bone0166
+    400404: Bone0167
+    400406: Bone0167_end
+    400408: Bone0168
+    400410: Bone0169
+    400412: Bone0170
+    400414: Bone0170_end
+    400416: Bone0171
+    400418: Bone0172
+    400420: Bone0173
+    400422: Bone0173_end
+    400424: Bone0174
+    400426: Bone0175
+    400428: Bone0176
+    400430: Bone0176_end
+    400432: Bone0177
+    400434: Bone0178
+    400436: Bone0179
+    400438: Bone0179_end
+    400440: Bone0180
+    400442: Bone0180_end
+    400444: Bone0181
+    400446: Bone0181_end
+    400448: Bone0182
+    400450: Bone0182_end
+    400452: Bone0183
+    400454: Bone0183_end
+    400456: Bone0184
+    400458: Bone0184_end
+    400460: Bone0185
+    400462: Bone0185_end
+    400464: Bone0272
+    400466: Bone0272_end
+    400468: Bone0273
+    400470: Bone0273_end
+    400472: Bone0274
+    400474: Bone0274_end
+    400476: Bone0275
+    400478: Bone0275_end
+    400480: Bone0276
+    400482: Bone0277
+    400484: Bone0278
+    400486: Bone0279
+    400488: Bone0280
+    400490: Bone0280_end
+    400492: Bone0296
+    400494: Bone0296_end
+    400496: Bone0297
+    400498: Bone0297_end
+    400500: Bone0298
+    400502: Bone0298_end
+    400504: Bone0299
+    400506: Bone0300
+    400508: Bone0301
+    400510: Bone0302
+    400512: Bone0303
+    400514: Bone0303_end
+    400516: Bone0319
+    400518: Bone0319_end
+    400520: Bone0320
+    400522: Bone0320_end
+    400524: Bone0321
+    400526: Bone0321_end
+    4300000: Body
+    9500000: //RootNode
+    13700000: Body
   materials:
-    materialImportMode: 1
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
-    optimizeGameObjects: 1
+    optimizeGameObjects: 0
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -1619,15 +552,12 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    importAnimatedCustomProperties: 0
-    importConstraints: 0
     animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    extraUserProperties: []
     clipAnimations: []
     isReadable: 1
   meshes:
@@ -1635,24 +565,13 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
-    sortHierarchyByName: 1
-    importVisibility: 0
     importBlendShapes: 1
-    importCameras: 0
-    importLights: 0
-    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
+    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
-    preserveHierarchy: 0
-    skinWeightsMode: 0
-    maxBonesPerVertex: 4
-    minBoneWeight: 0.001
-    meshOptimizationFlags: -1
-    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -1662,15 +581,19 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
-    normalCalculationMode: 0
-    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
-    blendShapeNormalImportMode: 1
-    normalSmoothingSource: 0
-  referencedClips: []
   importAnimation: 1
+  copyAvatar: 0
   humanDescription:
-    serializedVersion: 3
+    serializedVersion: 2
     human:
+    - boneName: Bone0005
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
     - boneName: Bone0001
       humanName: Hips
       limit:
@@ -1679,39 +602,7 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Bone0299
-      humanName: RightUpperLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0300
-      humanName: RightLowerLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0302
-      humanName: RightFoot
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0303
-      humanName: RightToes
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0002
+    - boneName: Bone0003
       humanName: Spine
       limit:
         min: {x: 0, y: 0, z: 0}
@@ -1719,48 +610,72 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Bone0003
-      humanName: Chest
+    - boneName: Bone0299
+      humanName: LeftUpperLeg
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Bone0004
-      humanName: UpperChest
+    - boneName: Bone0300
+      humanName: LeftLowerLeg
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Bone0161
-      humanName: RightShoulder
+    - boneName: Bone0301
+      humanName: LeftFoot
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Bone0162
-      humanName: RightUpperArm
+    - boneName: Bone0302
+      humanName: LeftToes
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Bone0163
-      humanName: RightLowerArm
+    - boneName: Bone0276
+      humanName: RightUpperLeg
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Bone0164
-      humanName: RightHand
+    - boneName: Bone0277
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0278
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0279
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0008
+      humanName: Head
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -1775,39 +690,7 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Bone0007
-      humanName: Head
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0069
-      humanName: Jaw
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0123
-      humanName: RightEye
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0057
-      humanName: LeftEye
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0137
+    - boneName: Bone0161
       humanName: LeftShoulder
       limit:
         min: {x: 0, y: 0, z: 0}
@@ -1815,7 +698,7 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Bone0138
+    - boneName: Bone0162
       humanName: LeftUpperArm
       limit:
         min: {x: 0, y: 0, z: 0}
@@ -1823,7 +706,7 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Bone0139
+    - boneName: Bone0163
       humanName: LeftLowerArm
       limit:
         min: {x: 0, y: 0, z: 0}
@@ -1831,7 +714,7 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Bone0140
+    - boneName: Bone0164
       humanName: LeftHand
       limit:
         min: {x: 0, y: 0, z: 0}
@@ -1839,232 +722,8 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Bone0276
-      humanName: LeftUpperLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0277
-      humanName: LeftLowerLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0279
-      humanName: LeftFoot
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0280
-      humanName: LeftToes
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0147
-      humanName: Left Index Proximal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0148
-      humanName: Left Index Intermediate
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0149
-      humanName: Left Index Distal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0153
-      humanName: Left Middle Proximal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0154
-      humanName: Left Middle Intermediate
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0155
-      humanName: Left Middle Distal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0150
-      humanName: Left Ring Proximal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0151
-      humanName: Left Ring Intermediate
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0152
-      humanName: Left Ring Distal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0141
-      humanName: Left Little Proximal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0142
-      humanName: Left Little Intermediate
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0143
-      humanName: Left Little Distal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0177
-      humanName: Right Thumb Proximal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0178
-      humanName: Right Thumb Intermediate
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0179
-      humanName: Right Thumb Distal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0174
-      humanName: Right Index Proximal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0175
-      humanName: Right Index Intermediate
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0176
-      humanName: Right Index Distal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0171
-      humanName: Right Middle Proximal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0172
-      humanName: Right Middle Intermediate
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0173
-      humanName: Right Middle Distal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0168
-      humanName: Right Ring Proximal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0169
-      humanName: Right Ring Intermediate
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone0170
-      humanName: Right Ring Distal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
     - boneName: Bone0165
-      humanName: Right Little Proximal
+      humanName: Left Thumb Proximal
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -2072,7 +731,7 @@ ModelImporter:
         length: 0
         modified: 0
     - boneName: Bone0166
-      humanName: Right Little Intermediate
+      humanName: Left Thumb Intermediate
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -2080,6 +739,254 @@ ModelImporter:
         length: 0
         modified: 0
     - boneName: Bone0167
+      humanName: Left Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0168
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0169
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0170
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0171
+      humanName: Left Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0172
+      humanName: Left Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0173
+      humanName: Left Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0174
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0175
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0176
+      humanName: Left Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0177
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0178
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0179
+      humanName: Left Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0137
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0138
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0139
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0140
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0141
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0142
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0143
+      humanName: Right Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0144
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0145
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0146
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0147
+      humanName: Right Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0148
+      humanName: Right Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0149
+      humanName: Right Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0150
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0151
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0152
+      humanName: Right Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0153
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0154
+      humanName: Right Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone0155
       humanName: Right Little Distal
       limit:
         min: {x: 0, y: 0, z: 0}
@@ -2093,11 +1000,6 @@ ModelImporter:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Body
-      parentName: Bloodborne Moon presence tpose(Clone)
-      position: {x: -0, y: 0.895122, z: 0}
-      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-      scale: {x: 100, y: 100, z: 100}
     - name: Armature
       parentName: Bloodborne Moon presence tpose(Clone)
       position: {x: -0, y: 0.895122, z: 0}
@@ -2106,7 +1008,7 @@ ModelImporter:
     - name: Bone0001
       parentName: Armature
       position: {x: 0.0000000016400007, y: -0.0008200022, z: 0.012080029}
-      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      rotation: {x: -0.0095342435, y: -0.70704246, z: -0.7070426, w: -0.009534242}
       scale: {x: 1, y: 1, z: 1}
     - name: Bone0002
       parentName: Bone0001
@@ -2126,17 +1028,17 @@ ModelImporter:
     - name: Bone0005
       parentName: Bone0004
       position: {x: -0.000000032847108, y: -0.00055249064, z: -0.0072623687}
-      rotation: {x: 0.03509169, y: 0, z: -0, w: 0.9993841}
+      rotation: {x: 0.072038464, y: -0.000000102312825, z: -0.000000037419895, w: 0.9974019}
       scale: {x: 1, y: 1, z: 1}
     - name: Bone0006
       parentName: Bone0005
       position: {x: -0.0000000102619016, y: -0.0016934037, z: -0.0062762285}
-      rotation: {x: 0.0000000074505815, y: 0, z: -0, w: 1}
+      rotation: {x: 0.09578932, y: -0.0000011310736, z: -0.0000002879448, w: 0.9954016}
       scale: {x: 1, y: 0.99999994, z: 1}
     - name: Bone0007
       parentName: Bone0006
-      position: {x: 0.00024, y: -0.00246, z: -0.00454}
-      rotation: {x: -0.017172573, y: 0.89967704, z: -0.43476838, w: 0.035535626}
+      position: {x: -0.000000007576404, y: -0.00012318492, z: -0.0026897197}
+      rotation: {x: -0.43510747, y: 0, z: -0, w: 0.9003785}
       scale: {x: 1, y: 0.99999994, z: 0.99999994}
     - name: Bone0008
       parentName: Bone0007
@@ -2906,7 +1808,7 @@ ModelImporter:
     - name: Bone0138
       parentName: Bone0137
       position: {x: -0.005542923, y: -0.0034505706, z: 0.0011482456}
-      rotation: {x: 0.00000014295802, y: -0.00000008568168, z: 0.00000030500814, w: 1}
+      rotation: {x: 0.0017355899, y: -0.0019325973, z: -0.0013295755, w: 0.99999577}
       scale: {x: 1, y: 1, z: 0.99999994}
     - name: Bone0139
       parentName: Bone0138
@@ -2921,19 +1823,17 @@ ModelImporter:
     - name: Bone0141
       parentName: Bone0140
       position: {x: -0.00033217043, y: -0.0014608875, z: -0.0011548843}
-      rotation: {x: -0.000000033993274, y: 9.3132235e-10, z: 0.00000039488077, w: 1}
+      rotation: {x: -0.29649135, y: 0.03848908, z: -0.014723842, w: 0.954146}
       scale: {x: 1, y: 1, z: 0.99999994}
     - name: Bone0142
       parentName: Bone0141
       position: {x: -0.000048927963, y: -0.0008230072, z: -0.0011661886}
-      rotation: {x: -0.000000037718564, y: -0.0000000027939677, z: -0.00000010943041,
-        w: 1}
+      rotation: {x: 0.24786292, y: -0.124231294, z: 0.077275, w: 0.9576843}
       scale: {x: 1, y: 0.99999994, z: 1}
     - name: Bone0143
       parentName: Bone0142
       position: {x: -0.00041456163, y: -0.0011009624, z: -0.00044022535}
-      rotation: {x: -0.00000008055941, y: -0.000000008847565, z: 0.000000030733645,
-        w: 1}
+      rotation: {x: -0.7051719, y: 0.0000045225006, z: 0.6640636, w: 0.24849977}
       scale: {x: 1, y: 0.99999994, z: 0.99999994}
     - name: Bone0143_end
       parentName: Bone0143
@@ -2943,18 +1843,17 @@ ModelImporter:
     - name: Bone0144
       parentName: Bone0140
       position: {x: -0.0029405397, y: -0.0025229745, z: -0.0017973834}
-      rotation: {x: -0.022697205, y: -0.00022291156, z: -0.02268708, w: 0.99948496}
+      rotation: {x: -0.032202557, y: 0.011556406, z: -0.022391869, w: 0.99916375}
       scale: {x: 0.9999999, y: 0.99999994, z: 0.99999994}
     - name: Bone0145
       parentName: Bone0144
       position: {x: -0.0012753963, y: -0.0010485819, z: -0.0006369124}
-      rotation: {x: 0.022697214, y: 0.00022291, z: 0.022687415, w: 0.99948496}
+      rotation: {x: 0.0553574, y: -0.000039241262, z: -0.0461877, w: 0.9973978}
       scale: {x: 1, y: 0.99999994, z: 1}
     - name: Bone0146
       parentName: Bone0145
       position: {x: -0.00088335364, y: -0.0010742161, z: -0.00037991352}
-      rotation: {x: -0.000000014901163, y: -0.000000007450581, z: 0.000000100582845,
-        w: 1}
+      rotation: {x: -0.36904582, y: -0.000008543748, z: 0.85810816, w: 0.35700917}
       scale: {x: 1, y: 0.99999994, z: 0.99999994}
     - name: Bone0146_end
       parentName: Bone0146
@@ -2969,13 +1868,12 @@ ModelImporter:
     - name: Bone0148
       parentName: Bone0147
       position: {x: -0.0014252091, y: -0.0013744438, z: -0.0001805814}
-      rotation: {x: 0.026128918, y: -0.0001408917, z: 0.011617793, w: 0.99959105}
+      rotation: {x: 0.026128916, y: -0.0001408917, z: 0.011617792, w: 0.99959105}
       scale: {x: 1, y: 0.99999994, z: 0.99999994}
     - name: Bone0149
       parentName: Bone0148
       position: {x: -0.0010935053, y: -0.0010383403, z: -0.00008129321}
-      rotation: {x: 0.00000013969839, y: -0.000000007450581, z: -0.00000022491442,
-        w: 1}
+      rotation: {x: -0.068100594, y: -0.000003818513, z: 0.9160536, w: 0.3952317}
       scale: {x: 1, y: 0.9999999, z: 1}
     - name: Bone0149_end
       parentName: Bone0149
@@ -2985,20 +1883,17 @@ ModelImporter:
     - name: Bone0150
       parentName: Bone0140
       position: {x: -0.0032482117, y: -0.0024044374, z: 0.00026588095}
-      rotation: {x: -0.000000047031797, y: -0.00000000698492, z: 0.00000045634812,
-        w: 1}
+      rotation: {x: 0.0347176, y: -0.043576904, z: -0.006292002, w: 0.9984268}
       scale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
     - name: Bone0151
       parentName: Bone0150
       position: {x: -0.001184893, y: -0.00097208825, z: 0.00019448607}
-      rotation: {x: -0.000000013038516, y: -0.000000007916242, z: -0.000000035390258,
-        w: 1}
+      rotation: {x: 0.042424113, y: -0.050088376, z: 0.008112142, w: 0.9978104}
       scale: {x: 1, y: 1, z: 1}
     - name: Bone0152
       parentName: Bone0151
       position: {x: -0.00075250654, y: -0.000583885, z: 0.00033019928}
-      rotation: {x: -0.00000003608875, y: 0.0000000013969839, z: 0.0000000433065,
-        w: 1}
+      rotation: {x: 0.35705304, y: 0.0000052507953, z: 0.8137038, w: 0.458693}
       scale: {x: 1, y: 1, z: 0.99999994}
     - name: Bone0152_end
       parentName: Bone0152
@@ -3008,19 +1903,17 @@ ModelImporter:
     - name: Bone0153
       parentName: Bone0140
       position: {x: -0.0029947108, y: -0.0021038672, z: 0.0010099881}
-      rotation: {x: -0.000000033061955, y: -0.0000000023283067, z: 0.00000046286738,
-        w: 1}
+      rotation: {x: 0.064086825, y: -0.086003326, z: 0.011603915, w: 0.9941639}
       scale: {x: 0.99999994, y: 0.9999999, z: 0.99999994}
     - name: Bone0154
       parentName: Bone0153
       position: {x: -0.0010508136, y: -0.00074333727, z: 0.00029417613}
-      rotation: {x: -0.0000000032596295, y: 9.313226e-10, z: -0.000000075437136, w: 1}
+      rotation: {x: 0.15304525, y: -0.24386606, z: -0.069524914, w: 0.9551298}
       scale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
     - name: Bone0155
       parentName: Bone0154
       position: {x: -0.0004394771, y: -0.00049123855, z: 0.00075566064}
-      rotation: {x: 0.000000035623092, y: -0.0000000074505815, z: 0.0000000125728565,
-        w: 1}
+      rotation: {x: 0.7461042, y: 0.0000020191062, z: 0.4339133, w: 0.5050226}
       scale: {x: 0.99999994, y: 0.9999999, z: 0.99999994}
     - name: Bone0155_end
       parentName: Bone0155
@@ -3087,14 +1980,12 @@ ModelImporter:
     - name: Bone0162
       parentName: Bone0161
       position: {x: 0.0055428576, y: -0.0034505788, z: 0.0011481202}
-      rotation: {x: 0.00000011944212, y: -0.000000052154064, z: -0.00000030267984,
-        w: 1}
+      rotation: {x: 0.015029207, y: 0.021046301, z: 0.040453672, w: 0.9988467}
       scale: {x: 1, y: 1.0000001, z: 1}
     - name: Bone0163
       parentName: Bone0162
       position: {x: 0.0086365165, y: -0.008641759, z: 0.0012873668}
-      rotation: {x: 0.0000000044237827, y: 0.000000004190952, z: 0.00000028638172,
-        w: 1}
+      rotation: {x: -0.0069271596, y: -0.007226158, z: 0.007166232, w: 0.9999243}
       scale: {x: 0.9999999, y: 0.99999994, z: 0.99999994}
     - name: Bone0164
       parentName: Bone0163
@@ -3104,14 +1995,12 @@ ModelImporter:
     - name: Bone0165
       parentName: Bone0164
       position: {x: 0.00033213853, y: -0.0014609098, z: -0.0011549847}
-      rotation: {x: 0.00000003818423, y: -0.0000000032596295, z: -0.000000611879,
-        w: 1}
+      rotation: {x: -0.28462145, y: -0.037523948, z: 0.014539564, w: 0.957795}
       scale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
     - name: Bone0166
       parentName: Bone0165
       position: {x: 0.000048935413, y: -0.0008229709, z: -0.0011661375}
-      rotation: {x: -0.000000034691766, y: -0.0000000030267986, z: 0.000000042375177,
-        w: 1}
+      rotation: {x: 0.24788111, y: 0.12418814, z: -0.07724034, w: 0.9576879}
       scale: {x: 1, y: 1, z: 1.0000001}
     - name: Bone0167
       parentName: Bone0166
@@ -3126,20 +2015,17 @@ ModelImporter:
     - name: Bone0168
       parentName: Bone0164
       position: {x: 0.0029404992, y: -0.002522999, z: -0.0017974308}
-      rotation: {x: 0.00000008079223, y: -0.000000012805686, z: -0.00000076368457,
-        w: 1}
+      rotation: {x: -0.009241583, y: -0.0119966995, z: -0.000019955254, w: 0.9998854}
       scale: {x: 0.99999994, y: 1, z: 1}
     - name: Bone0169
       parentName: Bone0168
       position: {x: 0.0013219554, y: -0.0010174274, z: -0.0005905472}
-      rotation: {x: 0.000000042142347, y: 0.0000000060535967, z: 0.00000013504177,
-        w: 1}
+      rotation: {x: 0.03269852, y: 0.002564297, z: 0.068778686, w: 0.99709266}
       scale: {x: 1, y: 0.99999994, z: 1}
     - name: Bone0170
       parentName: Bone0169
       position: {x: 0.0008834165, y: -0.0010742933, z: -0.0003799396}
-      rotation: {x: 0.000000030500814, y: -0.00000006542542, z: -0.0000009355136,
-        w: 1}
+      rotation: {x: -0.36905223, y: 0.0000018149136, z: -0.8581066, w: 0.35700646}
       scale: {x: 0.99999994, y: 1, z: 0.99999994}
     - name: Bone0170_end
       parentName: Bone0170
@@ -3161,8 +2047,7 @@ ModelImporter:
     - name: Bone0173
       parentName: Bone0172
       position: {x: 0.0010936641, y: -0.0010383326, z: -0.00008130811}
-      rotation: {x: 0.000000045634813, y: -0.000000048428777, z: -0.0000010551886,
-        w: 1}
+      rotation: {x: -0.06810719, y: -0.000003092767, z: -0.9160376, w: 0.39526787}
       scale: {x: 1, y: 0.99999976, z: 0.99999994}
     - name: Bone0173_end
       parentName: Bone0173
@@ -3172,19 +2057,17 @@ ModelImporter:
     - name: Bone0174
       parentName: Bone0164
       position: {x: 0.0032481647, y: -0.002404524, z: 0.00026581064}
-      rotation: {x: 0.00000003818423, y: -0.0000000032596295, z: -0.000000611879,
-        w: 1}
+      rotation: {x: 0.03470743, y: 0.04356346, z: 0.006290496, w: 0.9984278}
       scale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
     - name: Bone0175
       parentName: Bone0174
       position: {x: 0.0011848342, y: -0.00097204564, z: 0.00019443088}
-      rotation: {x: 0.000000013737008, y: 0.0000000011641532, z: 0.0000000013969839,
-        w: 1}
+      rotation: {x: 0.042471483, y: 0.05014452, z: -0.008118782, w: 0.9978055}
       scale: {x: 1, y: 1, z: 1}
     - name: Bone0176
       parentName: Bone0175
       position: {x: 0.00075255125, y: -0.00058390916, z: 0.00033033534}
-      rotation: {x: 2.3283067e-10, y: -0.0000000016298147, z: 0.000000037718568, w: 1}
+      rotation: {x: 0.35715187, y: 0.0000013150268, z: -0.8136536, w: 0.45870504}
       scale: {x: 0.99999994, y: 0.9999999, z: 0.99999994}
     - name: Bone0176_end
       parentName: Bone0176
@@ -3194,19 +2077,17 @@ ModelImporter:
     - name: Bone0177
       parentName: Bone0164
       position: {x: 0.002994707, y: -0.002103861, z: 0.0010099983}
-      rotation: {x: 0.000000040978197, y: -0.0000000027939677, z: -0.00000045774507,
-        w: 1}
+      rotation: {x: 0.06408612, y: 0.08599837, z: -0.011588806, w: 0.9941645}
       scale: {x: 1, y: 0.99999994, z: 0.99999994}
     - name: Bone0178
       parentName: Bone0177
       position: {x: 0.0010507145, y: -0.0007433587, z: 0.00029415294}
-      rotation: {x: 0.000000033061955, y: -0.0000000088475645, z: -0.00000016530976,
-        w: 1}
+      rotation: {x: 0.15306404, y: 0.24384823, z: 0.06948903, w: 0.9551339}
       scale: {x: 1, y: 0.9999999, z: 0.99999994}
     - name: Bone0179
       parentName: Bone0178
       position: {x: 0.00043948172, y: -0.0004911989, z: 0.0007556281}
-      rotation: {x: 2.3283063e-10, y: 0.0000000088475645, z: 0.000000041909516, w: 1}
+      rotation: {x: 0.74608517, y: 0.0000039115525, z: -0.43392876, w: 0.5050375}
       scale: {x: 1, y: 0.99999994, z: 0.99999994}
     - name: Bone0179_end
       parentName: Bone0179
@@ -3433,13 +2314,18 @@ ModelImporter:
     - name: Bone0321
       parentName: Bone0299
       position: {x: 0.000000004180474, y: -0.00000004538335, z: 0.0000000071153043}
-      rotation: {x: 0.008796005, y: 0.00014404794, z: 0.008813542, w: 0.99992245}
+      rotation: {x: 0.008796004, y: 0.00014404794, z: 0.008813541, w: 0.99992245}
       scale: {x: 0.9999999, y: 1, z: 0.9999998}
     - name: Bone0321_end
       parentName: Bone0321
       position: {x: -0, y: 0.0010000122, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
+    - name: Body
+      parentName: Bloodborne Moon presence tpose(Clone)
+      position: {x: -0, y: 0.895122, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 100, y: 100, z: 100}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -3447,16 +2333,14 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
-    rootMotionBoneName: root
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  autoGenerateAvatarMappingIfUnspecified: 0
   animationType: 3
   humanoidOversampling: 1
-  avatarSetup: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
