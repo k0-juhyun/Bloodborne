@@ -47,7 +47,6 @@ public class bossAI : MonoBehaviour
         Trace, // 추적
         Attack, // 공격
         Damage, // 피격
-        Wait, // 공격 딜레이
         Die // 죽음
     }
     // 처음에는 기본상태
@@ -127,14 +126,17 @@ public class bossAI : MonoBehaviour
                 phase = Phase.Phase2;
             }
 
-            // 공격 사거리 내에 들어와있고 피격당하지 않는다면 공격상태
-            if (dis <= attackDis && !bossdamage.isHitted)
+            if (dis <= attackDis            // 공격 사거리 내에 들어와 있고
+                && !bossdamage.isHitted     // 피격 당하지 않고
+                && !isRetreat)              // 후퇴하지 않는다면 공격패턴
             {
                 state = State.Attack;
             }
 
-            // 추적 사거리 내에 있고 피격당하지 않는다면 추적 상태
-            else if (dis <= traceDis && !bossdamage.isHitted)
+            
+            else if (dis <= traceDis            // 추적 사거리 내에 있고
+                    && !bossdamage.isHitted     // 피격 당하지 않고
+                    && !isRetreat)              // 후퇴중이아니라면    
             {
                 state = State.Trace;
             }
@@ -173,11 +175,10 @@ public class bossAI : MonoBehaviour
                     break;
                 case State.Damage:
                     break;
-                case State.Wait:
-                    animator.Play("Roar");
-                    break;
                 case State.Retreat:
+                    StartCoroutine(RetreatOff(5f));
                     bossmove.moveToOrigin();
+                    animator.SetBool(hashMove, true);
                     break;
                 case State.Die:
                     break;
@@ -237,7 +238,7 @@ public class bossAI : MonoBehaviour
                     break;
             }
 
-            state = State.Wait;
+            isRetreat = true;
             yield return new WaitForSeconds(attackDelay);
             attackInProgress = false;
         }
@@ -291,5 +292,11 @@ public class bossAI : MonoBehaviour
             }
         }
         yield return callback;
+    }
+
+    IEnumerator RetreatOff(float time)
+    {
+        yield return new WaitForSeconds(time);
+        isRetreat = false;
     }
 }
