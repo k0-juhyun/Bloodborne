@@ -5,7 +5,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Tail : MonoBehaviour
 {
-    public float speed = 4.5f;
+    public float movementSpeed = 2f;
     public float amplitude = 0.5f;
     public float frequency = 1f;
     public float offsetMultiplier = 1f;
@@ -19,7 +19,7 @@ public class Tail : MonoBehaviour
         startPositions = new Vector3[transform.childCount];
         for (int i = 0; i < transform.childCount; i++)
         {
-            startPositions[i] = transform.GetChild(i).position;
+            startPositions[i] = transform.GetChild(i).localPosition;
         }
 
         // 자식 오브젝트들의 초기 오프셋을 설정
@@ -32,6 +32,10 @@ public class Tail : MonoBehaviour
 
     void Update()
     {
+        // 부모 오브젝트를 천천히 이동시킴
+        float step = movementSpeed * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, transform.parent.position, step);
+
         // 시간에 따른 흔들림을 계산
         float time = Time.time * frequency;
 
@@ -42,7 +46,8 @@ public class Tail : MonoBehaviour
             float offset = offsets[i] + offsetMultiplier * i;
             float angle = Mathf.Sin(time + offset) * amplitude;
             Vector3 newPosition = startPositions[i] + Vector3.right * angle;
-            child.position = newPosition;
+            child.localPosition = newPosition;
         }
     }
+
 }
