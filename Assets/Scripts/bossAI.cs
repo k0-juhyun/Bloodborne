@@ -38,7 +38,7 @@ public class bossAI : MonoBehaviour
     private Animator animator;
     private bossMove bossmove;
     private bossDamage bossdamage;
-
+    private Rigidbody rb;
     // 보스 상태
     public enum State
     {
@@ -91,7 +91,8 @@ public class bossAI : MonoBehaviour
         animator = GetComponent<Animator>();
         bossmove = GetComponent<bossMove>();
         bossdamage = GetComponent<bossDamage>();
-
+        //rb = GetComponent<Rigidbody>();
+        //rb.useGravity = true;
         var player = GameObject.FindGameObjectWithTag("Player");
 
         // 인스턴스 체크
