@@ -43,6 +43,7 @@ public class Boss : MonoBehaviour
 
     Vector3 dir;                        // 이동 방향
     Vector3 avoidDir;                   // 회피 방향
+    Vector3 targetPos;                  // 회피 목적지
 
     int damage = 2;                         // 데미지 (플레이어한테 어떤 공격인지 상태를 받아오기, 공격에 따라 다른 데미지를 구현)
     public int hitCount = 0;                   // 피격 횟수 (맞은 횟수)
@@ -184,6 +185,9 @@ public class Boss : MonoBehaviour
         {
             // 회피 상태로 변화시킨다
             bossState = BossPatternState.Avoid;
+            avoidDir = -transform.forward;
+            targetPos = transform.position + avoidDir * 5;
+
         }
     }
 
@@ -199,7 +203,7 @@ public class Boss : MonoBehaviour
             bossState = BossPatternState.SickelCombo1;
         }
     }
-
+    float a = 0;
     private void UpdateAvoid()
     {
         // 시간을 잰다
@@ -211,17 +215,27 @@ public class Boss : MonoBehaviour
 
         if (isAvoid == true)
         {
-            // 뒤로 회피
-            transform.position += avoidDir * 5 * Time.deltaTime;
-            //transform.position = Vector3.Lerp(transform.position, avoidDir, dashSpeed * Time.deltaTime);
-
-            if (avoidcurTime > 1)
+            transform.position = Vector3.Lerp(transform.position, targetPos, dashSpeed * Time.deltaTime);
+            if (Vector3.Distance(transform.position, targetPos) < 0.1f)
             {
-                // 1초 후 상태를 idle로
                 bossState = BossPatternState.Idle;
                 print("Idle");
                 avoidcurTime = 0;
             }
+            // 뒤로 회피
+                     
+            //transform.position += avoidDir * 50 * Time.deltaTime;
+            //a += 50 * Time.deltaTime;
+
+            //if (a >= 1)
+            //{
+            //    // 정확하게 하려면 보정값을 빼주는 작업이 한 줄 있어야한다
+            //    transform.position -= avoidDir * (a - 1);
+            //    // 1초 후 상태를 idle로
+            //    bossState = BossPatternState.Idle;
+            //    print("Idle");
+            //    avoidcurTime = 0;
+            //}
         }
     }
 
