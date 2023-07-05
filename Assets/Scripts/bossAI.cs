@@ -302,9 +302,15 @@ public class bossAI : MonoBehaviour
             Laser[0].SetActive(true);
             yield return new WaitForSeconds(0.3f);
             Laser[1].SetActive(true);
+            Laser[2].SetActive(true);
+            Laser[3].SetActive(true);
+            Laser[4].SetActive(true);
             yield return new WaitForSeconds(5f);
             Laser[0].SetActive(false);
             Laser[1].SetActive(false);
+            Laser[2].SetActive(false);
+            Laser[3].SetActive(false);
+            Laser[4].SetActive(false);
             animator.SetBool("laserSetup", false);
             isLaser = true;
             phase = Phase.Phase3;
