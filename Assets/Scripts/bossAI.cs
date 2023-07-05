@@ -91,8 +91,8 @@ public class bossAI : MonoBehaviour
         animator = GetComponent<Animator>();
         bossmove = GetComponent<bossMove>();
         bossdamage = GetComponent<bossDamage>();
-        //rb = GetComponent<Rigidbody>();
-        //rb.useGravity = true;
+        rb = GetComponent<Rigidbody>();
+        rb.useGravity = true;
         var player = GameObject.FindGameObjectWithTag("Player");
 
         // 인스턴스 체크
