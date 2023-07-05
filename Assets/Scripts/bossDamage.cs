@@ -11,9 +11,10 @@ public class bossDamage : MonoBehaviour
     private Transform playerTr;
     private Animator animator;
     private GameObject bloodEffect;
-    private bossAI bossai;
+    public bossAI bossai;
 
     public bool isHitted;
+    public float playerDamage = 20f;
     string currentDamageAnimation;
 
     // Start is called before the first frame update
@@ -74,7 +75,7 @@ public class bossDamage : MonoBehaviour
     {
         if (coll.collider.tag == ("p_Weapon") && !isHitted && Combat.P_Attack)
         {
-            print("sibal");
+            bossai.curHp -= playerDamage;
             // 피격확인
             isHitted = true;
             Collider[] childColliders = GetComponentsInChildren<Collider>();

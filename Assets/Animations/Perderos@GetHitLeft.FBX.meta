@@ -366,12 +366,15 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Perderos_ Spine1' is inbetween humanoid
+      transforms and has rotation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 0
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -387,7 +390,7 @@ ModelImporter:
       lastFrame: 25
       wrapMode: 0
       orientationOffsetY: 0
-      level: 0
+      level: -0.2
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
@@ -397,9 +400,9 @@ ModelImporter:
       loopBlendPositionY: 1
       loopBlendPositionXZ: 1
       keepOriginalOrientation: 1
-      keepOriginalPositionY: 1
+      keepOriginalPositionY: 0
       keepOriginalPositionXZ: 1
-      heightFromFeet: 0
+      heightFromFeet: 1
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
@@ -449,8 +452,565 @@ ModelImporter:
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
-    human: []
-    skeleton: []
+    human:
+    - boneName: Perderos_
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_ L Thigh
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_ R Thigh
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_ L Calf
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_ R Calf
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_ L Foot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_ R Foot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_ Spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_ Neck
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_ L Clavicle
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_ R Clavicle
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_ L UpperArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_ R UpperArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_ L Forearm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_ R Forearm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_ L Hand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_ R Hand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_ L Toe2
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_ R Toe2
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_JawLeft
+      humanName: LeftEye
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_JawRight
+      humanName: RightEye
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_JawLower
+      humanName: Jaw
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_ L Finger1
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_ L Finger11
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_ L Finger0
+      humanName: Left Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_ L Finger01
+      humanName: Left Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_ L Finger2
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_ L Finger21
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_ R Finger1
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_ R Finger11
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_ R Finger0
+      humanName: Right Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_ R Finger01
+      humanName: Right Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_ R Finger2
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Perderos_ R Finger21
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: Perderos@GetHitLeft(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: root
+      parentName: Perderos@GetHitLeft(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Perderos_
+      parentName: root
+      position: {x: 0, y: -0.00000047683716, z: 2.8027325}
+      rotation: {x: -0.2988366, y: 0.2988359, z: 0.64085597, w: 0.6408569}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Perderos_ Pelvis
+      parentName: Perderos_
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.5, y: 0.5, z: 0.49999934, w: 0.50000066}
+      scale: {x: 0.9999999, y: 0.9999999, z: 1}
+    - name: Perderos_ Spine
+      parentName: Perderos_ Pelvis
+      position: {x: -0.76219785, y: -0.0013000488, z: 0.0000010588194}
+      rotation: {x: -0.0000021480703, y: 0.0000007711752, z: -0.11930757, w: 0.99285734}
+      scale: {x: 1, y: 0.9999999, z: 1}
+    - name: Perderos_ Spine1
+      parentName: Perderos_ Spine
+      position: {x: -1.6812598, y: -0.0011746215, z: -0.0000000032584648}
+      rotation: {x: 1.5946303e-13, y: 0.00000068645267, z: -0.2474952, w: 0.9688891}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+    - name: Perderos_ Neck
+      parentName: Perderos_ Spine1
+      position: {x: -1.6809868, y: -0.0006420898, z: -0.0000000017799903}
+      rotation: {x: -8.118655e-14, y: 0.00000071469174, z: -0.25767654, w: 0.9662312}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Perderos_JawRight
+      parentName: Perderos_ Neck
+      position: {x: -0.8814775, y: -0.28220367, z: -0.6370074}
+      rotation: {x: 0.52147746, y: -0.041280758, z: -0.29005057, w: 0.80139124}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: Perderos_JawLeft
+      parentName: Perderos_ Neck
+      position: {x: -0.88147914, y: -0.28220734, z: 0.6372235}
+      rotation: {x: 0.7948741, y: -0.30746496, z: -0.02989302, w: 0.5222518}
+      scale: {x: 1.0000001, y: 0.9999999, z: 1}
+    - name: Perderos_JawLower
+      parentName: Perderos_ Neck
+      position: {x: -0.71817404, y: 0.7092065, z: -0.000003967285}
+      rotation: {x: 0.9911228, y: -0.13294996, z: 0.00000051805915, w: -0.0000018114173}
+      scale: {x: 1, y: 0.9999999, z: 1}
+    - name: Perderos_Tongue_01
+      parentName: Perderos_JawLower
+      position: {x: -0.48632511, y: 0.31943297, z: -0.00000030517577}
+      rotation: {x: 0, y: -0, z: -0.500706, w: 0.8656174}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: Perderos_Tongue_02
+      parentName: Perderos_Tongue_01
+      position: {x: -0.4189749, y: 0, z: -0.00000004989488}
+      rotation: {x: 0.00000001572739, y: -0.000000047496062, z: 0.31434497, w: 0.9493088}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+    - name: Perderos_Tongue_03
+      parentName: Perderos_Tongue_02
+      position: {x: -0.38168302, y: 0.000013122558, z: -2.9176588e-11}
+      rotation: {x: 4.4274727e-16, y: -6.0900197e-16, z: 0.58802986, w: 0.8088392}
+      scale: {x: 0.99999976, y: 0.99999976, z: 1}
+    - name: Perderos_Tongue_04
+      parentName: Perderos_Tongue_03
+      position: {x: -0.35757598, y: 0.0000012207031, z: 0.00000003231995}
+      rotation: {x: 6.321362e-17, y: -1.8994923e-16, z: 0.31576562, w: 0.9488372}
+      scale: {x: 0.99999994, y: 0.99999994, z: 1}
+    - name: Perderos_Tongue_05
+      parentName: Perderos_Tongue_04
+      position: {x: -0.27338532, y: -0.00000061035155, z: 0.000000022466047}
+      rotation: {x: 0, y: 0, z: 0.3420165, w: 0.9396939}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1}
+    - name: Perderos_Tongue_06
+      parentName: Perderos_Tongue_05
+      position: {x: -0.21870758, y: 0, z: 0.000000017959247}
+      rotation: {x: 9.148961e-16, y: -3.4328907e-15, z: 0.25752038, w: 0.9662729}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1}
+    - name: Perderos_Tongue_Right_01
+      parentName: Perderos_Tongue_03
+      position: {x: -0.051787604, y: 0.19635834, z: 0.18299957}
+      rotation: {x: 0.99729484, y: -0.033576507, z: -0.0653517, w: -0.0022002338}
+      scale: {x: 1, y: 1, z: 0.9999999}
+    - name: Perderos_Tongue_Right_02
+      parentName: Perderos_Tongue_Right_01
+      position: {x: -0.41969657, y: -0.00000061035155, z: 0}
+      rotation: {x: -0.0438371, y: -0.008389694, z: -0.5096785, w: 0.8592065}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+    - name: Perderos_Tongue_Right_03
+      parentName: Perderos_Tongue_Right_02
+      position: {x: -0.2809615, y: 0.0000015258788, z: 0.00000061035155}
+      rotation: {x: -0.04190121, y: -0.015375702, z: -0.31409663, w: 0.9483413}
+      scale: {x: 0.9999998, y: 0.9999998, z: 1}
+    - name: Perderos_Tongue_Left_01
+      parentName: Perderos_Tongue_03
+      position: {x: -0.05178772, y: 0.19635803, z: -0.18328217}
+      rotation: {x: -0.0022002414, y: -0.06535193, z: -0.033576503, w: 0.9972948}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1}
+    - name: Perderos_Tongue_Left_02
+      parentName: Perderos_Tongue_Left_01
+      position: {x: -0.41969633, y: 0, z: -0.000000049572918}
+      rotation: {x: 0.043837644, y: -0.008389216, z: 0.5096785, w: 0.85920644}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+    - name: Perderos_Tongue_Left_03
+      parentName: Perderos_Tongue_Left_02
+      position: {x: -0.2809613, y: -0.0000012207031, z: 7.2759575e-14}
+      rotation: {x: 0.041900855, y: -0.015375371, z: 0.31409684, w: 0.94834125}
+      scale: {x: 0.99999976, y: 0.99999976, z: 1}
+    - name: Perderos_ L Clavicle
+      parentName: Perderos_ Spine1
+      position: {x: -0.7674182, y: -0.30976287, z: 0.36346292}
+      rotation: {x: 0.7089087, y: -0.111369096, z: -0.68632156, w: 0.11835624}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Perderos_ L UpperArm
+      parentName: Perderos_ L Clavicle
+      position: {x: -1.1064177, y: 0.00000030517577, z: 0}
+      rotation: {x: -0.47263676, y: 0.049426664, z: -0.1284818, w: 0.87043905}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: Perderos_ L Forearm
+      parentName: Perderos_ L UpperArm
+      position: {x: -2.934442, y: -0.000000076293944, z: 0}
+      rotation: {x: -0.019764323, y: 0.02349551, z: -0.003629347, w: 0.99952203}
+      scale: {x: 0.99999994, y: 1, z: 1}
+    - name: Perderos_ L Hand
+      parentName: Perderos_ L Forearm
+      position: {x: -2.3085887, y: 0.00000015258789, z: 0}
+      rotation: {x: -0.3826785, y: -0.10544756, z: -0.7657938, w: 0.5059624}
+      scale: {x: 1, y: 0.99999994, z: 1}
+    - name: Perderos_ L Finger0
+      parentName: Perderos_ L Hand
+      position: {x: -0.14883766, y: 0.07761322, z: -0.5077313}
+      rotation: {x: 0.40937254, y: -0.5391309, z: 0.14908765, w: 0.7207807}
+      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+    - name: Perderos_ L Finger01
+      parentName: Perderos_ L Finger0
+      position: {x: -0.55011964, y: 0, z: -0.00000015258789}
+      rotation: {x: 0.0000000028823721, y: -0.000000010134804, z: -0.48670247, w: 0.8735678}
+      scale: {x: 1, y: 0.9999999, z: 1}
+    - name: Perderos_ L Finger1
+      parentName: Perderos_ L Hand
+      position: {x: -0.74867445, y: -0.060327146, z: -0.23112212}
+      rotation: {x: -0.19611062, y: -0.5042732, z: -0.26500437, w: 0.79813653}
+      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+    - name: Perderos_ L Finger11
+      parentName: Perderos_ L Finger1
+      position: {x: -0.5551677, y: -0.00000030517577, z: 0}
+      rotation: {x: 0.000000012886889, y: -0.0000000083576595, z: -0.73136866, w: 0.68198234}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: Perderos_ L Finger2
+      parentName: Perderos_ L Hand
+      position: {x: -0.7778023, y: -0.0506427, z: 0.2810397}
+      rotation: {x: -0.23963805, y: -0.49347708, z: -0.28562036, w: 0.78579575}
+      scale: {x: 1, y: 0.99999994, z: 1.0000001}
+    - name: Perderos_ L Finger21
+      parentName: Perderos_ L Finger2
+      position: {x: -0.41196707, y: -0.00000030517577, z: 0.00000030517577}
+      rotation: {x: -0.0000000023807223, y: -0.000000002555276, z: -0.68167496, w: 0.7316551}
+      scale: {x: 1, y: 0.9999999, z: 1}
+    - name: Perderos_ R Clavicle
+      parentName: Perderos_ Spine1
+      position: {x: -0.7674183, y: -0.30976075, z: -0.36346468}
+      rotation: {x: 0.7089079, y: -0.11137052, z: 0.6863219, w: -0.11835748}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Perderos_ R UpperArm
+      parentName: Perderos_ R Clavicle
+      position: {x: -1.1064177, y: 0, z: 0}
+      rotation: {x: 0.47263485, y: -0.049424514, z: -0.12848218, w: 0.87044}
+      scale: {x: 1.0000001, y: 1, z: 1}
+    - name: Perderos_ R Forearm
+      parentName: Perderos_ R UpperArm
+      position: {x: -2.9344418, y: 0, z: 0.00000030517577}
+      rotation: {x: 0.019764088, y: -0.023495955, z: -0.0036289939, w: 0.999522}
+      scale: {x: 1, y: 1.0000001, z: 1}
+    - name: Perderos_ R Hand
+      parentName: Perderos_ R Forearm
+      position: {x: -2.3085887, y: 0.00000030517577, z: 0.00000030517577}
+      rotation: {x: 0.38267675, y: 0.105452105, z: -0.7657886, w: 0.5059706}
+      scale: {x: 0.9999999, y: 0.9999998, z: 0.99999994}
+    - name: Perderos_ R Finger0
+      parentName: Perderos_ R Hand
+      position: {x: -0.14883758, y: 0.07761322, z: 0.507731}
+      rotation: {x: -0.40937218, y: 0.53913224, z: 0.14908835, w: 0.72077984}
+      scale: {x: 0.99999994, y: 0.99999994, z: 0.9999999}
+    - name: Perderos_ R Finger01
+      parentName: Perderos_ R Finger0
+      position: {x: -0.55011964, y: -0.00000015258789, z: -0.00000015258789}
+      rotation: {x: -0.0000000016271465, y: 9.0655383e-10, z: -0.48670247, w: 0.8735678}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+    - name: Perderos_ R Finger1
+      parentName: Perderos_ R Hand
+      position: {x: -0.7486743, y: -0.060327146, z: 0.23112212}
+      rotation: {x: 0.19611037, y: 0.5042734, z: -0.26500496, w: 0.7981363}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: Perderos_ R Finger11
+      parentName: Perderos_ R Finger1
+      position: {x: -0.5551677, y: 0, z: 0.00000030517577}
+      rotation: {x: 0.000000012886888, y: -0.000000008357658, z: -0.7313686, w: 0.6819824}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+    - name: Perderos_ R Finger2
+      parentName: Perderos_ R Hand
+      position: {x: -0.77780193, y: -0.050642394, z: -0.28104034}
+      rotation: {x: 0.2396364, y: 0.49347767, z: -0.2856214, w: 0.78579557}
+      scale: {x: 0.99999994, y: 0.99999994, z: 1}
+    - name: Perderos_ R Finger21
+      parentName: Perderos_ R Finger2
+      position: {x: -0.411967, y: -0.00000030517577, z: 0}
+      rotation: {x: -0.0000000040472283, y: -0.00000000434397, z: -0.6816749, w: 0.7316552}
+      scale: {x: 0.9999999, y: 0.9999999, z: 1}
+    - name: Perderos_ Tail
+      parentName: Perderos_ Pelvis
+      position: {x: 0.6680437, y: -0.7435037, z: 0.0000004735094}
+      rotation: {x: 0.0000010021058, y: -0.0000007909102, z: 0.98833585, w: -0.15229}
+      scale: {x: 1, y: 0.99999994, z: 1}
+    - name: Perderos_ Tail1
+      parentName: Perderos_ Tail
+      position: {x: -0.34870216, y: -0.0002609253, z: -7.2526746e-10}
+      rotation: {x: 5.4525127e-14, y: -0.00000006207692, z: 0.022381343, w: 0.99974954}
+      scale: {x: 0.99999994, y: 1, z: 1}
+    - name: Perderos_ Tail2
+      parentName: Perderos_ Tail1
+      position: {x: -0.3283222, y: -0.00030639648, z: -8.486677e-10}
+      rotation: {x: 1.4533376e-13, y: -0.00000006207705, z: 0.022381382, w: 0.99974954}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+    - name: Perderos_ L Thigh
+      parentName: Perderos_ Pelvis
+      position: {x: 0.0000007629394, y: 0.0000012207031, z: 0.66026795}
+      rotation: {x: 0.17852902, y: 0.617557, z: 0.69076455, w: 0.33105162}
+      scale: {x: 0.9999999, y: 1, z: 1}
+    - name: Perderos_ L Calf
+      parentName: Perderos_ L Thigh
+      position: {x: -1.8999925, y: 0, z: 0}
+      rotation: {x: 0.15323849, y: -0.116686225, z: 0.18165402, w: 0.9643154}
+      scale: {x: 0.99999994, y: 1.0000002, z: 1.0000001}
+    - name: Perderos_ L Foot
+      parentName: Perderos_ L Calf
+      position: {x: -1.463167, y: -0.000000076293944, z: 0}
+      rotation: {x: 0.27036375, y: 0.6542799, z: -0.3056168, w: 0.6367257}
+      scale: {x: 0.9999998, y: 1, z: 1}
+    - name: Perderos_ L Toe0
+      parentName: Perderos_ L Foot
+      position: {x: -0.5901738, y: 0.52463156, z: -0.48643127}
+      rotation: {x: -0.09933458, y: -0.10975503, z: -0.7332563, w: 0.66364276}
+      scale: {x: 0.99999994, y: 1, z: 0.99999994}
+    - name: Perderos_ L Toe1
+      parentName: Perderos_ L Foot
+      position: {x: -0.5311946, y: 0.6610682, z: -0.1750537}
+      rotation: {x: 0.0000006385792, y: -0.000000409043, z: -0.7273805, w: 0.68623435}
+      scale: {x: 0.99999994, y: 1, z: 0.99999994}
+    - name: Perderos_ L Toe2
+      parentName: Perderos_ L Foot
+      position: {x: -0.5839887, y: 0.6005514, z: 0.29880828}
+      rotation: {x: 0.03861292, y: 0.07625301, z: -0.7117868, w: 0.6971758}
+      scale: {x: 1, y: 0.9999999, z: 0.9999999}
+    - name: Perderos_ R Thigh
+      parentName: Perderos_ Pelvis
+      position: {x: -0.0000009918213, y: -0.00000061035155, z: -0.66026795}
+      rotation: {x: 0.17853011, y: 0.6175555, z: -0.6907661, w: -0.33105066}
+      scale: {x: 1, y: 0.9999999, z: 1}
+    - name: Perderos_ R Calf
+      parentName: Perderos_ R Thigh
+      position: {x: -1.8999922, y: 0.00000015258789, z: 0.00000015258789}
+      rotation: {x: -0.15323518, y: 0.116686486, z: 0.18165383, w: 0.9643159}
+      scale: {x: 1.0000001, y: 0.9999999, z: 1}
+    - name: Perderos_ R Foot
+      parentName: Perderos_ R Calf
+      position: {x: -1.4631668, y: 0, z: -0.00000015258789}
+      rotation: {x: -0.27036506, y: -0.65427876, z: -0.30561844, w: 0.63672566}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: Perderos_ R Toe0
+      parentName: Perderos_ R Foot
+      position: {x: -0.5901738, y: 0.5246317, z: 0.48643172}
+      rotation: {x: 0.09933578, y: 0.10975497, z: -0.7332561, w: 0.66364276}
+      scale: {x: 0.9999999, y: 0.9999999, z: 0.9999999}
+    - name: Perderos_ R Toe1
+      parentName: Perderos_ R Foot
+      position: {x: -0.5311946, y: 0.661068, z: 0.1750534}
+      rotation: {x: 0.00000012618572, y: -0.00000016903756, z: -0.7273804, w: 0.6862345}
+      scale: {x: 1, y: 0.99999994, z: 1}
+    - name: Perderos_ R Toe2
+      parentName: Perderos_ R Foot
+      position: {x: -0.5839887, y: 0.6005512, z: -0.29880828}
+      rotation: {x: -0.03861166, y: -0.07625303, z: -0.71178687, w: 0.69717586}
+      scale: {x: 1, y: 0.9999999, z: 0.99999994}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -461,11 +1021,11 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: root
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 2
+  animationType: 3
   humanoidOversampling: 1
   avatarSetup: 1
   additionalBone: 0

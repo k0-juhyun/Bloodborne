@@ -11,11 +11,9 @@ public class bossAI : MonoBehaviour
     private Transform bossTr;
     private bool attackInProgress;
     private bool isRetreat;
+    private bool isLaser;
 
-    public GameObject[] LaserEffect;
-
-    float beamTime = 3f;
-    float beamTimeCal = 3f;
+    public GameObject[] Laser;
 
     [Header("공격사거리")]
     public float attackDis;
@@ -45,7 +43,9 @@ public class bossAI : MonoBehaviour
         Idle, // 기본
         Retreat, // 후퇴
         Trace, // 추적
-        Attack, // 공격
+        Phase1_Attack, // 공격
+        Phase2_Attack, // 공격
+        Phase3_Attack, // 공격
         Damage, // 피격
         Die // 죽음
     }
@@ -70,9 +70,10 @@ public class bossAI : MonoBehaviour
     public enum Phase
     {
         Phase1,
-        Phase2
+        Phase2,
+        Phase3
     }
-
+    
     [Header("페이즈")]
     public Phase phase = Phase.Phase1;
 
@@ -93,6 +94,7 @@ public class bossAI : MonoBehaviour
         bossdamage = GetComponent<bossDamage>();
         rb = GetComponent<Rigidbody>();
         rb.useGravity = true;
+
         var player = GameObject.FindGameObjectWithTag("Player");
 
         // 인스턴스 체크
@@ -122,22 +124,26 @@ public class bossAI : MonoBehaviour
             float dis = Vector3.Distance(playerTr.position, bossTr.position);
 
             // 체력이 40퍼센트 이하면 2페이즈로 돌입
+            // + 레이저 안쐈으면
             if (curHp / maxHp <= 0.4)
             {
                 phase = Phase.Phase2;
+                state = State.Phase2_Attack;
             }
 
             if (dis <= attackDis            // 공격 사거리 내에 들어와 있고
                 && !bossdamage.isHitted     // 피격 당하지 않고
-                && !isRetreat)              // 후퇴하지 않는다면 공격패턴
+                && !isRetreat               // 후퇴하지 않는다면 공격패턴
+                && phase == Phase.Phase1)         
             {
-                state = State.Attack;
+                state = State.Phase1_Attack;
             }
 
-            
+
             else if (dis <= traceDis            // 추적 사거리 내에 있고
                     && !bossdamage.isHitted     // 피격 당하지 않고
-                    && !isRetreat)              // 후퇴중이아니라면    
+                    && !isRetreat
+                    && phase != Phase.Phase2)              // 후퇴중이아니라면    
             {
                 state = State.Trace;
             }
@@ -170,17 +176,25 @@ public class bossAI : MonoBehaviour
                     bossmove.moveToPlayer();
                     animator.SetBool(hashMove, true);
                     break;
-                case State.Attack:
+                case State.Phase1_Attack:
                     bossmove.stopTracing();
-                    StartCoroutine(CheckAttackState());
+                    StartCoroutine(ChcekPhase1AttackPattern());
+                    break;
+                case State.Phase2_Attack:
+                    animator.SetBool(hashMove, false);
+                    bossmove.laserLookPlayer();
+                    animator.SetBool("laserSetup", true);
                     break;
                 case State.Damage:
                     break;
                 case State.Retreat:
-                    StartCoroutine(RetreatOff(0.8f));
-                    bossmove.moveToOrigin();
-                    animator.SetBool(hashMove, false);
-                    animator.Play("Retreating");
+                    if(phase!=Phase.Phase2)
+                    {
+                        StartCoroutine(RetreatOff(0.8f));
+                        bossmove.moveToOrigin();
+                        animator.SetBool(hashMove, false);
+                        animator.Play("Retreating");
+                    }
                     break;
                 case State.Die:
                     break;
@@ -188,9 +202,10 @@ public class bossAI : MonoBehaviour
         }
     }
 
-    IEnumerator CheckAttackState()
+    IEnumerator ChcekPhase1AttackPattern()
     {
-        if (!attackInProgress)
+        // 1페이즈
+        if (!attackInProgress && phase == Phase.Phase1)
         {
             StartCoroutine(RetreatOn(5f));
             int randomIndex = Random.Range((int)Phase1_AttackPattern.OverHeadWheel, (int)Phase1_AttackPattern.LeftPunch + 1);
@@ -232,8 +247,8 @@ public class bossAI : MonoBehaviour
             yield return new WaitForSeconds(attackDelay);
             attackInProgress = false;
         }
-    }
 
+    }
 
     void Update()
     {
@@ -264,26 +279,6 @@ public class bossAI : MonoBehaviour
         return playerPos;
     }
 
-    IEnumerator LaserBeam(System.Action callback)
-    {
-        // back move
-        LaserEffect[0].SetActive(true);
-        yield return new WaitForSeconds(0.3f);
-        LaserEffect[1].SetActive(true);
-        LaserEffect[0].SetActive(false);
-        if (LaserEffect[1].activeSelf)
-        {
-            gameObject.transform.LookAt(playerTr);
-            beamTimeCal -= Time.deltaTime;
-            if (beamTimeCal <= 0)
-            {
-                beamTimeCal = beamTime;
-                LaserEffect[1].SetActive(false);
-            }
-        }
-        yield return callback;
-    }
-
     IEnumerator RetreatOff(float time)
     {
         yield return new WaitForSeconds(time);
@@ -294,5 +289,26 @@ public class bossAI : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         isRetreat = true;
+    }
+
+    void LaserCoroutine()
+    {
+        StartCoroutine(LaserBeam());
+    }
+    IEnumerator LaserBeam()
+    {
+        if(!isLaser)
+        {
+            Laser[0].SetActive(true);
+            yield return new WaitForSeconds(0.3f);
+            Laser[1].SetActive(true);
+            yield return new WaitForSeconds(5f);
+            Laser[0].SetActive(false);
+            Laser[1].SetActive(false);
+            animator.SetBool("laserSetup", false);
+            isLaser = true;
+            phase = Phase.Phase3;
+            state = State.Phase3_Attack;
+        }
     }
 }

@@ -11,7 +11,7 @@ public class bossMove : MonoBehaviour
     private float damping = 1.0f;
     private Transform bossTr;
     private bool moveToOriginInProgress = false; // moveToOrigin이 진행 중인지 체크하는 변수
-
+    public bool laserbeaaam = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -40,14 +40,14 @@ public class bossMove : MonoBehaviour
         damping = 1.0f;
         agent.SetDestination(playerTr.transform.position);
 
-        if (moveToOriginInProgress) // moveToOrigin이 진행 중인 경우
-        {
-            // 한 바퀴 회전
-            Quaternion rotation = Quaternion.Euler(0f, 360f, 0f);
-            bossTr.rotation *= rotation;
+        //if (moveToOriginInProgress) // moveToOrigin이 진행 중인 경우
+        //{
+        //    // 한 바퀴 회전
+        //    Quaternion rotation = Quaternion.Euler(0f, 360f, 0f);
+        //    bossTr.rotation *= rotation;
 
-            moveToOriginInProgress = false; // moveToOrigin 진행 중 해제
-        }
+        //    moveToOriginInProgress = false; // moveToOrigin 진행 중 해제
+        //}
     }
 
     public void stopTracing()
@@ -65,5 +65,11 @@ public class bossMove : MonoBehaviour
         agent.isStopped = false;
         print("moveToOrigin");
         agent.SetDestination(originTr);
+    }
+
+    public void laserLookPlayer()
+    {
+        agent.SetDestination(playerTr.transform.position);
+        agent.updatePosition = false;
     }
 }
