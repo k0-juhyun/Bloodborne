@@ -57,7 +57,6 @@ public class bossAI : MonoBehaviour
     public enum Phase1_AttackPattern
     {
         OverHeadWheel,
-        LaserBeam,
         JumpingSlam,
         ChargingCombo,
         RightPunch,
@@ -203,17 +202,6 @@ public class bossAI : MonoBehaviour
                 case Phase1_AttackPattern.OverHeadWheel:
                     attackInProgress = true;
                     animator.Play("OverHeadWheel");
-                    break;
-
-                // 레이저 쏘기전에 빽무빙 한번만하자
-                case Phase1_AttackPattern.LaserBeam:
-                    attackInProgress = true;
-                    state = State.Retreat;
-                    animator.Play("LaserBeam");
-                    yield return StartCoroutine(LaserBeam(() =>
-                    {
-                        attackInProgress = false; // 공격이 완료되었으므로 attackInProgress를 false로 설정
-                    }));
                     break;
 
                 // 장거리 점프 공격 앞으로 퀵스텝 1~2회
