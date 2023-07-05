@@ -33,8 +33,8 @@ public class bossMove : MonoBehaviour
 
     public void moveToPlayer()
     {
-        agent.updateRotation = true;
         print("moveToPlayer");
+        agent.speed = 3f;
         agent.isStopped = false;
         damping = 1.0f;
         agent.SetDestination(playerTr.transform.position);
@@ -49,8 +49,7 @@ public class bossMove : MonoBehaviour
 
     public void moveToOrigin()
     {
-        agent.updateRotation = false;
-        Quaternion rot = Quaternion.LookRotation(playerTr.transform.position);
+        agent.speed = 7f;
         agent.isStopped = false;
         print("moveToOrigin");
         agent.SetDestination(originTr);
