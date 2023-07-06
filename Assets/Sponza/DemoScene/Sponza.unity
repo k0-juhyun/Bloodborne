@@ -487,6 +487,7 @@ GameObject:
   - component: {fileID: 92840292}
   - component: {fileID: 92840294}
   - component: {fileID: 92840293}
+  - component: {fileID: 92840295}
   m_Layer: 0
   m_Name: Fire (2)
   m_TagString: Untagged
@@ -4279,14 +4280,14 @@ ParticleSystem:
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
-    enabled: 0
-    collisionShape0: {fileID: 0}
+    enabled: 1
+    collisionShape0: {fileID: 703340003}
     collisionShape1: {fileID: 0}
     collisionShape2: {fileID: 0}
     collisionShape3: {fileID: 0}
     collisionShape4: {fileID: 0}
     collisionShape5: {fileID: 0}
-    inside: 1
+    inside: 0
     outside: 0
     enter: 0
     exit: 0
@@ -5229,6 +5230,18 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &92840295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92840291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65a714e5d503b0847a08b966c4b8e5ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &96304000 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100192, guid: bc95531e10951c5439f0b5b7d7215d02,
@@ -5565,6 +5578,7 @@ GameObject:
   - component: {fileID: 200642186}
   - component: {fileID: 200642188}
   - component: {fileID: 200642187}
+  - component: {fileID: 200642189}
   m_Layer: 0
   m_Name: Fire (1)
   m_TagString: Untagged
@@ -9357,14 +9371,14 @@ ParticleSystem:
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
-    enabled: 0
-    collisionShape0: {fileID: 0}
+    enabled: 1
+    collisionShape0: {fileID: 703340003}
     collisionShape1: {fileID: 0}
     collisionShape2: {fileID: 0}
     collisionShape3: {fileID: 0}
     collisionShape4: {fileID: 0}
     collisionShape5: {fileID: 0}
-    inside: 1
+    inside: 0
     outside: 0
     enter: 0
     exit: 0
@@ -10307,6 +10321,18 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &200642189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200642185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65a714e5d503b0847a08b966c4b8e5ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &203265912 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100234, guid: bc95531e10951c5439f0b5b7d7215d02,
@@ -12948,6 +12974,7 @@ GameObject:
   - component: {fileID: 989350144}
   - component: {fileID: 989350146}
   - component: {fileID: 989350145}
+  - component: {fileID: 989350147}
   m_Layer: 0
   m_Name: Fire
   m_TagString: Untagged
@@ -16740,14 +16767,14 @@ ParticleSystem:
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
-    enabled: 0
-    collisionShape0: {fileID: 0}
+    enabled: 1
+    collisionShape0: {fileID: 703340003}
     collisionShape1: {fileID: 0}
     collisionShape2: {fileID: 0}
     collisionShape3: {fileID: 0}
     collisionShape4: {fileID: 0}
     collisionShape5: {fileID: 0}
-    inside: 1
+    inside: 0
     outside: 0
     enter: 0
     exit: 0
@@ -17690,6 +17717,18 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &989350147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989350143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65a714e5d503b0847a08b966c4b8e5ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1002227605 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100102, guid: bc95531e10951c5439f0b5b7d7215d02,
@@ -19833,6 +19872,7 @@ GameObject:
   - component: {fileID: 1863039775}
   - component: {fileID: 1863039774}
   - component: {fileID: 1863039773}
+  - component: {fileID: 1863039776}
   m_Layer: 0
   m_Name: Fire (3)
   m_TagString: Untagged
@@ -23611,14 +23651,14 @@ ParticleSystem:
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
-    enabled: 0
-    collisionShape0: {fileID: 0}
+    enabled: 1
+    collisionShape0: {fileID: 703340003}
     collisionShape1: {fileID: 0}
     collisionShape2: {fileID: 0}
     collisionShape3: {fileID: 0}
     collisionShape4: {fileID: 0}
     collisionShape5: {fileID: 0}
-    inside: 1
+    inside: 0
     outside: 0
     enter: 0
     exit: 0
@@ -24575,6 +24615,18 @@ Transform:
   m_Father: {fileID: 2029349750}
   m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 13.340001, y: -179.99998, z: 0}
+--- !u!114 &1863039776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863039772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65a714e5d503b0847a08b966c4b8e5ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1877399740 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100088, guid: bc95531e10951c5439f0b5b7d7215d02,
