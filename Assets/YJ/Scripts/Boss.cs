@@ -39,11 +39,14 @@ public class Boss : MonoBehaviour
     Rigidbody rid;                      // 리지드바디
     RaycastHit hit;                     // 레이캐스트 히트
     public Transform rayPos;            // ray 쏘는 곳
+    public GameObject sickle;           // 무기
 
 
     Vector3 dir;                        // 이동 방향
     Vector3 avoidDir;                   // 회피 방향
+    Vector3 moveDir;                    // 움직임 방향
     Vector3 targetPos;                  // 회피 목적지
+    Vector3 moveTargetPos;              // 공격시 이동 목적지
 
     int damage = 2;                         // 데미지 (플레이어한테 어떤 공격인지 상태를 받아오기, 공격에 따라 다른 데미지를 구현)
     public int hitCount = 0;                   // 피격 횟수 (맞은 횟수)
@@ -58,6 +61,7 @@ public class Boss : MonoBehaviour
     public float attackDistance = 10f;         // 공격시작 거리
     public float hitDistance = 5f;             // 피격 거리
     public float avoidDistance = 5f;           // 회피 거리
+    public float moveDis = 5f;            // 공격 이동거리
 
     [Header("속도")]
     public float moveSpeed = 1f;               // 이동 속도
@@ -99,7 +103,11 @@ public class Boss : MonoBehaviour
         // 그 방향을 나의 앞 방향으로 한다
         dir = transform.forward;
 
-        transform.LookAt(player.transform);
+        // 이동 맵 navemesh 로 바꾸기(알파)
+        Vector3 ad = player.transform.position;
+        ad.y = 0;
+        transform.LookAt(ad);
+
 
         // 플레이어와 나 사이의 거리를 잰다
         currDistance = Vector3.Distance(transform.position, player.transform.position);
@@ -179,13 +187,19 @@ public class Boss : MonoBehaviour
         {
             // 낫공격1으로 상태 변화시킨다 (랜덤 뽑기 나중에)
             bossState = BossPatternState.SickelCombo1;
+            moveDir = transform.forward;
+            // 이동 목적지
+            moveTargetPos = transform.position + moveDir * moveDis;
+            print("ldel > Attack");
         }
         // 만약 현재 거리가 피격거리이고, 플레이어가 공격중이라면(교체)
         else if (currDistance <= hitDistance && playerscripts.isAttack == true)
         {
             // 회피 상태로 변화시킨다
             bossState = BossPatternState.Avoid;
+            // 회피 방향
             avoidDir = -transform.forward;
+            // 회피 목적지
             targetPos = transform.position + avoidDir * 5;
 
         }
@@ -201,9 +215,14 @@ public class Boss : MonoBehaviour
         {
             // 낫공격1으로 상태 변화시킨다 (랜덤 뽑기 나중에)
             bossState = BossPatternState.SickelCombo1;
+            // 이동 방향
+            moveDir = transform.forward;
+            // 이동 목적지
+            moveTargetPos = transform.position + moveDir * moveDis;
+            print("ldel > Attack");
         }
     }
-    float a = 0;
+    // float a = 0;
     private void UpdateAvoid()
     {
         // 시간을 잰다
@@ -213,6 +232,7 @@ public class Boss : MonoBehaviour
         print("Avoid");
         avoidDir = -transform.forward;
 
+        // 뒤로 회피
         if (isAvoid == true)
         {
             transform.position = Vector3.Lerp(transform.position, targetPos, dashSpeed * Time.deltaTime);
@@ -320,9 +340,18 @@ public class Boss : MonoBehaviour
             case SickelSubState.Attack1:
                 if (curTime > skTime_Sickel1_1)
                 {
-                    print("SubState : Attack1");
-                    sickelSubState = SickelSubState.Attack2;
-                    // 애니메이션 재생
+                    print("SubState : Attack1" + moveTargetPos);
+                    // 앞으로 이동하고 싶다(빠르고 멋지게)
+                    transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
+                    if (Vector3.Distance(transform.position, moveTargetPos) < 0.1f)
+                    {
+                        // 낫이 회전하고 싶다(내려찍기 방향으로)
+                        StartCoroutine(IEBack(0.5f));
+                        // 서브상태를 액션 2로 바꾼다
+                        sickelSubState = SickelSubState.Attack2;
+                        // 애니메이션 재생
+                        print("Attack_move");
+                    }
                 }
                 break;
             case SickelSubState.Attack2:
@@ -367,6 +396,14 @@ public class Boss : MonoBehaviour
             bossState = BossPatternState.Hit;
             
         }
+    }
+
+    IEnumerator IEBack(float time)
+    {
+        
+        sickle.transform.localEulerAngles = new Vector3(60, 0, 0);
+        yield return new WaitForSeconds(time);
+        sickle.transform.localEulerAngles = new Vector3(0, 0, 0);
     }
 
     private void OnDrawGizmos()
