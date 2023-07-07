@@ -816,6 +816,7 @@ MonoBehaviour:
   moveSpeed: 1
   dashSpeed: 10
   curTime: 0
+  avoidcurTime: 0
   hitcurrTime: 0
   hitTime: 2
   skTime_Sickel1_1: 1
