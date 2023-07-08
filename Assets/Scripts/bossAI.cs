@@ -161,7 +161,7 @@ public class bossAI : MonoBehaviour
             yield return stateCheckDelay;
         }
     }
-
+    
     // 보스 상태 제어 코루틴
     IEnumerator Action()
     {
