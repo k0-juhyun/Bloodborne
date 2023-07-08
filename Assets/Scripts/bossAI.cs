@@ -114,6 +114,11 @@ public class bossAI : MonoBehaviour
         StartCoroutine(ChangeStateMachine());
     }
 
+    private void Update()
+    {
+       
+    }
+
     // Updating StateMachine Before DieState
     private IEnumerator UpdateStateMachine()
     {
@@ -132,14 +137,17 @@ public class bossAI : MonoBehaviour
             // Pattern 6 Active Condition
             if (curHpPercentage <= 0.4f && !isPattern6Active)
             {
-                // Pattern 6
-                AnimatorTrigger("Pattern6Start");
-
-                print("6");
+                // Stop Animation
+                animator.StopPlayback();
 
                 isPattern6Active = true;
 
                 attackInProgress = true;
+                
+                // Pattern 6
+                AnimatorTrigger("Pattern6Start");
+
+                print("6");
             }
 
             yield return UpdateStateMachineDelay;
@@ -190,7 +198,8 @@ public class bossAI : MonoBehaviour
             stateMachine = StateMachine.MoveState;
 
             // Move Animation Trigger
-            animator.SetTrigger("Move");
+            // animator.SetTrigger("Move");
+            AnimatorTrigger("Move");
 
             // Agent Move
             agent.isStopped = false;
@@ -208,7 +217,8 @@ public class bossAI : MonoBehaviour
         {
             stateMachine = StateMachine.AttackState;
 
-            animator.SetTrigger("AttackState");
+            //animator.SetTrigger("AttackState");
+            AnimatorTrigger("AttackState");
             // Agent Stop
             agent.isStopped = true;
         }
@@ -218,7 +228,7 @@ public class bossAI : MonoBehaviour
     private void UpdateAttackState()
     {
         // Not in Attack Progress
-        if (!attackInProgress)
+        if (!attackInProgress && !isPattern6InProgress)
         {
             // Trigger On
             AnimatorTrigger("AttackState");
@@ -265,6 +275,9 @@ public class bossAI : MonoBehaviour
     // Pattern6
     private IEnumerator Pattern6AnimStart()
     {
+        // Set Animator Speed 50%
+        animator.speed = 0.5f;
+
         // Stop Agent
         agent.isStopped = true;
 
@@ -284,6 +297,9 @@ public class bossAI : MonoBehaviour
 
         // EyeOff
         EyeLights.SetActive(false);
+
+        // Reset Animator Speed 100%
+        animator.speed = 1f;
     }
 
     private void Pattern6AnimEyeOn()
@@ -309,7 +325,7 @@ public class bossAI : MonoBehaviour
             stateMachine = StateMachine.MoveState;
 
             // Move Animation Trigger
-            animator.SetTrigger("Move");
+            AnimatorTrigger("Move");
 
             // Agent Move
             agent.isStopped = false;
@@ -341,33 +357,6 @@ public class bossAI : MonoBehaviour
     #endregion
 
     #region ReactProcess
-    internal void ReactStateProcess()
-    {
-        if (stateMachine == StateMachine.DieState)
-        {
-            return;
-        }
-        agent.isStopped = true;
-
-        // Reduction
-        curHp -= AttackDamage;
-
-        // Hp = 0
-        if (curHp <= 0)
-        {
-            // Die State
-            stateMachine = StateMachine.DieState;
-
-            // Die Anim
-
-        }
-
-        else
-        {
-            // React State
-            stateMachine = StateMachine.ReactState;
-        }
-    }
 
     // Calculate Angle From Other with Pos
     private float GetAngle(Vector3 from, Vector3 to)
@@ -381,6 +370,23 @@ public class bossAI : MonoBehaviour
         if (coll.collider.tag == ("p_Weapon") && Combat.P_Attack 
             && !isReact && !isPattern6InProgress)
         {
+            // Reduction
+            curHp -= AttackDamage;
+
+            // ReactState Process
+            // Hp, Die Animation
+            if (curHp <= 0)
+            {
+                // Agent Stop
+                agent.isStopped = true;
+
+                // Die State
+                stateMachine = StateMachine.DieState;
+
+                // Die Anim
+                AnimatorTrigger("Die");
+            }
+
             // Increase Hit Count
             if (hitCount < 3)
             {

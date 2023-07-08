@@ -14833,8 +14833,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0
-      minScalar: 6
+      scalar: -3
+      minScalar: 5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -15326,8 +15326,8 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 8
-    angle: 45
-    length: 2
+    angle: 60
+    length: 2.5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
