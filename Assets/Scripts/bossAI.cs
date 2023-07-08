@@ -1,3 +1,4 @@
+using Retro.ThirdPersonCharacter;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,7 +18,11 @@ public class bossAI : MonoBehaviour
 
     // target obj -> Player
     private GameObject target;
-    private float curTime;
+    private string reactAnimation;
+    private GameObject bloodEffect;
+    private bool isReact;
+    private int hitCount = 0;
+    private float hitResetTime = 0;
 
     #region StateMachine
     // StateMachine
@@ -59,6 +64,7 @@ public class bossAI : MonoBehaviour
     public AttackSubStateMachine attackSubStateMachine = AttackSubStateMachine.AttackDelay;
     #endregion
 
+    #region Public Values
     // Attack Values
     [Header("Attack Values")]
     public float AttackRange;
@@ -73,6 +79,7 @@ public class bossAI : MonoBehaviour
         get { return _curHp; }
         set { _curHp = value; }
     }
+    #endregion
 
     private void Awake()
     {
@@ -92,6 +99,9 @@ public class bossAI : MonoBehaviour
 
         // Set UpdateStateMachineDelay
         UpdateStateMachineDelay = new WaitForSeconds(0.2f);
+
+        // Load Effects
+        bloodEffect = Resources.Load<GameObject>("DAX_Blood_Spray_00(Fade_2s)");
     }
 
     private void OnEnable()
@@ -229,12 +239,15 @@ public class bossAI : MonoBehaviour
     }
     #endregion
 
+
+    #region AnimEventFun
+    // Animation Trigger Function
     private void AnimatorTrigger(string TriggerName)
     {
         animator.SetTrigger(TriggerName);
     }
 
-    #region AnimEventFun
+    // Attack Finish Animation Event
     private void StateAnimFinishFunc()
     {
         // Reset
@@ -277,7 +290,8 @@ public class bossAI : MonoBehaviour
     }
     #endregion
 
-    internal void ReactStateControll()
+    #region ReactProcess
+    internal void ReactStateProcess()
     {
         if (stateMachine == StateMachine.DieState)
         {
@@ -307,4 +321,118 @@ public class bossAI : MonoBehaviour
 
         }
     }
+
+    // Calculate Angle From Other with Pos
+    private float GetAngle(Vector3 from, Vector3 to)
+    {
+        return Quaternion.FromToRotation(transform.forward, to - from).eulerAngles.y;
+    }
+
+
+    private void OnCollisionEnter(Collision coll)
+    {
+        if (coll.collider.tag == ("p_Weapon") && Combat.P_Attack && !isReact)
+        {
+            // Increase Hit Count
+            if (hitCount < 3)
+            {
+                hitCount++;
+                print(hitCount);
+            }
+
+            // Set React True
+            isReact = true;
+
+            // Make Array Child Collider
+            Collider[] childColliders = GetComponentsInChildren<Collider>();
+
+            // Collider -> is trigger true
+            foreach (Collider collider in childColliders)
+            {
+                collider.isTrigger = true;
+            }
+
+            // Reset React
+            StartCoroutine(ReactDelayCoroutine());
+
+            // Get Angle from Distance
+            float directionHitFrom = (GetAngle(transform.position, playerPos.transform.position));
+
+            // Calculate Angle -> Call Animation
+            WhichDirectionDamageCameFrom(directionHitFrom);
+
+            // Set Trigger React Animation
+            AnimatorTrigger(reactAnimation);
+
+            // Load Blood Effect Particle System
+            LoadBloodEffect(coll);
+        }
+    }
+    protected virtual void WhichDirectionDamageCameFrom(float direction)
+    {
+        // Front
+        switch (hitCount)
+        {
+            case 0:
+                ReactPerAngle(direction);
+                break;
+            case 1:
+                ReactPerAngle(direction);
+                break;
+            case 2:
+                ReactPerAngle(direction);
+                break;
+        }
+        return;
+    }
+
+    // Load Blood Effect From Resources
+    private void LoadBloodEffect(Collision coll)
+    {
+        Vector3 pos = coll.contacts[0].point;
+        Vector3 _normal = coll.contacts[0].normal;
+
+        Quaternion rot = Quaternion.FromToRotation(-Vector3.forward, _normal);
+        GameObject blood = Instantiate<GameObject>(bloodEffect, pos, rot);
+        Destroy(blood, 1.0f);
+    }
+
+    // Delay Coroutine -> React Delay
+    private IEnumerator ReactDelayCoroutine()
+    {
+        // Prevent Double Checking Collider
+        yield return new WaitForSeconds(0.3f);
+
+        // Reset Hit Count
+        if (hitCount == 2)
+            hitCount = 0;
+
+        Collider[] childColliders = GetComponentsInChildren<Collider>();
+
+        foreach (Collider collider in childColliders)
+        {
+            collider.isTrigger = false;
+        }
+
+        // Reset isReact
+        isReact = false;
+    }
+
+    void ReactPerAngle(float direction)
+    {
+        if (direction >= 0 && direction < 90)
+        {
+            reactAnimation = "ReactFront" + hitCount;
+        }
+        else if (direction >= 270 && direction < 360)
+        {
+            reactAnimation = "ReactFront" + hitCount;
+        }
+        // Back
+        else if (direction >= 90 && direction < 270)
+        {
+            reactAnimation = "ReactBack" + hitCount;
+        }
+    }
+    #endregion
 }
