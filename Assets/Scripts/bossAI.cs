@@ -53,7 +53,7 @@ public class bossAI : MonoBehaviour
     private bool isDie;
 
     // Check Attack Inprogress
-    private bool attackInProgress;
+    static public bool attackInProgress;
 
     // AttackSubStateMachine
     public enum AttackSubStateMachine
