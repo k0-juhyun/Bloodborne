@@ -4020,9 +4020,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2697421673753311716, guid: 1ef061fa8b8240947a668b09f9838721,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2697421673753311717, guid: 1ef061fa8b8240947a668b09f9838721,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2697421673753311720, guid: 1ef061fa8b8240947a668b09f9838721,
         type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2697421673753311722, guid: 1ef061fa8b8240947a668b09f9838721,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2697421674841282900, guid: 1ef061fa8b8240947a668b09f9838721,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2697421674848709269, guid: 1ef061fa8b8240947a668b09f9838721,
@@ -4063,7 +4083,7 @@ PrefabInstance:
     - target: {fileID: 2697421674848745142, guid: 1ef061fa8b8240947a668b09f9838721,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.71
+      value: -0.83
       objectReference: {fileID: 0}
     - target: {fileID: 2697421674848745142, guid: 1ef061fa8b8240947a668b09f9838721,
         type: 3}
@@ -4105,7 +4125,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2697421673753311716, guid: 1ef061fa8b8240947a668b09f9838721, type: 3}
+    - {fileID: 2697421673753311717, guid: 1ef061fa8b8240947a668b09f9838721, type: 3}
+    - {fileID: 2697421673753311722, guid: 1ef061fa8b8240947a668b09f9838721, type: 3}
+    - {fileID: 2697421673753311723, guid: 1ef061fa8b8240947a668b09f9838721, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1ef061fa8b8240947a668b09f9838721, type: 3}
 --- !u!1001 &541661480
 PrefabInstance:
