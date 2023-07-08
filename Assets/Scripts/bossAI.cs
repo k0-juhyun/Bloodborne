@@ -22,7 +22,9 @@ public class bossAI : MonoBehaviour
     private GameObject bloodEffect;
     private bool isReact;
     private int hitCount = 0;
-    private float hitResetTime = 0;
+    private bool isPattern6Active = false;
+    private bool isPattern6InProgress = false;
+    private float curHpPercentage = 1f;
 
     #region StateMachine
     // StateMachine
@@ -59,7 +61,9 @@ public class bossAI : MonoBehaviour
         Pattern2,
         Pattern3,
         Pattern4,
-        Pattern5
+        Pattern5,
+        Pattern6,
+        Pattern7
     }
     public AttackSubStateMachine attackSubStateMachine = AttackSubStateMachine.AttackDelay;
     #endregion
@@ -72,13 +76,7 @@ public class bossAI : MonoBehaviour
 
     [Header("Hp Values")]
     public float maxHp;
-    private float _curHp;
-
-    public float curHp
-    {
-        get { return _curHp; }
-        set { _curHp = value; }
-    }
+    public float curHp;
     #endregion
 
     private void Awake()
@@ -116,12 +114,24 @@ public class bossAI : MonoBehaviour
     {
         while (!isDie)
         {
+            // Update curHp
+            curHpPercentage = curHp / maxHp;
+
             // Update Distance between player & thisobj
             MoveDistance = Vector3.Distance(playerPos.position, thisPos.position);
 
             // Die state -> Stop Coroutine
             if (stateMachine == StateMachine.DieState)
                 yield break;
+
+            // Pattern 6 Active Condition
+            if (curHpPercentage <= 0.4f && !isPattern6Active)
+            {
+                // Pattern 6
+                AnimatorTrigger("Pattern6");
+                isPattern6Active = true;
+                attackInProgress = true;
+            }
 
             yield return UpdateStateMachineDelay;
         }
@@ -195,6 +205,7 @@ public class bossAI : MonoBehaviour
         }
     }
 
+    // Update Attack
     private void UpdateAttackState()
     {
         // Not in Attack Progress
@@ -241,6 +252,16 @@ public class bossAI : MonoBehaviour
 
 
     #region AnimEventFun
+
+    // Pattern6
+    private IEnumerator Pattern6AnimStart()
+    {
+        isPattern6InProgress = true;
+        yield return new WaitForSeconds(2f);
+        isPattern6InProgress = false;
+        AnimatorTrigger("Pattern6Finish");
+    }
+
     // Animation Trigger Function
     private void AnimatorTrigger(string TriggerName)
     {
@@ -248,7 +269,7 @@ public class bossAI : MonoBehaviour
     }
 
     // Attack Finish Animation Event
-    private void StateAnimFinishFunc()
+    private void StateAnimFinishFunction()
     {
         // Reset
         attackInProgress = false;
@@ -274,19 +295,19 @@ public class bossAI : MonoBehaviour
     // AttackAnimFinish
     public void AttackStateFinish()
     {
-        StateAnimFinishFunc();
+        StateAnimFinishFunction();
     }
 
     // AttackDelayAnimFinish
     public void AttackDelayStateFinished()
     {
-        StateAnimFinishFunc();
+        StateAnimFinishFunction();
     }
 
     // ReactStateAnimFinish
     internal void ReactStateFinished()
     {
-        StateAnimFinishFunc();
+        StateAnimFinishFunction();
     }
     #endregion
 
@@ -316,9 +337,6 @@ public class bossAI : MonoBehaviour
         {
             // React State
             stateMachine = StateMachine.ReactState;
-
-            // React Anim
-
         }
     }
 
@@ -331,7 +349,8 @@ public class bossAI : MonoBehaviour
 
     private void OnCollisionEnter(Collision coll)
     {
-        if (coll.collider.tag == ("p_Weapon") && Combat.P_Attack && !isReact)
+        if (coll.collider.tag == ("p_Weapon") && Combat.P_Attack 
+            && !isReact && !isPattern6InProgress)
         {
             // Increase Hit Count
             if (hitCount < 3)
