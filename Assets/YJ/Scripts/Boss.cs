@@ -40,6 +40,8 @@ public class Boss : MonoBehaviour
     RaycastHit hit;                     // 레이캐스트 히트
     public Transform rayPos;            // ray 쏘는 곳
     public GameObject sickle;           // 무기
+    public GameObject hinge;            // 무기 힌지
+    public GameObject sickleAttackPos;  // 무기 공격 위치 = 몸통 앞
 
 
     Vector3 dir;                        // 이동 방향
@@ -47,6 +49,7 @@ public class Boss : MonoBehaviour
     Vector3 moveDir;                    // 움직임 방향
     Vector3 targetPos;                  // 회피 목적지
     Vector3 moveTargetPos;              // 공격시 이동 목적지
+    Vector3 sidemoveTargetPos;          // 공격시 이동 목적지 : 왼쪽
 
     int damage = 2;                         // 데미지 (플레이어한테 어떤 공격인지 상태를 받아오기, 공격에 따라 다른 데미지를 구현)
     public int hitCount = 0;                   // 피격 횟수 (맞은 횟수)
@@ -61,7 +64,7 @@ public class Boss : MonoBehaviour
     public float attackDistance = 10f;         // 공격시작 거리
     public float hitDistance = 5f;             // 피격 거리
     public float avoidDistance = 5f;           // 회피 거리
-    public float moveDis = 5f;            // 공격 이동거리
+    public float moveDis = 5f;                 // 공격 이동거리
 
     [Header("속도")]
     public float moveSpeed = 1f;               // 이동 속도
@@ -79,6 +82,10 @@ public class Boss : MonoBehaviour
 
     public bool isHitted = false;                     // 피격 상태 확인
     public bool isAvoid = false;                      // 회피 상태 확인
+    public bool isCombo1done = false;                 // 프로토타입용 낫패턴 1
+    public bool isCombo2done = false;                 // 프로토타입용 낫패턴 2
+    public bool isCombo3done = false;                 // 프로토타입용 낫패턴 3
+    public bool isMoveTargetPos = false;              // SC2_a2 이동 계산용 상태확인
     //bool isAttack = false;              // 플레이어 공격상태(대체, 플레이어 스크립트에서 받아오기, 추가하기)
 
     // Start is called before the first frame update
@@ -185,11 +192,21 @@ public class Boss : MonoBehaviour
         // 만약 현재 거리가 공격 가능 범위보다 작거나 같다면, 그 거리가 피격 거리보다 크다면
         else if (currDistance <= attackDistance && currDistance >= hitDistance)
         {
-            // 낫공격1으로 상태 변화시킨다 (랜덤 뽑기 나중에)
-            bossState = BossPatternState.SickelCombo1;
-            moveDir = transform.forward;
-            // 이동 목적지
-            moveTargetPos = transform.position + moveDir * moveDis;
+            if (isCombo1done == false)
+            {
+                SickelC1();
+            }
+
+            else if (isCombo1done == true && isCombo2done == false)
+            {
+                SickelC2();
+            }
+
+            else if (isCombo2done == true && isCombo3done == false)
+            {
+                SickelC3();
+            }
+
             print("ldel > Attack");
         }
         // 만약 현재 거리가 피격거리이고, 플레이어가 공격중이라면(교체)
@@ -205,6 +222,36 @@ public class Boss : MonoBehaviour
         }
     }
 
+    private void SickelC3()
+    {
+        print("SickelCombo3");
+    }
+
+    private void SickelC2()
+    {
+        // 낫공격2으로 상태 변화시킨다 (랜덤 뽑기 나중에)
+        bossState = BossPatternState.SickelCombo2;
+        print("SickelCombo2");
+        moveDir = transform.forward;
+        // 거리는 플레이어 움직임 속도 보면서 결정하기
+        moveDis = 5f;
+        // 이동 목적지
+        moveTargetPos = transform.position + moveDir * moveDis;
+    }
+
+    private void SickelC1()
+    {
+        // 낫공격1으로 상태 변화시킨다 (랜덤 뽑기 나중에)
+        bossState = BossPatternState.SickelCombo1;
+        print("SickelCombo1");
+        moveDir = transform.forward;
+        moveDis = 5f;
+        // 이동 목적지
+        moveTargetPos = transform.position + moveDir * moveDis;
+    }
+
+    
+
     private void UpdateMove()
     {
         
@@ -213,14 +260,23 @@ public class Boss : MonoBehaviour
         // 만약 현재 거리가 공격 가능 범위보다 작거나 같다면
         if (currDistance <= attackDistance)
         {
-            // 낫공격1으로 상태 변화시킨다 (랜덤 뽑기 나중에)
-            bossState = BossPatternState.SickelCombo1;
-            // 이동 방향
-            moveDir = transform.forward;
-            // 이동 목적지
-            moveTargetPos = transform.position + moveDir * moveDis;
-            print("ldel > Attack");
-        }
+            if (isCombo1done == false)
+            {
+                SickelC1();
+            }
+
+            else if (isCombo1done == true && isCombo2done == false)
+            {
+                SickelC2();
+            }
+
+            else if (isCombo2done == true && isCombo3done == false)
+            {
+                SickelC3();
+            }
+
+            print("Move > Attack");
+        }  
     }
     // float a = 0;
     private void UpdateAvoid()
@@ -340,17 +396,17 @@ public class Boss : MonoBehaviour
             case SickelSubState.Attack1:
                 if (curTime > skTime_Sickel1_1)
                 {
-                    print("SubState : Attack1" + moveTargetPos);
-                    // 앞으로 이동하고 싶다(빠르고 멋지게)
+                    print("SubState : Attack1");
+                    // 앞으로 이동하고 싶다
                     transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
                     if (Vector3.Distance(transform.position, moveTargetPos) < 0.1f)
                     {
-                        // 낫이 회전하고 싶다(내려찍기 방향으로)
-                        StartCoroutine(IEBack(0.5f));
+                        // 낫이 회전하고 싶다 (위 > 아래)
+                        StartCoroutine(IEUpdown(0.5f));
                         // 서브상태를 액션 2로 바꾼다
                         sickelSubState = SickelSubState.Attack2;
                         // 애니메이션 재생
-                        print("Attack_move");
+                        print("com1_attack_move");
                     }
                 }
                 break;
@@ -358,6 +414,8 @@ public class Boss : MonoBehaviour
                 if (curTime > skTime_Sickel1_2)
                 {
                     print("SubState : Attack2");
+                    // 낫 회전 (오른쪽 위 > 왼쪽 가운데쯤으로)
+                    StartCoroutine(IERightupdown(0.5f));
                     sickelSubState = SickelSubState.Attack3;
                     // 애니메이션 재생
                 }
@@ -367,6 +425,9 @@ public class Boss : MonoBehaviour
                 {
                     print("SubState : Attack3");
                     curTime = 0;
+                    // 현재 거리가 공격시 이동 거리보다 작으면 그만큼 뒤로 이동하게 해야하나??? **교체,수정
+                    // 프로토타입용, 콤보 2로 넘어가는 조건
+                    isCombo1done = true;
                     bossState = BossPatternState.Idle;
                     // 애니메이션 재생
                     sickelSubState = SickelSubState.Attack1;
@@ -379,12 +440,91 @@ public class Boss : MonoBehaviour
 
     private void UpdateSickelCombo2()
     {
+        curTime += Time.deltaTime;
+        switch (sickelSubState)
+        {
+            case SickelSubState.Attack1:
+                if (curTime > skTime_Sickel1_1)
+                {
+                    print("C2A1" + moveTargetPos);
+                    // 앞으로 이동하고 싶다
+                    transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
+                    if (Vector3.Distance(transform.position, moveTargetPos) < 0.1f)
+                    {
+                        // 낫위치를 몸 앞으로(sickleAttackPos) 바꾼다
+                        sickle.transform.position = sickleAttackPos.transform.position;
+                        // 낫 회전 왼쪽위 > 오른쪽 중간쯤으로
+                        StartCoroutine(IELeftupdown(0.2f));
+                        // 서브상태를 액션 2로 바꾼다
+                        sickelSubState = SickelSubState.Attack2;
+                        // 애니메이션 재생
+                        print("com2_attack_move");
+                    }
 
+                }
+                    break;
+            case SickelSubState.Attack2:
+                if (curTime > skTime_Sickel1_2)
+                {
+
+                    // 한번 더 앞으로 이동하고 싶은데,,
+                    // moveTargetPos은 상태가 Attack으로 바뀔때만, 밖에서 한번만 계산되어 저장됨.
+                    // 그러면 moveTargetPos를 한번더 계산해서 넣어줘야하는데,
+                    // 여기서 계산하면 Update라 계속 호출이 되어서 이상해짐
+                    // 코루틴을 써도 똑같고
+                    // 다른 방법이 없을까?
+                    // 한번만 계산해서 여기에 값을 넣어주는 방법
+                    // 한번만 호출되는거 뭐가있지
+                    // 부울로 체크해서 값을 구해줘볼까???
+                    if (isMoveTargetPos == false)
+                    {
+                        moveDir = transform.forward;
+                        // 거리는 플레이어 움직임 속도 보면서 결정하기
+                        moveDis = 5f;
+                        // 이동 목적지
+                        moveTargetPos = transform.position + moveDir * moveDis;
+                        isMoveTargetPos = true;
+                    }
+                    print("C2A2" + moveTargetPos);
+                    // 앞으로 이동하고 싶다
+                    transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
+                    if (Vector3.Distance(transform.position, moveTargetPos) < 0.1f)
+                    {
+                        
+                        // 낫위치를 몸 앞으로(sickleAttackPos) 바꾼다
+                        sickle.transform.position = sickleAttackPos.transform.position;
+                        // 낫 회전 오른쪽위 > 왼쪽 중간쯤으로
+                        StartCoroutine(IERightupdown(0.2f));
+                        // 서브상태를 액션 2로 바꾼다
+                        sickelSubState = SickelSubState.Attack3;
+                        // 애니메이션 재생
+                        print("com2_attack_move");
+                    }
+
+                }
+                break;
+            case SickelSubState.Attack3:
+                if (curTime > skTime_Sickel1_3)
+                {
+                    print("C2A3");
+                    // 낫이 회전하고 싶다
+                    StartCoroutine(IEUpdown(0.5f));
+                    // 프로토타입용, 콤보 3로 넘어가는 조건
+                    isCombo2done = true;
+                    curTime = 0;
+                    bossState = BossPatternState.Idle;
+                    // 애니메이션 재생
+                    sickelSubState = SickelSubState.Attack1;
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     private void UpdateSickelCombo3()
     {
-
+        print("Combo3");
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -398,12 +538,37 @@ public class Boss : MonoBehaviour
         }
     }
 
-    IEnumerator IEBack(float time)
+
+    IEnumerator IEUpdown(float time)      // 위에서 아래로 내려찍기
     {
         
-        sickle.transform.localEulerAngles = new Vector3(60, 0, 0);
+        hinge.transform.localEulerAngles = new Vector3(60, 0, 0);
+        yield return new WaitForSeconds(time);
+        hinge.transform.localEulerAngles = new Vector3(0, 0, 0);
+    }
+
+    IEnumerator IERightupdown(float time)      // 오른쪽 위 > 왼쪽 가운데
+    {
+        //sickle.transform.localEulerAngles = new Vector3(10, 10, -10);
+        hinge.transform.localEulerAngles = new Vector3(0, 0, -45);
+        yield return new WaitForSeconds(time);
+        sickle.transform.localEulerAngles = new Vector3(0, -120, 0);
+        hinge.transform.localEulerAngles = new Vector3(0, 0, -90);
         yield return new WaitForSeconds(time);
         sickle.transform.localEulerAngles = new Vector3(0, 0, 0);
+        hinge.transform.localEulerAngles = new Vector3(0, 0, 0);
+
+    }
+
+    IEnumerator IELeftupdown(float time)        // 왼쪽 위 > 오른쪽 가운데
+    {
+        hinge.transform.localEulerAngles = new Vector3(0, 0, 45);
+        yield return new WaitForSeconds(time);
+        sickle.transform.localEulerAngles = new Vector3(0, 120, 0);
+        hinge.transform.localEulerAngles = new Vector3(0, 0, 90);
+        yield return new WaitForSeconds(time);
+        sickle.transform.localEulerAngles = new Vector3(0, 0, 0);
+        hinge.transform.localEulerAngles = new Vector3(0, 0, 0);
     }
 
     private void OnDrawGizmos()

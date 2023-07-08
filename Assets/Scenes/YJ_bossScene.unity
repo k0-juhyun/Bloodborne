@@ -804,7 +804,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 722200296}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.414, y: 0.83, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1333,6 +1333,37 @@ Transform:
   - {fileID: 1545237337}
   m_Father: {fileID: 722200297}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1446218209
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1446218210}
+  m_Layer: 0
+  m_Name: SickleAttackPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1446218210
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446218209}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4798157744579786055}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1545237336
 GameObject:
@@ -2196,6 +2227,7 @@ Transform:
   - {fileID: 659538826}
   - {fileID: 128200997}
   - {fileID: 2091601403}
+  - {fileID: 1446218210}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -2279,7 +2311,9 @@ MonoBehaviour:
   bossPhase: 0
   player: {fileID: 1615165968}
   rayPos: {fileID: 659538826}
-  sickle: {fileID: 722200296}
+  sickle: {fileID: 128200996}
+  hinge: {fileID: 722200296}
+  sickleAttackPos: {fileID: 1446218209}
   hitCount: 0
   attack1damage: 1
   attack2damage: 2
@@ -2299,6 +2333,10 @@ MonoBehaviour:
   skTime_Sickel1_3: 3
   isHitted: 0
   isAvoid: 0
+  isCombo1done: 0
+  isCombo2done: 0
+  isCombo3done: 0
+  isMoveTargetPos: 0
 --- !u!54 &5322599040977203201
 Rigidbody:
   m_ObjectHideFlags: 0
