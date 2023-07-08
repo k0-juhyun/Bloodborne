@@ -25,6 +25,8 @@ public class bossAI : MonoBehaviour
     private bool isPattern6Active = false;
     private bool isPattern6InProgress = false;
     private float curHpPercentage = 1f;
+    [Header("Pattern6 Eye")]
+    public GameObject EyeLights;
 
     #region StateMachine
     // StateMachine
@@ -81,6 +83,9 @@ public class bossAI : MonoBehaviour
 
     private void Awake()
     {
+        // Set Hp
+        curHp = maxHp;
+
         // Get Animation Component
         animator = GetComponent<Animator>();
 
@@ -128,8 +133,12 @@ public class bossAI : MonoBehaviour
             if (curHpPercentage <= 0.4f && !isPattern6Active)
             {
                 // Pattern 6
-                AnimatorTrigger("Pattern6");
+                AnimatorTrigger("Pattern6Start");
+
+                print("6");
+
                 isPattern6Active = true;
+
                 attackInProgress = true;
             }
 
@@ -256,10 +265,30 @@ public class bossAI : MonoBehaviour
     // Pattern6
     private IEnumerator Pattern6AnimStart()
     {
+        // Stop Agent
+        agent.isStopped = true;
+
+        // Set true value -> Dont React
         isPattern6InProgress = true;
-        yield return new WaitForSeconds(2f);
-        isPattern6InProgress = false;
+
+        yield return new WaitForSeconds(3f);
+
+        // Aniamtion Trigger
         AnimatorTrigger("Pattern6Finish");
+
+        // Move Agent
+        agent.isStopped = false;
+
+        // React true 
+        isPattern6InProgress = false;
+
+        // EyeOff
+        EyeLights.SetActive(false);
+    }
+
+    private void Pattern6AnimEyeOn()
+    {
+        EyeLights.SetActive(true);
     }
 
     // Animation Trigger Function

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 35da28c3bd04465886d105f5682be0ca
+guid: 6504a735f2d7e694ca12eb42d33b07d0
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
@@ -395,7 +395,7 @@ ModelImporter:
     second: STYLIZED-BASEMESH-BIGMALE-OBJ
   - first:
       74: 7400000
-    second: buff_01
+    second: roar_01
   - first:
       95: 9500000
     second: //RootNode
@@ -432,46 +432,30 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: buff_01
-      takeName: buff_01
+      name: roar_01
+      takeName: roar_01
       internalID: 0
       firstFrame: 0
-      lastFrame: 19
+      lastFrame: 78
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 0
+      loopBlendPositionXZ: 1
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
       heightFromFeet: 0
       mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      bodyMask: 01000000000000000000000001000000010000000000000000000000000000000000000001000000010000000000000000000000
       curves: []
-      events:
-      - time: 0.043988258
-        functionName: Pattern6AnimStart
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 4d06d63eee7ece24380d38d814a93895,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.54217225
-        functionName: Pattern6AnimEyeOn
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 4d06d63eee7ece24380d38d814a93895,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
