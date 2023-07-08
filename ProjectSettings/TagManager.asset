@@ -6,6 +6,8 @@ TagManager:
   tags:
   - p_Weapon
   - Boss
+  - Ground
+  - Hand
   layers:
   - Default
   - TransparentFX
