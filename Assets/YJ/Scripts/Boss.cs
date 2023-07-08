@@ -80,6 +80,7 @@ public class Boss : MonoBehaviour
     public float skTime_Sickel1_2 = 2f;        // 낫 스킬1 2번 공격 시작 시간
     public float skTime_Sickel1_3 = 3f;        // 낫 스킬3 3번 공격 시작 시간
 
+    [Header("상태 확인")]
     public bool isHitted = false;                     // 피격 상태 확인
     public bool isAvoid = false;                      // 회피 상태 확인
     public bool isCombo1done = false;                 // 프로토타입용 낫패턴 1
@@ -224,6 +225,8 @@ public class Boss : MonoBehaviour
 
     private void SickelC3()
     {
+        // 낫공격3으로 상태 변화시킨다 (랜덤 뽑기 나중에)
+        bossState = BossPatternState.SickelCombo3;
         print("SickelCombo3");
     }
 
@@ -270,7 +273,7 @@ public class Boss : MonoBehaviour
                 SickelC2();
             }
 
-            else if (isCombo2done == true && isCombo3done == false)
+            else if (isCombo1done == true && isCombo2done == true)
             {
                 SickelC3();
             }
@@ -279,6 +282,7 @@ public class Boss : MonoBehaviour
         }  
     }
     // float a = 0;
+    int avoidCount = 0;         // 프로토타입용
     private void UpdateAvoid()
     {
         // 시간을 잰다
@@ -291,15 +295,42 @@ public class Boss : MonoBehaviour
         // 뒤로 회피
         if (isAvoid == true)
         {
-            transform.position = Vector3.Lerp(transform.position, targetPos, dashSpeed * Time.deltaTime);
-            if (Vector3.Distance(transform.position, targetPos) < 0.1f)
+            if (avoidCount == 0)
             {
-                bossState = BossPatternState.Idle;
-                print("Idle");
-                avoidcurTime = 0;
+                // 뒤로회피
+                transform.position = Vector3.Lerp(transform.position, targetPos, dashSpeed * Time.deltaTime);
+                if (Vector3.Distance(transform.position, targetPos) < 0.1f)
+                {
+                    bossState = BossPatternState.Idle;
+                    print("avoid back");
+                    avoidcurTime = 0;
+                    avoidCount++;
+                    print("avoidcount :" + avoidCount);
+                }
             }
-            // 뒤로 회피
-                     
+            else        // 오른쪽으로 회피
+            {
+                if (isMoveTargetPos == false)
+                {
+                    moveDir = transform.right;
+                    // 거리는 플레이어 움직임 속도 보면서 결정하기
+                    moveDis = 8f;
+                    // 이동 목적지
+                    moveTargetPos = transform.position + moveDir * moveDis;
+                    isMoveTargetPos = true;
+                }
+
+                transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
+                if (Vector3.Distance(transform.position, moveTargetPos) < 0.1f)
+                {
+                    bossState = BossPatternState.Idle;
+                    print("avoid right");
+                    avoidcurTime = 0;
+                    avoidCount = 0;
+                    isMoveTargetPos = false;
+                }
+            }
+            // 뒤로 회피                     
             //transform.position += avoidDir * 50 * Time.deltaTime;
             //a += 50 * Time.deltaTime;
 
@@ -446,7 +477,7 @@ public class Boss : MonoBehaviour
             case SickelSubState.Attack1:
                 if (curTime > skTime_Sickel1_1)
                 {
-                    print("C2A1" + moveTargetPos);
+                    //print("C2A1");
                     // 앞으로 이동하고 싶다
                     transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
                     if (Vector3.Distance(transform.position, moveTargetPos) < 0.1f)
@@ -485,7 +516,7 @@ public class Boss : MonoBehaviour
                         moveTargetPos = transform.position + moveDir * moveDis;
                         isMoveTargetPos = true;
                     }
-                    print("C2A2" + moveTargetPos);
+                    //print("C2A2");
                     // 앞으로 이동하고 싶다
                     transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
                     if (Vector3.Distance(transform.position, moveTargetPos) < 0.1f)
@@ -495,10 +526,10 @@ public class Boss : MonoBehaviour
                         sickle.transform.position = sickleAttackPos.transform.position;
                         // 낫 회전 오른쪽위 > 왼쪽 중간쯤으로
                         StartCoroutine(IERightupdown(0.2f));
-                        // 서브상태를 액션 2로 바꾼다
+                        // 서브상태를 액션 3로 바꾼다
                         sickelSubState = SickelSubState.Attack3;
                         // 애니메이션 재생
-                        print("com2_attack_move");
+                        print("com2_attack_move"); 
                     }
 
                 }
@@ -511,6 +542,7 @@ public class Boss : MonoBehaviour
                     StartCoroutine(IEUpdown(0.5f));
                     // 프로토타입용, 콤보 3로 넘어가는 조건
                     isCombo2done = true;
+                    isMoveTargetPos = false;
                     curTime = 0;
                     bossState = BossPatternState.Idle;
                     // 애니메이션 재생
@@ -524,7 +556,71 @@ public class Boss : MonoBehaviour
 
     private void UpdateSickelCombo3()
     {
-        print("Combo3");
+        //print("Combo3");
+        curTime += Time.deltaTime;
+        switch (sickelSubState)
+        {
+            case SickelSubState.Attack1:
+                if (curTime > skTime_Sickel1_1)
+                {
+                    
+                    // 점프 방향을 정한다
+                    Vector3 jumpDir = transform.up;
+                    // 점프한다
+                    //rid.AddForce(jumpDir * 5, ForceMode.Impulse);
+                    if (isMoveTargetPos == false)
+                    {
+                        // 낫을 오른쪽 위로 치켜든다
+                        hinge.transform.localEulerAngles = new Vector3(0, 0, -45);
+                        moveDir = transform.forward;
+                        // 거리는 플레이어 움직임 속도 보면서 결정하기
+                        moveDis = 10f;
+                        // 이동 목적지
+                        moveTargetPos = transform.position + moveDir * moveDis;
+                        isMoveTargetPos = true;
+                        print("111" + moveTargetPos);
+                    }
+                    print("ddd");
+                    transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
+                    if (Vector3.Distance(transform.position, moveTargetPos) < 0.1f)
+                    {
+                        // 서브상태를 액션 2로 바꾼다
+                        sickelSubState = SickelSubState.Attack2;
+                        // 애니메이션 재생
+                        print("com3_attack_jump");
+
+                    }
+                }
+                break;
+            case SickelSubState.Attack2:
+                if (curTime > skTime_Sickel1_2)
+                {
+                    // 오른쪽 아래에서 왼쪽 위로 휘두른다
+                    StartCoroutine(IERightdownup(0.5f));
+                    // 서브상태를 액션 3로 바꾼다
+                    sickelSubState = SickelSubState.Attack3;
+                    // 애니메이션 재생
+                    print("com3_attack_Rdu");
+                }
+                break;
+            case SickelSubState.Attack3:
+                if (curTime > skTime_Sickel1_3)
+                {
+                    // 착지 후 왼쪽 위에서 오른쪽 아래로 휘두른다()
+                    StartCoroutine(IELeftupdown(0.5f));
+                    curTime = 0;
+                    isCombo1done = false;
+                    isCombo2done = false;
+                    isMoveTargetPos = false;
+                    bossState = BossPatternState.Idle;
+                    // 애니메이션 재생
+                    sickelSubState = SickelSubState.Attack1;
+                    print("3 > idle");
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -570,6 +666,24 @@ public class Boss : MonoBehaviour
         sickle.transform.localEulerAngles = new Vector3(0, 0, 0);
         hinge.transform.localEulerAngles = new Vector3(0, 0, 0);
     }
+
+    IEnumerator IERightdownup(float time)
+    {
+        hinge.transform.localEulerAngles = new Vector3(0, 0, -90);
+        yield return new WaitForSeconds(time);
+        sickle.transform.localEulerAngles = new Vector3(0, -120, 0);
+        hinge.transform.localEulerAngles = new Vector3(0, 0, -30);
+    }
+
+    IEnumerator IELeftupdown2(float time)
+    {
+        // 왼쪽 위에서 다시 아래
+        sickle.transform.localEulerAngles = new Vector3(0, 0, 60);
+        yield return new WaitForSeconds(time);
+        hinge.transform.localEulerAngles = new Vector3(0, 0, 10);
+        sickle.transform.localEulerAngles = new Vector3(0, 160, 60);
+    }
+
 
     private void OnDrawGizmos()
     {
