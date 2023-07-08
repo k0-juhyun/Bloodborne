@@ -11,7 +11,6 @@ public class bossMove : MonoBehaviour
     private float damping = 1.0f;
     private Transform bossTr;
     private bool moveToOriginInProgress = false; // moveToOrigin이 진행 중인지 체크하는 변수
-    public bool laserbeaaam = false;
     // Start is called before the first frame update
     void Awake()
     {
