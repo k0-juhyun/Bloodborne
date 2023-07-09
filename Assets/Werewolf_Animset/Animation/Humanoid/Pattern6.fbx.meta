@@ -457,7 +457,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.043988258
-        functionName: Pattern6AnimStart
+        functionName: SpecialPattern1AnimStart
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 4d06d63eee7ece24380d38d814a93895,
           type: 3}
@@ -465,7 +465,7 @@ ModelImporter:
         intParameter: 0
         messageOptions: 0
       - time: 0.54217225
-        functionName: Pattern6AnimEyeOn
+        functionName: SpecialPattern1AnimEyeOn
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 4d06d63eee7ece24380d38d814a93895,
           type: 3}

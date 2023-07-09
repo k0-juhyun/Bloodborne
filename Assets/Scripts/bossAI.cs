@@ -22,10 +22,10 @@ public class bossAI : MonoBehaviour
     private GameObject bloodEffect;
     private bool isReact;
     private int hitCount = 0;
-    private bool isPattern6Active = false;
-    private bool isPattern6InProgress = false;
+    private bool isSpecialPattern1Active = false;
+    private bool isSpecialPattern1InProgress = false;
     private float curHpPercentage = 1f;
-    [Header("Pattern6 Eye")]
+    [Header("SpecialPattern1 Eye")]
     public GameObject EyeLights;
 
     #region StateMachine
@@ -135,19 +135,17 @@ public class bossAI : MonoBehaviour
                 yield break;
 
             // Pattern 6 Active Condition
-            if (curHpPercentage <= 0.4f && !isPattern6Active)
+            if (curHpPercentage <= 0.4f && !isSpecialPattern1Active)
             {
                 // Stop Animation
                 animator.StopPlayback();
 
-                isPattern6Active = true;
+                isSpecialPattern1Active = true;
 
                 attackInProgress = true;
                 
                 // Pattern 6
-                AnimatorTrigger("Pattern6Start");
-
-                print("6");
+                AnimatorTrigger("SpecialPattern1Start");
             }
 
             yield return UpdateStateMachineDelay;
@@ -199,7 +197,7 @@ public class bossAI : MonoBehaviour
 
             // Move Animation Trigger
             // animator.SetTrigger("Move");
-            AnimatorTrigger("Move");
+            animator.SetTrigger("Move");
 
             // Agent Move
             agent.isStopped = false;
@@ -228,13 +226,13 @@ public class bossAI : MonoBehaviour
     private void UpdateAttackState()
     {
         // Not in Attack Progress
-        if (!attackInProgress && !isPattern6InProgress)
+        if (!attackInProgress && !isSpecialPattern1InProgress)
         {
             // Trigger On
             AnimatorTrigger("AttackState");
 
             // Random Attack Index 
-            int randomIndex = Random.Range((int)AttackSubStateMachine.Pattern1, (int)AttackSubStateMachine.Pattern5 + 1);
+            int randomIndex = Random.Range((int)AttackSubStateMachine.Pattern1, (int)AttackSubStateMachine.Pattern6 + 1);
 
             attackSubStateMachine = (AttackSubStateMachine)randomIndex;
 
@@ -264,6 +262,11 @@ public class bossAI : MonoBehaviour
                     AnimatorTrigger("Pattern5");
                     attackInProgress = true;
                     break;
+
+                case AttackSubStateMachine.Pattern6:
+                    AnimatorTrigger("Pattern6");
+                    attackInProgress = true;
+                    break;
             }
         }
     }
@@ -272,8 +275,8 @@ public class bossAI : MonoBehaviour
 
     #region AnimEventFun
 
-    // Pattern6
-    private IEnumerator Pattern6AnimStart()
+    // Special Pattern1
+    private IEnumerator SpecialPattern1AnimStart()
     {
         // Set Animator Speed 50%
         animator.speed = 0.5f;
@@ -282,18 +285,18 @@ public class bossAI : MonoBehaviour
         agent.isStopped = true;
 
         // Set true value -> Dont React
-        isPattern6InProgress = true;
+        isSpecialPattern1InProgress = true;
 
         yield return new WaitForSeconds(3f);
 
         // Aniamtion Trigger
-        AnimatorTrigger("Pattern6Finish");
+        AnimatorTrigger("SpecialPattern1Finish");
 
         // Move Agent
         agent.isStopped = false;
 
         // React true 
-        isPattern6InProgress = false;
+        isSpecialPattern1InProgress = false;
 
         // EyeOff
         EyeLights.SetActive(false);
@@ -302,7 +305,7 @@ public class bossAI : MonoBehaviour
         animator.speed = 1f;
     }
 
-    private void Pattern6AnimEyeOn()
+    private void SpecialPattern1AnimEyeOn()
     {
         EyeLights.SetActive(true);
     }
@@ -325,7 +328,7 @@ public class bossAI : MonoBehaviour
             stateMachine = StateMachine.MoveState;
 
             // Move Animation Trigger
-            AnimatorTrigger("Move");
+            animator.SetTrigger("Move");
 
             // Agent Move
             agent.isStopped = false;
@@ -368,7 +371,7 @@ public class bossAI : MonoBehaviour
     private void OnCollisionEnter(Collision coll)
     {
         if (coll.collider.tag == ("p_Weapon") && Combat.P_Attack 
-            && !isReact && !isPattern6InProgress)
+            && !isReact && !isSpecialPattern1InProgress)
         {
             // Reduction
             curHp -= AttackDamage;
