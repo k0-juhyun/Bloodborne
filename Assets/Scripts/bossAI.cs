@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEditor.PlayerSettings;
 
 public class bossAI : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class bossAI : MonoBehaviour
     private bool isSpecialPattern1InProgress = false;
     private float curHpPercentage = 1f;
     [Header("SpecialPattern1 Eye")]
-    public GameObject EyeLights;
+    public GameObject[] EyeLights;
 
     #region StateMachine
     // StateMachine
@@ -112,11 +113,6 @@ public class bossAI : MonoBehaviour
         // Call Couroutines
         StartCoroutine(UpdateStateMachine());
         StartCoroutine(ChangeStateMachine());
-    }
-
-    private void Update()
-    {
-       
     }
 
     // Updating StateMachine Before DieState
@@ -286,8 +282,15 @@ public class bossAI : MonoBehaviour
 
         // Set true value -> Dont React
         isSpecialPattern1InProgress = true;
+        
+        yield return new WaitForSeconds(0.5f);
 
-        yield return new WaitForSeconds(3f);
+        // Load Prefabs
+        EyeLights[1].SetActive(true);
+
+        yield return new WaitForSeconds(2.5f);
+
+        EyeLights[1].SetActive(false);
 
         // Aniamtion Trigger
         AnimatorTrigger("SpecialPattern1Finish");
@@ -299,7 +302,7 @@ public class bossAI : MonoBehaviour
         isSpecialPattern1InProgress = false;
 
         // EyeOff
-        EyeLights.SetActive(false);
+        EyeLights[0].SetActive(false);
 
         // Reset Animator Speed 100%
         animator.speed = 1f;
@@ -307,7 +310,7 @@ public class bossAI : MonoBehaviour
 
     private void SpecialPattern1AnimEyeOn()
     {
-        EyeLights.SetActive(true);
+        EyeLights[0].SetActive(true);
     }
 
     // Animation Trigger Function
@@ -394,7 +397,6 @@ public class bossAI : MonoBehaviour
             if (hitCount < 3)
             {
                 hitCount++;
-                print(hitCount);
             }
 
             // Set React True
