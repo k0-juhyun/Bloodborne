@@ -228,7 +228,7 @@ public class bossAI : MonoBehaviour
             AnimatorTrigger("AttackState");
 
             // Random Attack Index 
-            int randomIndex = Random.Range((int)AttackSubStateMachine.Pattern1, (int)AttackSubStateMachine.Pattern6 + 1);
+            int randomIndex = Random.Range((int)AttackSubStateMachine.Pattern1, (int)AttackSubStateMachine.Pattern7 + 1);
 
             attackSubStateMachine = (AttackSubStateMachine)randomIndex;
 
@@ -283,12 +283,12 @@ public class bossAI : MonoBehaviour
         // Set true value -> Dont React
         isSpecialPattern1InProgress = true;
         
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(2f);
 
         // Load Prefabs
         EyeLights[1].SetActive(true);
 
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1f);
 
         EyeLights[1].SetActive(false);
 
