@@ -290,7 +290,7 @@ public class bossAI : MonoBehaviour
         // camera shake
         cameraShake.Instance.specialShake = true;
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
         EyeLights[1].SetActive(false);
 

@@ -8,15 +8,23 @@ public class cameraShake : MonoBehaviour
     public static cameraShake Instance => instance;
 
     public bool specialShake;
+
     public bool normalShake;
 
     private float shakeTime;
 
     private float shakeIntensity;
 
+    Vector3 startPosition;
+
     public cameraShake()
     {
         instance = this;
+    }
+
+    void Start()
+    {
+        startPosition = transform.position;
     }
 
     private void Update()
@@ -30,6 +38,7 @@ public class cameraShake : MonoBehaviour
             ShakeCameraOnAttack(0.05f, 1f);
         }
     }
+
     public void ShakeCameraOnSpecial(float shakeTime = 1.0f,float shakeIntensity = 0.1f)
     {
         specialShake = false;
@@ -58,7 +67,6 @@ public class cameraShake : MonoBehaviour
 
     private IEnumerator ShakeByPosition()
     {
-        Vector3 startPosition = transform.position;
 
         while (shakeTime > 0.0f) 
         {

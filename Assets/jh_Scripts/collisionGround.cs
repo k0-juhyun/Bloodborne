@@ -9,7 +9,7 @@ public class collisionGround : MonoBehaviour
     private void Awake()
     {
         dustEffect = Resources.Load<GameObject>("DustSmoke");
-        
+
     }
     private void OnCollisionEnter(Collision coll)
     {

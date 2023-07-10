@@ -9,11 +9,7 @@ public class TPSChraracterController : MonoBehaviour
     [SerializeField]
     private Transform cameraArm;
 
-
-
-
     public Transform LockOnTransform;
-    public Transform LockOnTransform1;
     private CharacterController cc;
     Animator animator;
 
@@ -72,29 +68,14 @@ public class TPSChraracterController : MonoBehaviour
 
     private void LockOn()
     {
-        if(LockOnTransform.gameObject.activeSelf)
+        //마우스 오른쪽 버튼을 눌렀을 때 
+        if (Input.GetButton("Fire2"))
         {
-            //마우스 오른쪽 버튼을 눌렀을 때 
-            if (Input.GetButton("Fire2"))
-            {
-                //카메라와 player를 enemy에게 lookat 한다
-                transform.LookAt(LockOnTransform);
+            //카메라와 player를 enemy에게 lookat 한다
+            transform.LookAt(LockOnTransform);
 
-                characterBody.LookAt(LockOnTransform);
-            }
+            characterBody.LookAt(LockOnTransform);
         }
-        //마우스 오른쪽 버튼을 눌렀을 때
-        if(LockOnTransform1.gameObject.activeSelf)
-        {
-            //마우스 오른쪽 버튼을 눌렀을 때 
-            if (Input.GetButton("Fire2"))
-            {
-                //카메라와 player를 enemy에게 lookat 한다
-                transform.LookAt(LockOnTransform1);
-
-                characterBody.LookAt(LockOnTransform1);
-            }
-        }
-
     }
+
 }
