@@ -35,7 +35,7 @@ public class BossAlpha : MonoBehaviour
 
 
     public GameObject player;           // 플레이어
-    PlayerMove playerscripts;           // 플레이어 스크립트
+    yj_PlayerMove playerscripts;           // 플레이어 스크립트
     Rigidbody rid;                      // 리지드바디
     RaycastHit hit;                     // 레이캐스트 히트
     public Transform rayPos;            // ray 쏘는 곳
@@ -92,7 +92,7 @@ public class BossAlpha : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerscripts = player.GetComponent<PlayerMove>();          // 플레이어의 스크립트를 받아오자
+        playerscripts = player.GetComponent<yj_PlayerMove>();          // 플레이어의 스크립트를 받아오자
         rid = GetComponent<Rigidbody>();                            // 리지드바디
         bossHP = GetComponent<BossHP>();                            // 보스 hp를 받아오자
         bossPhase = BossPhase.Phase1;                               // 시작시 보스 페이즈를 1로 설정한다
