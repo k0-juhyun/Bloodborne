@@ -748,7 +748,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 27
+      value: 11.5
       mode: 0
       spread: 0
       speed:
@@ -5627,7 +5627,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 15
+      value: 6
       mode: 0
       spread: 0
       speed:
@@ -10506,7 +10506,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 50
+      value: 17
       mode: 0
       spread: 0
       speed:
@@ -15385,7 +15385,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 11
+      value: 3
       mode: 0
       spread: 0
       speed:
@@ -20264,7 +20264,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 7
+      value: 1
       mode: 0
       spread: 0
       speed:
@@ -25143,7 +25143,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 9
+      value: 2
       mode: 0
       spread: 0
       speed:
@@ -30065,7 +30065,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 13
+      value: 4.5
       mode: 0
       spread: 0
       speed:
@@ -34944,7 +34944,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 25
+      value: 10
       mode: 0
       spread: 0
       speed:
@@ -39823,7 +39823,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 35
+      value: 15
       mode: 0
       spread: 0
       speed:
@@ -44702,7 +44702,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 30
+      value: 13
       mode: 0
       spread: 0
       speed:
@@ -49581,7 +49581,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 20
+      value: 8.5
       mode: 0
       spread: 0
       speed:
@@ -54460,7 +54460,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 17
+      value: 7
       mode: 0
       spread: 0
       speed:
