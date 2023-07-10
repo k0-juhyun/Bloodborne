@@ -349,6 +349,7 @@
 "Assets/Scripts/Enemy.cs"
 "Assets/Scripts/FollowCamera.cs"
 "Assets/Scripts/PlayerAttack.cs"
+"Assets/Scripts/PlayerHP.cs"
 "Assets/Scripts/PlayerMove.cs"
 "Assets/Scripts/TPSChraracterController.cs"
 -langversion:9.0

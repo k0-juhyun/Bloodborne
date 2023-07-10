@@ -1,0 +1,582 @@
+fileFormatVersion: 2
+guid: e60e2851eaa1c464190be53ace67a1e7
+ModelImporter:
+  serializedVersion: 21300
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_24_+Saw-axe.sawA_1_16_16Mat
+    second: {fileID: -5564469791351936008, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_24_LEGSa_0.5_16_16Mat
+    second: {fileID: 6955085686406505263, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_24_part1-part1-body_0.5_16_16Mat
+    second: {fileID: -4109739620551008692, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_24_part1-part2-part1-part1-1-FC-M-0000.005_0.5_16_16Mat
+    second: {fileID: -3567824387951098801, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_24_part1-part2-part1-part1-1-FC-M-0000.007_0.5_16_16Mat
+    second: {fileID: 4594399686706520370, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_24_part1-part2-part1-part1-1-FC-M-0000.008_0.5_16_16Mat
+    second: {fileID: -8516642032636179226, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_24_part1-part2-part1-part1-1-FC-M-0000_0.5_16_16Mat
+    second: {fileID: 2485789968533537874, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_24_part1-part2-part1-part1-eyeLe_1_0_0Mat
+    second: {fileID: -1899992756745944740, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_24_part1-part2-part1-part1-eyeRe_1_0_0Mat
+    second: {fileID: -3889334440615636404, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_24_part1-part2-part1-part2-FG-A-0102.001_1_16_16Mat
+    second: {fileID: -8814276644849449790, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_24_part1-part2-part1-part2-FG-A-0102.002_1_16_16Mat
+    second: {fileID: 7396849807235494127, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_24_part1-part2-part1-part2-FG-A-0102_1_16_16Mat
+    second: {fileID: 2841723898646138889, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_25_+HR-A-0003.Mesh1_0.5_0_0Mat
+    second: {fileID: -6828700556779184001, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_25_+HR-A-0003.Mesh2_0.5_0_0Mat
+    second: {fileID: -8334572413299191221, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_25_+HR-A-0003.Mesh3_0.5_0_0Mat
+    second: {fileID: 6296712079259207518, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_25_+HR-A-0003.Mesh4_0.5_0_0Mat
+    second: {fileID: 8333718512001222584, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_25_+HR-A-0003.Mesh5_0.5_0_0Mat
+    second: {fileID: 5955805930716544694, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_25_+HR-A-0003.Mesh6_0.5_0_0Mat
+    second: {fileID: 6390346637136364063, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_25_+Hunter_pistol.mesh0_1_16_16Mat
+    second: {fileID: 2372274094921391053, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_25_+Saw-axe.sawB_1_16_16Mat
+    second: {fileID: 6709745692073338643, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_25_part1-part1-12_0.5_16_16Mat
+    second: {fileID: -1856236779467235666, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_25_part1-part1-18_0.5_16_16Mat
+    second: {fileID: 5644693677783851327, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_25_part1-part1-arm_0.5_16_16Mat
+    second: {fileID: -3942081452734654450, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_25_part1-part1-cape1_0.5_16_16Mat
+    second: {fileID: -1475456914771020433, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_25_part1-part1-cape2_0.5_16_16Mat
+    second: {fileID: 6201608487559860767, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_25_part1-part1-cape3_0.5_16_16Mat
+    second: {fileID: 938099601556949759, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_25_part1-part1-head_0.5_16_16Mat
+    second: {fileID: -7985809948368786914, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_25_part1-part1-leg_0.5_16_16Mat
+    second: {fileID: 5054836199535862565, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_25_part1-part2-part2-FG-A-2008_1_16_16Mat
+    second: {fileID: -143097387497795299, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_25_part1-part2-part2-FG-A-7001_1_16_16Mat
+    second: {fileID: 8486555152652560859, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_25_part2-Maps(1)_0.5_0_0Mat
+    second: {fileID: 2703577706073105894, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_25_part2-Maps(2)_0.5_0_0Mat
+    second: {fileID: -2071768571775637600, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_25_part2-Maps(3)_0.5_0_0Mat
+    second: {fileID: 4734989852159609165, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_25_part2-Maps(4)_0.5_0_0Mat
+    second: {fileID: 7727601362387163871, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_25_part2-Maps(5)_0.5_0_0Mat
+    second: {fileID: 8972841592436133346, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_25_part2-Maps_0.5_0_0Mat
+    second: {fileID: -4878283860828493625, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_25_part3-Material25(1)_0.5_0_0Mat
+    second: {fileID: -4661962781546366586, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_25_part3-Material25(2)_0.5_0_0Mat
+    second: {fileID: 1140523966218713812, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_25_part3-Material25(3)_0.5_0_0Mat
+    second: {fileID: 1486958517384967796, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_25_part3-Material25(4)_0.5_0_0Mat
+    second: {fileID: 3040426572688880711, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_25_part3-Material25(5)_0.5_0_0Mat
+    second: {fileID: 2862292475158724930, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_25_part3-Material25(6)_0.5_0_0Mat
+    second: {fileID: -4066936960794353244, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_25_part3-Material25_0.5_0_0Mat
+    second: {fileID: -1550638792418150251, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_27_part1-part2-part1-part1-eyeLSh_1.2_0_0Mat
+    second: {fileID: -1967895918970725443, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_27_part1-part2-part1-part1-eyeRsh_1.2_0_0Mat
+    second: {fileID: 7772958692376453205, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_41_part1-part1-head1_0.5_16_16Mat
+    second: {fileID: 5095542078794210193, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Model001_41_part1-part1-head2_0.5_16_16Mat
+    second: {fileID: -5695266802966075311, guid: 4caaf5dea1ba9be4aaff386f158d2d68, type: 3}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 1
+    motionNodeName: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'Hips' not found\n"
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 14
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: henryks(Clone)
+      parentName: 
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_24_+Saw-axe.sawA_1_16_16
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_24_LEGSa_0.5_16_16
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_24_part1-part1-body_0.5_16_16
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_24_part1-part2-part1-part1-1-FC-M-0000.005_0.5_16_16
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_24_part1-part2-part1-part1-1-FC-M-0000.007_0.5_16_16
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_24_part1-part2-part1-part1-1-FC-M-0000.008_0.5_16_16
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_24_part1-part2-part1-part1-1-FC-M-0000_0.5_16_16
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_24_part1-part2-part1-part1-eyeLe_1_0_0
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_24_part1-part2-part1-part1-eyeRe_1_0_0
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_24_part1-part2-part1-part2-FG-A-0102.001_1_16_16
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_24_part1-part2-part1-part2-FG-A-0102.002_1_16_16
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_24_part1-part2-part1-part2-FG-A-0102_1_16_16
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_25_+HR-A-0003.Mesh1_0.5_0_0
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_25_+HR-A-0003.Mesh2_0.5_0_0
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_25_+HR-A-0003.Mesh3_0.5_0_0
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_25_+HR-A-0003.Mesh4_0.5_0_0
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_25_+HR-A-0003.Mesh5_0.5_0_0
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_25_+HR-A-0003.Mesh6_0.5_0_0
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_25_+Hunter_pistol.mesh0_1_16_16
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_25_+Saw-axe.sawB_1_16_16
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_25_part1-part1-12_0.5_16_16
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_25_part1-part1-18_0.5_16_16
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_25_part1-part1-arm_0.5_16_16
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_25_part1-part1-cape1_0.5_16_16
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_25_part1-part1-cape2_0.5_16_16
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_25_part1-part1-cape3_0.5_16_16
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_25_part1-part1-head_0.5_16_16
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_25_part1-part1-leg_0.5_16_16
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_25_part1-part2-part2-FG-A-2008_1_16_16
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_25_part1-part2-part2-FG-A-7001_1_16_16
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_25_part2-Maps(1)_0.5_0_0
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_25_part2-Maps(2)_0.5_0_0
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_25_part2-Maps(3)_0.5_0_0
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_25_part2-Maps(4)_0.5_0_0
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_25_part2-Maps(5)_0.5_0_0
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_25_part2-Maps_0.5_0_0
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_25_part3-Material25(1)_0.5_0_0
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_25_part3-Material25(2)_0.5_0_0
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_25_part3-Material25(3)_0.5_0_0
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_25_part3-Material25(4)_0.5_0_0
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_25_part3-Material25(5)_0.5_0_0
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_25_part3-Material25(6)_0.5_0_0
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_25_part3-Material25_0.5_0_0
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_27_part1-part2-part1-part1-eyeLSh_1.2_0_0
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_27_part1-part2-part1-part1-eyeRsh_1.2_0_0
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_41_part1-part1-head1_0.5_16_16
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Model001_41_part1-part1-head2_0.5_16_16
+      parentName: henryks(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

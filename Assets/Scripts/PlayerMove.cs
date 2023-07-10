@@ -5,30 +5,34 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     CharacterController cc;
-    bool fDown;
-    float fireDelay;
-    bool isFireReady;
-    GameObject equipWeapon;
+    bool isRolling = false;
+    private Animator ani;
+   
+    
     // Start is called before the first frame update
     void Start()
     {
         cc = GetComponent<CharacterController>();
+        ani = GetComponent<Animator>();
     }
-    void GetInput()
-    {
-        fDown = Input.GetButtonDown("Fire1");
-    }
+   
     // Update is called once per frame
     void Update()
     {
-        Dash();
+        Roll();
     }
-    private void Dash()
+    private void Roll()
     {
+        if (Input.GetKeyDown(KeyCode.Space)&&!isRolling)
+        {
+            isRolling = true;
+            ani.SetTrigger("isRolling");
+        }
+    }
 
-    }
-         void Attack()
+    private void OnRollAnimationComplete()
     {
-        
+        isRolling = false;
     }
+         
 }

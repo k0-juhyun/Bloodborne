@@ -1,0 +1,114 @@
+root ground: 0 0 0 0 0 0 1 1 1
+root twist: 0 0 0 0 0 0 1 1 1
+root hips: 0 0 0 0 0 0 1 1 1
+pelvis: 0 0 0 0 0 0 1 1 1
+leg left thigh: 0 0 0 0 0 0 1 1 1
+leg left knee: 0 0 0 0 0 0 1 1 1
+leg left ankle: 0 0 0 0 0 0 1 1 1
+leg left toe0: 0 0 0 0 0 0 1 1 1
+support left foottwist1: 0 0 0 0 0 0 1 1 1
+support left calftwist: 0 0 0 0 0 0 1 1 1
+support left calftwist1: 0 0 0 0 0 0 1 1 1
+support left knee: 0 0 0 0 0 0 1 1 1
+support left thightwist: 0 0 0 0 0 0 1 1 1
+support left thightwist1: 0 0 0 0 0 0 1 1 1
+leg right thigh: 0 0 0 0 0 0 1 1 1
+leg right knee: 0 0 0 0 0 0 1 1 1
+leg right ankle: 0 0 0 0 0 0 1 1 1
+leg right toe0: 0 0 0 0 0 0 1 1 1
+support right foottwist1: 0 0 0 0 0 0 1 1 1
+support right calftwist: 0 0 0 0 0 0 1 1 1
+support right calftwist1: 0 0 0 0 0 0 1 1 1
+support right knee: 0 0 0 0 0 0 1 1 1
+support right thightwist: 0 0 0 0 0 0 1 1 1
+support right thightwist1: 0 0 0 0 0 0 1 1 1
+support left hip: 0 0 0 0 0 0 1 1 1
+support right hip: 0 0 0 0 0 0 1 1 1
+spine lower: 0 0 0 0 0 0 1 1 1
+spine middle: 0 0 0 0 0 0 1 1 1
+spine upper: 0 0 0 0 0 0 1 1 1
+arm left shoulder 1: 0 0 0 0 0 0 1 1 1
+arm left shoulder 2: 0 0 0 0 0 0 1 1 1
+arm left forearm: 0 0 0 0 0 0 1 1 1
+arm left wrist: 0 0 0 0 0 0 1 1 1
+arm left finger 0: 0 0 0 0 0 0 1 1 1
+arm left finger 01: 0 0 0 0 0 0 1 1 1
+arm left finger 02: 0 0 0 0 0 0 1 1 1
+arm left finger 1: 0 0 0 0 0 0 1 1 1
+arm left finger 11: 0 0 0 0 0 0 1 1 1
+arm left finger 12: 0 0 0 0 0 0 1 1 1
+arm left finger 2: 0 0 0 0 0 0 1 1 1
+arm left finger 21: 0 0 0 0 0 0 1 1 1
+arm left finger 22: 0 0 0 0 0 0 1 1 1
+arm left finger 3: 0 0 0 0 0 0 1 1 1
+arm left finger 31: 0 0 0 0 0 0 1 1 1
+arm left finger 32: 0 0 0 0 0 0 1 1 1
+arm left finger 4: 0 0 0 0 0 0 1 1 1
+arm left finger 41: 0 0 0 0 0 0 1 1 1
+arm left finger 42: 0 0 0 0 0 0 1 1 1
+support left forearmtwist: 0 0 0 0 0 0 1 1 1
+support left forearmtwist1: 0 0 0 0 0 0 1 1 1
+support left elbow: 0 0 0 0 0 0 1 1 1
+support left uparmtwist: 0 0 0 0 0 0 1 1 1
+support left uparmtwist1: 0 0 0 0 0 0 1 1 1
+support left uparmtwist-norotx: 0 0 0 0 0 0 1 1 1
+support left shoulder: 0 0 0 0 0 0 1 1 1
+head neck lower: 0 0 0 0 0 0 1 1 1
+head neck upper: 0 0 0 0 0 0 1 1 1
+arm right shoulder 1: 0 0 0 0 0 0 1 1 1
+arm right shoulder 2: 0 0 0 0 0 0 1 1 1
+arm right forearm: 0 0 0 0 0 0 1 1 1
+arm right wrist: 0 0 0 0 0 0 1 1 1
+arm right finger 0: 0 0 0 0 0 0 1 1 1
+arm right finger 01: 0 0 0 0 0 0 1 1 1
+arm right finger 02: 0 0 0 0 0 0 1 1 1
+arm right finger 1: 0 0 0 0 0 0 1 1 1
+arm right finger 11: 0 0 0 0 0 0 1 1 1
+arm right finger 12: 0 0 0 0 0 0 1 1 1
+arm right finger 2: 0 0 0 0 0 0 1 1 1
+arm right finger 21: 0 0 0 0 0 0 1 1 1
+arm right finger 22: 0 0 0 0 0 0 1 1 1
+arm right finger 3: 0 0 0 0 0 0 1 1 1
+arm right finger 31: 0 0 0 0 0 0 1 1 1
+arm right finger 32: 0 0 0 0 0 0 1 1 1
+arm right finger 4: 0 0 0 0 0 0 1 1 1
+arm right finger 41: 0 0 0 0 0 0 1 1 1
+arm right finger 42: 0 0 0 0 0 0 1 1 1
+support right forearmtwist: 0 0 0 0 0 0 1 1 1
+support right forearmtwist1: 0 0 0 0 0 0 1 1 1
+support right elbow: 0 0 0 0 0 0 1 1 1
+support right uparmtwist: 0 0 0 0 0 0 1 1 1
+support right uparmtwist1: 0 0 0 0 0 0 1 1 1
+support right uparmtwist-norotx: 0 0 0 0 0 0 1 1 1
+support right shoulder: 0 0 0 0 0 0 1 1 1
+support left axilla: 0 0 0 0 0 0 1 1 1
+support right axilla: 0 0 0 0 0 0 1 1 1
+root groundduplicatename 108: 0 0 0 0 0 0 1 1 1
+root skeleton: 0 0 0 0 0 0 1 1 1
+head eyeball right: 0 0 0 0 0 0 1 1 1
+head eyeshad right: 0 0 0 0 0 0 1 1 1
+head eyeball left: 0 0 0 0 0 0 1 1 1
+head eyeshad left: 0 0 0 0 0 0 1 1 1
+fg a 0102: 0 0 0 0 0 0 1 1 1
+fg a 7001: 0 0 0 0 0 0 1 1 1
+skirt left thigh: 0 0 0 0 0 0 1 1 1
+skirt left knee: 0 0 0 0 0 0 1 1 1
+skirt left thightwist: 0 0 0 0 0 0 1 1 1
+skirt left thightwist1: 0 0 0 0 0 0 1 1 1
+skirt right thigh: 0 0 0 0 0 0 1 1 1
+skirt right knee: 0 0 0 0 0 0 1 1 1
+skirt right thightwist: 0 0 0 0 0 0 1 1 1
+skirt left hip: 0 0 0 0 0 0 1 1 1
+skirt right hip: 0 0 0 0 0 0 1 1 1
+skirt right axilla: 0 0 0 0 0 0 1 1 1
+hair root: 0 0 0 0 0 0 1 1 1
+saw handle: 0 -90 90 -0.6300001 0.9 -0.027 1 1 1
+saw edge: 0 0 0 0 0 0 1 1 1
+saw stopper: 0 0 0 0 0 0 1 1 1
+gun root: 0 0 0 0.6300001 0.95 0.01 1 1 1
+gun lever: 0 0 0 0 0 0 1 1 1
+gun barrel: 0 0 0 0 0 0 1 1 1
+gun cover: 0 0 0 0 0 0 1 1 1
+gun flintlock: 0 0 0 0 0 0 1 1 1
+gun frizzen: 0 0 0 0 0 0 1 1 1
+gun trigger: 0 0 0 0 0 0 1 1 1

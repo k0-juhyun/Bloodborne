@@ -1,0 +1,61 @@
+NPC: 0 0 0 0 0 0 1 1 1
+NPC Pelvis [Pelv]: 0 0 0 0 0 0 1 1 1
+NPC L Thigh [LThg]: 0 0 0 0 0 0 1 1 1
+NPC L Calf [LClf]: 0 0 0 0 0 0 1 1 1
+NPC L Foot [Lft ]: 0 0 0 0 0 0 1 1 1
+NPC L Toe0 [LToe]: 0 0 0 0 0 0 1 1 1
+NPC R Thigh [RThg]: 0 0 0 0 0 0 1 1 1
+NPC R Calf [RClf]: 0 0 0 0 0 0 1 1 1
+NPC R Foot [Rft ]: 0 0 0 0 0 0 1 1 1
+NPC R Toe0 [RToe]: 0 0 0 0 0 0 1 1 1
+NPC Spine [Spn0]: 0 0 0 0 0 0 1 1 1
+NPC Spine1 [Spn1]: 0 0 0 0 0 0 1 1 1
+NPC Spine2 [Spn2]: 0 0 0 0 0 0 1 1 1
+NPC Head [Head]: 0 0 0 0 0 0 1 1 1
+NPC R Clavicle [RClv]: 0 0 0 0 0 0 1 1 1
+NPC R UpperArm [RUar]: 0 0 0 0 0 0 1 1 1
+NPC R Forearm [RLar]: 0 0 0 0 0 0 1 1 1
+NPC R Hand [RHnd]: 0 0 0 0 0 0 1 1 1
+NPC R Finger00 [RF00]: 0 0 0 0 0 0 1 1 1
+NPC R Finger01 [RF01]: 0 0 0 0 0 0 1 1 1
+NPC R Finger02 [RF02]: 0 0 0 0 0 0 1 1 1
+NPC R Finger10 [RF10]: 0 0 0 0 0 0 1 1 1
+NPC R Finger11 [RF11]: 0 0 0 0 0 0 1 1 1
+NPC R Finger12 [RF12]: 0 0 0 0 0 0 1 1 1
+NPC R Finger20 [RF20]: 0 0 0 0 0 0 1 1 1
+NPC R Finger21 [RF21]: 0 0 0 0 0 0 1 1 1
+NPC R Finger22 [RF22]: 0 0 0 0 0 0 1 1 1
+NPC R Finger30 [RF30]: 0 0 0 0 0 0 1 1 1
+NPC R Finger31 [RF31]: 0 0 0 0 0 0 1 1 1
+NPC R Finger32 [RF32]: 0 0 0 0 0 0 1 1 1
+NPC R Finger40 [RF40]: 0 0 0 0 0 0 1 1 1
+NPC R Finger41 [RF41]: 0 0 0 0 0 0 1 1 1
+NPC R Finger42 [RF42]: 0 0 0 0 0 0 1 1 1
+NPC R ForearmTwist1 [RLt1]: 0 0 0 0 0 0 1 1 1
+NPC R ForearmTwist2 [RLt2]: 0 0 0 0 0 0 1 1 1
+NPC R UpperarmTwist1 [RUt1]: 0 0 0 0 0 0 1 1 1
+NPC R UpperarmTwist2 [RUt2]: 0 0 0 0 0 0 1 1 1
+NPC L Clavicle [LClv]: 0 0 0 0 0 0 1 1 1
+NPC L UpperArm [LUar]: 0 0 0 0 0 0 1 1 1
+NPC L Forearm [LLar]: 0 0 0 0 0 0 1 1 1
+NPC L Hand [LHnd]: 0 0 0 0 0 0 1 1 1
+NPC L Finger00 [LF00]: 0 0 0 0 0 0 1 1 1
+NPC L Finger01 [LF01]: 0 0 0 0 0 0 1 1 1
+NPC L Finger02 [LF02]: 0 0 0 0 0 0 1 1 1
+NPC L Finger10 [LF10]: 0 0 0 0 0 0 1 1 1
+NPC L Finger11 [LF11]: 0 0 0 0 0 0 1 1 1
+NPC L Finger12 [LF12]: 0 0 0 0 0 0 1 1 1
+NPC L Finger20 [LF20]: 0 0 0 0 0 0 1 1 1
+NPC L Finger21 [LF21]: 0 0 0 0 0 0 1 1 1
+NPC L Finger22 [LF22]: 0 0 0 0 0 0 1 1 1
+NPC L Finger30 [LF30]: 0 0 0 0 0 0 1 1 1
+NPC L Finger31 [LF31]: 0 0 0 0 0 0 1 1 1
+NPC L Finger32 [LF32]: 0 0 0 0 0 0 1 1 1
+NPC L Finger40 [LF40]: 0 0 0 0 0 0 1 1 1
+NPC L Finger41 [LF41]: 0 0 0 0 0 0 1 1 1
+NPC L Finger42 [LF42]: 0 0 0 0 0 0 1 1 1
+NPC L ForearmTwist1 [LLt1]: 0 0 0 0 0 0 1 1 1
+NPC L ForearmTwist2 [LLt2]: 0 0 0 0 0 0 1 1 1
+NPC L UpperarmTwist1 [LUt1]: 0 0 0 0 0 0 1 1 1
+NPC L UpperarmTwist2 [LUt2]: 0 0 0 0 0 0 1 1 1
+CharacterBumper: 0 0 0 0 0 0 1 1 1

@@ -1,0 +1,8 @@
+newmtl Model001_Material001
+map_Kd bloodsaw_d.png
+map_bump bloodsaw_n.png
+
+newmtl Model001_Material002
+map_Kd bandage_d.png
+map_bump bandage_n.png
+

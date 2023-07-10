@@ -1,0 +1,61 @@
+root ground: 0 0 0 0 0 0 1 1 1
+pelvis: 0 0 0 0 0 0 1 1 1
+leg left thigh: 0 0 0 0 0 0 1 1 1
+leg left knee: 0 0 0 0 0 0 1 1 1
+leg left ankle: 0 0 0 0 0 0 1 1 1
+leg left toe: 0 0 0 0 0 0 1 1 1
+leg right thigh: 0 0 0 0 0 0 1 1 1
+leg right knee: 0 0 0 0 0 0 1 1 1
+leg right ankle: 0 0 0 0 0 0 1 1 1
+leg right toe: 0 0 0 0 0 0 1 1 1
+spine lower: 0 0 0 0 0 0 1 1 1
+spine middle: 0 0 0 0 0 0 1 1 1
+spine upper: 0 0 0 0 0 0 1 1 1
+head neck lower: 0 0 0 0 0 0 1 1 1
+head neck upper: 0 0 0 0 0 0 1 1 1
+arm right shoulder 1: 0 0 0 0 0 0 1 1 1
+arm right shoulder 2: 0 0 0 0 0 0 1 1 1
+arm right elbow: 0 0 0 0 0 0 1 1 1
+arm right wrist: 0 0 0 0 0 0 1 1 1
+arm right finger 00: 0 0 0 0 0 0 1 1 1
+arm right finger 01: 0 0 0 0 0 0 1 1 1
+arm right finger 02: 0 0 0 0 0 0 1 1 1
+arm right finger 10: 0 0 0 0 0 0 1 1 1
+arm right finger 11: 0 0 0 0 0 0 1 1 1
+arm right finger 12: 0 0 0 0 0 0 1 1 1
+arm right finger 20: 0 0 0 0 0 0 1 1 1
+arm right finger 21: 0 0 0 0 0 0 1 1 1
+arm right finger 22: 0 0 0 0 0 0 1 1 1
+arm right finger 30: 0 0 0 0 0 0 1 1 1
+arm right finger 31: 0 0 0 0 0 0 1 1 1
+arm right finger 32: 0 0 0 0 0 0 1 1 1
+arm right finger 40: 0 0 0 0 0 0 1 1 1
+arm right finger 41: 0 0 0 0 0 0 1 1 1
+arm right finger 42: 0 0 0 0 0 0 1 1 1
+arm right forearm twist1: 0 0 0 0 0 0 1 1 1
+arm right forearm twist2: 0 0 0 0 0 0 1 1 1
+arm right shoulder twist1: 0 0 0 0 0 0 1 1 1
+arm right shoulder twist2: 0 0 0 0 0 0 1 1 1
+arm left shoulder 1: 0 0 0 0 0 0 1 1 1
+arm left shoulder 2: 0 0 0 0 0 0 1 1 1
+arm left elbow: 0 0 0 0 0 0 1 1 1
+arm left wrist: 0 0 0 0 0 0 1 1 1
+arm left finger 00: 0 0 0 0 0 0 1 1 1
+arm left finger 01: 0 0 0 0 0 0 1 1 1
+arm left finger 02: 0 0 0 0 0 0 1 1 1
+arm left finger 10: 0 0 0 0 0 0 1 1 1
+arm left finger 11: 0 0 0 0 0 0 1 1 1
+arm left finger 12: 0 0 0 0 0 0 1 1 1
+arm left finger 20: 0 0 0 0 0 0 1 1 1
+arm left finger 21: 0 0 0 0 0 0 1 1 1
+arm left finger 22: 0 0 0 0 0 0 1 1 1
+arm left finger 30: 0 0 0 0 0 0 1 1 1
+arm left finger 31: 0 0 0 0 0 0 1 1 1
+arm left finger 32: 0 0 0 0 0 0 1 1 1
+arm left finger 40: 0 0 0 0 0 0 1 1 1
+arm left finger 41: 0 0 0 0 0 0 1 1 1
+arm left finger 42: 0 0 0 0 0 0 1 1 1
+arm left forearm twist1: 0 0 0 0 0 0 1 1 1
+arm left forearm twist2: 0 0 0 0 0 0 1 1 1
+arm left shoulder twist1: 0 0 0 0 0 0 1 1 1
+arm left shoulder twist2: 0 0 0 0 0 0 1 1 1
