@@ -28,6 +28,11 @@ public class bossAI : MonoBehaviour
     [Header("SpecialPattern1 Eye")]
     public GameObject[] EyeLights;
 
+    #region AttackPatternBoolValues
+    private bool pattern1;
+
+    #endregion
+
     #region StateMachine
     // StateMachine
     public enum StateMachine
@@ -65,7 +70,7 @@ public class bossAI : MonoBehaviour
         Pattern4,
         Pattern5,
         Pattern6,
-        Pattern7
+        SpecialPattern1
     }
     public AttackSubStateMachine attackSubStateMachine = AttackSubStateMachine.AttackDelay;
     #endregion
@@ -227,7 +232,7 @@ public class bossAI : MonoBehaviour
             AnimatorTrigger("AttackState");
 
             // Random Attack Index 
-            int randomIndex = Random.Range((int)AttackSubStateMachine.Pattern1, (int)AttackSubStateMachine.Pattern7 + 1);
+            int randomIndex = Random.Range((int)AttackSubStateMachine.Pattern1, (int)AttackSubStateMachine.Pattern6 + 1);
 
             attackSubStateMachine = (AttackSubStateMachine)randomIndex;
 
@@ -341,6 +346,9 @@ public class bossAI : MonoBehaviour
         // In Attack Range
         else
         {
+            // Agent Move
+            agent.isStopped = true;
+
             stateMachine = StateMachine.AttackState;
         }
     }
