@@ -51,15 +51,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Exposure: 0.53
+    - _Exposure: 0.5
     - _ImageType: 0
     - _Layout: 0
     - _Mapping: 1
     - _MirrorOnBack: 0
-    - _Rotation: 64
+    - _Rotation: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+    - _Tint: {r: 0.3679245, g: 0.3679245, b: 0.3679245, a: 1}
   m_BuildTextureStacks: []
 --- !u!1002 &2100001
 EditorExtensionImpl:
