@@ -298,6 +298,7 @@ public class Boss : MonoBehaviour
             if (avoidCount == 0)
             {
                 // 뒤로회피
+                targetPos.y = transform.position.y;
                 transform.position = Vector3.Lerp(transform.position, targetPos, dashSpeed * Time.deltaTime);
                 if (Vector3.Distance(transform.position, targetPos) < 0.1f)
                 {
@@ -320,7 +321,11 @@ public class Boss : MonoBehaviour
                     isMoveTargetPos = true;
                 }
 
+                moveTargetPos.y = transform.position.y;
                 transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
+
+                
+
                 if (Vector3.Distance(transform.position, moveTargetPos) < 0.1f)
                 {
                     bossState = BossPatternState.Idle;
@@ -428,6 +433,7 @@ public class Boss : MonoBehaviour
                 if (curTime > skTime_Sickel1_1)
                 {
                     print("SubState : Attack1");
+                    moveTargetPos.y = transform.position.y;
                     // 앞으로 이동하고 싶다
                     transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
                     if (Vector3.Distance(transform.position, moveTargetPos) < 0.1f)

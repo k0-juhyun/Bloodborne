@@ -33,15 +33,23 @@ public class BossAlpha : MonoBehaviour
     }
     public BossPhase bossPhase;                // 보스 페이즈 상태 = 1페이즈(시작), 2페이즈(체력75%이하), 3페이즈(체력 50%이하)
 
+    public enum SickelSubState                     // 낫 공격 상태
+    {
+        Attack1,
+        Attack2,
+        Attack3,
+    }
+
+    public SickelSubState sickelSubState;
 
     public GameObject player;           // 플레이어
-    yj_PlayerMove playerscripts;           // 플레이어 스크립트
     Rigidbody rid;                      // 리지드바디
     RaycastHit hit;                     // 레이캐스트 히트
     public Transform rayPos;            // ray 쏘는 곳
     public GameObject sickle;           // 무기
-    public GameObject hinge;            // 무기 힌지
-    public GameObject sickleAttackPos;  // 무기 공격 위치 = 몸통 앞
+    public GameObject blade;            // 무기
+    public GameObject gun;              // 무기
+
 
 
     Vector3 dir;                        // 이동 방향
@@ -49,7 +57,7 @@ public class BossAlpha : MonoBehaviour
     Vector3 moveDir;                    // 움직임 방향
     Vector3 targetPos;                  // 회피 목적지
     Vector3 moveTargetPos;              // 공격시 이동 목적지
-    Vector3 sidemoveTargetPos;          // 공격시 이동 목적지 : 왼쪽
+
 
     int damage = 2;                         // 데미지 (플레이어한테 어떤 공격인지 상태를 받아오기, 공격에 따라 다른 데미지를 구현)
     public int hitCount = 0;                   // 피격 횟수 (맞은 횟수)
@@ -90,20 +98,21 @@ public class BossAlpha : MonoBehaviour
     //bool isAttack = false;              // 플레이어 공격상태(대체, 플레이어 스크립트에서 받아오기, 추가하기)
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        playerscripts = player.GetComponent<yj_PlayerMove>();          // 플레이어의 스크립트를 받아오자
+        agent = GetComponent<NavMeshAgent>();                       // agent
+        agent.isStopped = true;                                     // 이동 멈추기
         rid = GetComponent<Rigidbody>();                            // 리지드바디
         bossHP = GetComponent<BossHP>();                            // 보스 hp를 받아오자
         bossPhase = BossPhase.Phase1;                               // 시작시 보스 페이즈를 1로 설정한다
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
         // 밀림방지
-        rid.velocity = Vector3.zero;
+        //rid.velocity = Vector3.zero;
         // 항상 플레이어를 바라보기
         // 플레이어와 나 사이의 방향을 구한다
         dir = player.transform.position - this.transform.position;
@@ -113,7 +122,8 @@ public class BossAlpha : MonoBehaviour
 
         // 이동 맵 navemesh 로 바꾸기(알파)
         Vector3 ad = player.transform.position;
-        ad.y = 0;
+        ad.y = transform.position.y;
+
         transform.LookAt(ad);
 
 
@@ -182,7 +192,7 @@ public class BossAlpha : MonoBehaviour
     private void UpdateIdle()           // 공격이 끝나면 idle 상태로 옴
     {
         isAvoid = false;
-        
+
         // 만약 현재 거리가 공격 가능 거리보다 크다면
         if (currDistance > attackDistance)
         {
@@ -211,7 +221,7 @@ public class BossAlpha : MonoBehaviour
             print("ldel > Attack");
         }
         // 만약 현재 거리가 피격거리이고, 플레이어가 공격중이라면(교체)
-        else if (currDistance <= hitDistance && playerscripts.isAttack == true)
+        else if (currDistance <= hitDistance && PlayerAttack.P_Attack == true)
         {
             // 회피 상태로 변화시킨다
             bossState = BossPatternState.Avoid;
@@ -253,33 +263,22 @@ public class BossAlpha : MonoBehaviour
         moveTargetPos = transform.position + moveDir * moveDis;
     }
 
-    
+
 
     private void UpdateMove()
     {
-        
+
         // 플레이어 위치로 이동한다
         transform.position += dir * moveSpeed * Time.deltaTime;
         // 만약 현재 거리가 공격 가능 범위보다 작거나 같다면
         if (currDistance <= attackDistance)
         {
-            if (isCombo1done == false)
-            {
-                SickelC1();
-            }
-
-            else if (isCombo1done == true && isCombo2done == false)
-            {
-                SickelC2();
-            }
-
-            else if (isCombo1done == true && isCombo2done == true)
-            {
-                SickelC3();
-            }
+            // 랜덤으로 뽑는다
+            // 일단 무조건 SickelCombo1으로 가게해서 완성한다
+            SickelC1();
 
             print("Move > Attack");
-        }  
+        }
     }
     // float a = 0;
     int avoidCount = 0;         // 프로토타입용
@@ -292,12 +291,23 @@ public class BossAlpha : MonoBehaviour
         print("Avoid");
         avoidDir = -transform.forward;
 
+        // 회피상태가 true가 되면
+        // 뒤로 Ray를 쏜다
+        // 맞은 정보를 확인해서, 만약 맞은 곳이 땅 또는 벽이고, 거리가 회피가능 거리보다 크거나 같으면
+        // 뒤로 회피한다
+        // 만약 맞은 거리가 더 작다면
+        // 오른쪽으로 Ray를 쏜다
+        // 만약 맞은 거리가 회피 가능 거리보다 크면,
+        // 오른쪽으로 회피한다
+        // 
+
         // 뒤로 회피
         if (isAvoid == true)
         {
             if (avoidCount == 0)
             {
                 // 뒤로회피
+                targetPos.y = transform.position.y;
                 transform.position = Vector3.Lerp(transform.position, targetPos, dashSpeed * Time.deltaTime);
                 if (Vector3.Distance(transform.position, targetPos) < 0.1f)
                 {
@@ -320,6 +330,7 @@ public class BossAlpha : MonoBehaviour
                     isMoveTargetPos = true;
                 }
 
+                moveTargetPos.y = transform.position.y;
                 transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
                 if (Vector3.Distance(transform.position, moveTargetPos) < 0.1f)
                 {
@@ -354,7 +365,7 @@ public class BossAlpha : MonoBehaviour
         // 만약 현재 체력이 75보다 작다면
         if (bossHP.HP <= 7.5)
         {
-            
+
             // 현재 페이즈를 2페이즈로 한다
             bossPhase = BossPhase.Phase2;
             // 보스 공격 상태를 ?로 바꾼다
@@ -381,8 +392,8 @@ public class BossAlpha : MonoBehaviour
             print(bossHP.HP);
             // 피격 1 애니메이션을 실행한다
             isHitted = true;
-            
-            
+
+
         }
 
         if (hitcurrTime > 1)
@@ -401,22 +412,15 @@ public class BossAlpha : MonoBehaviour
             hitCount = 0;
         }
         // 
-        
+
         // 애니메이션이 끝나면 idle 상태로 돌린다(이벤트 함수로)
     }
 
-    enum SickelSubState                     // 낫 공격 상태
-    {
-        Attack1,
-        Attack2,
-        Attack3,
-    }
 
-    SickelSubState sickelSubState;
 
     private void UpdateSickelCombo1()
     {
-        
+
 
         // int로 값을 정해서 그 값에서만 실행되고, 다른 상태일때 다시 초기화되게 바꾸기
 
@@ -429,11 +433,12 @@ public class BossAlpha : MonoBehaviour
                 {
                     print("SubState : Attack1");
                     // 앞으로 이동하고 싶다
+                    moveTargetPos.y = transform.position.y;
                     transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
-                    if (Vector3.Distance(transform.position, moveTargetPos) < 0.1f)
+                    print("moveTargetPos :" + moveTargetPos);
+                    if (Vector3.Distance(transform.position, moveTargetPos) < 1f)
                     {
-                        // 낫이 회전하고 싶다 (위 > 아래)
-                        StartCoroutine(IEUpdown(0.5f));
+
                         // 서브상태를 액션 2로 바꾼다
                         sickelSubState = SickelSubState.Attack2;
                         // 애니메이션 재생
@@ -445,8 +450,7 @@ public class BossAlpha : MonoBehaviour
                 if (curTime > skTime_Sickel1_2)
                 {
                     print("SubState : Attack2");
-                    // 낫 회전 (오른쪽 위 > 왼쪽 가운데쯤으로)
-                    StartCoroutine(IERightupdown(0.5f));
+
                     sickelSubState = SickelSubState.Attack3;
                     // 애니메이션 재생
                 }
@@ -457,8 +461,7 @@ public class BossAlpha : MonoBehaviour
                     print("SubState : Attack3");
                     curTime = 0;
                     // 현재 거리가 공격시 이동 거리보다 작으면 그만큼 뒤로 이동하게 해야하나??? **교체,수정
-                    // 프로토타입용, 콤보 2로 넘어가는 조건
-                    isCombo1done = true;
+
                     bossState = BossPatternState.Idle;
                     // 애니메이션 재생
                     sickelSubState = SickelSubState.Attack1;
@@ -471,217 +474,23 @@ public class BossAlpha : MonoBehaviour
 
     private void UpdateSickelCombo2()
     {
-        curTime += Time.deltaTime;
-        switch (sickelSubState)
-        {
-            case SickelSubState.Attack1:
-                if (curTime > skTime_Sickel1_1)
-                {
-                    //print("C2A1");
-                    // 앞으로 이동하고 싶다
-                    transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
-                    if (Vector3.Distance(transform.position, moveTargetPos) < 0.1f)
-                    {
-                        // 낫위치를 몸 앞으로(sickleAttackPos) 바꾼다
-                        sickle.transform.position = sickleAttackPos.transform.position;
-                        // 낫 회전 왼쪽위 > 오른쪽 중간쯤으로
-                        StartCoroutine(IELeftupdown(0.2f));
-                        // 서브상태를 액션 2로 바꾼다
-                        sickelSubState = SickelSubState.Attack2;
-                        // 애니메이션 재생
-                        print("com2_attack_move");
-                    }
 
-                }
-                    break;
-            case SickelSubState.Attack2:
-                if (curTime > skTime_Sickel1_2)
-                {
-
-                    // 한번 더 앞으로 이동하고 싶은데,,
-                    // moveTargetPos은 상태가 Attack으로 바뀔때만, 밖에서 한번만 계산되어 저장됨.
-                    // 그러면 moveTargetPos를 한번더 계산해서 넣어줘야하는데,
-                    // 여기서 계산하면 Update라 계속 호출이 되어서 이상해짐
-                    // 코루틴을 써도 똑같고
-                    // 다른 방법이 없을까?
-                    // 한번만 계산해서 여기에 값을 넣어주는 방법
-                    // 한번만 호출되는거 뭐가있지
-                    // 부울로 체크해서 값을 구해줘볼까???
-                    if (isMoveTargetPos == false)
-                    {
-                        moveDir = transform.forward;
-                        // 거리는 플레이어 움직임 속도 보면서 결정하기
-                        moveDis = 5f;
-                        // 이동 목적지
-                        moveTargetPos = transform.position + moveDir * moveDis;
-                        isMoveTargetPos = true;
-                    }
-                    //print("C2A2");
-                    // 앞으로 이동하고 싶다
-                    transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
-                    if (Vector3.Distance(transform.position, moveTargetPos) < 0.1f)
-                    {
-                        
-                        // 낫위치를 몸 앞으로(sickleAttackPos) 바꾼다
-                        sickle.transform.position = sickleAttackPos.transform.position;
-                        // 낫 회전 오른쪽위 > 왼쪽 중간쯤으로
-                        StartCoroutine(IERightupdown(0.2f));
-                        // 서브상태를 액션 3로 바꾼다
-                        sickelSubState = SickelSubState.Attack3;
-                        // 애니메이션 재생
-                        print("com2_attack_move"); 
-                    }
-
-                }
-                break;
-            case SickelSubState.Attack3:
-                if (curTime > skTime_Sickel1_3)
-                {
-                    print("C2A3");
-                    // 낫이 회전하고 싶다
-                    StartCoroutine(IEUpdown(0.5f));
-                    // 프로토타입용, 콤보 3로 넘어가는 조건
-                    isCombo2done = true;
-                    isMoveTargetPos = false;
-                    curTime = 0;
-                    bossState = BossPatternState.Idle;
-                    // 애니메이션 재생
-                    sickelSubState = SickelSubState.Attack1;
-                }
-                break;
-            default:
-                break;
-        }
     }
 
     private void UpdateSickelCombo3()
     {
-        //print("Combo3");
-        curTime += Time.deltaTime;
-        switch (sickelSubState)
-        {
-            case SickelSubState.Attack1:
-                if (curTime > skTime_Sickel1_1)
-                {
-                    
-                    // 점프 방향을 정한다
-                    Vector3 jumpDir = transform.up;
-                    // 점프한다
-                    //rid.AddForce(jumpDir * 5, ForceMode.Impulse);
-                    if (isMoveTargetPos == false)
-                    {
-                        // 낫을 오른쪽 위로 치켜든다
-                        hinge.transform.localEulerAngles = new Vector3(0, 0, -45);
-                        moveDir = transform.forward;
-                        // 거리는 플레이어 움직임 속도 보면서 결정하기
-                        moveDis = 10f;
-                        // 이동 목적지
-                        moveTargetPos = transform.position + moveDir * moveDis;
-                        isMoveTargetPos = true;
-                        print("111" + moveTargetPos);
-                    }
-                    print("ddd");
-                    transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
-                    if (Vector3.Distance(transform.position, moveTargetPos) < 0.1f)
-                    {
-                        // 서브상태를 액션 2로 바꾼다
-                        sickelSubState = SickelSubState.Attack2;
-                        // 애니메이션 재생
-                        print("com3_attack_jump");
 
-                    }
-                }
-                break;
-            case SickelSubState.Attack2:
-                if (curTime > skTime_Sickel1_2)
-                {
-                    // 오른쪽 아래에서 왼쪽 위로 휘두른다
-                    StartCoroutine(IERightdownup(0.5f));
-                    // 서브상태를 액션 3로 바꾼다
-                    sickelSubState = SickelSubState.Attack3;
-                    // 애니메이션 재생
-                    print("com3_attack_Rdu");
-                }
-                break;
-            case SickelSubState.Attack3:
-                if (curTime > skTime_Sickel1_3)
-                {
-                    // 착지 후 왼쪽 위에서 오른쪽 아래로 휘두른다()
-                    StartCoroutine(IELeftupdown(0.5f));
-                    curTime = 0;
-                    isCombo1done = false;
-                    isCombo2done = false;
-                    isMoveTargetPos = false;
-                    bossState = BossPatternState.Idle;
-                    // 애니메이션 재생
-                    sickelSubState = SickelSubState.Attack1;
-                    print("3 > idle");
-                }
-                break;
-            default:
-                break;
-        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         // 만약 플레이어가 공격 상태이고, 플레이어의 무기와 충돌했을때
-        if (playerscripts.isAttack == true && collision.gameObject.CompareTag("Weapone"))
+        if (PlayerAttack.P_Attack == true && collision.gameObject.CompareTag("Weapone"))
         {
             // 보스 피격 상태로 전환
             bossState = BossPatternState.Hit;
-            
+
         }
-    }
-
-
-    IEnumerator IEUpdown(float time)      // 위에서 아래로 내려찍기
-    {
-        
-        hinge.transform.localEulerAngles = new Vector3(60, 0, 0);
-        yield return new WaitForSeconds(time);
-        hinge.transform.localEulerAngles = new Vector3(0, 0, 0);
-    }
-
-    IEnumerator IERightupdown(float time)      // 오른쪽 위 > 왼쪽 가운데
-    {
-        //sickle.transform.localEulerAngles = new Vector3(10, 10, -10);
-        hinge.transform.localEulerAngles = new Vector3(0, 0, -45);
-        yield return new WaitForSeconds(time);
-        sickle.transform.localEulerAngles = new Vector3(0, -120, 0);
-        hinge.transform.localEulerAngles = new Vector3(0, 0, -90);
-        yield return new WaitForSeconds(time);
-        sickle.transform.localEulerAngles = new Vector3(0, 0, 0);
-        hinge.transform.localEulerAngles = new Vector3(0, 0, 0);
-
-    }
-
-    IEnumerator IELeftupdown(float time)        // 왼쪽 위 > 오른쪽 가운데
-    {
-        hinge.transform.localEulerAngles = new Vector3(0, 0, 45);
-        yield return new WaitForSeconds(time);
-        sickle.transform.localEulerAngles = new Vector3(0, 120, 0);
-        hinge.transform.localEulerAngles = new Vector3(0, 0, 90);
-        yield return new WaitForSeconds(time);
-        sickle.transform.localEulerAngles = new Vector3(0, 0, 0);
-        hinge.transform.localEulerAngles = new Vector3(0, 0, 0);
-    }
-
-    IEnumerator IERightdownup(float time)
-    {
-        hinge.transform.localEulerAngles = new Vector3(0, 0, -90);
-        yield return new WaitForSeconds(time);
-        sickle.transform.localEulerAngles = new Vector3(0, -120, 0);
-        hinge.transform.localEulerAngles = new Vector3(0, 0, -30);
-    }
-
-    IEnumerator IELeftupdown2(float time)
-    {
-        // 왼쪽 위에서 다시 아래
-        sickle.transform.localEulerAngles = new Vector3(0, 0, 60);
-        yield return new WaitForSeconds(time);
-        hinge.transform.localEulerAngles = new Vector3(0, 0, 10);
-        sickle.transform.localEulerAngles = new Vector3(0, 160, 60);
     }
 
 
