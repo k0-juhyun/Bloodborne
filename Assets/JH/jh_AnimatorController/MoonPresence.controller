@@ -128,16 +128,16 @@ AnimatorStateMachine:
     m_Position: {x: -50, y: -210, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4022245439139106271}
-    m_Position: {x: 320, y: 40, z: 0}
+    m_Position: {x: 180, y: -140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2822940885010674}
-    m_Position: {x: 320, y: -210, z: 0}
+    m_Position: {x: 180, y: -390, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1304533209691108894}
-    m_Position: {x: 320, y: -160, z: 0}
+    m_Position: {x: 180, y: -340, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8395290493844670160}
-    m_Position: {x: 320, y: -60, z: 0}
+    m_Position: {x: 180, y: -240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3262706896535085204}
     m_Position: {x: -280, y: -260, z: 0}
@@ -158,31 +158,31 @@ AnimatorStateMachine:
     m_Position: {x: -280, y: -40, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1463438728199745885}
-    m_Position: {x: 320, y: 90, z: 0}
+    m_Position: {x: 180, y: -90, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7835671108428552859}
     m_Position: {x: -510, y: -120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6860228822273800191}
-    m_Position: {x: 320, y: -10, z: 0}
+    m_Position: {x: 180, y: -190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -616802125660289438}
-    m_Position: {x: 530, y: -10, z: 0}
+    m_Position: {x: 390, y: -190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -696528141048658353}
-    m_Position: {x: 540, y: -160, z: 0}
+    m_Position: {x: 400, y: -340, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2317140050003765776}
-    m_Position: {x: 320, y: -110, z: 0}
+    m_Position: {x: 180, y: -290, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2875297171376514879}
-    m_Position: {x: 540, y: -110, z: 0}
+    m_Position: {x: 400, y: -290, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5760942228009873211}
-    m_Position: {x: 770, y: -160, z: 0}
+    m_Position: {x: 630, y: -340, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8193705246015865405}
-    m_Position: {x: 760, y: -110, z: 0}
+    m_Position: {x: 620, y: -290, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8973360613292265390}
     m_Position: {x: -510, y: -200, z: 0}

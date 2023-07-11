@@ -165,6 +165,11 @@ public class bossAI : MonoBehaviour
                 AnimatorTrigger("SpecialPattern1Start");
             }
 
+            if(isSpecialPattern1InProgress)
+            {
+                transform.LookAt(playerPos.position);
+            }
+
             yield return UpdateStateMachineDelay;
         }
     }
