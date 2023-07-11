@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bd6c023cfebf459f90a0c8ff290c3c65
+guid: 5d055c9dbe32ee741a3c53e3036eae40
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
@@ -395,7 +395,7 @@ ModelImporter:
     second: STYLIZED-BASEMESH-BIGMALE-OBJ
   - first:
       74: 7400000
-    second: dead_06
+    second: roar_01
   - first:
       95: 9500000
     second: //RootNode
@@ -431,11 +431,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: dead_06
-      takeName: dead_06
+      name: roar_01
+      takeName: roar_01
       internalID: 0
       firstFrame: 0
-      lastFrame: 45
+      lastFrame: 78
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

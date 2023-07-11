@@ -23,7 +23,7 @@ public class animationRot : StateMachineBehaviour
         Vector3 rotation = animator.transform.rotation.eulerAngles;
 
         // X 축을 20도만큼 기울입니다.
-        rotation.x += 20f;
+        rotation.x += 10f;
 
         // 회전값을 적용합니다.
         animator.transform.rotation = Quaternion.Euler(rotation);

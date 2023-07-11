@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering.PostProcessing;
 using static UnityEditor.PlayerSettings;
 
 public class bossAI : MonoBehaviour
@@ -20,15 +21,21 @@ public class bossAI : MonoBehaviour
     private GameObject target;
     private string reactAnimation;
     private GameObject bloodEffect;
+    private GameObject dieEffect;
     private bool isReact;
     private int hitCount = 0;
-    private bool isSpecialPattern1Active = false;
-    private bool isSpecialPattern1InProgress = false;
     private float curHpPercentage = 1f;
     [Header("SpecialPattern1 Eye")]
     public GameObject[] EyeLights;
 
+    // post Processing Values
+    [Header("Post Processing Volumes")]
+    public PostProcessVolume postProcessVolume;
+    private LensDistortion lensDistortion;
+
     #region AttackPatternBoolValues
+    private bool isSpecialPattern1Active = false;
+    private bool isSpecialPattern1InProgress = false;
     private bool pattern1;
 
     #endregion
@@ -88,6 +95,15 @@ public class bossAI : MonoBehaviour
 
     private void Awake()
     {
+        // Get volume From Post Processing
+        postProcessVolume.profile.TryGetSettings(out lensDistortion);
+
+        if (lensDistortion == null)
+        {
+            // LensDistortion
+            lensDistortion = postProcessVolume.profile.AddSettings<LensDistortion>();
+        }
+
         // Set Hp
         curHp = maxHp;
 
@@ -110,6 +126,7 @@ public class bossAI : MonoBehaviour
 
         // Load Effects
         bloodEffect = Resources.Load<GameObject>("DAX_Blood_Spray_00(Fade_2s)");
+        dieEffect = Resources.Load<GameObject>("DieEffect");
     }
 
     private void OnEnable()
@@ -289,6 +306,9 @@ public class bossAI : MonoBehaviour
         
         yield return new WaitForSeconds(2f);
 
+        // lensDistortion on
+        lensDistortion.active = true;
+
         // Load Prefabs
         EyeLights[1].SetActive(true);
 
@@ -296,6 +316,9 @@ public class bossAI : MonoBehaviour
         cameraShake.Instance.specialShake = true;
 
         yield return new WaitForSeconds(2f);
+
+        // lensDistortion off
+        lensDistortion.active = false;
 
         EyeLights[1].SetActive(false);
 
@@ -353,6 +376,12 @@ public class bossAI : MonoBehaviour
         }
     }
 
+    // DieAnimFinish
+    public void DieStateFisnish()
+    {
+        Destroy(gameObject);
+    }
+
     // AttackAnimFinish
     public void AttackStateFinish()
     {
@@ -393,6 +422,9 @@ public class bossAI : MonoBehaviour
             // Hp, Die Animation
             if (curHp <= 0)
             {
+                // Load Die Effect
+                LoadDieEffect();
+
                 // Agent Stop
                 agent.isStopped = true;
 
@@ -464,6 +496,11 @@ public class bossAI : MonoBehaviour
         Quaternion rot = Quaternion.FromToRotation(-Vector3.forward, _normal);
         GameObject blood = Instantiate<GameObject>(bloodEffect, pos, rot);
         Destroy(blood, 1.0f);
+    }
+
+    private void LoadDieEffect()
+    {
+        GameObject DieEffect = Instantiate<GameObject>(dieEffect,thisPos);
     }
 
     // Delay Coroutine -> React Delay

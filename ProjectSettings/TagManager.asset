@@ -9,6 +9,7 @@ TagManager:
   - p_Weapon
   - Hand
   - Boss
+  - Melee
   layers:
   - Default
   - TransparentFX
@@ -40,7 +41,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - SpecialEffect
   - 
   m_SortingLayers:
   - name: Default
