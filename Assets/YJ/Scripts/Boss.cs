@@ -188,7 +188,7 @@ public class Boss : MonoBehaviour
         {
             // 현재 상태를 Move 로 변화시킨다
             bossState = BossPatternState.Move;
-            // 애니메이션 재생?
+            // 애니메이션 재생
         }
         // 만약 현재 거리가 공격 가능 범위보다 작거나 같다면, 그 거리가 피격 거리보다 크다면
         else if (currDistance <= attackDistance && currDistance >= hitDistance)
@@ -211,7 +211,7 @@ public class Boss : MonoBehaviour
             print("ldel > Attack");
         }
         // 만약 현재 거리가 피격거리이고, 플레이어가 공격중이라면(교체)
-        else if (currDistance <= hitDistance && PlayerAttack.P_Attack == true)
+        else if (currDistance <= hitDistance && TPSChraracterController.instance.isAttack == true)
         {
             // 회피 상태로 변화시킨다
             bossState = BossPatternState.Avoid;
@@ -329,6 +329,7 @@ public class Boss : MonoBehaviour
                 if (Vector3.Distance(transform.position, moveTargetPos) < 0.1f)
                 {
                     bossState = BossPatternState.Idle;
+
                     print("avoid right");
                     avoidcurTime = 0;
                     avoidCount = 0;

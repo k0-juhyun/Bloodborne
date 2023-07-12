@@ -731,7 +731,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!136 &453225775
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -830,6 +830,9 @@ MonoBehaviour:
   bossPhase: 0
   player: {fileID: 1615165968}
   rayPos: {fileID: 2034325222}
+  sickle: {fileID: 0}
+  hinge: {fileID: 0}
+  sickleAttackPos: {fileID: 0}
   hitCount: 0
   attack1damage: 1
   attack2damage: 2
@@ -837,6 +840,7 @@ MonoBehaviour:
   attackDistance: 10
   hitDistance: 5
   avoidDistance: 5
+  moveDis: 5
   moveSpeed: 1
   dashSpeed: 10
   curTime: 0
@@ -848,6 +852,10 @@ MonoBehaviour:
   skTime_Sickel1_3: 3
   isHitted: 0
   isAvoid: 0
+  isCombo1done: 0
+  isCombo2done: 0
+  isCombo3done: 0
+  isMoveTargetPos: 0
 --- !u!114 &453225780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1127,6 +1135,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 850914617}
   m_CullTransparentMesh: 0
+--- !u!1001 &950302679
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: df9cec0b1e9220f4d86fe2bb6e0b294b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: df9cec0b1e9220f4d86fe2bb6e0b294b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: df9cec0b1e9220f4d86fe2bb6e0b294b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: df9cec0b1e9220f4d86fe2bb6e0b294b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: df9cec0b1e9220f4d86fe2bb6e0b294b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: df9cec0b1e9220f4d86fe2bb6e0b294b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: df9cec0b1e9220f4d86fe2bb6e0b294b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: df9cec0b1e9220f4d86fe2bb6e0b294b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: df9cec0b1e9220f4d86fe2bb6e0b294b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: df9cec0b1e9220f4d86fe2bb6e0b294b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: df9cec0b1e9220f4d86fe2bb6e0b294b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: df9cec0b1e9220f4d86fe2bb6e0b294b,
+        type: 3}
+      propertyPath: m_Name
+      value: henryks
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: df9cec0b1e9220f4d86fe2bb6e0b294b, type: 3}
 --- !u!1 &962954007
 GameObject:
   m_ObjectHideFlags: 0
@@ -1358,7 +1435,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1400876306
 BoxCollider:
   m_ObjectHideFlags: 0

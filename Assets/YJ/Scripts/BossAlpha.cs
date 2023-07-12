@@ -8,8 +8,11 @@ using UnityEngine.AI;
 // 대체, 추가 : 나중에 합치면 교체해야 하는 것
 public class BossAlpha : MonoBehaviour
 {
+    //싱글톤
+    public static BossAlpha instance;
+
     NavMeshAgent agent;                 // 길찾기
-    Animator animator;                  // 애니메이터
+    Animator anim;                  // 애니메이터
 
     BossHP bossHP;                      // 보스 hp
 
@@ -22,6 +25,7 @@ public class BossAlpha : MonoBehaviour
         SickelCombo1,
         SickelCombo2,
         SickelCombo3,
+        Die
     }
     public BossPatternState bossState;         // 보스 상태 = 0: 대기, 1:이동, 2:회피, 4:피격, 5:낫 공격(대시,점프 포함), 6: 칼 공격(대시 점프포함?), 7: 총 공격 8: 죽음
 
@@ -89,23 +93,25 @@ public class BossAlpha : MonoBehaviour
     public float skTime_Sickel1_3 = 3f;        // 낫 스킬3 3번 공격 시작 시간
 
     [Header("상태 확인")]
-    public bool isHitted = false;                     // 피격 상태 확인
-    public bool isAvoid = false;                      // 회피 상태 확인
-    public bool isCombo1done = false;                 // 프로토타입용 낫패턴 1
-    public bool isCombo2done = false;                 // 프로토타입용 낫패턴 2
-    public bool isCombo3done = false;                 // 프로토타입용 낫패턴 3
-    public bool isMoveTargetPos = false;              // SC2_a2 이동 계산용 상태확인
-    //bool isAttack = false;              // 플레이어 공격상태(대체, 플레이어 스크립트에서 받아오기, 추가하기)
+    public bool isHitted = false;                       // 피격 상태 확인
+    public bool isAvoid = false;                        // 회피 상태 확인
+    public bool isCombo1done = false;                   // 프로토타입용 낫패턴 1
+    public bool isCombo2done = false;                   // 프로토타입용 낫패턴 2
+    public bool isCombo3done = false;                   // 프로토타입용 낫패턴 3
+    public bool isMoveTargetPos = false;                // SC2_a2 이동 계산용 상태확인
+    public bool isGehrmanDie = false;                   // 죽음 상태 확인
+
 
     // Start is called before the first frame update
     void Awake()
     {
+        instance = this;
         agent = GetComponent<NavMeshAgent>();                       // agent
-        agent.isStopped = true;                                     // 이동 멈추기
+        //agent.isStopped = true;                                     // 이동 멈추기
         rid = GetComponent<Rigidbody>();                            // 리지드바디
+        anim = GetComponent<Animator>();                            // 애니메이터 컴포턴트를 받아온다
         bossHP = GetComponent<BossHP>();                            // 보스 hp를 받아오자
         bossPhase = BossPhase.Phase1;                               // 시작시 보스 페이즈를 1로 설정한다
-
     }
 
     // Update is called once per frame
@@ -166,6 +172,9 @@ public class BossAlpha : MonoBehaviour
             case BossPatternState.SickelCombo3:
                 UpdateSickelCombo3();
                 break;
+            case BossPatternState.Die:
+                UpdateDie();
+                break;
             default:
                 break;
         }
@@ -188,17 +197,19 @@ public class BossAlpha : MonoBehaviour
         }
     }
 
+    
 
     private void UpdateIdle()           // 공격이 끝나면 idle 상태로 옴
     {
         isAvoid = false;
-
+        
         // 만약 현재 거리가 공격 가능 거리보다 크다면
         if (currDistance > attackDistance)
         {
             // 현재 상태를 Move 로 변화시킨다
             bossState = BossPatternState.Move;
-            // 애니메이션 재생?
+            // 애니메이션 재생
+            anim.SetTrigger("Move");
         }
         // 만약 현재 거리가 공격 가능 범위보다 작거나 같다면, 그 거리가 피격 거리보다 크다면
         else if (currDistance <= attackDistance && currDistance >= hitDistance)
@@ -221,10 +232,12 @@ public class BossAlpha : MonoBehaviour
             print("ldel > Attack");
         }
         // 만약 현재 거리가 피격거리이고, 플레이어가 공격중이라면(교체)
-        else if (currDistance <= hitDistance && PlayerAttack.P_Attack == true)
+        else if (currDistance <= hitDistance && TPSChraracterController.instance.isAttack == true)
         {
             // 회피 상태로 변화시킨다
             bossState = BossPatternState.Avoid;
+            // 애니메이션 호출
+            anim.SetTrigger("Avoid");
             // 회피 방향
             avoidDir = -transform.forward;
             // 회피 목적지
@@ -309,9 +322,13 @@ public class BossAlpha : MonoBehaviour
                 // 뒤로회피
                 targetPos.y = transform.position.y;
                 transform.position = Vector3.Lerp(transform.position, targetPos, dashSpeed * Time.deltaTime);
+                // 애니메이션 호출
+                //anim.SetTrigger("Avoid");
                 if (Vector3.Distance(transform.position, targetPos) < 0.1f)
                 {
                     bossState = BossPatternState.Idle;
+                    //Idle 애니메이션 실행(상태바꿀때 한번만 호출)
+                    anim.SetTrigger("Idle");
                     print("avoid back");
                     avoidcurTime = 0;
                     avoidCount++;
@@ -324,7 +341,7 @@ public class BossAlpha : MonoBehaviour
                 {
                     moveDir = transform.right;
                     // 거리는 플레이어 움직임 속도 보면서 결정하기
-                    moveDis = 8f;
+                    moveDis = 5f;
                     // 이동 목적지
                     moveTargetPos = transform.position + moveDir * moveDis;
                     isMoveTargetPos = true;
@@ -335,6 +352,8 @@ public class BossAlpha : MonoBehaviour
                 if (Vector3.Distance(transform.position, moveTargetPos) < 0.1f)
                 {
                     bossState = BossPatternState.Idle;
+                    //Idle 애니메이션 실행(상태바꿀때 한번만 호출)
+                    anim.SetTrigger("Idle");
                     print("avoid right");
                     avoidcurTime = 0;
                     avoidCount = 0;
@@ -379,6 +398,16 @@ public class BossAlpha : MonoBehaviour
                 // 보스 공격 상태를 ?로 바꾼다
                 //return;
             }
+
+            // 만약 현재 체력이 0이면
+            if (bossHP.HP == 0)
+            {
+                // 보스 상태를 죽음으로 한다
+                bossState = BossPatternState.Die;
+                // 죽음 애니메이션을 실행한다
+                anim.SetTrigger("Die");
+                // 파티클을 켠다
+            }
         }
 
         if (isHitted == false)
@@ -391,6 +420,7 @@ public class BossAlpha : MonoBehaviour
             bossHP.HP -= damage;
             print(bossHP.HP);
             // 피격 1 애니메이션을 실행한다
+            anim.SetTrigger("Hit1");
             isHitted = true;
 
 
@@ -400,6 +430,8 @@ public class BossAlpha : MonoBehaviour
         {
             isHitted = false;
             bossState = BossPatternState.Idle;
+            //Idle 애니메이션 실행(상태바꿀때 한번만 호출)
+            anim.SetTrigger("Idle");
         }
 
         // 만약 현재 피격시간이 피격2 시간보다 작을때, 히트 카운트가 2라면
@@ -407,15 +439,21 @@ public class BossAlpha : MonoBehaviour
         {
             print("hitcount : " + hitCount);
             // 피격 2 애니메이션을 실행한다
+            anim.SetTrigger("Hit2");
             print("피격2");
             // 히트 카운트를 0으로 한다
             hitCount = 0;
         }
-        // 
 
-        // 애니메이션이 끝나면 idle 상태로 돌린다(이벤트 함수로)
+        // hit2 애니메이션이 끝나면 idle 상태로 돌린다(이벤트 함수로)
     }
 
+    // 이벤트 함수
+    void AnimIdle()
+    {
+        // Idle상태로 한다
+        bossState = BossPatternState.Idle;
+    }
 
 
     private void UpdateSickelCombo1()
@@ -435,13 +473,14 @@ public class BossAlpha : MonoBehaviour
                     // 앞으로 이동하고 싶다
                     moveTargetPos.y = transform.position.y;
                     transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
-                    print("moveTargetPos :" + moveTargetPos);
+                    //print("moveTargetPos :" + moveTargetPos);
                     if (Vector3.Distance(transform.position, moveTargetPos) < 1f)
                     {
 
                         // 서브상태를 액션 2로 바꾼다
                         sickelSubState = SickelSubState.Attack2;
                         // 애니메이션 재생
+
                         print("com1_attack_move");
                     }
                 }
@@ -453,6 +492,7 @@ public class BossAlpha : MonoBehaviour
 
                     sickelSubState = SickelSubState.Attack3;
                     // 애니메이션 재생
+
                 }
                 break;
             case SickelSubState.Attack3:
@@ -464,6 +504,7 @@ public class BossAlpha : MonoBehaviour
 
                     bossState = BossPatternState.Idle;
                     // 애니메이션 재생
+                    anim.SetTrigger("Idle");
                     sickelSubState = SickelSubState.Attack1;
                 }
                 break;
@@ -482,13 +523,23 @@ public class BossAlpha : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void UpdateDie()
+    {
+        // 만약 hp가 0이되면 Die 함수가 호출된다(hit에서)
+        // 죽음 상태라고 알려주기(SceneManager에서 받아가기)
+        isGehrmanDie = true;
+
+    }
+
+
+    private void OnTriggerEnter(Collider other)
     {
         // 만약 플레이어가 공격 상태이고, 플레이어의 무기와 충돌했을때
-        if (PlayerAttack.P_Attack == true && collision.gameObject.CompareTag("Weapone"))
+        if (TPSChraracterController.instance.isAttack == true && other.gameObject.CompareTag("Weapon"))  //PlayerAttack.P_Attack == true
         {
             // 보스 피격 상태로 전환
             bossState = BossPatternState.Hit;
+            print("hittt");
 
         }
     }
