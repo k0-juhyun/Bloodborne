@@ -57,11 +57,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\PlayerHP.cs" />
+    <Compile Include="Assets\Fighter Pack Bundle FREE\Code\CameraControl.cs" />
+    <Compile Include="Assets\Fighter Pack Bundle FREE\Code\FighterAnimationDemoFREE.cs" />
     <Compile Include="Assets\Scripts\PlayerMove.cs" />
     <Compile Include="Assets\Scripts\FollowCamera.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\PlayerAttack.cs" />
     <Compile Include="Assets\Scripts\TPSChraracterController.cs" />
+    <Compile Include="Assets\Scripts\Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Knight3\Ground\Double_Sided_Standard.shader" />

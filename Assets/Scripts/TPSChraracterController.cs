@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,15 +12,32 @@ public class TPSChraracterController : MonoBehaviour
 
 
 
-   
+
     public Transform LockOnTransform;
     private CharacterController cc;
     Animator animator;
 
     public LayerMask enemyLayer;
-   
+
     public float attackRadius = 1f;   // 공격 범위
     public float attackDamage = 10f;  // 공격력
+
+
+    public Transform Object1;
+    public Transform Object2;
+    private float Dist;
+    public float zoomSpeed = 10;
+    public float minDist = 5;
+    public float maxDist = 10;
+    public Transform enemy;
+
+    bool Move_B = false;
+    bool Move_L = false;
+    bool Move_R = false;
+    bool isMove = false;
+
+    private int attackCount = 0;
+   
 
 
 
@@ -28,7 +46,7 @@ public class TPSChraracterController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        animator = characterBody.GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         cc = GetComponent<CharacterController>();
     }
 
@@ -42,7 +60,19 @@ public class TPSChraracterController : MonoBehaviour
         {
             Attack();
         }
+        B_Step();
+        R_Step();
+        L_Step();
+
+        //if (Input.GetButtonDown("Fire1"))
+        //{
+        //    StartCoroutine(AttackCoroutine());                        //attack 코루틴 스타트
+        //}
+
     }
+
+    bool isAttack;
+
     private void LookAround()
     {
         Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
@@ -66,6 +96,7 @@ public class TPSChraracterController : MonoBehaviour
         Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         bool isMove = moveInput.magnitude != 0;
         animator.SetBool("isMove", isMove);
+        //animator.SetFloat("MoveSpeed", moveInput.magnitude);
         if (isMove)
         {
             Vector3 lookForward = new Vector3(cameraArm.forward.x, 0f, cameraArm.forward.z).normalized;
@@ -75,10 +106,10 @@ public class TPSChraracterController : MonoBehaviour
             characterBody.forward = moveDir;
             transform.position += moveDir * Time.deltaTime * 7f;
         }
-        
+
 
         //Debug.DrawRay(cameraArm.position, new Vector3(cameraArm.forward.x, 0, cameraArm.forward.z).normalized,Color.red);
-        
+
     }
     private void LockOn()
     {
@@ -89,11 +120,30 @@ public class TPSChraracterController : MonoBehaviour
             transform.LookAt(LockOnTransform);
 
             characterBody.LookAt(LockOnTransform);
+
+            //카메라 줌인아웃
+            float distance = Vector3.Distance(Object1.position, Object2.position);
+            float zoomLevel = Mathf.InverseLerp(minDist, maxDist, distance);
+            // Field of view View 바꿈
+            float targetFOV = Mathf.Lerp(35f, 100f, zoomLevel);
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetFOV, Time.deltaTime * zoomSpeed);
+
+            //transform.LookAt(enemy);
+
         }
-        
+
     }
+    private Vector3 GetCenterPoint()
+    {
+        // 두 오브젝트의 중심점 계산
+        Vector3 centerPoint = (Object1.position + Object2.position) / 2f;
+
+        return centerPoint;
+    }
+
     private void Attack()
     {
+        isAttack = true;
         animator.SetTrigger("isAttack");
 
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackRadius);
@@ -110,6 +160,111 @@ public class TPSChraracterController : MonoBehaviour
             }
         }
     }
-    
-        
+
+
+
+    //private IEnumerator AttackCoroutine()                         //attack 코루틴 설정
+    //{
+    //    attackCount++;
+    //    animator.SetBool("isAttack0", true);
+
+    //    Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackRadius);
+    //    foreach (Collider hitCollider in hitColliders)
+    //    {
+    //        if (hitCollider.CompareTag("Enemy"))
+    //        {
+    //            Enemy enemyHealth = hitCollider.GetComponent<Enemy>();
+    //            if (enemyHealth != null)
+    //            {
+    //                enemyHealth.TakeDamage(attackDamage);
+    //            }
+    //        }
+    //    }
+    //    yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+
+    //    animator.SetBool("isAttack0", false);
+
+    //    if (attackCount < 3)
+    //    {
+    //        yield return new WaitForSeconds(0.5f); // 공격 애니메이션 사이의 딜레이 조절
+    //        StartCoroutine(AttackCoroutine());
+    //    }
+    //    else
+    //    {
+    //        attackCount = 0;
+    //    }
+    //}
+
+
+
+
+    //private void Step()
+    //{
+    //    isMove = true;
+    //    if (Input.GetKeyDown(KeyCode.Space) && !Move_B)
+    //    {
+    //        Move_B = true;
+    //        animator.SetTrigger("Move_B");
+    //    }
+    //}
+    private bool isSKeyPressed = false; // 's' 키가 눌렸는지 여부를 저장하는 변수
+
+    private void B_Step()
+    {
+        if (Input.GetKey(KeyCode.S))
+        {
+            isSKeyPressed = true;
+        }
+        else
+        {
+            isSKeyPressed = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && isSKeyPressed && !Move_B)
+        {
+           // Move_B = true;
+            animator.SetTrigger("Move_B");
+        }
+    }
+
+    private void L_Step()
+    {
+        if (Input.GetKey(KeyCode.A))
+        {
+            isSKeyPressed = true;
+        }
+        else
+        {
+            isSKeyPressed = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && isSKeyPressed && !Move_L)
+        {
+            //Move_L = true;
+            animator.SetTrigger("Move_L");
+            print("aaaa");
+        }
+    }
+
+    private void R_Step()
+    {
+        if (Input.GetKey(KeyCode.D))
+        {
+            isSKeyPressed = true;
+        }
+        else
+        {
+            isSKeyPressed = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && isSKeyPressed && !Move_R)
+        {
+            //Move_R = true;
+            animator.SetTrigger("Move_R");
+        }
+    }
 }
+
+
+
+

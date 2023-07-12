@@ -9,7 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100194, guid: 7617ab93bfcecf24194459b5e0abd33f, type: 3}
       propertyPath: m_Name
-      value: Knight3_basemesh
+      value: Knight3_basemesh Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 400194, guid: 7617ab93bfcecf24194459b5e0abd33f, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400194, guid: 7617ab93bfcecf24194459b5e0abd33f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -24,6 +28,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400194, guid: 7617ab93bfcecf24194459b5e0abd33f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400194, guid: 7617ab93bfcecf24194459b5e0abd33f, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -33,14 +41,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400194, guid: 7617ab93bfcecf24194459b5e0abd33f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400194, guid: 7617ab93bfcecf24194459b5e0abd33f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400194, guid: 7617ab93bfcecf24194459b5e0abd33f, type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400194, guid: 7617ab93bfcecf24194459b5e0abd33f, type: 3}

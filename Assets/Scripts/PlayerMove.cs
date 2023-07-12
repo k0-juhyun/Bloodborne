@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     CharacterController cc;
-    bool isRolling = false;
+    bool Step_b = false;
     private Animator ani;
    
     
@@ -19,20 +19,20 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Roll();
+        Step();
     }
-    private void Roll()
+    private void Step()
     {
-        if (Input.GetKeyDown(KeyCode.Space)&&!isRolling)
+        if (Input.GetKeyDown(KeyCode.Space)&&!Step_b)
         {
-            isRolling = true;
-            ani.SetTrigger("isRolling");
+            Step_b = true;
+            ani.SetTrigger("Step_b");
         }
     }
 
     private void OnRollAnimationComplete()
     {
-        isRolling = false;
+        Step_b = false;
     }
          
 }
