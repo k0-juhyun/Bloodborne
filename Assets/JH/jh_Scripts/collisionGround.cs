@@ -13,7 +13,7 @@ public class collisionGround : MonoBehaviour
     }
     private void OnCollisionEnter(Collision coll)
     {
-        if (coll.collider.CompareTag("Hand") && bossAI.attackInProgress)
+        if (coll.collider.CompareTag("Hand") && bossAI.attackInProgress && bossAI.groundHit)
         {
             cameraShake.Instance.normalShake = true;
 

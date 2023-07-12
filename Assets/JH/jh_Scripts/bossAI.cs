@@ -37,7 +37,7 @@ public class bossAI : MonoBehaviour
     private bool isSpecialPattern1Active = false;
     private bool isSpecialPattern1InProgress = false;
     private bool pattern1;
-
+    static public bool groundHit;
     #endregion
 
     #region StateMachine
@@ -296,6 +296,16 @@ public class bossAI : MonoBehaviour
 
 
     #region AnimEventFun
+    // Ground Hit
+    private void GroundHitTrue()
+    {
+        groundHit = true;
+    }
+
+    private void GroundHitFalse()
+    {
+        groundHit = false;
+    }
 
     // Special Pattern1
     private IEnumerator SpecialPattern1AnimStart()

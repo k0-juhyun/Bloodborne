@@ -15,9 +15,13 @@ public class bossFov : MonoBehaviour
     void Start()
     {
         bossTr = GetComponent<Transform>();
+
         playerTr = GameObject.FindGameObjectWithTag("Player").transform;
+
         playerLayer = LayerMask.NameToLayer("Player");
+
         obstacleLayer = LayerMask.NameToLayer("Obstacle");
+
         layerMask = 1 << playerLayer | 1 << obstacleLayer;
     }
 
@@ -32,11 +36,8 @@ public class bossFov : MonoBehaviour
     {
         bool isTrace = false;
 
-        // 추적 범위 안에서 주인공 캐릭터 확인
-        Collider[] colls = Physics.OverlapSphere(bossTr.position
-                                                , viewRange
-                                                , 1 << playerLayer);
-        // 플레이어가 범위에 있을때
+        Collider[] colls = Physics.OverlapSphere(bossTr.position, viewRange, 1 << playerLayer);
+
         if(colls.Length == 1) 
         {
             Vector3 dir = (playerTr.position - bossTr.position).normalized;
@@ -53,15 +54,16 @@ public class bossFov : MonoBehaviour
     public bool isViewPlayer()
     {
         bool isView = false;
+
         RaycastHit hit;
 
-        // 보스와 플레이어 사이의 방향벡터 계산
         Vector3 dir = (playerTr.position - bossTr.position).normalized;
 
         if(Physics.Raycast(bossTr.position,dir, out hit, viewRange, layerMask)) 
         {
             isView = (hit.collider.CompareTag("Player"));
         }
+
         return isView;
     }
 }
