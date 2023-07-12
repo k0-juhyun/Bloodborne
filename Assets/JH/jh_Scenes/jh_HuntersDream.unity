@@ -12141,7 +12141,7 @@ MonoBehaviour:
   postProcessVolume: {fileID: 1288294526903337329}
   stateMachine: 0
   attackSubStateMachine: 0
-  AttackRange: 5.5
+  AttackRange: 5
   AttackDamage: 10
   maxHp: 100
   curHp: 0
@@ -27154,7 +27154,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1.5
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 1000
