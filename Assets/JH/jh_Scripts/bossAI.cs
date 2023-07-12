@@ -415,10 +415,9 @@ public class bossAI : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter(Collision coll)
+    private void OnTriggerEnter(Collider other)
     {
-        if (coll.collider.tag == ("Weapone") && PlayerAttack.P_Attack 
-            && !isReact && !isSpecialPattern1InProgress)
+        if (other.tag == "Weapone" && PlayerAttack.P_Attack && !isReact && !isSpecialPattern1InProgress)
         {
             // Reduction
             curHp -= AttackDamage;
@@ -471,9 +470,21 @@ public class bossAI : MonoBehaviour
             AnimatorTrigger(reactAnimation);
 
             // Load Blood Effect Particle System
-            LoadBloodEffect(coll);
+            LoadBloodEffect(other);
         }
     }
+
+    private void LoadBloodEffect(Collider collider)
+    {
+        Vector3 pos = collider.ClosestPointOnBounds(transform.position);
+        Vector3 normal = transform.position - collider.transform.position;
+
+        Quaternion rot = Quaternion.FromToRotation(-Vector3.forward, normal);
+        GameObject blood = Instantiate<GameObject>(bloodEffect, pos, rot);
+        Destroy(blood, 1.0f);
+    }
+
+
     protected virtual void WhichDirectionDamageCameFrom(float direction)
     {
         // Front
@@ -493,15 +504,6 @@ public class bossAI : MonoBehaviour
     }
 
     // Load Blood Effect From Resources
-    private void LoadBloodEffect(Collision coll)
-    {
-        Vector3 pos = coll.contacts[0].point;
-        Vector3 _normal = coll.contacts[0].normal;
-
-        Quaternion rot = Quaternion.FromToRotation(-Vector3.forward, _normal);
-        GameObject blood = Instantiate<GameObject>(bloodEffect, pos, rot);
-        Destroy(blood, 1.0f);
-    }
 
     private void LoadDieEffect()
     {
