@@ -42,7 +42,7 @@ TagManager:
   - 
   - Ground
   - SpecialEffect
-  - 
+  - Scene
   m_SortingLayers:
   - name: Default
     uniqueID: 0

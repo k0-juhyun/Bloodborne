@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Rendering.PostProcessing;
-using static UnityEditor.PlayerSettings;
 
 public class bossAI : MonoBehaviour
 {
@@ -427,7 +426,7 @@ public class bossAI : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Weapone" && PlayerAttack.P_Attack && !isReact && !isSpecialPattern1InProgress)
+        if (other.tag == "Weapone" && TPSChraracterController.instance.isAttack && !isReact && !isSpecialPattern1InProgress)
         {
             // Reduction
             curHp -= AttackDamage;
