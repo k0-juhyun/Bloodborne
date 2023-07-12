@@ -15,6 +15,7 @@ public class TPSChraracterController : MonoBehaviour
     [SerializeField]
     private Transform cameraArm;
 
+    public float playerSpeed;
 
 
 
@@ -109,7 +110,7 @@ public class TPSChraracterController : MonoBehaviour
             Vector3 moveDir = lookForward * moveInput.y + lookRight * moveInput.x;
 
             characterBody.forward = moveDir;
-            transform.position += moveDir * Time.deltaTime * 7f;
+            transform.position += moveDir * Time.deltaTime * playerSpeed;
         }
 
 
@@ -127,11 +128,12 @@ public class TPSChraracterController : MonoBehaviour
             characterBody.LookAt(LockOnTransform);
 
             //Ä«¸Þ¶ó ÁÜÀÎ¾Æ¿ô
-            float distance = Vector3.Distance(Player.position, Boss.position);
-            float zoomLevel = Mathf.InverseLerp(minDist, maxDist, distance);
+            //float distance = Vector3.Distance(Player.position, Boss.position);
+            //float zoomLevel = Mathf.InverseLerp(minDist, maxDist, distance);
+
             // Field of view View ¹Ù²Þ
-            float targetFOV = Mathf.Lerp(35f, 100f, zoomLevel);
-            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetFOV, Time.deltaTime * zoomSpeed);
+            //float targetFOV = Mathf.Lerp(35f, 100f, zoomLevel);
+            //Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetFOV, Time.deltaTime * zoomSpeed);
 
             //transform.LookAt(enemy);
 
@@ -148,7 +150,6 @@ public class TPSChraracterController : MonoBehaviour
 
     private void Attack()
     {
-        isAttack = true;
         animator.SetTrigger("isAttack");
 
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackRadius);
@@ -164,6 +165,16 @@ public class TPSChraracterController : MonoBehaviour
                 }
             }
         }
+    }
+
+    void AttackTrue()
+    {
+        isAttack = true;
+    }
+
+    void AttackFalse()
+    {
+        isAttack = false;
     }
 
    

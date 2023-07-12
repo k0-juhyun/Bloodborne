@@ -9,7 +9,6 @@ TagManager:
   - p_Weapon
   - Hand
   - Boss
-  - Melee
   layers:
   - Default
   - TransparentFX
