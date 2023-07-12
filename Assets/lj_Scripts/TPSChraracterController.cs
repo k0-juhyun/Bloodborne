@@ -120,24 +120,24 @@ public class TPSChraracterController : MonoBehaviour
     private void LockOn()
     {
         //마우스 오른쪽 버튼을 눌렀을 때 
-        if (Input.GetButton("Fire2"))
-        {
-            //카메라와 player를 enemy에게 lookat 한다
-            transform.LookAt(LockOnTransform);
+        //if (Input.GetButton("Fire2"))
+        //{
+        //    //카메라와 player를 enemy에게 lookat 한다
+        //    transform.LookAt(LockOnTransform);
 
-            characterBody.LookAt(LockOnTransform);
+        //    characterBody.LookAt(LockOnTransform);
 
-            //카메라 줌인아웃
-            //float distance = Vector3.Distance(Player.position, Boss.position);
-            //float zoomLevel = Mathf.InverseLerp(minDist, maxDist, distance);
+        //    //카메라 줌인아웃
+        //    //float distance = Vector3.Distance(Player.position, Boss.position);
+        //    //float zoomLevel = Mathf.InverseLerp(minDist, maxDist, distance);
 
-            // Field of view View 바꿈
-            //float targetFOV = Mathf.Lerp(35f, 100f, zoomLevel);
-            //Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetFOV, Time.deltaTime * zoomSpeed);
+        //    // Field of view View 바꿈
+        //    //float targetFOV = Mathf.Lerp(35f, 100f, zoomLevel);
+        //    //Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetFOV, Time.deltaTime * zoomSpeed);
 
-            //transform.LookAt(enemy);
+        //    //transform.LookAt(enemy);
 
-        }
+        //}
 
     }
     private Vector3 GetCenterPoint()
