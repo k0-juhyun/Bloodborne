@@ -18,7 +18,7 @@ public class Test : MonoBehaviour
     {
         currentHealth = maxHealth;
         animator = GetComponent<Animator>();
-        healthSlider.maxValue = maxHealth; // 슬라이더의 최대값 설정
+        //healthSlider.maxValue = maxHealth; // 슬라이더의 최대값 설정
         healthSlider.value = currentHealth; // 슬라이더의 현재값 설정
     }
 

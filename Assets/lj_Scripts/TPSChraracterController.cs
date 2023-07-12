@@ -28,13 +28,13 @@ public class TPSChraracterController : MonoBehaviour
     public float attackDamage = 10f;  // 공격력
 
 
-    public Transform Object1;
-    public Transform Object2;
+    public Transform Player;
+    public Transform Boss;
+
     private float Dist;
     public float zoomSpeed = 10;
     public float minDist = 5;
     public float maxDist = 10;
-    public Transform enemy;
 
     bool Move_B = false;
     bool Move_L = false;
@@ -127,7 +127,7 @@ public class TPSChraracterController : MonoBehaviour
             characterBody.LookAt(LockOnTransform);
 
             //카메라 줌인아웃
-            float distance = Vector3.Distance(Object1.position, Object2.position);
+            float distance = Vector3.Distance(Player.position, Boss.position);
             float zoomLevel = Mathf.InverseLerp(minDist, maxDist, distance);
             // Field of view View 바꿈
             float targetFOV = Mathf.Lerp(35f, 100f, zoomLevel);
@@ -141,7 +141,7 @@ public class TPSChraracterController : MonoBehaviour
     private Vector3 GetCenterPoint()
     {
         // 두 오브젝트의 중심점 계산
-        Vector3 centerPoint = (Object1.position + Object2.position) / 2f;
+        Vector3 centerPoint = (Player.position + Boss.position) / 2f;
 
         return centerPoint;
     }
@@ -154,7 +154,7 @@ public class TPSChraracterController : MonoBehaviour
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackRadius);
         foreach (Collider hitCollider in hitColliders)
         {
-            if (hitCollider.CompareTag("Enemy"))
+            if (hitCollider.CompareTag("Boss"))
             {
                 // 적에게 데미지를 입히는 코드를 작성하세요.
                 Enemy enemyHealth = hitCollider.GetComponent<Enemy>();
