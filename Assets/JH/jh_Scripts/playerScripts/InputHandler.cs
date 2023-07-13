@@ -12,6 +12,9 @@ namespace JH
         public float mouseX;
         public float mouseY;
 
+        public bool b_Input;
+        public bool rollFlag;
+
         PlayerControls inputActions;
         CameraHandler cameraHandler;
 
@@ -62,6 +65,14 @@ namespace JH
             moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal) + Mathf.Abs(vertical));
             mouseX = cameraInput.x;
             mouseY = cameraInput.y;
+        }
+
+        public void HandleRollInput(float delta)
+        {
+            if(b_Input)
+            {
+                rollFlag = true;
+            }
         }
     }
 }
