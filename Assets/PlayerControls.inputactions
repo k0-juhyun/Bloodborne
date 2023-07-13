@@ -1,14 +1,14 @@
 {
-    "name": "PlayerControlls",
+    "name": "PlayerControls",
     "maps": [
         {
             "name": "Player Movement",
-            "id": "966dacb6-957e-4178-8322-7ba701a03cbc",
+            "id": "942be6a8-19e8-40aa-9890-118ca348a3b4",
             "actions": [
                 {
                     "name": "Movement",
                     "type": "PassThrough",
-                    "id": "21ce028d-ae9a-4e59-91b7-2ce416ccfeec",
+                    "id": "4f19f81a-fa1e-41e5-b7be-a38bd7da4315",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -16,9 +16,9 @@
                 },
                 {
                     "name": "Camera",
-                    "type": "Button",
-                    "id": "fbbc6b4e-3bd9-4a7e-bbe5-7498b31386cf",
-                    "expectedControlType": "Button",
+                    "type": "PassThrough",
+                    "id": "863194fa-cdfb-42b4-ad09-39c17cca758b",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -27,8 +27,8 @@
             "bindings": [
                 {
                     "name": "WASD",
-                    "id": "dfa957fc-b156-4de0-83be-2768250e0c15",
-                    "path": "2DVector(mode=2)",
+                    "id": "a4050d2b-1a78-4200-bf95-fd6f63d709b1",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -38,7 +38,7 @@
                 },
                 {
                     "name": "up",
-                    "id": "5956c861-4784-47d3-8806-afe7b11ca436",
+                    "id": "b65b2c9a-38cb-43c1-9292-ee49195b48d0",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
@@ -49,7 +49,7 @@
                 },
                 {
                     "name": "down",
-                    "id": "632fd673-a1ae-4f05-847b-bba886454c02",
+                    "id": "ac1a80a0-4e52-4660-9a13-d5a741ae12d5",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
@@ -60,18 +60,7 @@
                 },
                 {
                     "name": "left",
-                    "id": "ec923418-db01-4fc1-91ef-36cf2762295a",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "830113ad-6b21-43ff-86fe-b2db02857974",
+                    "id": "43de62f0-1571-4d72-8556-718397bf8a5b",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
@@ -81,9 +70,31 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "right",
+                    "id": "6d4518e9-5965-4e4e-b33c-0142e2d9538b",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
-                    "id": "cfbdd412-7627-4433-ba6e-3ef2ebab51b3",
-                    "path": "<Gamepad>/rightStick/right",
+                    "id": "14cc9a61-c0ef-4956-989c-0dbdade0ba8b",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Camera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6ac9e6ea-e375-4145-a97b-32582acf3080",
+                    "path": "<Mouse>/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

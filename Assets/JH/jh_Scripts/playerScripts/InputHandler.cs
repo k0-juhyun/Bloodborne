@@ -11,9 +11,8 @@ namespace JH
         public float moveAmount;
         public float mouseX;
         public float mouseY;
-        public float rotSpeed = 20f;
 
-        PlayerControlls inputActions;
+        PlayerControls inputActions;
         CameraHandler cameraHandler;
 
         Vector2 movementInput;
@@ -24,23 +23,12 @@ namespace JH
             cameraHandler = CameraHandler.instance;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             float delta = Time.deltaTime;
 
-            float mx = Input.GetAxis("Mouse X");
-            float my = Input.GetAxis("Mouse Y");
-
-            mouseX += my * rotSpeed * Time.deltaTime;
-            mouseY += mx * rotSpeed * Time.deltaTime;
-
-            mouseX = Mathf.Clamp(mouseX, -75, 75);
-
-            transform.eulerAngles = new Vector3(-mouseX, mouseY, 0);
-
             if (cameraHandler != null)
             {
-                print("camera");
                 cameraHandler.FollowTarget(delta);
                 cameraHandler.HandleCameraRotation(delta, mouseX, mouseY);
             }
@@ -49,7 +37,7 @@ namespace JH
         {
             if(inputActions == null)
             {
-                inputActions = new PlayerControlls();
+                inputActions = new PlayerControls();
                 inputActions.PlayerMovement.Movement.performed += inputActions => movementInput = inputActions.ReadValue<Vector2>();
                 inputActions.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
             }
@@ -69,7 +57,7 @@ namespace JH
 
         private void MoveInput(float delta)
         {
-            horizontal = movementInput.x;
+            horizontal = -movementInput.x;
             vertical = movementInput.y;
             moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal) + Mathf.Abs(vertical));
             mouseX = cameraInput.x;
