@@ -426,7 +426,7 @@ public class bossAI : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Weapone" && TPSChraracterController.instance.isAttack && !isReact && !isSpecialPattern1InProgress)
+        if (other.tag == "Weapone" && /*TPSChraracterController.instance.isAttack &&*/ !isReact && !isSpecialPattern1InProgress)
         {
             // Reduction
             curHp -= AttackDamage;
