@@ -73,7 +73,7 @@ public class BossAlpha : MonoBehaviour
 
     float currDistance;                        // 현재 거리
     [Header("거리")]
-    public float attackDistance = 10f;         // 공격시작 거리
+    public float attackDistance = 8f;         // 공격시작 거리
     public float hitDistance = 5f;             // 피격 거리
     public float avoidDistance = 5f;           // 회피 거리
     public float moveDis = 5f;                 // 공격 이동거리
@@ -197,12 +197,12 @@ public class BossAlpha : MonoBehaviour
         }
     }
 
-    
+
 
     private void UpdateIdle()           // 공격이 끝나면 idle 상태로 옴
     {
         isAvoid = false;
-        
+
         // 만약 현재 거리가 공격 가능 거리보다 크다면
         if (currDistance > attackDistance)
         {
@@ -251,6 +251,7 @@ public class BossAlpha : MonoBehaviour
         // 낫공격3으로 상태 변화시킨다 (랜덤 뽑기 나중에)
         bossState = BossPatternState.SickelCombo3;
         print("SickelCombo3");
+        FindMoveTargetPos();
     }
 
     private void SickelC2()
@@ -258,11 +259,7 @@ public class BossAlpha : MonoBehaviour
         // 낫공격2으로 상태 변화시킨다 (랜덤 뽑기 나중에)
         bossState = BossPatternState.SickelCombo2;
         print("SickelCombo2");
-        moveDir = transform.forward;
-        // 거리는 플레이어 움직임 속도 보면서 결정하기
-        moveDis = 5f;
-        // 이동 목적지
-        moveTargetPos = transform.position + moveDir * moveDis;
+        FindMoveTargetPos();
     }
 
     private void SickelC1()
@@ -270,13 +267,18 @@ public class BossAlpha : MonoBehaviour
         // 낫공격1으로 상태 변화시킨다 (랜덤 뽑기 나중에)
         bossState = BossPatternState.SickelCombo1;
         print("SickelCombo1");
+        FindMoveTargetPos();
+    }
+
+    // 이동 목적지 찾기 함수
+    private void FindMoveTargetPos()
+    {
         moveDir = transform.forward;
+        // 거리는 플레이어 움직임 속도 보면서 결정하기
         moveDis = 5f;
         // 이동 목적지
         moveTargetPos = transform.position + moveDir * moveDis;
     }
-
-
 
     private void UpdateMove()
     {
@@ -420,7 +422,7 @@ public class BossAlpha : MonoBehaviour
             bossHP.HP -= damage;
             print(bossHP.HP);
             // 피격 1 애니메이션을 실행한다
-            anim.SetTrigger("Hit1");
+            //anim.SetTrigger("Hit1");
             isHitted = true;
 
 
@@ -480,7 +482,7 @@ public class BossAlpha : MonoBehaviour
                         // 서브상태를 액션 2로 바꾼다
                         sickelSubState = SickelSubState.Attack2;
                         // 애니메이션 재생
-
+                        anim.SetTrigger("Attack2");
                         print("com1_attack_move");
                     }
                 }
@@ -489,10 +491,21 @@ public class BossAlpha : MonoBehaviour
                 if (curTime > skTime_Sickel1_2)
                 {
                     print("SubState : Attack2");
+                    // 플레이어의 오른쪽으로 이동한다
+                    // 항상 플레이어의 오른쪽 인지 아닌지를 모르겠어...~!~~!!!그자리에서 움직이는 건가????
+                    // 이동방향
+                    Vector3 attackdir = transform.forward + player.transform.right;
+                    attackdir.Normalize();
+
+                    Vector3 attackMovePos = transform.position + attackdir * 100 * Time.deltaTime;
+
+                    transform.position = Vector3.Lerp(transform.position, attackMovePos, 0.1f);
 
                     sickelSubState = SickelSubState.Attack3;
                     // 애니메이션 재생
+                    anim.SetTrigger("Attack1");
 
+                    //transform.position += attackdir * 50 * Time.deltaTime;
                 }
                 break;
             case SickelSubState.Attack3:
@@ -501,26 +514,144 @@ public class BossAlpha : MonoBehaviour
                     print("SubState : Attack3");
                     curTime = 0;
                     // 현재 거리가 공격시 이동 거리보다 작으면 그만큼 뒤로 이동하게 해야하나??? **교체,수정
-
+                    // 프로토타입용, 콤보 2로 넘어가는 조건, 수정용, 순서대로 호출
+                    isCombo1done = true;
                     bossState = BossPatternState.Idle;
                     // 애니메이션 재생
                     anim.SetTrigger("Idle");
                     sickelSubState = SickelSubState.Attack1;
                 }
                 break;
-            default:
+        }
+    }
+
+
+    private void UpdateSickelCombo2()
+    {
+        curTime += Time.deltaTime;
+        switch (sickelSubState)
+        {
+            case SickelSubState.Attack1:
+                if (curTime > skTime_Sickel1_1)
+                {
+                    //print("C2A1");
+                    // 앞으로 이동하고 싶다
+                    moveTargetPos.y = transform.position.y;
+                    transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
+                    if (Vector3.Distance(transform.position, moveTargetPos) < 0.1f)
+                    {
+                        // 서브상태를 액션 2로 바꾼다
+                        sickelSubState = SickelSubState.Attack2;
+                        // 애니메이션 재생
+                        anim.SetTrigger("Attack3");
+                        print("com2_attack_move");
+                    }
+
+                }
+                break;
+            case SickelSubState.Attack2:
+                if (curTime > skTime_Sickel1_2)
+                {
+
+                    // 한번 더 앞으로 이동
+                    // 정해진 거리가 아니라 플레이어 위치까지인거 같은데...하..
+                    if (isMoveTargetPos == false)
+                    {
+                        moveDir = transform.forward;
+                        // 거리는 플레이어 움직임 속도 보면서 결정하기
+                        moveDis = 5f;
+                        // 이동 목적지
+                        moveTargetPos = transform.position + moveDir * moveDis;
+                        isMoveTargetPos = true;
+                    }
+                    //print("C2A2");
+                    // 앞으로 이동하고 싶다
+                    moveTargetPos.y = transform.position.y;
+                    transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
+                    if (Vector3.Distance(transform.position, moveTargetPos) < 0.1f)
+                    {
+
+                        // 서브상태를 액션 3로 바꾼다
+                        sickelSubState = SickelSubState.Attack3;
+                        // 애니메이션 재생
+                        anim.SetTrigger("Attack4");
+                        print("com2_attack_move");
+                    }
+
+                }
+                break;
+            case SickelSubState.Attack3:
+                if (curTime > skTime_Sickel1_3)
+                {
+                    print("C2A3");
+
+                    // 애니메이션 재생
+                    anim.SetTrigger("Attack5");
+                    // 프로토타입용, 콤보 3로 넘어가는 조건, 수정용, 순서대로 호출
+                    isCombo2done = true;
+                    isMoveTargetPos = false;
+                    curTime = 0;
+                    bossState = BossPatternState.Idle;
+                    anim.SetTrigger("Idle");
+                    sickelSubState = SickelSubState.Attack1;
+                }
                 break;
         }
     }
 
-    private void UpdateSickelCombo2()
-    {
-
-    }
-
     private void UpdateSickelCombo3()
     {
+        curTime += Time.deltaTime;
+        switch (sickelSubState)
+        {
+            case SickelSubState.Attack1:
+                if (curTime > skTime_Sickel1_1)
+                {
+                    // 앞으로 이동하면서
+                    // 이동할때 서서오니까 이상한데...
+                    // 부울을 만들어서 켜고 끄자
 
+                    // 360 낫을 휘두르는 애니메이션을 한다
+                    moveTargetPos.y = transform.position.y;
+                    transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
+                    if (Vector3.Distance(transform.position, moveTargetPos) < 0.1f)
+                    {
+                        // 서브상태를 액션 2로 바꾼다
+                        sickelSubState = SickelSubState.Attack2;
+                        // 애니메이션 재생
+                        anim.SetTrigger("Attack6");
+                        print("com3_attack_move");
+                    }
+                }
+                break;
+            case SickelSubState.Attack2:
+                if (curTime > skTime_Sickel1_2)
+                {
+                    // 서브상태를 액션 3로 바꾼다
+                    sickelSubState = SickelSubState.Attack3;
+                    // 애니메이션 재생
+                    // 낫이 360 도 돌아가는 게 있어야하는데...없네
+                    print("com3_attack_Rdu");
+                }
+                break;
+            case SickelSubState.Attack3:
+                if (curTime > skTime_Sickel1_3)
+                {
+                    print("C3A3");
+
+                    // 프로토타입용, 콤보 3로 넘어가는 조건, 수정용, 순서대로 호출
+                    curTime = 0;
+                    isCombo1done = false;
+                    isCombo2done = false;
+                    isMoveTargetPos = false;
+                    bossState = BossPatternState.Idle;
+                    // 애니메이션 재생
+                    anim.SetTrigger("Idle");
+                    sickelSubState = SickelSubState.Attack1;
+                    print("3 > idle");
+                }
+                break;
+        }
     }
 
     private void UpdateDie()
@@ -553,3 +684,4 @@ public class BossAlpha : MonoBehaviour
         Gizmos.DrawLine(from, to);
     }
 }
+

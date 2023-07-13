@@ -1332,7 +1332,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 220283757}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.050555706, y: 1.1665105, z: 0.43325114}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10959,6 +10959,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2028025682}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1465082087 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3771423688925570785, guid: 36f2f94af5cb20f4abec385ddb01fd02,
+    type: 3}
+  m_PrefabInstance: {fileID: 1650071073}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1467823100
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20337,14 +20343,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4845411877901490902}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: -0.050555706, y: -1.1665105, z: -0.43325114}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 220283758}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!1 &2103738214039583850
 GameObject:
   m_ObjectHideFlags: 0
@@ -24008,14 +24014,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2510049175386376438}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: -0.050555706, y: -1.1665105, z: -0.43325114}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 220283758}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!64 &6358518839140716027
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -24354,7 +24360,7 @@ MonoBehaviour:
   bossState: 0
   bossPhase: 0
   sickelSubState: 0
-  player: {fileID: 1288294525552345970}
+  player: {fileID: 1465082087}
   rayPos: {fileID: 659538826}
   sickle: {fileID: 220283757}
   blade: {fileID: 688185976}
@@ -24363,7 +24369,7 @@ MonoBehaviour:
   attack1damage: 1
   attack2damage: 2
   attack3damage: 3
-  attackDistance: 10
+  attackDistance: 8
   hitDistance: 5
   avoidDistance: 5
   moveDis: 5
