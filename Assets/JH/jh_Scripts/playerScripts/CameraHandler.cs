@@ -13,7 +13,7 @@ public class CameraHandler : MonoBehaviour
     public Transform cameraPivotTransform;
     private Transform myTransform;
     private Transform cameraTransformPosition;
-    private LayerMask ignoreLayer;
+    private LayerMask ignoreLayers;
     #endregion
 
     #region Speed
@@ -35,7 +35,7 @@ public class CameraHandler : MonoBehaviour
         instance = this;
         myTransform = transform;
         defaultPosition = cameraPivotTransform.localPosition.z;
-        ignoreLayer = ~(1 << 8 | 1 << 9 | 1 << 10);
+        //ignoreLayers = ~(1 << 8 | 1 << 9 | 1 << 10);
     }
 
     public void FollowTarget(float delta)

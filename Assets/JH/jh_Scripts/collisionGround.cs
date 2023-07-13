@@ -15,7 +15,7 @@ public class collisionGround : MonoBehaviour
     {
         if (coll.collider.CompareTag("Hand") && bossAI.attackInProgress && bossAI.groundHit)
         {
-            cameraShake.Instance.normalShake = true;
+            //cameraShake.Instance.normalShake = true;
 
             Vector3 pos = coll.contacts[0].point;
 
