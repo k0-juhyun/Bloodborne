@@ -24,12 +24,14 @@ public class cameraShake : MonoBehaviour
 
     void Start()
     {
-        startPosition = transform.position;
+   
     }
 
     private void Update()
     {
-        if(specialShake)
+        startPosition = transform.position;
+
+        if (specialShake)
         {
             ShakeCameraOnSpecial(0.1f,1f);
         }

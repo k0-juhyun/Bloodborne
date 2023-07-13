@@ -8,7 +8,7 @@ public class TPSChraracterController : MonoBehaviour
     public static TPSChraracterController instance;
     private void Awake()
     {
-        instance = this; 
+        instance = this;
     }
     [SerializeField]
     private Transform characterBody;
@@ -43,7 +43,7 @@ public class TPSChraracterController : MonoBehaviour
     bool isMove = false;
 
     private int attackCount = 0;
-   
+
 
 
 
@@ -59,7 +59,7 @@ public class TPSChraracterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        LookAround();
+        // LookAround();
         Move();
         LockOn();
         if (Input.GetButtonDown("Fire1"))
@@ -177,7 +177,7 @@ public class TPSChraracterController : MonoBehaviour
         isAttack = false;
     }
 
-   
+
     private bool isSKeyPressed = false; // 's' 키가 눌렸는지 여부를 저장하는 변수
 
     private void B_Step()
@@ -193,7 +193,7 @@ public class TPSChraracterController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && isSKeyPressed && !Move_B)
         {
-           // Move_B = true;
+            // Move_B = true;
             animator.SetTrigger("Move_B");
         }
     }
