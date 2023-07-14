@@ -61,7 +61,8 @@ public class BossAlpha : MonoBehaviour
     Vector3 moveDir;                    // 움직임 방향
     Vector3 targetPos;                  // 회피 목적지
     Vector3 moveTargetPos;              // 공격시 이동 목적지
-
+    Vector3 attackdir;
+    Vector3 attackMovePos;
 
     int damage = 2;                         // 데미지 (플레이어한테 어떤 공격인지 상태를 받아오기, 공격에 따라 다른 데미지를 구현)
     public int hitCount = 0;                   // 피격 횟수 (맞은 횟수)
@@ -81,6 +82,7 @@ public class BossAlpha : MonoBehaviour
     [Header("속도")]
     public float moveSpeed = 1f;               // 이동 속도
     public float dashSpeed = 10f;              // 대시 속도
+    public float attackMoveSpeed = 5f;         // 공격 이동 속도
 
 
     [Header("시간")]
@@ -100,6 +102,7 @@ public class BossAlpha : MonoBehaviour
     public bool isCombo3done = false;                   // 프로토타입용 낫패턴 3
     public bool isMoveTargetPos = false;                // SC2_a2 이동 계산용 상태확인
     public bool isGehrmanDie = false;                   // 죽음 상태 확인
+    public bool a = false;
 
 
     // Start is called before the first frame update
@@ -471,14 +474,16 @@ public class BossAlpha : MonoBehaviour
             case SickelSubState.Attack1:
                 if (curTime > skTime_Sickel1_1)
                 {
+                    anim.SetBool("Leg", true);
                     print("SubState : Attack1");
                     // 앞으로 이동하고 싶다
                     moveTargetPos.y = transform.position.y;
                     transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
+                    
                     //print("moveTargetPos :" + moveTargetPos);
                     if (Vector3.Distance(transform.position, moveTargetPos) < 1f)
                     {
-
+                        anim.SetBool("Leg", false);
                         // 서브상태를 액션 2로 바꾼다
                         sickelSubState = SickelSubState.Attack2;
                         // 애니메이션 재생
@@ -496,14 +501,33 @@ public class BossAlpha : MonoBehaviour
                     // 이동방향
                     Vector3 attackdir = transform.forward + player.transform.right;
                     attackdir.Normalize();
+                    // 한번만 계산하기
+                    Vector3 attackMovePos = player.transform.position + player.transform.right * 2;
+                    //if (a == false)
+                    //{
+                    //    print("현재위치 :" + transform.position);
+                    //    // 이동방향
+                    //    Vector3 attackdir = transform.forward + player.transform.right;
+                    //    attackdir.Normalize();
+                    //    // 한번만 계산하기
+                    //    Vector3 attackMovePos = player.transform.position + player.transform.right * 2;
+                    //    a = true;
+                    //    print("11111 : " + attackMovePos);
 
-                    Vector3 attackMovePos = transform.position + attackdir * 100 * Time.deltaTime;
-
+                    //}
+                    anim.SetBool("Leg", true);
+                    attackMovePos.y = transform.position.y;
                     transform.position = Vector3.Lerp(transform.position, attackMovePos, 0.1f);
-
-                    sickelSubState = SickelSubState.Attack3;
-                    // 애니메이션 재생
-                    anim.SetTrigger("Attack1");
+                    
+                    //print("현재위치2 :" + transform.position);
+                    if (Vector3.Distance(transform.position, attackMovePos) < 1f)
+                    {
+                        anim.SetBool("Leg", false);
+                        sickelSubState = SickelSubState.Attack3;
+                        // 애니메이션 재생
+                        anim.SetTrigger("Attack1");
+                    }
+                        
 
                     //transform.position += attackdir * 50 * Time.deltaTime;
                 }
@@ -516,6 +540,7 @@ public class BossAlpha : MonoBehaviour
                     // 현재 거리가 공격시 이동 거리보다 작으면 그만큼 뒤로 이동하게 해야하나??? **교체,수정
                     // 프로토타입용, 콤보 2로 넘어가는 조건, 수정용, 순서대로 호출
                     isCombo1done = true;
+                    //a = false;
                     bossState = BossPatternState.Idle;
                     // 애니메이션 재생
                     anim.SetTrigger("Idle");
@@ -535,15 +560,18 @@ public class BossAlpha : MonoBehaviour
                 if (curTime > skTime_Sickel1_1)
                 {
                     //print("C2A1");
+                    anim.SetBool("Leg", true);
                     // 앞으로 이동하고 싶다
                     moveTargetPos.y = transform.position.y;
-                    transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
+                    transform.position = Vector3.Lerp(transform.position, moveTargetPos, attackMoveSpeed * Time.deltaTime);
                     if (Vector3.Distance(transform.position, moveTargetPos) < 0.1f)
                     {
+                        
                         // 서브상태를 액션 2로 바꾼다
                         sickelSubState = SickelSubState.Attack2;
                         // 애니메이션 재생
                         anim.SetTrigger("Attack3");
+                        anim.SetBool("Leg", false);
                         print("com2_attack_move");
                     }
 
@@ -553,28 +581,31 @@ public class BossAlpha : MonoBehaviour
                 if (curTime > skTime_Sickel1_2)
                 {
 
+                    anim.SetBool("Leg", true);
                     // 한번 더 앞으로 이동
-                    // 정해진 거리가 아니라 플레이어 위치까지인거 같은데...하..
+                    // 정해진 거리가 아니라 플레이어 위치까지인거 같은데...
                     if (isMoveTargetPos == false)
                     {
-                        moveDir = transform.forward;
+                        moveDir = player.transform.forward;
                         // 거리는 플레이어 움직임 속도 보면서 결정하기
-                        moveDis = 5f;
+                        //moveDis = 5f;
                         // 이동 목적지
-                        moveTargetPos = transform.position + moveDir * moveDis;
+                        //moveTargetPos = transform.position + moveDir * moveDis;
+                        moveTargetPos = player.transform.position + moveDir * 1;
                         isMoveTargetPos = true;
                     }
                     //print("C2A2");
                     // 앞으로 이동하고 싶다
                     moveTargetPos.y = transform.position.y;
-                    transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
+                    transform.position = Vector3.Lerp(transform.position, moveTargetPos, attackMoveSpeed * Time.deltaTime);
                     if (Vector3.Distance(transform.position, moveTargetPos) < 0.1f)
                     {
-
+                        
                         // 서브상태를 액션 3로 바꾼다
                         sickelSubState = SickelSubState.Attack3;
                         // 애니메이션 재생
                         anim.SetTrigger("Attack4");
+                        anim.SetBool("Leg", false);
                         print("com2_attack_move");
                     }
 
@@ -609,17 +640,19 @@ public class BossAlpha : MonoBehaviour
                 {
                     // 앞으로 이동하면서
                     // 이동할때 서서오니까 이상한데...
-                    // 부울을 만들어서 켜고 끄자
+                    // 부울을 만들어서 켜고 끄자 굿
 
+                    anim.SetBool("Leg", true);
                     // 360 낫을 휘두르는 애니메이션을 한다
                     moveTargetPos.y = transform.position.y;
-                    transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
+                    transform.position = Vector3.Lerp(transform.position, moveTargetPos, attackMoveSpeed * Time.deltaTime);
                     if (Vector3.Distance(transform.position, moveTargetPos) < 0.1f)
                     {
                         // 서브상태를 액션 2로 바꾼다
                         sickelSubState = SickelSubState.Attack2;
                         // 애니메이션 재생
                         anim.SetTrigger("Attack6");
+                        anim.SetBool("Leg", false);
                         print("com3_attack_move");
                     }
                 }
