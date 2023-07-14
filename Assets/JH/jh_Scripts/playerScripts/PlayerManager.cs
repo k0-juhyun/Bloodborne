@@ -47,13 +47,13 @@ namespace JH
                 cameraHandler.FollowTarget(delta);
                 cameraHandler.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
             }
-            inputHandler.rollFlag = false;
-            inputHandler.rb_Input = false;
-            inputHandler.rt_Input = false;
         }
 
         private void LateUpdate()
         {
+            inputHandler.rollFlag = false;
+            inputHandler.rb_Input = false;
+            inputHandler.rt_Input = false;
         }
     }
 
