@@ -9,7 +9,7 @@ namespace JH
         WeaponHolderSlot leftHandSlot;
         WeaponHolderSlot rightHandSlot;
 
-        private void Start()
+        private void Awake()
         {
             WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
             foreach (WeaponHolderSlot weaponSlot in weaponHolderSlots)

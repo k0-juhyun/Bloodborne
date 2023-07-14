@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 0}
   itemName: Sword
-  modelPrefab: {fileID: 0}
-  isUnarmed: 0
+  modelPrefab: {fileID: 1560498931262035096, guid: 42255450ded902e47b9e18cf300726c2,
+    type: 3}
+  isUnarmed: 1
   Light_Attack1: 
   Heavy_Attack1: 
