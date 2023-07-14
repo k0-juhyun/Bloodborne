@@ -19762,7 +19762,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2760561151819706662}
-  m_Layer: 10
+  - component: {fileID: 2760561151819706663}
+  m_Layer: 9
   m_Name: scythe sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20751,7 +20752,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6358518839140716026}
   - component: {fileID: 1839083619515852124}
-  - component: {fileID: 6358518839140716027}
   m_Layer: 0
   m_Name: 24_+scythe.mesh0_1_16_16
   m_TagString: Untagged
@@ -21046,6 +21046,19 @@ Transform:
   m_Father: {fileID: 3279691185880301651}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2760561151819706663
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324283376528166918}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0035162761, y: 0.00638284, z: 0.012674056}
+  m_Center: {x: -0.00010081632, y: -0.0018085839, z: 0.0050497167}
 --- !u!33 &2766468836422544406
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -24142,20 +24155,6 @@ Transform:
   m_Father: {fileID: 220283758}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
---- !u!64 &6358518839140716027
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2510049175386376438}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &6385052608246632472
 GameObject:
   m_ObjectHideFlags: 0
@@ -24485,7 +24484,7 @@ MonoBehaviour:
   sickle: {fileID: 220283757}
   blade: {fileID: 688185976}
   gun: {fileID: 7342143708473758724}
-  hitCount: 0
+  hitCount: 1
   attack1damage: 1
   attack2damage: 2
   attack3damage: 3
@@ -24499,7 +24498,7 @@ MonoBehaviour:
   curTime: 0
   avoidcurTime: 0
   hitcurrTime: 0
-  hitTime: 2
+  hitTime: 5
   skTime_Sickel1_1: 1
   skTime_Sickel1_2: 2
   skTime_Sickel1_3: 3
@@ -24510,6 +24509,7 @@ MonoBehaviour:
   isCombo3done: 0
   isMoveTargetPos: 0
   isGehrmanDie: 0
+  a: 0
 --- !u!54 &6724778306941636922
 Rigidbody:
   m_ObjectHideFlags: 0

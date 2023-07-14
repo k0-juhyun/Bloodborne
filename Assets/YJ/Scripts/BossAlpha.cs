@@ -53,6 +53,7 @@ public class BossAlpha : MonoBehaviour
     public GameObject sickle;           // 무기
     public GameObject blade;            // 무기
     public GameObject gun;              // 무기
+    private GameObject bloodEffect;     // 피 프리팹
 
 
 
@@ -89,7 +90,7 @@ public class BossAlpha : MonoBehaviour
     public float curTime;                      // 현재 시간
     public float avoidcurTime;                 // 회피 시간
     public float hitcurrTime;                  // 현재 피격 시간
-    public float hitTime = 2f;                 // 피격 2 재생되는 시간
+    public float hitTime = 3f;                 // 피격 2 재생되는 시간 2 > 3
     public float skTime_Sickel1_1 = 1f;        // 낫 스킬1 1번 공격 시작 시간
     public float skTime_Sickel1_2 = 2f;        // 낫 스킬1 2번 공격 시작 시간
     public float skTime_Sickel1_3 = 3f;        // 낫 스킬3 3번 공격 시작 시간
@@ -110,11 +111,12 @@ public class BossAlpha : MonoBehaviour
     {
         instance = this;
         agent = GetComponent<NavMeshAgent>();                       // agent
-        //agent.isStopped = true;                                     // 이동 멈추기
+        //agent.isStopped = true;                                   // 이동 멈추기
         rid = GetComponent<Rigidbody>();                            // 리지드바디
         anim = GetComponent<Animator>();                            // 애니메이터 컴포턴트를 받아온다
         bossHP = GetComponent<BossHP>();                            // 보스 hp를 받아오자
         bossPhase = BossPhase.Phase1;                               // 시작시 보스 페이즈를 1로 설정한다
+        bloodEffect = Resources.Load<GameObject>("DAX_Blood_Spray_00(Fade_2s)");        // 블러드 이펙트 불러오기
     }
 
     // Update is called once per frame
@@ -149,6 +151,7 @@ public class BossAlpha : MonoBehaviour
         if (hitcurrTime >= hitTime)
         {
             // 피격 횟수를 초기화
+            //hitCount = 2;
             hitCount = 0;
         }
 
@@ -255,6 +258,7 @@ public class BossAlpha : MonoBehaviour
         bossState = BossPatternState.SickelCombo3;
         print("SickelCombo3");
         FindMoveTargetPos();
+        anim.SetBool("Leg", true);
     }
 
     private void SickelC2()
@@ -263,6 +267,7 @@ public class BossAlpha : MonoBehaviour
         bossState = BossPatternState.SickelCombo2;
         print("SickelCombo2");
         FindMoveTargetPos();
+        anim.SetBool("Leg", true);
     }
 
     private void SickelC1()
@@ -271,6 +276,7 @@ public class BossAlpha : MonoBehaviour
         bossState = BossPatternState.SickelCombo1;
         print("SickelCombo1");
         FindMoveTargetPos();
+        anim.SetBool("Leg", true);
     }
 
     // 이동 목적지 찾기 함수
@@ -297,6 +303,7 @@ public class BossAlpha : MonoBehaviour
 
             print("Move > Attack");
         }
+
     }
     // float a = 0;
     int avoidCount = 0;         // 프로토타입용
@@ -424,11 +431,14 @@ public class BossAlpha : MonoBehaviour
             // 어떤 공격인지에 따라 그 데미지만큼을 현재 체력에서 뺀다
             bossHP.HP -= damage;
             print(bossHP.HP);
-            // 피격 1 애니메이션을 실행한다
-            //anim.SetTrigger("Hit1");
+            if (hitCount == 1)
+            {
+                // 피격 1 애니메이션을 실행한다
+                anim.SetTrigger("Hit1");
+
+            }
+
             isHitted = true;
-
-
         }
 
         if (hitcurrTime > 1)
@@ -448,7 +458,15 @@ public class BossAlpha : MonoBehaviour
             print("피격2");
             // 히트 카운트를 0으로 한다
             hitCount = 0;
+            // 부울값을 넣어서 
+            // if문안에 트루일때를 만들어서
+            // 위를 실행
+            //isHitted = false;
         }
+
+        // 밖에서 부울값이 false이면 시간 증가
+        // 일정 시간이 증가하면
+        // 부울 값 모두 초기화
 
         // hit2 애니메이션이 끝나면 idle 상태로 돌린다(이벤트 함수로)
     }
@@ -458,6 +476,14 @@ public class BossAlpha : MonoBehaviour
     {
         // Idle상태로 한다
         bossState = BossPatternState.Idle;
+    }
+    
+    void AnimHitUp()
+    {
+        // Idle상태로 한다
+        bossState = BossPatternState.Idle;
+        // hit up 애니메이션 켠다
+        anim.SetTrigger("HitUp");
     }
 
 
@@ -474,7 +500,7 @@ public class BossAlpha : MonoBehaviour
             case SickelSubState.Attack1:
                 if (curTime > skTime_Sickel1_1)
                 {
-                    anim.SetBool("Leg", true);
+                    //anim.SetBool("Leg", true);
                     print("SubState : Attack1");
                     // 앞으로 이동하고 싶다
                     moveTargetPos.y = transform.position.y;
@@ -515,7 +541,7 @@ public class BossAlpha : MonoBehaviour
                     //    print("11111 : " + attackMovePos);
 
                     //}
-                    anim.SetBool("Leg", true);
+                    //anim.SetBool("Leg", true);
                     attackMovePos.y = transform.position.y;
                     transform.position = Vector3.Lerp(transform.position, attackMovePos, 0.1f);
                     
@@ -560,7 +586,7 @@ public class BossAlpha : MonoBehaviour
                 if (curTime > skTime_Sickel1_1)
                 {
                     //print("C2A1");
-                    anim.SetBool("Leg", true);
+                    //anim.SetBool("Leg", true);
                     // 앞으로 이동하고 싶다
                     moveTargetPos.y = transform.position.y;
                     transform.position = Vector3.Lerp(transform.position, moveTargetPos, attackMoveSpeed * Time.deltaTime);
@@ -642,7 +668,7 @@ public class BossAlpha : MonoBehaviour
                     // 이동할때 서서오니까 이상한데...
                     // 부울을 만들어서 켜고 끄자 굿
 
-                    anim.SetBool("Leg", true);
+                    //anim.SetBool("Leg", true);
                     // 360 낫을 휘두르는 애니메이션을 한다
                     moveTargetPos.y = transform.position.y;
                     transform.position = Vector3.Lerp(transform.position, moveTargetPos, attackMoveSpeed * Time.deltaTime);
@@ -699,15 +725,25 @@ public class BossAlpha : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // 만약 플레이어가 공격 상태이고, 플레이어의 무기와 충돌했을때
-        if (TPSChraracterController.instance.isAttack == true && other.gameObject.CompareTag("Weapon"))  //PlayerAttack.P_Attack == true
+        if (isHitted == false && TPSChraracterController.instance.isAttack == true && other.gameObject.CompareTag("Weapon"))  //PlayerAttack.P_Attack == true
         {
             // 보스 피격 상태로 전환
             bossState = BossPatternState.Hit;
             print("hittt");
-
+            LoadBloodEffect(other);
+            
         }
     }
 
+    private void LoadBloodEffect(Collider other)
+    {
+        Vector3 pos = other.ClosestPointOnBounds(transform.position);
+        Vector3 normal = transform.position - other.transform.position;
+
+        Quaternion rot = Quaternion.FromToRotation(-Vector3.forward, normal);
+        GameObject blood = Instantiate<GameObject>(bloodEffect, pos, rot);
+        Destroy(blood, 1.0f);
+    }
 
     private void OnDrawGizmos()
     {
