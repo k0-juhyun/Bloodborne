@@ -6,7 +6,10 @@ namespace JH
 {
     public class AnimatorHandler : MonoBehaviour
     {
+        PlayerManager playerManager;
         public Animator anim;
+        public InputHandler inputHandler;
+        public PlayerLocomotion locomotion;
         int vertical;
         int horizontal;
         public bool canRotate;
@@ -16,7 +19,10 @@ namespace JH
 
         public void Initialize()
         {
+            playerManager = GetComponentInParent<PlayerManager>();
             anim = GetComponent<Animator>();
+            inputHandler = GetComponentInParent<InputHandler>();
+            locomotion = GetComponentInParent<PlayerLocomotion>();
             vertical = Animator.StringToHash("Vertical");
             horizontal = Animator.StringToHash("Horizontal");
         }
@@ -92,6 +98,19 @@ namespace JH
             anim.applyRootMotion = isInteracting;
             anim.SetBool("isInteracting", isInteracting);
             anim.CrossFade(targetAnim, 0.2f);
+        }
+
+        private void OnAnimatorMove()
+        {
+            if (playerManager.isInteracting == false)
+                return;
+
+            float delta = Time.deltaTime;
+            locomotion.rigidbody.drag = 0;
+            Vector3 deltaPosition = anim.deltaPosition;
+            deltaPosition.y = 0;
+            Vector3 velocity = deltaPosition / delta;
+            locomotion.rigidbody.velocity = velocity;
         }
     }
 }

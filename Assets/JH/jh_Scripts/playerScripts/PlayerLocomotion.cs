@@ -9,6 +9,7 @@ namespace JH
         Transform cameraObject;
         InputHandler inputHandler;
         Vector3 moveDirection;
+        PlayerManager playerManager;
 
         [HideInInspector]
         public Transform myTransform;
@@ -26,20 +27,13 @@ namespace JH
 
         void Start()
         {
+            playerManager = GetComponent<PlayerManager>();
             rigidbody = GetComponent<Rigidbody>();
             inputHandler = GetComponent<InputHandler>();
             animatorHandler = GetComponentInChildren<AnimatorHandler>();
             animatorHandler.Initialize();
             cameraObject = Camera.main.transform;
             myTransform = transform;
-        }
-
-        public void Update()
-        {
-            float delta = Time.deltaTime;
-
-            inputHandler.TickInput(delta);
-            HandleMovement(delta);
         }
 
         #region Movement
@@ -70,13 +64,24 @@ namespace JH
 
         public void HandleMovement(float delta)
         {
+            if (playerManager.isInteracting)
+                return;
             moveDirection = cameraObject.forward * inputHandler.vertical;
             moveDirection += cameraObject.right * inputHandler.horizontal;
             moveDirection.Normalize();
             moveDirection.y = 0;
 
             float speed = movementSpeed;
-            moveDirection *= speed;
+            float walkingSpeed = movementSpeed * 0.5f;
+
+            if(inputHandler.moveAmount < 0.5)
+            {
+                moveDirection *= walkingSpeed;
+            }
+            else
+            {
+                moveDirection *= speed; 
+            }
 
             Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
             rigidbody.velocity = projectedVelocity;
@@ -95,11 +100,11 @@ namespace JH
                 return;
 
             if (inputHandler.rollFlag)
-            {
+            {    
                 moveDirection = cameraObject.forward * inputHandler.vertical;
                 moveDirection += cameraObject.right * inputHandler.horizontal;
 
-                if(inputHandler.moveAmount > 0) 
+                if (inputHandler.moveAmount > 0) 
                 {
                     animatorHandler.PlayTargetAnimation("Rolling", true);
                     moveDirection.y = 0;

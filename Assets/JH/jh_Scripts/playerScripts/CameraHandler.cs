@@ -43,7 +43,7 @@ public class CameraHandler : MonoBehaviour
         defaultPosition = cameraPivotTransform.localPosition.z;
         ignoreLayers = ~(1 << 8 | 1 << 9 | 1 << 10);
     }
-
+ 
     public void FollowTarget(float delta)
     {
         Vector3 targetPosition = Vector3.SmoothDamp
