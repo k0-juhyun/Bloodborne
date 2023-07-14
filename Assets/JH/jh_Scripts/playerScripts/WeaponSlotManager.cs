@@ -9,6 +9,9 @@ namespace JH
         WeaponHolderSlot leftHandSlot;
         WeaponHolderSlot rightHandSlot;
 
+        DamageCollider leftHandDamageCollider;
+        DamageCollider rightHandDamageCollider;
+
         private void Awake()
         {
             WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
@@ -30,12 +33,43 @@ namespace JH
             if(isLeft) 
             {
                 leftHandSlot.LoadWeaponModel(weaponItem);
+                LoadLeftWeaponDamageCollider();
             }
             else
             {
                 rightHandSlot.LoadWeaponModel(weaponItem);
-
+                LoadRightWeaponDamageCollider();
             }
+        }
+
+        private void LoadLeftWeaponDamageCollider()
+        {
+            leftHandDamageCollider = leftHandSlot.currentWeaponModel.GetComponent<DamageCollider>();
+        }
+
+        private void LoadRightWeaponDamageCollider()
+        {
+            rightHandDamageCollider = rightHandSlot.currentWeaponModel.GetComponent<DamageCollider>();
+        }
+
+        public void OpenRightDamageCollider()
+        {
+            rightHandDamageCollider.EnableDamageCollider();
+        }
+
+        public void OpenLeftDamageCollider()
+        {
+            leftHandDamageCollider.EnableDamageCollider();
+        }
+
+        public void CloseRightHandDamageCollider()
+        {
+            rightHandDamageCollider.DisableDamageCollider();
+        }
+
+        public void CloseLeftHandDamageCollider()
+        {
+            leftHandDamageCollider.DisableDamageCollider();
         }
     }
 }

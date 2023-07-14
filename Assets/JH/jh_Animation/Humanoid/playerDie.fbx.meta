@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bd6c023cfebf459f90a0c8ff290c3c65
+guid: d13592d433eaec344bd95b1e4bdd65ef
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
@@ -455,15 +455,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 1
-        functionName: DieStateFisnish
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 4d06d63eee7ece24380d38d814a93895,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

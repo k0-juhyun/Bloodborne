@@ -18,7 +18,7 @@ namespace JH
         {
             anim = GetComponentInChildren<Animator>();
             inputHandler = GetComponent<InputHandler>();
-            cameraHandler = CameraHandler.instance;
+            cameraHandler = FindObjectOfType<CameraHandler>();
         }
 
         private void Awake()

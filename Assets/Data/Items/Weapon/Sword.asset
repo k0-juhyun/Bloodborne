@@ -16,6 +16,6 @@ MonoBehaviour:
   itemName: Sword
   modelPrefab: {fileID: 1560498931262035096, guid: 42255450ded902e47b9e18cf300726c2,
     type: 3}
-  isUnarmed: 1
-  Light_Attack1: 
-  Heavy_Attack1: 
+  isUnarmed: 0
+  Light_Attack1: atk_sword_01
+  Heavy_Attack1: atk_sword_06

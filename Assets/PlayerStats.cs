@@ -39,6 +39,12 @@ namespace JH
             healthBar.SetCurretnHealth(currentHealth);
 
             animatorHandler.PlayTargetAnimation("hit_body_front", true);
+
+            if(currentHealth <= 0)
+            {
+                currentHealth = 0;
+                animatorHandler.PlayTargetAnimation("playerDie", true);
+            }
         }
     }
 }

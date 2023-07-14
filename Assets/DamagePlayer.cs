@@ -7,7 +7,7 @@ namespace JH
 {
     public class DamagePlayer : MonoBehaviour
     {
-        private int damage = 25;
+        private int damage = 10;
 
         private void OnTriggerEnter(Collider other)
         {
