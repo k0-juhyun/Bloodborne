@@ -20,6 +20,7 @@ namespace JH
 
         PlayerControls inputActions;
         PlayerAttacker playerAttacker;
+        PlayerInventory playerInventory;
 
         Vector2 movementInput;
         Vector2 cameraInput;
@@ -27,6 +28,7 @@ namespace JH
         private void Awake()
         {
             playerAttacker = GetComponent<PlayerAttacker>();
+            playerInventory = GetComponent<PlayerInventory>();
         }
 
         public void OnEnable()
@@ -72,14 +74,19 @@ namespace JH
             }
         }
 
-        private void HandleAttackInput(float delta)
+        private void HandleAttackInput(float delta) 
         {
             inputActions.PlayerActions.RB.performed += i => rb_Input = true;
             inputActions.PlayerActions.RT.performed += i => rt_Input = true;
 
             if(rb_Input)
             {
-                //playerAttacker.HandleLightAttack();
+                playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
+            }
+
+            if (rt_Input)
+            {
+                playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
             }
         }
     }

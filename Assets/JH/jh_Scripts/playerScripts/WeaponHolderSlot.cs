@@ -51,7 +51,7 @@ namespace JH
                 }
 
                 //model.transform.localScale = Vector3.zero;
-                model.transform.localPosition = Vector3.one;
+                model.transform.position = model.transform.parent.position;
                 model.transform.localRotation = Quaternion.identity;
             }
 

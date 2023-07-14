@@ -118,9 +118,18 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "19b2a787-19eb-46b5-bf66-32d4f20dca31",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "RB",
                     "type": "Button",
-                    "id": "a981d972-d9a8-42fb-8193-c22d114b7f68",
+                    "id": "9f7e4cdc-a9ae-45f7-b91d-d0a422acc4ee",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -129,7 +138,7 @@
                 {
                     "name": "RT",
                     "type": "Button",
-                    "id": "19b2a787-19eb-46b5-bf66-32d4f20dca31",
+                    "id": "cf80ee69-ea6a-4041-9b43-61e96d3b5e2c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -161,7 +170,18 @@
                 },
                 {
                     "name": "",
-                    "id": "8fa513fd-f0ac-43f6-92c4-74f0f874afce",
+                    "id": "61060c2b-b8cc-4593-8114-4000f109d093",
+                    "path": "<Mouse>/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3702ee7b-ab41-4f9d-977b-b2749558f7d6",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
@@ -172,7 +192,7 @@
                 },
                 {
                     "name": "",
-                    "id": "61060c2b-b8cc-4593-8114-4000f109d093",
+                    "id": "9f22ce41-87f6-4b51-b411-c8e0dd07a89f",
                     "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
