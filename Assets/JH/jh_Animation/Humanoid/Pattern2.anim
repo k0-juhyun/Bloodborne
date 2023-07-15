@@ -72644,7 +72644,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.4
+  - time: 0.9
     functionName: GroundHitFalse
     data: 
     objectReferenceParameter: {fileID: 11500000, guid: 4d06d63eee7ece24380d38d814a93895,
