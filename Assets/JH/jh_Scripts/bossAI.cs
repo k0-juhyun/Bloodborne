@@ -228,16 +228,18 @@ public class bossAI : MonoBehaviour
     // Update Move
     private void UpdateMoveState()
     {
+
         // Set Destination -> Target
         agent.SetDestination(target.transform.position);
 
         // Move Close State Change to Attack
-        if (MoveDistance < AttackRange)
+        if (MoveDistance <= AttackRange)
         {
             stateMachine = StateMachine.AttackState;
 
             //animator.SetTrigger("AttackState");
             AnimatorTrigger("AttackState");
+
             // Agent Stop
             agent.isStopped = true;
         }
@@ -246,48 +248,65 @@ public class bossAI : MonoBehaviour
     // Update Attack
     private void UpdateAttackState()
     {
-        // Not in Attack Progress
-        if (!attackInProgress && !isSpecialPattern1InProgress)
+        // Reset Move Trigger
+        animator.ResetTrigger("Move");
+
+        if (MoveDistance > AttackRange)
         {
-            // Trigger On
-            AnimatorTrigger("AttackState");
+            stateMachine = StateMachine.MoveState;
 
-            // Random Attack Index 
-            int randomIndex = Random.Range((int)AttackSubStateMachine.Pattern1, (int)AttackSubStateMachine.Pattern6 + 1);
+            animator.SetTrigger("Move");
 
-            attackSubStateMachine = (AttackSubStateMachine)randomIndex;
+            agent.isStopped = false;
+        }
 
-            switch (attackSubStateMachine)
+        else
+        {
+            // Not in Attack Progress
+            if (!attackInProgress && !isSpecialPattern1InProgress)
             {
-                case AttackSubStateMachine.Pattern1:
-                    AnimatorTrigger("Pattern1");
-                    attackInProgress = true;
-                    break;
+                ResetTrigger();
 
-                case AttackSubStateMachine.Pattern2:
-                    AnimatorTrigger("Pattern2");
-                    attackInProgress = true;
-                    break;
+                // Trigger On
+                AnimatorTrigger("AttackState");
 
-                case AttackSubStateMachine.Pattern3:
-                    AnimatorTrigger("Pattern3");
-                    attackInProgress = true;
-                    break;
+                // Random Attack Index 
+                int randomIndex = Random.Range((int)AttackSubStateMachine.Pattern1, (int)AttackSubStateMachine.Pattern6 + 1);
 
-                case AttackSubStateMachine.Pattern4:
-                    AnimatorTrigger("Pattern4");
-                    attackInProgress = true;
-                    break;
+                attackSubStateMachine = (AttackSubStateMachine)randomIndex;
 
-                case AttackSubStateMachine.Pattern5:
-                    AnimatorTrigger("Pattern5");
-                    attackInProgress = true;
-                    break;
+                switch (attackSubStateMachine)
+                {
+                    case AttackSubStateMachine.Pattern1:
+                        AnimatorTrigger("Pattern1");
+                        attackInProgress = true;
+                        break;
 
-                case AttackSubStateMachine.Pattern6:
-                    AnimatorTrigger("Pattern6");
-                    attackInProgress = true;
-                    break;
+                    case AttackSubStateMachine.Pattern2:
+                        AnimatorTrigger("Pattern2");
+                        attackInProgress = true;
+                        break;
+
+                    case AttackSubStateMachine.Pattern3:
+                        AnimatorTrigger("Pattern3");
+                        attackInProgress = true;
+                        break;
+
+                    case AttackSubStateMachine.Pattern4:
+                        AnimatorTrigger("Pattern4");
+                        attackInProgress = true;
+                        break;
+
+                    case AttackSubStateMachine.Pattern5:
+                        AnimatorTrigger("Pattern5");
+                        attackInProgress = true;
+                        break;
+
+                    case AttackSubStateMachine.Pattern6:
+                        AnimatorTrigger("Pattern6");
+                        attackInProgress = true;
+                        break;
+                }
             }
         }
     }
@@ -295,6 +314,17 @@ public class bossAI : MonoBehaviour
 
 
     #region AnimEventFun
+
+    void ResetTrigger()
+    {
+        animator.ResetTrigger("Pattern1");
+        animator.ResetTrigger("Pattern2");
+        animator.ResetTrigger("Pattern3");
+        animator.ResetTrigger("Pattern4");
+        animator.ResetTrigger("Pattern5");
+        animator.ResetTrigger("Pattern6");
+    }
+
     // Ground Hit
     private void GroundHitTrue()
     {
@@ -381,7 +411,7 @@ public class bossAI : MonoBehaviour
             agent.isStopped = false;
         }
         // In Attack Range
-        else
+        else if (MoveDistance < AttackRange)
         {
             // Agent Move
             agent.isStopped = true;
@@ -426,7 +456,7 @@ public class bossAI : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Weapone" && /*TPSChraracterController.instance.isAttack &&*/ !isReact && !isSpecialPattern1InProgress)
+        if (other.tag == "Weapone" && !isReact && !isSpecialPattern1InProgress)
         {
             // Reduction
             curHp -= AttackDamage;

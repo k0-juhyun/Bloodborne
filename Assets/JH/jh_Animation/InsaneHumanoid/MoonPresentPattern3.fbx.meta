@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 152bbece2c2f4194984b0c0cd8d455e6
+guid: c3e425b06d37e6a46911a75449847ba2
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
-      74: 5265963377054049447
-    second: combo_03_1
+      74: 8208477319976796450
+    second: atk_sword_02
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -36,11 +36,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: combo_03_1
-      takeName: combo_03_1
+      name: atk_sword_02
+      takeName: atk_sword_02
       internalID: 0
       firstFrame: 0
-      lastFrame: 26
+      lastFrame: 50
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -59,7 +59,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.98585856
+        functionName: AttackStateFinish
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 4d06d63eee7ece24380d38d814a93895,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

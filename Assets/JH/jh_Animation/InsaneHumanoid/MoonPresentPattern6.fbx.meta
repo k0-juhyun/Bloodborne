@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 152bbece2c2f4194984b0c0cd8d455e6
+guid: 2f0f180cd01bd684cb515525dff4ac4e
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
-      74: 5265963377054049447
-    second: combo_03_1
+      74: 1071293236969162806
+    second: atk_gun_03
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -36,11 +36,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: combo_03_1
-      takeName: combo_03_1
+      name: atk_gun_03
+      takeName: atk_gun_03
       internalID: 0
       firstFrame: 0
-      lastFrame: 26
+      lastFrame: 24.5
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
