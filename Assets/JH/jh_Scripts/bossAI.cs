@@ -161,14 +161,12 @@ public class bossAI : MonoBehaviour
             // special pattern1 Active Condition
             if (curHpPercentage <= 0.6f && !isSpecialPattern1Active)
             {
-                // Stop Animation
                 animator.StopPlayback();
 
                 isSpecialPattern1Active = true;
 
                 attackInProgress = true;
 
-                // Pattern 6
                 AnimatorTrigger("SpecialPattern1Start");
             }
 
@@ -183,7 +181,6 @@ public class bossAI : MonoBehaviour
             // special pattern1 Active Condition
             if (curHpPercentage <= 0.4f && !isSpecialPattern2Active)
             {
-                // Stop Animation
                 animator.StopPlayback();
 
                 isSpecialPattern2Active = true;
@@ -383,6 +380,7 @@ public class bossAI : MonoBehaviour
 
     IEnumerator SpecialPattern2AnimStart()
     {
+        print("1");
         animator.speed = 0.5f;
 
         // Stop Agent
