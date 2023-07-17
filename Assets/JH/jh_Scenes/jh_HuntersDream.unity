@@ -13868,20 +13868,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1642749466}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1559212035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8278654584382490304}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c069c8fbe6fc2714ab40662791604ba0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  viewRange: 30
-  viewAngle: 90
 --- !u!1 &1561678398 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1170804794242696812, guid: f16697d37aa09dd45b29ad0baed3c9d1,
@@ -34520,9 +34506,7 @@ MonoBehaviour:
   stateMachine: 0
   attackSubStateMachine: 0
   AttackRange: 4
-  AttackDamage: 10
-  maxHp: 100
-  curHp: 0
+  AttackDamage: 0
 --- !u!114 &6308587343876246967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45768,7 +45752,7 @@ GameObject:
   - component: {fileID: 8278654584382490307}
   - component: {fileID: 8278654583355315646}
   - component: {fileID: 6308587343863671953}
-  - component: {fileID: 1559212035}
+  - component: {fileID: 8278654584391890179}
   m_Layer: 6
   m_Name: Moon presence
   m_TagString: Boss
@@ -49886,6 +49870,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8278654584391890179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8278654584382490304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b1406dfb3aa6cd439035f5f8d46d215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 10
+  sliderHP: {fileID: 303817520}
 --- !u!4 &8278654584506460056
 Transform:
   m_ObjectHideFlags: 0

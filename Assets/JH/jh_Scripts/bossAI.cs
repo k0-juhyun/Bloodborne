@@ -6,6 +6,7 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class bossAI : MonoBehaviour
 {
+    BossHP bossHP;
     public static bossAI instance;
     public bool moonpresenceAttack;
     public bool isDie;
@@ -90,16 +91,14 @@ public class bossAI : MonoBehaviour
     // Attack Values
     [Header("Attack Values")]
     public float AttackRange;
-    public float AttackDamage;
-
-    [Header("Hp Values")]
-    public float maxHp;
-    public float curHp;
+    public int AttackDamage;
     #endregion
 
     private void Awake()
     {
         instance = this;
+
+        bossHP = GetComponent<BossHP>();
 
         // Get volume From Post Processing
         postProcessVolume.profile.TryGetSettings(out lensDistortion);
@@ -109,9 +108,6 @@ public class bossAI : MonoBehaviour
             // LensDistortion
             lensDistortion = postProcessVolume.profile.AddSettings<LensDistortion>();
         }
-
-        // Set Hp
-        curHp = maxHp;
 
         // Get Animation Component
         animator = GetComponent<Animator>();
@@ -148,7 +144,7 @@ public class bossAI : MonoBehaviour
         while (!isDie)
         {
             // Update curHp
-            curHpPercentage = curHp / maxHp;
+            curHpPercentage = bossHP.HP / bossHP.maxHP;
 
             // Update Distance between player & thisobj
             MoveDistance = Vector3.Distance(playerPos.position, thisPos.position);
@@ -159,7 +155,7 @@ public class bossAI : MonoBehaviour
 
             #region special pattern 1
             // special pattern1 Active Condition
-            if (curHpPercentage <= 0.6f && !isSpecialPattern1Active)
+            if (bossHP.HP <= 6 && !isSpecialPattern1Active)
             {
                 animator.StopPlayback();
 
@@ -179,7 +175,7 @@ public class bossAI : MonoBehaviour
             #region special pattern2
 
             // special pattern1 Active Condition
-            if (curHpPercentage <= 0.4f && !isSpecialPattern2Active)
+            if (bossHP.HP <= 4 && !isSpecialPattern2Active)
             {
                 animator.StopPlayback();
 
@@ -380,7 +376,6 @@ public class bossAI : MonoBehaviour
 
     IEnumerator SpecialPattern2AnimStart()
     {
-        print("1");
         animator.speed = 0.5f;
 
         // Stop Agent
@@ -491,11 +486,11 @@ public class bossAI : MonoBehaviour
             && !isSpecialPattern1InProgress && !isSpecialPattern2InProgress)
         {
             // Reduction
-            curHp -= AttackDamage;
+            bossHP.HP -= AttackDamage;
 
             // ReactState Process
             // Hp, Die Animation
-            if (curHp <= 0)
+            if (bossHP.HP <= 0)
             {
                 // Load Die Effect
                 LoadDieEffect();
