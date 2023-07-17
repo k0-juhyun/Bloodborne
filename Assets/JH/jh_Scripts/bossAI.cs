@@ -8,6 +8,7 @@ public class bossAI : MonoBehaviour
 {
     public static bossAI instance;
     public bool moonpresenceAttack;
+    public bool isDie;
     // TransformConponents
     #region TransformComponent
     private Transform playerPos;
@@ -26,8 +27,9 @@ public class bossAI : MonoBehaviour
     private bool isReact;
     private int hitCount = 0;
     private float curHpPercentage = 1f;
-    [Header("SpecialPattern1 Eye")]
-    public GameObject[] EyeLights;
+    [Header("SpecialPattern")]
+    public GameObject[] SpecialPattern1;
+    public GameObject[] SpecialPattern2;
 
     // post Processing Values
     [Header("Post Processing Volumes")]
@@ -37,6 +39,9 @@ public class bossAI : MonoBehaviour
     #region AttackPatternBoolValues
     private bool isSpecialPattern1Active = false;
     private bool isSpecialPattern1InProgress = false;
+
+    private bool isSpecialPattern2Active = false;
+    private bool isSpecialPattern2InProgress = false;
     private bool pattern1;
     static public bool groundHit;
     #endregion
@@ -62,8 +67,6 @@ public class bossAI : MonoBehaviour
     // Delay for Updating StateMachine
     private WaitForSeconds UpdateStateMachineDelay;
 
-    // Check Die
-    public bool isDie;
 
     // Check Attack Inprogress
     static public bool attackInProgress;
@@ -154,8 +157,9 @@ public class bossAI : MonoBehaviour
             if (stateMachine == StateMachine.DieState)
                 yield break;
 
-            // Pattern 6 Active Condition
-            if (curHpPercentage <= 0.4f && !isSpecialPattern1Active)
+            #region special pattern 1
+            // special pattern1 Active Condition
+            if (curHpPercentage <= 0.6f && !isSpecialPattern1Active)
             {
                 // Stop Animation
                 animator.StopPlayback();
@@ -172,6 +176,23 @@ public class bossAI : MonoBehaviour
             {
                 transform.LookAt(playerPos.position);
             }
+            #endregion
+
+            #region special pattern2
+
+            // special pattern1 Active Condition
+            if (curHpPercentage <= 0.4f && !isSpecialPattern2Active)
+            {
+                // Stop Animation
+                animator.StopPlayback();
+
+                isSpecialPattern2Active = true;
+
+                attackInProgress = true;
+
+                AnimatorTrigger("SpecialPattern2Start");
+            }
+            #endregion
 
             yield return UpdateStateMachineDelay;
         }
@@ -330,7 +351,7 @@ public class bossAI : MonoBehaviour
         lensDistortion.active = true;
 
         // Load Prefabs
-        EyeLights[1].SetActive(true);
+        SpecialPattern1[1].SetActive(true);
 
         // camera shake
         cameraShake.Instance.specialShake = true;
@@ -340,7 +361,7 @@ public class bossAI : MonoBehaviour
         // lensDistortion off
         lensDistortion.active = false;
 
-        EyeLights[1].SetActive(false);
+        SpecialPattern1[1].SetActive(false);
 
         // Aniamtion Trigger
         AnimatorTrigger("SpecialPattern1Finish");
@@ -352,15 +373,41 @@ public class bossAI : MonoBehaviour
         isSpecialPattern1InProgress = false;
 
         // EyeOff
-        EyeLights[0].SetActive(false);
+        SpecialPattern1[0].SetActive(false);
 
         // Reset Animator Speed 100%
         animator.speed = 1f;
     }
 
+    // Special Pattern2
+
+    IEnumerator SpecialPattern2AnimStart()
+    {
+        animator.speed = 0.5f;
+
+        // Stop Agent
+        agent.isStopped = true;
+
+        // Set true value -> Dont React
+        isSpecialPattern2InProgress = true;
+
+        yield return new WaitForSeconds(2f);
+
+        SpecialPattern2[0].SetActive(true);
+
+        isSpecialPattern2InProgress = false;
+
+        agent.isStopped = false;
+    }
+
+    private void SpecialPattern2AnimEffectOn()
+    {
+        SpecialPattern2[0].SetActive(true);
+    }
+
     private void SpecialPattern1AnimEyeOn()
     {
-        EyeLights[0].SetActive(true);
+        SpecialPattern1[0].SetActive(true);
     }
 
     // Animation Trigger Function
@@ -442,7 +489,8 @@ public class bossAI : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Weapone" && TPSChraracterController.instance.isAttack && !isReact && !isSpecialPattern1InProgress)
+        if (other.tag == "Weapone" && TPSChraracterController.instance.isAttack && !isReact 
+            && !isSpecialPattern1InProgress && !isSpecialPattern2InProgress)
         {
             // Reduction
             curHp -= AttackDamage;
