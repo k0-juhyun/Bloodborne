@@ -633,7 +633,7 @@ public class Boss : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         // 만약 플레이어가 공격 상태이고, 플레이어의 무기와 충돌했을때
-        if (TPSChraracterController.instance.isAttack == true && collision.gameObject.CompareTag("Weapone"))
+        if (collision.gameObject.CompareTag("Weapone"))
         {
             // 보스 피격 상태로 전환
             bossState = BossPatternState.Hit;

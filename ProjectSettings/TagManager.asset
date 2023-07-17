@@ -9,6 +9,7 @@ TagManager:
   - p_Weapon
   - Hand
   - Boss
+  - Weapon
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Boss
   - 
   - Player
-  - Weapone
+  - Weapon
   - Controller
   - Camera
   - 

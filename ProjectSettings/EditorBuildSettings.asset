@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/JH/jh_Scenes/OpeningEndingScene/jh_MoonPresenceOpeningScene.unity
     guid: 5c11aff59ba1671429da9995a6d33417
   - enabled: 1
-    path: Assets/JH/jh_Scenes/jh_HuntersDream.unity
+    path: Assets/JH/jh_Scenes/jh_HuntersDream/jh_HuntersDream.unity
     guid: c823e6e896f10fc43b6c41e16d1d7544
   - enabled: 1
     path: Assets/JH/jh_Scenes/OpeningEndingScene/jh_MoonPresenceEndingScene.unity
