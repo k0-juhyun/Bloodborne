@@ -188,7 +188,7 @@ public class Boss : MonoBehaviour
         {
             // 현재 상태를 Move 로 변화시킨다
             bossState = BossPatternState.Move;
-            // 애니메이션 재생?
+            // 애니메이션 재생
         }
         // 만약 현재 거리가 공격 가능 범위보다 작거나 같다면, 그 거리가 피격 거리보다 크다면
         else if (currDistance <= attackDistance && currDistance >= hitDistance)
@@ -298,6 +298,7 @@ public class Boss : MonoBehaviour
             if (avoidCount == 0)
             {
                 // 뒤로회피
+                targetPos.y = transform.position.y;
                 transform.position = Vector3.Lerp(transform.position, targetPos, dashSpeed * Time.deltaTime);
                 if (Vector3.Distance(transform.position, targetPos) < 0.1f)
                 {
@@ -320,10 +321,15 @@ public class Boss : MonoBehaviour
                     isMoveTargetPos = true;
                 }
 
+                moveTargetPos.y = transform.position.y;
                 transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
+
+                
+
                 if (Vector3.Distance(transform.position, moveTargetPos) < 0.1f)
                 {
                     bossState = BossPatternState.Idle;
+
                     print("avoid right");
                     avoidcurTime = 0;
                     avoidCount = 0;
@@ -428,6 +434,7 @@ public class Boss : MonoBehaviour
                 if (curTime > skTime_Sickel1_1)
                 {
                     print("SubState : Attack1");
+                    moveTargetPos.y = transform.position.y;
                     // 앞으로 이동하고 싶다
                     transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
                     if (Vector3.Distance(transform.position, moveTargetPos) < 0.1f)
