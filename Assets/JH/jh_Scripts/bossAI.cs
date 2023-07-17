@@ -63,7 +63,7 @@ public class bossAI : MonoBehaviour
     private WaitForSeconds UpdateStateMachineDelay;
 
     // Check Die
-    private bool isDie;
+    public bool isDie;
 
     // Check Attack Inprogress
     static public bool attackInProgress;
@@ -163,12 +163,12 @@ public class bossAI : MonoBehaviour
                 isSpecialPattern1Active = true;
 
                 attackInProgress = true;
-                
+
                 // Pattern 6
                 AnimatorTrigger("SpecialPattern1Start");
             }
 
-            if(isSpecialPattern1InProgress)
+            if (isSpecialPattern1InProgress)
             {
                 transform.LookAt(playerPos.position);
             }
@@ -323,7 +323,7 @@ public class bossAI : MonoBehaviour
 
         // Set true value -> Dont React
         isSpecialPattern1InProgress = true;
-        
+
         yield return new WaitForSeconds(2f);
 
         // lensDistortion on
@@ -399,6 +399,7 @@ public class bossAI : MonoBehaviour
     // DieAnimFinish
     public void DieStateFisnish()
     {
+        isDie = true;
         Destroy(gameObject);
     }
 
@@ -531,7 +532,7 @@ public class bossAI : MonoBehaviour
 
     private void LoadDieEffect()
     {
-        GameObject DieEffect = Instantiate<GameObject>(dieEffect,thisPos);
+        GameObject DieEffect = Instantiate<GameObject>(dieEffect, thisPos);
     }
 
     // Delay Coroutine -> React Delay

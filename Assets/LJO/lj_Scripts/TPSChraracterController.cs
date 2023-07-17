@@ -49,14 +49,6 @@ public class TPSChraracterController : MonoBehaviour
 
     private int attackCount = 0;
 
-
-    //public GameObject Player1;
-    //public GameObject MainCamera;
-
-    //private float camera_dist = 0f; //리그로부터 카메라까지의 거리
-    //public float camera_width = -10f; //가로거리
-    //public float camera_height = 4f; //세로거리
-
     Vector3 dir;
     [Header("PlayerSpeed")]
     public float moveSpeed = 3f;
@@ -71,15 +63,8 @@ public class TPSChraracterController : MonoBehaviour
         cc = GetComponent<CharacterController>();
 
         soundSource = gameObject.GetComponent<AudioSource>();
-
-        //카메라리그에서 카메라까지의 길이
-        //camera_dist = Mathf.Sqrt(camera_width * camera_width + camera_height * camera_height);
-
-        //카메라리그에서 카메라위치까지의 방향벡터
-        //dir = new Vector3(0, camera_height, camera_width).normalized;
     }
 
-    // Update is called once per frame
     void Update()
     {
         print("isAttack: "+isAttack);
@@ -338,8 +323,3 @@ public class TPSChraracterController : MonoBehaviour
 
     float smoothSpeed = 10f;
 }
-
-
-
-
-
