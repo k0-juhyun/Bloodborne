@@ -6,6 +6,8 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class bossAI : MonoBehaviour
 {
+    public static bossAI instance;
+    public bool moonpresenceAttack;
     // TransformConponents
     #region TransformComponent
     private Transform playerPos;
@@ -94,6 +96,8 @@ public class bossAI : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
+
         // Get volume From Post Processing
         postProcessVolume.profile.TryGetSettings(out lensDistortion);
 
@@ -231,8 +235,6 @@ public class bossAI : MonoBehaviour
         // Set Destination -> Target
         agent.SetDestination(target.transform.position);
 
-        animator.SetTrigger("Move");
-
         // Move Close State Change to Attack
         if (MoveDistance < AttackRange)
         {
@@ -301,11 +303,13 @@ public class bossAI : MonoBehaviour
     private void GroundHitTrue()
     {
         groundHit = true;
+        moonpresenceAttack = true;
     }
 
     private void GroundHitFalse()
     {
         groundHit = false;
+        moonpresenceAttack = false;
     }
 
     // Special Pattern1
@@ -425,6 +429,15 @@ public class bossAI : MonoBehaviour
         return Quaternion.FromToRotation(transform.forward, to - from).eulerAngles.y;
     }
 
+    void attackTrue()
+    {
+        moonpresenceAttack = true;
+    }
+
+    void attackFalse()
+    {
+        moonpresenceAttack = false;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -459,14 +472,14 @@ public class bossAI : MonoBehaviour
             // Set React True
             isReact = true;
 
-            //// Make Array Child Collider
-            //Collider[] childColliders = GetComponentsInChildren<Collider>();
+            // Make Array Child Collider
+            Collider[] childColliders = GetComponentsInChildren<Collider>();
 
-            //// Collider -> is trigger true
-            //foreach (Collider collider in childColliders)
-            //{
-            //    collider.isTrigger = true;
-            //}
+            // Collider -> is trigger true
+            foreach (Collider collider in childColliders)
+            {
+                collider.isTrigger = true;
+            }
 
             // Reset React
             StartCoroutine(ReactDelayCoroutine());

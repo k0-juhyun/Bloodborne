@@ -8,7 +8,7 @@ public class TPSChraracterController : MonoBehaviour
     public static TPSChraracterController instance;
     private void Awake()
     {
-        instance = this; 
+        instance = this;
     }
     [SerializeField]
     private Transform characterBody;
@@ -22,7 +22,7 @@ public class TPSChraracterController : MonoBehaviour
 
     // public Transform LockOnTransform;
     private CharacterController cc;
-  
+
     Animator animator;
 
     public LayerMask enemyLayer;
@@ -49,7 +49,7 @@ public class TPSChraracterController : MonoBehaviour
 
     private int attackCount = 0;
 
- 
+
     //public GameObject Player1;
     //public GameObject MainCamera;
 
@@ -64,6 +64,7 @@ public class TPSChraracterController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isAttack = false;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         animator = GetComponent<Animator>();
@@ -81,6 +82,7 @@ public class TPSChraracterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        print("isAttack: "+isAttack);
         LookAround();
         Move();
         LockOn();
@@ -99,11 +101,21 @@ public class TPSChraracterController : MonoBehaviour
         }
 
         soundSource.enabled = true;
+
     }
 
-   
 
-    public  bool isAttack;
+
+    public bool isAttack = false;
+
+    void isAttackTrue()
+    {
+        isAttack = true;
+    }
+    void isAttackFalse()
+    {
+        isAttack = false;
+    }
 
     private void LookAround()
     {
@@ -138,25 +150,31 @@ public class TPSChraracterController : MonoBehaviour
             characterBody.forward = moveDir;
             transform.position += moveDir * Time.deltaTime * 1.5f;
             cc.Move(moveDir * Time.deltaTime * moveSpeed + Physics.gravity * Time.deltaTime);
-            
+
         }
+
+
+
+        //Debug.DrawRay(cameraArm.position, new Vector3(cameraArm.forward.x, 0, cameraArm.forward.z).normalized,Color.red);
+
     }
-   
+
     private void LockOn()
     {
         GameObject lockOnObject = GameObject.FindGameObjectWithTag("Boss");  // LockOnTarget 태그로 오브젝트 찾기
+
         if (lockOnObject != null)
         {
             Transform lockOnTransform = lockOnObject.transform;
-            
+
             //마우스 오른쪽 버튼을 눌렀을 때 
             if (Input.GetButton("Fire2"))
             {
                 //카메라와 player를 enemy에게 lookat 한다
-                
+
                 transform.LookAt(Boss);
 
-               
+
 
                 //거리조절
                 float distance = Vector3.Distance(Player.position, Boss.position);
@@ -175,7 +193,7 @@ public class TPSChraracterController : MonoBehaviour
 
                 float zoomLevel = Mathf.InverseLerp(minDist, maxDist, distance);
                 // Field of view View 바꿈
-                float targetFOV = Mathf.Lerp(35f, 60f, zoomLevel);
+                float targetFOV = Mathf.Lerp(50f, 60f, zoomLevel);
                 Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetFOV, Time.deltaTime * zoomSpeed);
 
 
@@ -198,10 +216,10 @@ public class TPSChraracterController : MonoBehaviour
     {
         animator.SetTrigger("isAttack");
         Debug.Log("dfd");
-        soundSource.clip = Audioclip[4];
-        soundSource.PlayOneShot(Audioclip[4]);
+
 
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackRadius);
+        bool hitBoss = false;
         foreach (Collider hitCollider in hitColliders)
         {
             if (hitCollider.CompareTag("Boss"))
@@ -211,32 +229,29 @@ public class TPSChraracterController : MonoBehaviour
                 if (enemyHealth != null)
                 {
                     enemyHealth.TakeDamage(attackDamage);
-                    
+                    soundSource.clip = Audioclip[5];
+                    soundSource.PlayOneShot(Audioclip[5]);
                 }
             }
         }
-    }
-
-    void isAttackTrue()
-    {
-
-    }
-
-    void isAttackFalse()
-    {
-
+        if (!hitBoss)
+        {
+            soundSource.clip = Audioclip[1];
+            soundSource.PlayOneShot(Audioclip[1]);
+        }
     }
 
 
-   
+
+
     private bool isSKeyPressed = false; // 's' 키가 눌렸는지 여부를 저장하는 변수
-    
+
     private void B_Step()
     {
         if (Input.GetKey(KeyCode.S))
         {
             isSKeyPressed = true;
-            
+
         }
         else
         {
@@ -245,12 +260,12 @@ public class TPSChraracterController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && isSKeyPressed && !Move_B)
         {
-           // Move_B = true;
+            // Move_B = true;
             animator.SetTrigger("Move_B");
             soundSource.clip = Audioclip[2];
             soundSource.PlayOneShot(Audioclip[2]);
         }
-       
+
     }
 
     private void L_Step()
@@ -292,38 +307,37 @@ public class TPSChraracterController : MonoBehaviour
             soundSource.PlayOneShot(Audioclip[2]);
 
         }
-       
+
     }
-    
-    private bool isWKeyPressed = false;
+
+
+    float dashAtkDuration = 1.0f;
     private void Dash_Atk()
     {
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetMouseButton(1) && Input.GetKey(KeyCode.W) && Input.GetMouseButtonDown(0))
         {
-            isWKeyPressed = true;
-
+            StartCoroutine(ExecuteDashAtk());
         }
-        else
-        {
-            isWKeyPressed = false;
-        }
+    }
 
-        if (Input.GetMouseButtonDown(0) && isWKeyPressed && !Dash_atk)
-        {
-        
-            animator.SetTrigger("Dash_atk");
+    private IEnumerator ExecuteDashAtk()
+    {
+        // Dash_atk 애니메이션 실행
+        animator.SetTrigger("Dash_atk");
+        Debug.Log("Dash_atk");
 
-            //soundSource.clip = Audioclip[2];
-            //soundSource.PlayOneShot(Audioclip[2]);
-        }
+        // Dash_atk 애니메이션의 재생 시간만큼 대기
+        yield return new WaitForSeconds(dashAtkDuration);
+
+        // Dash_atk 이후 처리 작성
+        animator.ResetTrigger("isAttack");
     }
 
     float playerHeight = 1.0f;    // 플레이어의 높이값 변수
     float cameraHeight = 2.0f;    // 카메라의 높이값 변수
 
     float smoothSpeed = 10f;
-       
-    }
+}
 
 
 

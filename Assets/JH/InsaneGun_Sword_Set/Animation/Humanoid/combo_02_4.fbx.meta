@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 928ba696aefd4ab7864e7021b2acc8c8
+guid: 2f279f30c96d441185003210b5cac7f6
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
-      74: -821362695830662298
-    second: atk_sword_03
+      74: 5915604085484973052
+    second: combo_02_4
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -36,18 +36,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: atk_sword_03
-      takeName: atk_sword_03
+      name: combo_02_4
+      takeName: combo_02_4
       internalID: 0
       firstFrame: 0
-      lastFrame: 30
+      lastFrame: 27
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
@@ -59,7 +59,23 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0
+        functionName: isAttackTrue
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 825fc10a4fd00b44d8ad8e822ba26c66,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.4799482
+        functionName: isAttackFalse
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 825fc10a4fd00b44d8ad8e822ba26c66,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -871,7 +887,8 @@ ModelImporter:
     hasTranslationDoF: 1
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 0ce280a2b2a943e49dc91f18062badb3, type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 0ce280a2b2a943e49dc91f18062badb3,
+    type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1

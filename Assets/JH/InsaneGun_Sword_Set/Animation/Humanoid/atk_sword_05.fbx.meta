@@ -59,7 +59,23 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.30853814
+        functionName: isAttackTrue
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 825fc10a4fd00b44d8ad8e822ba26c66,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.56197256
+        functionName: isAttackFalse
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 825fc10a4fd00b44d8ad8e822ba26c66,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -871,7 +887,8 @@ ModelImporter:
     hasTranslationDoF: 1
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 0ce280a2b2a943e49dc91f18062badb3, type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 0ce280a2b2a943e49dc91f18062badb3,
+    type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
