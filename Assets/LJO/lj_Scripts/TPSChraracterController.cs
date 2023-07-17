@@ -67,7 +67,7 @@ public class TPSChraracterController : MonoBehaviour
 
     void Update()
     {
-        print("isAttack: "+isAttack);
+        //print("isAttack: "+isAttack);
         LookAround();
         Move();
         LockOn();

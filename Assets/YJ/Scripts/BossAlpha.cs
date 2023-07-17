@@ -97,6 +97,7 @@ public class BossAlpha : MonoBehaviour
 
     [Header("상태 확인")]
     public bool isHitted = false;                       // 피격 상태 확인
+    public bool isHitted2 = false;                      // 2회 피격 상태 확인
     public bool isAvoid = false;                        // 회피 상태 확인
     public bool isCombo1done = false;                   // 프로토타입용 낫패턴 1
     public bool isCombo2done = false;                   // 프로토타입용 낫패턴 2
@@ -439,18 +440,25 @@ public class BossAlpha : MonoBehaviour
                 anim.SetTrigger("Hit1");
 
             }
-
+            // 피격 상태를 true로 만든다(한번만 되게)
             isHitted = true;
         }
+
+        
         // 만약 현재 피격시간이 피격2 시간보다 작을때, 히트 카운트가 2라면
         else if (hitcurrTime <= hitTime && hitCount >= 2)
         {
             print("hitcount : " + hitCount);
-            // 피격 2 애니메이션을 실행한다
-            anim.SetTrigger("Hit2");
-            print("피격2");
-            // 히트 카운트를 0으로 한다
-            hitCount = 0;
+            isHitted2 = true;
+
+            if (isHitted2 == true)
+            {
+                // 피격 2 애니메이션을 실행한다
+                anim.SetTrigger("Hit2");
+                print("피격2");
+                // 히트 카운트를 0으로 한다
+                hitCount = 0;
+            }
             // 부울값을 넣어서 
             // if문안에 트루일때를 만들어서
             // 위를 실행
@@ -487,6 +495,8 @@ public class BossAlpha : MonoBehaviour
         bossState = BossPatternState.Idle;
         // hit up 애니메이션 켠다
         anim.SetTrigger("HitUp");
+        isHitted2 = false;
+        isHitted = false;
     }
 
 
@@ -733,7 +743,7 @@ public class BossAlpha : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // 만약 플레이어가 공격 상태이고, 플레이어의 무기와 충돌했을때
-        if (isHitted == false && TPSChraracterController.instance.isAttack == true && other.gameObject.CompareTag("Weapon"))  //PlayerAttack.P_Attack == true
+        if (isHitted == false && isHitted2 == false && TPSChraracterController.instance.isAttack == true && other.gameObject.CompareTag("Weapon")) 
         {
             // 보스 피격 상태로 전환
             bossState = BossPatternState.Hit;
