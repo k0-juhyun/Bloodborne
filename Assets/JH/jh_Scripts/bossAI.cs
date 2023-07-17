@@ -459,14 +459,14 @@ public class bossAI : MonoBehaviour
             // Set React True
             isReact = true;
 
-            // Make Array Child Collider
-            Collider[] childColliders = GetComponentsInChildren<Collider>();
+            //// Make Array Child Collider
+            //Collider[] childColliders = GetComponentsInChildren<Collider>();
 
-            // Collider -> is trigger true
-            foreach (Collider collider in childColliders)
-            {
-                collider.isTrigger = true;
-            }
+            //// Collider -> is trigger true
+            //foreach (Collider collider in childColliders)
+            //{
+            //    collider.isTrigger = true;
+            //}
 
             // Reset React
             StartCoroutine(ReactDelayCoroutine());

@@ -99,28 +99,6 @@ public class TPSChraracterController : MonoBehaviour
         }
 
         soundSource.enabled = true;
-
-
-        //레이캐스트할 벡터값
-        //Vector3 ray_target = transform.up * camera_height + transform.forward * camera_width;
-
-        //RaycastHit hitinfo;
-        //Physics.Raycast(transform.position, ray_target, out hitinfo, camera_dist);
-
-        //if (hitinfo.point != Vector3.zero)//레이케스트 성공시
-        //{
-        //    //point로 옮긴다.
-        //    MainCamera.transform.position = hitinfo.point;
-        //}
-        //else
-        //{
-        //    //로컬좌표를 0으로 맞춘다. (카메라리그로 옮긴다.)
-        //    MainCamera.transform.localPosition = Vector3.zero;
-        //    //카메라위치까지의 방향벡터 * 카메라 최대거리 로 옮긴다.
-        //    MainCamera.transform.Translate(dir * camera_dist);
-
-        //}
-
     }
 
    
@@ -162,11 +140,6 @@ public class TPSChraracterController : MonoBehaviour
             cc.Move(moveDir * Time.deltaTime * moveSpeed + Physics.gravity * Time.deltaTime);
             
         }
-
-
-
-        //Debug.DrawRay(cameraArm.position, new Vector3(cameraArm.forward.x, 0, cameraArm.forward.z).normalized,Color.red);
-
     }
    
     private void LockOn()
@@ -223,7 +196,6 @@ public class TPSChraracterController : MonoBehaviour
 
     private void Attack()
     {
-        isAttack = true;
         animator.SetTrigger("isAttack");
         Debug.Log("dfd");
         soundSource.clip = Audioclip[4];
@@ -245,6 +217,15 @@ public class TPSChraracterController : MonoBehaviour
         }
     }
 
+    void isAttackTrue()
+    {
+
+    }
+
+    void isAttackFalse()
+    {
+
+    }
 
 
    
@@ -338,48 +319,9 @@ public class TPSChraracterController : MonoBehaviour
     }
 
     float playerHeight = 1.0f;    // 플레이어의 높이값 변수
-     float cameraHeight = 2.0f;    // 카메라의 높이값 변수
+    float cameraHeight = 2.0f;    // 카메라의 높이값 변수
 
     float smoothSpeed = 10f;
-
-   // public LayerMask groundLayer;
-    //private void LateUpdate()
-    //{
-    //    // 플레이어와 카메라의 위치를 업데이트하기 전에 레이캐스트를 사용하여 지면과의 충돌을 감지
-    //    RaycastHit hit;
-    //    Vector3 origin = transform.position + Vector3.up * 0.1f;
-    //    Vector3 dir = -Vector3.up;
-
-    //    //if (Physics.Raycast(origin, dir, out hit, 1000, groundLayer))
-    //    {
-    //        //// 충돌 지점의 높이값을 기준으로 플레이어와 카메라의 위치를 설정
-    //        //vector3 targetposition = hit.point + vector3.up * playerheight;
-    //        //transform.position = targetposition;
-    //        //cameraarm.position = targetposition + vector3.up * cameraheight;
-    //        ////
-    //        //vector3 cameraarmposition = cameraarm.position;
-    //        //cameraarmposition.y = targetposition.y + cameraheight;
-    //        //cameraarm.position = cameraarmposition;
-
-    //        // 충돌 지점의 높이값을 기준으로 플레이어와 카메라의 위치를 설정
-    //        Vector3 targetPosition = hit.point + Vector3.up * playerHeight;
-    //        //transform.position = targetPosition;
-
-    //        // 카메라의 높이를 고정시키지 않고, 카메라의 위치를 업데이트하여 플레이어를 따라가도록 함
-    //        //Vector3 cameraTargetPosition = targetPosition + Vector3.up * cameraHeight;
-    //        //cameraArm.position = Vector3.Lerp(cameraArm.position, cameraTargetPosition, Time.deltaTime * smoothSpeed);
-
-
-    //    }
-    //    else
-    //    {
-    //        // 레이캐스트 충돌이 없을 경우에는 기존 위치를 유지
-    //    }
-
-    //    // 기존의 나머지 코드들을 실행
-    //    LookAround();
-    //    Move();
-    //    LockOn();
        
     }
 
