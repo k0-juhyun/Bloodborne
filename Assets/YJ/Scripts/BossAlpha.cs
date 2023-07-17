@@ -103,7 +103,8 @@ public class BossAlpha : MonoBehaviour
     public bool isCombo3done = false;                   // 프로토타입용 낫패턴 3
     public bool isMoveTargetPos = false;                // SC2_a2 이동 계산용 상태확인
     public bool isGehrmanDie = false;                   // 죽음 상태 확인
-    public bool a = false;
+    public bool isGehrmanAttack = false;                // 공격 상태 확인 to 플레이어용
+    //public bool a = false;                              // sickle2 에서 플레이어 위치 한번만 계산하려고 했는데, 계속 계산해도 될듯해서 그냥 둠
 
 
     // Start is called before the first frame update
@@ -145,7 +146,7 @@ public class BossAlpha : MonoBehaviour
 
         // 플레이어가 없어서 플레이어 공격 상태를 마우스 우클릭으로 설정한다(대체-플레이어에서)
 
-        // 피격 시간을 흐르게 한다
+        // 피격 시간을 흐르게 한다 // 옮길지 말지 생각해보기 **수정
         hitcurrTime += Time.deltaTime;
         // 만약 피격 시간이 2차 피격시간보다 크다면,
         if (hitcurrTime >= hitTime)
@@ -421,7 +422,8 @@ public class BossAlpha : MonoBehaviour
                 // 파티클을 켠다
             }
         }
-
+        // 만약 isHitted 가 false일때,
+        // 왜 false여야하지?
         if (isHitted == false)
         {
             hitcurrTime = 0;
@@ -440,15 +442,6 @@ public class BossAlpha : MonoBehaviour
 
             isHitted = true;
         }
-
-        if (hitcurrTime > 1)
-        {
-            isHitted = false;
-            bossState = BossPatternState.Idle;
-            //Idle 애니메이션 실행(상태바꿀때 한번만 호출)
-            anim.SetTrigger("Idle");
-        }
-
         // 만약 현재 피격시간이 피격2 시간보다 작을때, 히트 카운트가 2라면
         else if (hitcurrTime <= hitTime && hitCount >= 2)
         {
@@ -462,6 +455,16 @@ public class BossAlpha : MonoBehaviour
             // if문안에 트루일때를 만들어서
             // 위를 실행
             //isHitted = false;
+        }
+
+
+        if (hitcurrTime > 1)
+        {
+            isHitted = false;
+            bossState = BossPatternState.Idle;
+            //Idle 애니메이션 실행(상태바꿀때 한번만 호출)
+            anim.SetTrigger("Idle");
+
         }
 
         // 밖에서 부울값이 false이면 시간 증가
@@ -489,7 +492,7 @@ public class BossAlpha : MonoBehaviour
 
     private void UpdateSickelCombo1()
     {
-
+        isGehrmanAttack = true;
 
         // int로 값을 정해서 그 값에서만 실행되고, 다른 상태일때 다시 초기화되게 바꾸기
 
@@ -571,6 +574,7 @@ public class BossAlpha : MonoBehaviour
                     // 애니메이션 재생
                     anim.SetTrigger("Idle");
                     sickelSubState = SickelSubState.Attack1;
+                    isGehrmanAttack = false;
                 }
                 break;
         }
@@ -579,6 +583,7 @@ public class BossAlpha : MonoBehaviour
 
     private void UpdateSickelCombo2()
     {
+        isGehrmanAttack = true;
         curTime += Time.deltaTime;
         switch (sickelSubState)
         {
@@ -651,6 +656,7 @@ public class BossAlpha : MonoBehaviour
                     bossState = BossPatternState.Idle;
                     anim.SetTrigger("Idle");
                     sickelSubState = SickelSubState.Attack1;
+                    isGehrmanAttack = false;
                 }
                 break;
         }
@@ -658,6 +664,7 @@ public class BossAlpha : MonoBehaviour
 
     private void UpdateSickelCombo3()
     {
+        isGehrmanAttack = true;
         curTime += Time.deltaTime;
         switch (sickelSubState)
         {
@@ -708,6 +715,7 @@ public class BossAlpha : MonoBehaviour
                     anim.SetTrigger("Idle");
                     sickelSubState = SickelSubState.Attack1;
                     print("3 > idle");
+                    isGehrmanAttack = false;
                 }
                 break;
         }
