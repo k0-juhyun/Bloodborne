@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.UI;
 
 public class bossAI : MonoBehaviour
 {
@@ -27,11 +28,11 @@ public class bossAI : MonoBehaviour
     private GameObject dieEffect;
     private bool isReact;
     private int hitCount = 0;
-    private float curHpPercentage = 1f;
 
     [Header("SpecialPattern")]
     public GameObject[] SpecialPattern1;
     public GameObject[] SpecialPattern2;
+    public GameObject camShake;
 
     // post Processing Values
     [Header("Post Processing Volumes")]
@@ -97,10 +98,13 @@ public class bossAI : MonoBehaviour
     [Header("Hp Values")]
     public float maxHp;
     public float curHp;
+    private float curHpPercentage = 1f;
+    public Slider sliderHp;
     #endregion
 
     private void Awake()
     {
+        sliderHp.maxValue = maxHp;
         instance = this;
 
         cameraShake = GetComponent<RFX4_CameraShake>();
@@ -154,6 +158,8 @@ public class bossAI : MonoBehaviour
             // Update curHp
             curHpPercentage = curHp / maxHp;
 
+            sliderHp.value = curHp;
+            
             // Update Distance between player & thisobj
             MoveDistance = Vector3.Distance(playerPos.position, thisPos.position);
 
@@ -404,7 +410,9 @@ public class bossAI : MonoBehaviour
 
         agent.isStopped = false;
 
-        //SpecialPattern2[0].SetActive(false);
+        yield return new WaitForSeconds(2f);
+
+        SpecialPattern2[0].SetActive(false);
     }
 
     private void SpecialPattern2AnimEffectOn()
@@ -499,6 +507,12 @@ public class bossAI : MonoBehaviour
         if (other.tag == "Weapone" && TPSChraracterController.instance.isAttack && !isReact 
             && !isSpecialPattern1InProgress && !isSpecialPattern2InProgress)
         {
+            if (!camShake.activeSelf)
+            {
+                camShake.SetActive(true);
+                StartCoroutine(camShakeOff());
+            }
+
             // Reduction
             curHp -= AttackDamage;
 
@@ -626,6 +640,12 @@ public class bossAI : MonoBehaviour
         {
             reactAnimation = "ReactBack" + hitCount;
         }
+    }
+
+    IEnumerator camShakeOff()
+    {
+        yield return new WaitForSeconds(1);
+        camShake.SetActive(false);
     }
     #endregion
 }
