@@ -61,7 +61,7 @@ public class TPSChraracterController : MonoBehaviour
     public Transform boss;
 
     // Camera Speed
-    public float cameraRotSpeed = 23f;
+    public float cameraRotSpeed = 20f;
 
     // Camera position Offset
     public Vector3 offset;
