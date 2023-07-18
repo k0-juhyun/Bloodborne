@@ -33,6 +33,7 @@ public class bossAI : MonoBehaviour
     public GameObject[] SpecialPattern1;
     public GameObject[] SpecialPattern2;
     public GameObject camShake;
+    public float distanceToMove = 10f;
 
     // post Processing Values
     [Header("Post Processing Volumes")]
@@ -159,7 +160,7 @@ public class bossAI : MonoBehaviour
             curHpPercentage = curHp / maxHp;
 
             sliderHp.value = curHp;
-            
+
             // Update Distance between player & thisobj
             MoveDistance = Vector3.Distance(playerPos.position, thisPos.position);
 
@@ -176,6 +177,9 @@ public class bossAI : MonoBehaviour
                 isSpecialPattern1Active = true;
 
                 attackInProgress = true;
+
+                // Move Object away from player
+                StartCoroutine(MoveObjectAwayFromPlayer());
 
                 AnimatorTrigger("SpecialPattern1Start");
             }
@@ -386,6 +390,25 @@ public class bossAI : MonoBehaviour
         animator.speed = 1f;
     }
 
+    private IEnumerator MoveObjectAwayFromPlayer()
+    {
+
+        Vector3 originalPosition = thisPos.position;
+        Vector3 targetPosition = playerPos.position - (playerPos.forward * distanceToMove);
+
+        float elapsedTime = 0f;
+        float moveTime = 1f; // 1초 동안 이동
+
+        while (elapsedTime < moveTime)
+        {
+            thisPos.position = Vector3.Lerp(originalPosition, targetPosition, elapsedTime / moveTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // 움직인 후의 위치가 targetPosition이 아닐 수 있으므로 마지막으로 목표 위치로 정확하게 설정
+        thisPos.position = targetPosition;
+    }
     // Special Pattern2
 
     IEnumerator SpecialPattern2AnimStart()
