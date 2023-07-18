@@ -105,17 +105,22 @@ public class Test2 : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Hand") || other.CompareTag("Tail")
-            || other.CompareTag("Weapon"))
+        if (other.CompareTag("Hand") || other.CompareTag("Weapon"))
         {
             if(bossAI.instance.moonpresenceAttack)
             {
-                print("hit");   
+                print(other.gameObject.name);
                 TakeDamage(5);
                 soundSource.clip = Audioclip[0];
                 soundSource.PlayOneShot(Audioclip[0]);
             }
         }
         
+        else if(other.CompareTag("Tail") && bossAI.instance.attackSubStateMachine == bossAI.AttackSubStateMachine.Pattern6)
+        {
+            TakeDamage(5);
+            soundSource.clip = Audioclip[0];
+            soundSource.PlayOneShot(Audioclip[0]);
+        }
     }
 }
