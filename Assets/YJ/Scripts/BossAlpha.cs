@@ -10,6 +10,7 @@ public class BossAlpha : MonoBehaviour
 {
     //싱글톤
     public static BossAlpha instance;
+   
 
     NavMeshAgent agent;                 // 길찾기
     Animator anim;                  // 애니메이터
@@ -104,7 +105,7 @@ public class BossAlpha : MonoBehaviour
     public bool isMoveTargetPos = false;                // SC2_a2 이동 계산용 상태확인
     public bool isGehrmanDie = false;                   // 죽음 상태 확인
     public bool isGehrmanAttack = false;                // 공격 상태 확인 to 플레이어용
-    //public bool a = false;                              // sickle2 에서 플레이어 위치 한번만 계산하려고 했는데, 계속 계산해도 될듯해서 그냥 둠
+    public bool a = false;                              // sickle2 에서 플레이어 위치 한번만 계산하려고 했는데, 계속 계산해도 될듯해서 그냥 둠
 
 
     // Start is called before the first frame update
@@ -528,22 +529,22 @@ public class BossAlpha : MonoBehaviour
                     // 플레이어의 오른쪽으로 이동한다
                     // 항상 플레이어의 오른쪽 인지 아닌지를 모르겠어...~!~~!!!그자리에서 움직이는 건가????
                     // 이동방향
-                    Vector3 attackdir = transform.forward + player.transform.right;
-                    attackdir.Normalize();
-                    // 한번만 계산하기
-                    Vector3 attackMovePos = player.transform.position + player.transform.right * 2;
-                    //if (a == false)
-                    //{
-                    //    print("현재위치 :" + transform.position);
-                    //    // 이동방향
-                    //    Vector3 attackdir = transform.forward + player.transform.right;
-                    //    attackdir.Normalize();
-                    //    // 한번만 계산하기
-                    //    Vector3 attackMovePos = player.transform.position + player.transform.right * 2;
-                    //    a = true;
-                    //    print("11111 : " + attackMovePos);
+                    //Vector3 attackdir = transform.forward + player.transform.right;
+                    //attackdir.Normalize();
+                    //// 한번만 계산하기
+                    //Vector3 attackMovePos = player.transform.position + player.transform.right * 2;
+                    if (a == false)
+                    {
+                        print("현재위치 :" + transform.position);
+                        // 이동방향
+                        Vector3 attackdir = transform.forward + player.transform.right;
+                        attackdir.Normalize();
+                        // 한번만 계산하기
+                        Vector3 attackMovePos = player.transform.position + player.transform.right * 2;
+                        a = true;
+                        print("11111 : " + attackMovePos);
 
-                    //}
+                    }
                     //anim.SetBool("Leg", true);
                     attackMovePos.y = transform.position.y;
                     transform.position = Vector3.Lerp(transform.position, attackMovePos, 0.1f);

@@ -31,8 +31,8 @@ public class TPSChraracterController : MonoBehaviour
     public float attackDamage = 10f;  // 공격력
 
 
-    public Transform Player;
-    public Transform Boss;
+    //public Transform Player;
+    //public Transform Boss;
 
     private float Dist;
     [SerializeField]
@@ -53,6 +53,29 @@ public class TPSChraracterController : MonoBehaviour
     [Header("PlayerSpeed")]
     public float moveSpeed = 3f;
 
+
+    // player
+    public Transform player;
+
+    // boss
+    public Transform boss;
+
+    // Camera Speed
+    public float cameraRotSpeed = 23f;
+
+    // Camera position Offset
+    public Vector3 offset;
+
+    // Camera LockOn
+    public bool isLockedOn;
+
+    // Ground Layer
+    public LayerMask groundLayer;
+
+    // collisionOffset
+    public float collisionOffset = 2.2f;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -67,10 +90,10 @@ public class TPSChraracterController : MonoBehaviour
 
     void Update()
     {
-        print("isAttack: "+isAttack);
+        print("isAttack: " + isAttack);
         LookAround();
         Move();
-        LockOn();
+        //LockOn();
         if (Input.GetButtonDown("Fire1"))
         {
             Attack();
@@ -86,6 +109,18 @@ public class TPSChraracterController : MonoBehaviour
         }
 
         soundSource.enabled = true;
+
+
+
+        if (Input.GetButtonDown("Fire2"))
+        {
+            isLockedOn = !isLockedOn;
+        }
+
+        if (Input.GetButtonUp("Fire2"))
+        {
+            isLockedOn = !isLockedOn;
+        }
 
     }
 
@@ -138,64 +173,89 @@ public class TPSChraracterController : MonoBehaviour
 
         }
 
-
-
-        //Debug.DrawRay(cameraArm.position, new Vector3(cameraArm.forward.x, 0, cameraArm.forward.z).normalized,Color.red);
-
     }
-
-    private void LockOn()
+    public float playerRotationSpeed = 10f;
+    void LateUpdate()
     {
-        GameObject lockOnObject = GameObject.FindGameObjectWithTag("Boss");  // LockOnTarget 태그로 오브젝트 찾기
-
-        if (lockOnObject != null)
+        if (isLockedOn)
         {
-            Transform lockOnTransform = lockOnObject.transform;
+            // Calculate Camera Pos by player pos
+            Vector3 desiredPosition = player.position + offset;
 
-            //마우스 오른쪽 버튼을 눌렀을 때 
-            if (Input.GetButton("Fire2"))
+            RaycastHit hit;
+
+            if (Physics.Linecast(player.position, desiredPosition, out hit, groundLayer))
             {
-                //카메라와 player를 enemy에게 lookat 한다
+                Vector3 normalPos = hit.point + hit.normal * collisionOffset;
 
-                transform.LookAt(Boss);
-
-
-
-                //거리조절
-                float distance = Vector3.Distance(Player.position, Boss.position);
-
-                // 카메라와 Boss 사이의 거리가 최소 거리보다 작을 경우
-                if (distance < minDist)
-                {
-                    // 카메라 위치를 최소 거리만큼 뒤로 조정합니다.
-                    Vector3 offset = transform.position - Boss.position;
-                    offset = offset.normalized * minDist;
-                    transform.position = Boss.position + offset;
-                }
-
-                //카메라 줌인아웃
-                //float distance = Vector3.Distance(Player.position, Boss.position);
-
-                float zoomLevel = Mathf.InverseLerp(minDist, maxDist, distance);
-                // Field of view View 바꿈
-                float targetFOV = Mathf.Lerp(50f, 60f, zoomLevel);
-                Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetFOV, Time.deltaTime * zoomSpeed);
-
-
-                characterBody.LookAt(Boss);
-                //transform.LookAt(Boss);
-
+                transform.position = Vector3.Lerp(transform.position, normalPos, cameraRotSpeed * Time.deltaTime);
             }
 
+            else
+            {
+                // Camera Lerp 
+                transform.position = Vector3.Lerp(transform.position, desiredPosition, cameraRotSpeed * Time.deltaTime);
+            }
+
+            characterBody.LookAt(boss);
+            transform.LookAt(boss);
         }
     }
-    private Vector3 GetCenterPoint()
-    {
-        // 두 오브젝트의 중심점 계산
-        Vector3 centerPoint = (Player.position + Boss.position) / 2f;
 
-        return centerPoint;
-    }
+    //private void LockOn()
+    //{
+    //    GameObject lockOnObject = GameObject.FindGameObjectWithTag("Boss");  // LockOnTarget 태그로 오브젝트 찾기
+
+    //    if (lockOnObject != null)
+    //    {
+    //        Transform lockOnTransform = lockOnObject.transform;
+
+    //        //마우스 오른쪽 버튼을 눌렀을 때 
+    //        if (Input.GetButton("Fire2"))
+    //        {
+    //            //카메라와 player를 enemy에게 lookat 한다
+
+    //            transform.LookAt(Boss);
+
+
+
+    //            //거리조절
+    //            float distance = Vector3.Distance(Player.position, Boss.position);
+
+    //            // 카메라와 Boss 사이의 거리가 최소 거리보다 작을 경우
+    //            if (distance < minDist)
+    //            {
+    //                // 카메라 위치를 최소 거리만큼 뒤로 조정합니다.
+    //                Vector3 offset = transform.position - Boss.position;
+    //                offset = offset.normalized * minDist;
+    //                transform.position = Boss.position + offset;
+    //            }
+
+    //            //카메라 줌인아웃
+    //            //float distance = Vector3.Distance(Player.position, Boss.position);
+
+    //            float zoomLevel = Mathf.InverseLerp(minDist, maxDist, distance);
+    //            // Field of view View 바꿈
+    //            float targetFOV = Mathf.Lerp(50f, 60f, zoomLevel);
+    //            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetFOV, Time.deltaTime * zoomSpeed);
+
+
+    //            characterBody.LookAt(Boss);
+    //            //transform.LookAt(Boss);
+
+    //        }
+
+    //    }
+    //}
+
+
+    //private Vector3 GetCenterPoint()
+    //{
+    //    // 두 오브젝트의 중심점 계산
+    //    Vector3 centerPoint = (Player.position + Boss.position) / 2f;
+
+    //    return centerPoint;
+    //}
 
     private void Attack()
     {

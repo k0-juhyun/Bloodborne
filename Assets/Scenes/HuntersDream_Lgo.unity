@@ -1289,7 +1289,7 @@ GameObject:
   - component: {fileID: 220283759}
   m_Layer: 0
   m_Name: scythe
-  m_TagString: Weapon
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1320,7 +1320,7 @@ MeshCollider:
   m_GameObject: {fileID: 220283757}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
@@ -3179,6 +3179,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bdeae05922ff9a844858e18aa0507a08, type: 3}
+--- !u!1 &380682148 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100194, guid: 7617ab93bfcecf24194459b5e0abd33f,
+    type: 3}
+  m_PrefabInstance: {fileID: 7239571966176910553}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &395201404 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5830046145513166091, guid: 2512e515007e3ba4fb095e9fc9338d4b,
@@ -18353,7 +18359,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2760561151819706662}
   - component: {fileID: 2760561151819706663}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: scythe sword
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -19282,7 +19288,7 @@ GameObject:
   - component: {fileID: 6358518839140716027}
   m_Layer: 0
   m_Name: 24_+scythe.mesh0_1_16_16
-  m_TagString: Weapon
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19730,7 +19736,7 @@ Transform:
   m_GameObject: {fileID: 1324283376528166918}
   m_LocalRotation: {x: 0.07423763, y: 0.00022679052, z: 0.000016743943, w: 0.99724054}
   m_LocalPosition: {x: 0.0000000014409868, y: 0.015115389, z: 0.00061501394}
-  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+  m_LocalScale: {x: 0.99999994, y: 1.2589998, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3279691185880301651}
@@ -19747,7 +19753,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0035162761, y: 0.00638284, z: 0.012674056}
+  m_Size: {x: 0.003516276, y: 0.00638284, z: 0.012674056}
   m_Center: {x: -0.00010081632, y: -0.0018085839, z: 0.0050497167}
 --- !u!33 &2766468836422544406
 MeshFilter:
@@ -21085,7 +21091,7 @@ GameObject:
   - component: {fileID: 3279691185880301651}
   m_Layer: 10
   m_Name: scythe master
-  m_TagString: Weapon
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24862,7 +24868,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100194, guid: 7617ab93bfcecf24194459b5e0abd33f, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 100196, guid: 7617ab93bfcecf24194459b5e0abd33f, type: 3}
       propertyPath: m_Layer
@@ -24996,8 +25002,7 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 9500000, guid: 7617ab93bfcecf24194459b5e0abd33f, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7617ab93bfcecf24194459b5e0abd33f, type: 3}
 --- !u!4 &7239571966421872844
 Transform:
@@ -25078,7 +25083,7 @@ GameObject:
   - component: {fileID: 7239571966421872848}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25159,6 +25164,20 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7239571966176910553}
   m_PrefabAsset: {fileID: 0}
+--- !u!64 &7239571966897158343
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380682148}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1001 &7239571967533823081
 PrefabInstance:
   m_ObjectHideFlags: 0
