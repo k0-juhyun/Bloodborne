@@ -6051,8 +6051,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 176848141}
-  m_Father: {fileID: 6308587343982010941}
-  m_RootOrder: 2
+  m_Father: {fileID: 8278654584382069472}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -7321,7 +7321,7 @@ PrefabInstance:
     - target: {fileID: 1330670381406353215, guid: 6780316c841c94649ae2e2edd09450bd,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1330670381406353215, guid: 6780316c841c94649ae2e2edd09450bd,
         type: 3}
@@ -12528,6 +12528,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnergySpread
+      objectReference: {fileID: 0}
+    - target: {fileID: 1135269809934672090, guid: 5b66bf192a407472ba156c617e17ecb3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1135269809934672165, guid: 5b66bf192a407472ba156c617e17ecb3,
         type: 3}
@@ -20550,7 +20555,7 @@ GameObject:
   - component: {fileID: 6308587342784139546}
   m_Layer: 6
   m_Name: LeftTail3
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20584,7 +20589,7 @@ GameObject:
   - component: {fileID: 6308587343113130294}
   m_Layer: 6
   m_Name: EdgeLeftTail2
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20872,7 +20877,7 @@ GameObject:
   - component: {fileID: 6308587342664736622}
   m_Layer: 6
   m_Name: RightTail6
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21029,7 +21034,7 @@ GameObject:
   - component: {fileID: 6308587343984314550}
   m_Layer: 6
   m_Name: LeftTailb2
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21190,7 +21195,7 @@ GameObject:
   - component: {fileID: 6308587343167965638}
   m_Layer: 6
   m_Name: EdgeRightTailb
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22035,7 +22040,7 @@ GameObject:
   - component: {fileID: 6308587344570231853}
   m_Layer: 6
   m_Name: RightTailb4
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22324,7 +22329,7 @@ GameObject:
   - component: {fileID: 6308587343962658415}
   m_Layer: 6
   m_Name: LeftTail4
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22616,7 +22621,7 @@ GameObject:
   - component: {fileID: 6308587342846733181}
   m_Layer: 6
   m_Name: LeftTail7
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22742,7 +22747,7 @@ GameObject:
   - component: {fileID: 6308587344043938203}
   m_Layer: 6
   m_Name: RightTailb2_18
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22978,7 +22983,7 @@ GameObject:
   - component: {fileID: 6308587343939638678}
   m_Layer: 6
   m_Name: LeftTail2
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23120,7 +23125,7 @@ GameObject:
   - component: {fileID: 6308587343007548892}
   m_Layer: 6
   m_Name: RightTailb2_4
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23209,7 +23214,7 @@ GameObject:
   - component: {fileID: 6308587344569459810}
   m_Layer: 6
   m_Name: LeftTail11
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23304,7 +23309,7 @@ GameObject:
   - component: {fileID: 6308587344512901756}
   m_Layer: 6
   m_Name: RightTailb2_1
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23335,7 +23340,7 @@ GameObject:
   - component: {fileID: 6308587343480352288}
   m_Layer: 6
   m_Name: LeftTail
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23441,7 +23446,7 @@ GameObject:
   - component: {fileID: 6308587343521748201}
   m_Layer: 6
   m_Name: CenterTail6
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23483,7 +23488,7 @@ GameObject:
   - component: {fileID: 6308587343252130492}
   m_Layer: 6
   m_Name: LeftTailb3
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23821,7 +23826,7 @@ GameObject:
   - component: {fileID: 6308587344045509987}
   m_Layer: 6
   m_Name: CenterTail7
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24160,7 +24165,7 @@ GameObject:
   - component: {fileID: 6308587343776717655}
   m_Layer: 6
   m_Name: RightTail7
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25004,7 +25009,7 @@ GameObject:
   - component: {fileID: 6308587344259967021}
   m_Layer: 6
   m_Name: CenterTailb3
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25307,7 +25312,7 @@ GameObject:
   - component: {fileID: 6308587344270398869}
   m_Layer: 6
   m_Name: RightTailb2
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25770,7 +25775,7 @@ GameObject:
   - component: {fileID: 6308587343757563968}
   m_Layer: 6
   m_Name: RightTailb2_7
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25966,7 +25971,7 @@ GameObject:
   - component: {fileID: 6308587343320188838}
   m_Layer: 6
   m_Name: RightTailb2_5
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26176,7 +26181,7 @@ GameObject:
   - component: {fileID: 6308587343313116810}
   m_Layer: 6
   m_Name: LeftTail8
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26701,7 +26706,7 @@ GameObject:
   - component: {fileID: 6308587343241913412}
   m_Layer: 6
   m_Name: LeftTail9
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27031,7 +27036,7 @@ GameObject:
   - component: {fileID: 1090698182}
   m_Layer: 6
   m_Name: RightTail6
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27140,7 +27145,7 @@ GameObject:
   - component: {fileID: 6308587343375815862}
   m_Layer: 6
   m_Name: CenterTailb2_1
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27350,7 +27355,7 @@ GameObject:
   - component: {fileID: 6308587342577015678}
   m_Layer: 6
   m_Name: LeftTailb5
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27521,7 +27526,7 @@ GameObject:
   - component: {fileID: 6308587344562066144}
   m_Layer: 6
   m_Name: CenterTail
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28121,7 +28126,7 @@ GameObject:
   - component: {fileID: 6308587343177889005}
   m_Layer: 6
   m_Name: EdgeLeftTail1
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28428,7 +28433,7 @@ GameObject:
   - component: {fileID: 6308587342975149580}
   m_Layer: 6
   m_Name: CenterTailb1
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28467,7 +28472,7 @@ GameObject:
   - component: {fileID: 6308587344392918914}
   m_Layer: 6
   m_Name: EdgeRightTail
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28919,7 +28924,7 @@ GameObject:
   - component: {fileID: 6308587342555284590}
   m_Layer: 6
   m_Name: RightTail8
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28966,7 +28971,7 @@ GameObject:
   - component: {fileID: 6308587343182380874}
   m_Layer: 6
   m_Name: LeftTail5
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29041,7 +29046,7 @@ GameObject:
   - component: {fileID: 6308587342558960117}
   m_Layer: 6
   m_Name: LeftTailb4
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29494,7 +29499,7 @@ GameObject:
   - component: {fileID: 6308587344335496311}
   m_Layer: 6
   m_Name: CenterTail11
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29770,7 +29775,7 @@ GameObject:
   - component: {fileID: 6308587343685998307}
   m_Layer: 6
   m_Name: LeftTail6
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29976,7 +29981,7 @@ GameObject:
   - component: {fileID: 6308587343110102794}
   m_Layer: 6
   m_Name: CenterTail2
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30023,7 +30028,7 @@ GameObject:
   - component: {fileID: 6308587342613719801}
   m_Layer: 6
   m_Name: EdgeRightTailb2
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30067,7 +30072,7 @@ GameObject:
   - component: {fileID: 6308587343327709735}
   m_Layer: 6
   m_Name: RightTail4
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30098,7 +30103,7 @@ GameObject:
   - component: {fileID: 6308587342828144013}
   m_Layer: 6
   m_Name: LeftTailb1
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30524,7 +30529,7 @@ GameObject:
   - component: {fileID: 6308587342772400744}
   m_Layer: 6
   m_Name: CenterTail5
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30801,7 +30806,7 @@ GameObject:
   - component: {fileID: 1859989728}
   m_Layer: 6
   m_Name: RightTail2
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31092,7 +31097,7 @@ GameObject:
   - component: {fileID: 6308587344533146880}
   m_Layer: 6
   m_Name: EdgeLeftTail4
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31141,7 +31146,7 @@ GameObject:
   - component: {fileID: 6308587343538068254}
   m_Layer: 6
   m_Name: RightTail2
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31188,7 +31193,7 @@ GameObject:
   - component: {fileID: 6308587342916414802}
   m_Layer: 6
   m_Name: RightTailb3
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31248,7 +31253,7 @@ GameObject:
   - component: {fileID: 6308587343035725074}
   m_Layer: 6
   m_Name: CenterTailb2
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31266,7 +31271,7 @@ GameObject:
   - component: {fileID: 6308587344434178439}
   m_Layer: 6
   m_Name: CenterTail9
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31423,7 +31428,7 @@ GameObject:
   - component: {fileID: 6308587343270269246}
   m_Layer: 6
   m_Name: EdgeLeftTail3
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31549,7 +31554,7 @@ GameObject:
   - component: {fileID: 1655293468}
   m_Layer: 6
   m_Name: RightTailb2_1
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31832,7 +31837,7 @@ GameObject:
   - component: {fileID: 6308587343147941997}
   m_Layer: 6
   m_Name: EdgeRightTail2
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31989,7 +31994,7 @@ GameObject:
   - component: {fileID: 6308587343078023949}
   m_Layer: 6
   m_Name: RightTail5
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32101,7 +32106,7 @@ GameObject:
   - component: {fileID: 6308587343138356894}
   m_Layer: 6
   m_Name: RightTailb2_2
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32180,7 +32185,7 @@ GameObject:
   - component: {fileID: 6308587343189358705}
   m_Layer: 6
   m_Name: RightTail
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32258,7 +32263,7 @@ GameObject:
   - component: {fileID: 6308587342703211378}
   m_Layer: 6
   m_Name: LeftTailb7
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32352,7 +32357,7 @@ GameObject:
   - component: {fileID: 6308587343549423832}
   m_Layer: 6
   m_Name: EdgeRightTailb1
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32491,7 +32496,7 @@ GameObject:
   - component: {fileID: 6308587342780823864}
   m_Layer: 6
   m_Name: CenterTail1
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32509,7 +32514,7 @@ GameObject:
   - component: {fileID: 6308587344374798157}
   m_Layer: 6
   m_Name: EdgeRightTail1
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35006,6 +35011,7 @@ MonoBehaviour:
   SpecialPattern1:
   - {fileID: 6308587343982010940}
   - {fileID: 100494651}
+  - {fileID: 176848140}
   SpecialPattern2:
   - {fileID: 1000355539}
   camShake: {fileID: 94459747}
@@ -35255,9 +35261,8 @@ Transform:
   m_Children:
   - {fileID: 6308587342902819181}
   - {fileID: 6308587344108012613}
-  - {fileID: 663869600}
   m_Father: {fileID: 8278654584382069472}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6308587343983677832
 MonoBehaviour:
@@ -35381,7 +35386,7 @@ PrefabInstance:
     - target: {fileID: 1330670381406353215, guid: dab122c822840264db0c56b60deea689,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1330670381406353215, guid: dab122c822840264db0c56b60deea689,
         type: 3}
@@ -36581,7 +36586,7 @@ GameObject:
   - component: {fileID: 6308587344192253992}
   m_Layer: 6
   m_Name: RightTail3
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36676,7 +36681,7 @@ GameObject:
   - component: {fileID: 6308587344527025503}
   m_Layer: 6
   m_Name: CenterTail10
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36810,7 +36815,7 @@ GameObject:
   - component: {fileID: 6308587342976030816}
   m_Layer: 6
   m_Name: RightTailb
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36841,7 +36846,7 @@ GameObject:
   - component: {fileID: 6308587342987032390}
   m_Layer: 6
   m_Name: RightTail9
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36859,7 +36864,7 @@ GameObject:
   - component: {fileID: 6308587344046328820}
   m_Layer: 6
   m_Name: EdgeLeftTail
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36923,7 +36928,7 @@ GameObject:
   - component: {fileID: 6308587343395756164}
   m_Layer: 6
   m_Name: LeftTail10
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37222,7 +37227,7 @@ GameObject:
   - component: {fileID: 6308587342961816848}
   m_Layer: 6
   m_Name: CenterTailb2_4
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37749,7 +37754,7 @@ GameObject:
   - component: {fileID: 6308587342706902284}
   m_Layer: 6
   m_Name: CenterTailb2_2
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39446,7 +39451,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 91b3419abe382d54a8c0708bf0c281b1,
         type: 3}
       propertyPath: m_TagString
-      value: Weapone
+      value: Weapon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91b3419abe382d54a8c0708bf0c281b1, type: 3}
@@ -39860,7 +39865,7 @@ GameObject:
   - component: {fileID: 6308587344597414451}
   m_Layer: 6
   m_Name: CenterTail8
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39920,7 +39925,7 @@ GameObject:
   - component: {fileID: 6308587344448627429}
   m_Layer: 6
   m_Name: CenterTail12
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40097,7 +40102,7 @@ GameObject:
   - component: {fileID: 6308587344478515076}
   m_Layer: 6
   m_Name: RightTail1
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40273,7 +40278,7 @@ GameObject:
   - component: {fileID: 6308587343983677832}
   m_Layer: 6
   m_Name: LeftTail1
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40319,7 +40324,7 @@ GameObject:
   - component: {fileID: 6308587343970586057}
   m_Layer: 6
   m_Name: CenterTailb2_3
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42178,6 +42183,7 @@ Transform:
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 663869600}
   - {fileID: 6308587343982010941}
   - {fileID: 8278654584382069474}
   - {fileID: 100494652}
@@ -42200,7 +42206,7 @@ Transform:
   m_Children:
   - {fileID: 8278654584382069476}
   m_Father: {fileID: 8278654584382069472}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &8278654584382069476
 Transform:
@@ -42236,7 +42242,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8278654584382069472}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &8278654584382069480
 Transform:
@@ -50511,7 +50517,7 @@ GameObject:
   - component: {fileID: 6308587343378407119}
   m_Layer: 6
   m_Name: RightTailb2_3
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50702,7 +50708,7 @@ GameObject:
   - component: {fileID: 6308587344281559177}
   m_Layer: 6
   m_Name: CenterTail3
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50778,7 +50784,7 @@ GameObject:
   - component: {fileID: 6308587343220234884}
   m_Layer: 6
   m_Name: RightTailb2_6
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50908,7 +50914,7 @@ GameObject:
   - component: {fileID: 6308587342579904861}
   m_Layer: 6
   m_Name: CenterTail4
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51334,7 +51340,7 @@ GameObject:
   - component: {fileID: 6308587343369893326}
   m_Layer: 6
   m_Name: CenterTailb4
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51771,7 +51777,7 @@ GameObject:
   - component: {fileID: 6308587343517635041}
   m_Layer: 6
   m_Name: LeftTailb6
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52111,7 +52117,7 @@ GameObject:
   - component: {fileID: 6308587342922197363}
   m_Layer: 6
   m_Name: RightTailb1
-  m_TagString: Hand
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -359,6 +359,7 @@ public class bossAI : MonoBehaviour
 
         // Load Prefabs
         SpecialPattern1[1].SetActive(true);
+        SpecialPattern1[2].SetActive(true);
 
         // camera shake
         //cameraShake.Instance.specialShake = true;
@@ -369,6 +370,7 @@ public class bossAI : MonoBehaviour
         lensDistortion.active = false;
 
         SpecialPattern1[1].SetActive(false);
+        SpecialPattern1[2].SetActive(false);
 
         // Aniamtion Trigger
         AnimatorTrigger("SpecialPattern1Finish");
@@ -504,7 +506,7 @@ public class bossAI : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Weapone" && TPSChraracterController.instance.isAttack && !isReact 
+        if (other.tag == "Weapon" && TPSChraracterController.instance.isAttack && !isReact 
             && !isSpecialPattern1InProgress && !isSpecialPattern2InProgress)
         {
             if (!camShake.activeSelf)
