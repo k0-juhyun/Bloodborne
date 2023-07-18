@@ -94,10 +94,10 @@ AnimatorStateMachine:
     m_Position: {x: -50, y: -210, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2822940885010674}
-    m_Position: {x: 480, y: -530, z: 0}
+    m_Position: {x: 330, y: -530, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1304533209691108894}
-    m_Position: {x: 480, y: -430, z: 0}
+    m_Position: {x: 330, y: -430, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3262706896535085204}
     m_Position: {x: -430, y: -280, z: 0}
@@ -118,43 +118,43 @@ AnimatorStateMachine:
     m_Position: {x: -430, y: -50, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1463438728199745885}
-    m_Position: {x: 470, y: 10, z: 0}
+    m_Position: {x: 320, y: 10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7835671108428552859}
     m_Position: {x: -660, y: -140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -696528141048658353}
-    m_Position: {x: 700, y: -430, z: 0}
+    m_Position: {x: 550, y: -430, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8973360613292265390}
     m_Position: {x: -660, y: -220, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8838319893072679764}
-    m_Position: {x: 470, y: -360, z: 0}
+    m_Position: {x: 320, y: -360, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3712811511614397656}
-    m_Position: {x: 700, y: -360, z: 0}
+    m_Position: {x: 550, y: -360, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7985530318518705172}
-    m_Position: {x: 940, y: -360, z: 0}
+    m_Position: {x: 790, y: -350, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4138169118701999368}
-    m_Position: {x: 470, y: -260, z: 0}
+    m_Position: {x: 320, y: -260, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1364520563042332116}
-    m_Position: {x: 700, y: -260, z: 0}
+    m_Position: {x: 550, y: -260, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2543544899380660855}
-    m_Position: {x: 460, y: -170, z: 0}
+    m_Position: {x: 310, y: -170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7682044256833782525}
-    m_Position: {x: 720, y: -170, z: 0}
+    m_Position: {x: 570, y: -170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7038635500708334724}
-    m_Position: {x: 470, y: 120, z: 0}
+    m_Position: {x: 320, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 37425842429077256}
-    m_Position: {x: 450, y: -70, z: 0}
+    m_Position: {x: 310, y: -100, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: -6975071100524812175}
@@ -167,7 +167,7 @@ AnimatorStateMachine:
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: -410, y: -220, z: 0}
   m_EntryPosition: {x: -30, y: -400, z: 0}
-  m_ExitPosition: {x: 800, y: 120, z: 0}
+  m_ExitPosition: {x: 650, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -858871012008801839}
 --- !u!1102 &-8838319893072679764
@@ -1280,109 +1280,109 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Pattern1
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Pattern2
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Pattern3
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Pattern4
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Pattern5
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Pattern6
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: SpecialPattern1Start
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: SpecialPattern1Finish
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: AttackState
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: ReactFront1
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: ReactFront2
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: ReactFront3
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: ReactBack1
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: ReactBack2
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: ReactBack3
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: SpecialPattern2Start
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Die
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: BaseLayer
