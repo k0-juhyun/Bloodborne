@@ -25,6 +25,7 @@ public class BossAlpha : MonoBehaviour
         SickelCombo1,
         SickelCombo2,
         SickelCombo3,
+        PhaseChange,
         Die
     }
     public BossPatternState bossState;         // 보스 상태 = 0: 대기, 1:이동, 2:회피, 4:피격, 5:낫 공격(대시,점프 포함), 6: 칼 공격(대시 점프포함?), 7: 총 공격 8: 죽음
@@ -64,6 +65,7 @@ public class BossAlpha : MonoBehaviour
     Vector3 moveTargetPos;              // 공격시 이동 목적지
     Vector3 attackdir;
     Vector3 attackMovePos;
+    Vector3 currPos;                    // 패턴1.2 공격 위치
 
     int damage = 2;                         // 데미지 (플레이어한테 어떤 공격인지 상태를 받아오기, 공격에 따라 다른 데미지를 구현)
     public int hitCount = 0;                   // 피격 횟수 (맞은 횟수)
@@ -105,7 +107,9 @@ public class BossAlpha : MonoBehaviour
     public bool isMoveTargetPos = false;                // SC2_a2 이동 계산용 상태확인
     public bool isGehrmanDie = false;                   // 죽음 상태 확인
     public bool isGehrmanAttack = false;                // 공격 상태 확인 to 플레이어용
-    //public bool a = false;                              // sickle2 에서 플레이어 위치 한번만 계산하려고 했는데, 계속 계산해도 될듯해서 그냥 둠
+    public bool isPhase2 = false;                       // 페이즈 2 상태 확인
+    public bool isQuickening = false;                   // Quickening 폭발 공격
+    public bool a = false;                              // sickle2 에서 플레이어 위치 한번만 계산
 
 
     // Start is called before the first frame update
@@ -155,6 +159,7 @@ public class BossAlpha : MonoBehaviour
             // 피격 횟수를 초기화
             //hitCount = 2;
             hitCount = 0;
+            isHitted = false;
         }
 
         switch (bossState)
@@ -183,6 +188,9 @@ public class BossAlpha : MonoBehaviour
             case BossPatternState.Die:
                 UpdateDie();
                 break;
+            case BossPatternState.PhaseChange:
+                UpdatePhaseChange();
+                break;
             default:
                 break;
         }
@@ -205,7 +213,43 @@ public class BossAlpha : MonoBehaviour
         }
     }
 
+    // 페이즈 변경 상태
+    private void UpdatePhaseChange()
+    {
+        // 1 > 2 페이즈 넘어갈 때 딱 한번만 할거임 (bool 로 만들어서 체크하기)
+        // 만약 현재 bossPhase.Phase2 라면
+        if (isPhase2 == false && bossPhase == BossPhase.Phase2)
+        {
+            // 무기교체 함수를 실행한다(무기 교체 함수 만들기
+            // 무기 교체 함수에서 애니메이션도 같이 실행한다
+        }
 
+        // 만약 현재 Phase3 이라면
+        // Quickning 함수를 호출한다
+        // 3페이즈에서 공격을 랜덤으로 돌릴때, Quikning을 추가한다
+        // 알파에서는 순서대로 실행하게 한다(3 되면 무조건 실행), 3 패턴이 어떻게 되는 건지 기획과 협의 필요.
+        if (bossPhase == BossPhase.Phase3)
+        {
+            // 여기서 시간을 흐르게 한다(1초후에 사라지게 하려구..??
+
+            // 한번만 호출해야함
+            if (isQuickening == false)
+            {
+                Quickening();
+                isQuickening = true;
+            }
+        }
+    }
+
+    private void Quickening()
+    {
+        //게르만의 중심에서 Spher를 만든다
+        //시간이 지나면서 Spher의 스케일 점점 커진다
+        //1초 후에 사라진다
+        //애니메이션을 실행한다
+        //상태가 idle 로 바뀐다
+        //isQuickening = false 로 한다
+    }
 
     private void UpdateIdle()           // 공격이 끝나면 idle 상태로 옴
     {
@@ -444,7 +488,7 @@ public class BossAlpha : MonoBehaviour
             isHitted = true;
         }
 
-        
+
         // 만약 현재 피격시간이 피격2 시간보다 작을때, 히트 카운트가 2라면
         else if (hitcurrTime <= hitTime && hitCount >= 2)
         {
@@ -479,7 +523,7 @@ public class BossAlpha : MonoBehaviour
         // 일정 시간이 증가하면
         // 부울 값 모두 초기화
 
-        // hit2 애니메이션이 끝나면 idle 상태로 돌린다(이벤트 함수로)
+        // hit2 up 애니메이션이 끝나면 idle 상태로 돌린다(이벤트 함수로)
     }
 
     // 이벤트 함수
@@ -488,15 +532,20 @@ public class BossAlpha : MonoBehaviour
         // Idle상태로 한다
         bossState = BossPatternState.Idle;
     }
-    
+
     void AnimHitUp()
     {
         // Idle상태로 한다
-        bossState = BossPatternState.Idle;
+        //bossState = BossPatternState.Idle;
         // hit up 애니메이션 켠다
         anim.SetTrigger("HitUp");
         isHitted2 = false;
         isHitted = false;
+    }
+
+    void AnimDie()
+    {
+        Destroy(gameObject);
     }
 
 
@@ -518,7 +567,7 @@ public class BossAlpha : MonoBehaviour
                     // 앞으로 이동하고 싶다
                     moveTargetPos.y = transform.position.y;
                     transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
-                    
+
                     //print("moveTargetPos :" + moveTargetPos);
                     if (Vector3.Distance(transform.position, moveTargetPos) < 1f)
                     {
@@ -528,6 +577,8 @@ public class BossAlpha : MonoBehaviour
                         // 애니메이션 재생
                         anim.SetTrigger("Attack2");
                         print("com1_attack_move");
+                        // 현재 위치 기억하기
+                        currPos = transform.position;
                     }
                 }
                 break;
@@ -538,35 +589,41 @@ public class BossAlpha : MonoBehaviour
                     // 플레이어의 오른쪽으로 이동한다
                     // 항상 플레이어의 오른쪽 인지 아닌지를 모르겠어...~!~~!!!그자리에서 움직이는 건가????
                     // 이동방향
-                    Vector3 attackdir = transform.forward + player.transform.right;
-                    attackdir.Normalize();
+                    //Vector3 attackdir = transform.forward + player.transform.right;
+                    //attackdir.Normalize();
+                    //Vector3 attackMovePos = player.transform.position + player.transform.right * 2;
                     // 한번만 계산하기
-                    Vector3 attackMovePos = player.transform.position + player.transform.right * 2;
-                    //if (a == false)
-                    //{
-                    //    print("현재위치 :" + transform.position);
-                    //    // 이동방향
-                    //    Vector3 attackdir = transform.forward + player.transform.right;
-                    //    attackdir.Normalize();
-                    //    // 한번만 계산하기
-                    //    Vector3 attackMovePos = player.transform.position + player.transform.right * 2;
-                    //    a = true;
-                    //    print("11111 : " + attackMovePos);
+                    if (a == false)
+                    {
+                        //print("현재위치 :" + transform.position);
 
-                    //}
+                        // 이동방향
+                        attackdir = transform.forward + player.transform.right;
+                        attackdir.Normalize();
+                        // 한번만 계산하기
+                        attackMovePos = player.transform.position + player.transform.right * 2;
+                        a = true;
+                        //print("목적지 : " + attackMovePos);
+                        //print("playerPos : " + player.transform.position);
+
+                    }
+
+                    //print("목적지2 : " + attackMovePos);
                     //anim.SetBool("Leg", true);
+
                     attackMovePos.y = transform.position.y;
-                    transform.position = Vector3.Lerp(transform.position, attackMovePos, 0.1f);
-                    
+                    transform.position = Vector3.Lerp(currPos, attackMovePos, 0.5f);
+
                     //print("현재위치2 :" + transform.position);
-                    if (Vector3.Distance(transform.position, attackMovePos) < 1f)
+                    print("위치차 : " + Vector3.Distance(transform.position, attackMovePos));
+                    if (Vector3.Distance(transform.position, attackMovePos) < 5f)
                     {
                         anim.SetBool("Leg", false);
                         sickelSubState = SickelSubState.Attack3;
                         // 애니메이션 재생
                         anim.SetTrigger("Attack1");
                     }
-                        
+
 
                     //transform.position += attackdir * 50 * Time.deltaTime;
                 }
@@ -607,7 +664,7 @@ public class BossAlpha : MonoBehaviour
                     transform.position = Vector3.Lerp(transform.position, moveTargetPos, attackMoveSpeed * Time.deltaTime);
                     if (Vector3.Distance(transform.position, moveTargetPos) < 0.1f)
                     {
-                        
+
                         // 서브상태를 액션 2로 바꾼다
                         sickelSubState = SickelSubState.Attack2;
                         // 애니메이션 재생
@@ -641,7 +698,7 @@ public class BossAlpha : MonoBehaviour
                     transform.position = Vector3.Lerp(transform.position, moveTargetPos, attackMoveSpeed * Time.deltaTime);
                     if (Vector3.Distance(transform.position, moveTargetPos) < 0.1f)
                     {
-                        
+
                         // 서브상태를 액션 3로 바꾼다
                         sickelSubState = SickelSubState.Attack3;
                         // 애니메이션 재생
@@ -739,20 +796,28 @@ public class BossAlpha : MonoBehaviour
 
     }
 
+    
 
+    // 충돌 체크
     private void OnTriggerEnter(Collider other)
     {
         // 만약 플레이어가 공격 상태이고, 플레이어의 무기와 충돌했을때
-        if (isHitted == false && isHitted2 == false && TPSChraracterController.instance.isAttack == true && other.gameObject.CompareTag("Weapon")) 
+        if (isHitted == false && isHitted2 == false && TPSChraracterController.instance.isAttack == true && other.gameObject.CompareTag("Weapon"))
         {
             // 보스 피격 상태로 전환
             bossState = BossPatternState.Hit;
             print("hittt");
             LoadBloodEffect(other);
-            
+
         }
+
+        // 충돌 체크를 여기서 하는게 맞는지 확인 해보기
+        // 만약 isQuickening = true 일때, 플레이어가 충돌했다면(overlapSpher. Tag로 비교)
+        // 나에서 플레이어로 가는 방향의 벡터를 구한다
+        // 그 방향으로 Addforce를 한다
     }
 
+    // 피격 출혈 이펙트
     private void LoadBloodEffect(Collider other)
     {
         Vector3 pos = other.ClosestPointOnBounds(transform.position);
@@ -763,6 +828,7 @@ public class BossAlpha : MonoBehaviour
         Destroy(blood, 1.0f);
     }
 
+    // 게르만 방향 확인용. 필요 없어지면 지우기
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

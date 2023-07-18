@@ -105,7 +105,7 @@ public class Test2 : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Boss") || other.CompareTag("Hand") /*|| other.CompareTag("Weapon")*/)
+        if (other.CompareTag("Boss") || other.CompareTag("Hand") || other.CompareTag("Weapon"))
         {
             if(bossAI.instance.moonpresenceAttack)
             {

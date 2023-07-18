@@ -16,11 +16,16 @@ public class destroyProps : MonoBehaviour
 
     }
 
-    //private void OnCollisionEnter(Collision coll)
-    //{
-    //    if (coll.collider.tag == ("Weapone") && TPSChraracterController.instance.isAttack)
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
+    private void OnCollisionEnter(Collision coll)
+    {
+        if (coll.collider.tag == ("Weapon") && TPSChraracterController.instance.isAttack)
+        {
+            Destroy(gameObject);
+        }
+
+        else if (coll.collider.tag == ("Weapon") && BossAlpha.instance.isGehrmanAttack == true)
+        {
+            Destroy(gameObject);
+        }
+    }
 }
