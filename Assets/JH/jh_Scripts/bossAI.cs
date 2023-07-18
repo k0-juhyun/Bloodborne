@@ -404,7 +404,7 @@ public class bossAI : MonoBehaviour
 
         agent.isStopped = false;
 
-        SpecialPattern2[0].SetActive(false);
+        //SpecialPattern2[0].SetActive(false);
     }
 
     private void SpecialPattern2AnimEffectOn()

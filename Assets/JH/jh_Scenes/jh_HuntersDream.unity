@@ -1074,7 +1074,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &94459748
 Transform:
   m_ObjectHideFlags: 0
@@ -1126,13 +1126,13 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  Duration: 2
-  Speed: 22
+  Duration: 1
+  Speed: 500
   Magnitude: 1
   DistanceForce: 100
-  RotationDamper: 2
+  RotationDamper: 3
   IsEnabled: 1
-  canUpdate: 0
+  canUpdate: 1
 --- !u!1 &100494651 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4826840800069763936, guid: dab122c822840264db0c56b60deea689,
@@ -3645,7 +3645,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 424878, guid: 62b391571386ff84fa0c07bcf7516b7e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.76
+      value: -1.5900002
       objectReference: {fileID: 0}
     - target: {fileID: 424878, guid: 62b391571386ff84fa0c07bcf7516b7e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7802,7 +7802,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 424878, guid: 62b391571386ff84fa0c07bcf7516b7e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.76
+      value: -1.5900002
       objectReference: {fileID: 0}
     - target: {fileID: 424878, guid: 62b391571386ff84fa0c07bcf7516b7e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9088,7 +9088,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 424878, guid: 62b391571386ff84fa0c07bcf7516b7e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.76
+      value: -1.5900002
       objectReference: {fileID: 0}
     - target: {fileID: 424878, guid: 62b391571386ff84fa0c07bcf7516b7e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15810,7 +15810,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 424878, guid: 62b391571386ff84fa0c07bcf7516b7e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.76
+      value: -1.5900002
       objectReference: {fileID: 0}
     - target: {fileID: 424878, guid: 62b391571386ff84fa0c07bcf7516b7e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -17564,7 +17564,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 424878, guid: 62b391571386ff84fa0c07bcf7516b7e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.76
+      value: -1.59
       objectReference: {fileID: 0}
     - target: {fileID: 424878, guid: 62b391571386ff84fa0c07bcf7516b7e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -25600,11 +25600,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d890fd8a3cb88488d89131f5da7e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  specialShake: 0
-  normalShake: 0
-  shakeTime: 0
-  shakeIntensity: 0
-  startPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &2730793017935464602
 MonoBehaviour:
   m_ObjectHideFlags: 0
