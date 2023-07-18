@@ -18,6 +18,7 @@ public class bossAI : MonoBehaviour
     // Components
     private Animator animator;
     private NavMeshAgent agent;
+    RFX4_CameraShake cameraShake;
 
     // target obj -> Player
     private GameObject target;
@@ -27,6 +28,7 @@ public class bossAI : MonoBehaviour
     private bool isReact;
     private int hitCount = 0;
     private float curHpPercentage = 1f;
+
     [Header("SpecialPattern")]
     public GameObject[] SpecialPattern1;
     public GameObject[] SpecialPattern2;
@@ -101,6 +103,8 @@ public class bossAI : MonoBehaviour
     {
         instance = this;
 
+        cameraShake = GetComponent<RFX4_CameraShake>();
+        
         // Get volume From Post Processing
         postProcessVolume.profile.TryGetSettings(out lensDistortion);
 
@@ -351,7 +355,7 @@ public class bossAI : MonoBehaviour
         SpecialPattern1[1].SetActive(true);
 
         // camera shake
-        cameraShake.Instance.specialShake = true;
+        //cameraShake.Instance.specialShake = true;
 
         yield return new WaitForSeconds(2f);
 
@@ -380,7 +384,6 @@ public class bossAI : MonoBehaviour
 
     IEnumerator SpecialPattern2AnimStart()
     {
-        print("1");
         animator.speed = 0.5f;
 
         // Stop Agent
@@ -393,9 +396,15 @@ public class bossAI : MonoBehaviour
 
         SpecialPattern2[0].SetActive(true);
 
+        yield return new WaitForSeconds(3f);
+
+        animator.speed = 1;
+
         isSpecialPattern2InProgress = false;
 
         agent.isStopped = false;
+
+        SpecialPattern2[0].SetActive(false);
     }
 
     private void SpecialPattern2AnimEffectOn()

@@ -38162,7 +38162,7 @@ MonoBehaviour:
     m_RotationOrder: 0
   Duration: 3.3
   Speed: 10
-  Magnitude: 1.5
+  Magnitude: 5
   DistanceForce: 100
   RotationDamper: 2
   IsEnabled: 1

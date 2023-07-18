@@ -2,7 +2,8 @@ using UnityEngine;
 using System.Collections;
 
 public class RFX4_CameraShake : MonoBehaviour
-{
+{ 
+    public static RFX4_CameraShake instance;
     public AnimationCurve ShakeCurve = AnimationCurve.EaseInOut(0, 1, 1, 0);
     public float Duration = 2;
     public float Speed = 22;
@@ -14,6 +15,11 @@ public class RFX4_CameraShake : MonoBehaviour
     bool isPlaying;
     [HideInInspector]
     public bool canUpdate;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     void PlayShake()
     {
