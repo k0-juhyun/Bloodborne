@@ -6657,6 +6657,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8632910718842812121, guid: 6d92162037bfa8f46ad5e54c11130cb5,
+        type: 3}
+      propertyPath: m_TagString
+      value: p_Weapon
+      objectReference: {fileID: 0}
     - target: {fileID: 8867353877453441061, guid: 6d92162037bfa8f46ad5e54c11130cb5,
         type: 3}
       propertyPath: HPslider
@@ -26508,18 +26513,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.005, y: 0.005, z: 0.005}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2697421675386781327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8278654584382490318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1269e749707c5c4592e00cb3b129220, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2710815997454565788
 GameObject:
   m_ObjectHideFlags: 0
@@ -40280,7 +40273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 825fc10a4fd00b44d8ad8e822ba26c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveLock: 0
+  playerLock: 0
   characterBody: {fileID: 7239571966897158342}
   cameraArm: {fileID: 7239571966651677351}
   Audioclip:
@@ -47458,7 +47451,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8278654584382069486}
-  - component: {fileID: 2697421675386781327}
   m_Layer: 6
   m_Name: Bone0004
   m_TagString: Boss

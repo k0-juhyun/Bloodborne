@@ -94,17 +94,6 @@ public class TPSChraracterController : MonoBehaviour
     float lockOnTime = 2f;
     void Update()
     {
-        if (playerLock)
-        {
-            curTime += Time.deltaTime;
-            if (curTime > lockOnTime)
-            {
-                playerLock = false;
-                curTime = 0;
-            }
-            characterBody.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            return;
-        }
         //LockCheck();
         Move();
         print("isAttack: " + isAttack);
@@ -162,6 +151,17 @@ public class TPSChraracterController : MonoBehaviour
 
     private void Move()
     {
+        if (playerLock)
+        {
+            curTime += Time.deltaTime;
+            if (curTime > lockOnTime)
+            {
+                playerLock = false;
+                curTime = 0;
+            }
+            return;
+        }
+        // 플레이어의 움직임을 입력받는 부분
         Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         bool isMove = moveInput.magnitude != 0;
         animator.SetBool("isMove", isMove);
@@ -177,7 +177,11 @@ public class TPSChraracterController : MonoBehaviour
             transform.position += moveDir * Time.deltaTime * 1.5f;
             cc.Move(moveDir * Time.deltaTime * moveSpeed + Physics.gravity * Time.deltaTime);
         }
-
+        else
+        {
+            // 플레이어가 멈춘 상태라면 움직임을 0으로 초기화
+            characterBody.forward = Vector3.zero;
+        }
     }
     public float playerRotationSpeed = 10f;
 
