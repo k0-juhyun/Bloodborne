@@ -4,12 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Weapone
   - Ground
   - p_Weapon
   - Hand
   - Boss
   - Weapon
+  - Tail
   layers:
   - Default
   - TransparentFX

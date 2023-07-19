@@ -5,6 +5,7 @@ using UnityEngine;
 public class collisionGround : MonoBehaviour
 {
     private GameObject dustEffect;
+    public GameObject camShake;
 
     private void Awake()
     {
@@ -15,7 +16,11 @@ public class collisionGround : MonoBehaviour
     {
         if (coll.collider.CompareTag("Hand") && bossAI.attackInProgress && bossAI.groundHit)
         {
-            //cameraShake.Instance.normalShake = true;
+            if(!camShake.activeSelf)
+            {
+                camShake.SetActive(true);
+                StartCoroutine(camShakeOff());
+            }
 
             Vector3 pos = coll.contacts[0].point;
 
@@ -27,5 +32,11 @@ public class collisionGround : MonoBehaviour
 
             Destroy(dust, 1.0f);
         }
+    }
+
+    IEnumerator camShakeOff()
+    {
+        yield return new WaitForSeconds(1);
+        camShake.SetActive(false);
     }
 }

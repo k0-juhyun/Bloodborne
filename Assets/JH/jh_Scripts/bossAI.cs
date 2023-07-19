@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.UI;
 
 public class bossAI : MonoBehaviour
 {
     public static bossAI instance;
     public bool moonpresenceAttack;
+    public bool isDie;
     // TransformConponents
     #region TransformComponent
     private Transform playerPos;
@@ -17,6 +19,7 @@ public class bossAI : MonoBehaviour
     // Components
     private Animator animator;
     private NavMeshAgent agent;
+    RFX4_CameraShake cameraShake;
 
     // target obj -> Player
     private GameObject target;
@@ -25,10 +28,16 @@ public class bossAI : MonoBehaviour
     private GameObject dieEffect;
     private bool isReact;
     private int hitCount = 0;
-    private float curHpPercentage = 1f;
-    [Header("SpecialPattern1 Eye")]
-    public GameObject[] EyeLights;
 
+    [Header("SpecialPattern")]
+    public GameObject[] SpecialPattern1;
+    public GameObject[] SpecialPattern2;
+    public GameObject camShake;
+    public float distanceToMove = 10f;
+
+    [Header("Die")]
+    public GameObject bloodRain;
+    public GameObject[] DieCanvas;
     // post Processing Values
     [Header("Post Processing Volumes")]
     public PostProcessVolume postProcessVolume;
@@ -37,6 +46,9 @@ public class bossAI : MonoBehaviour
     #region AttackPatternBoolValues
     private bool isSpecialPattern1Active = false;
     private bool isSpecialPattern1InProgress = false;
+    public bool playerHP1;
+    private bool isSpecialPattern2Active = false;
+    private bool isSpecialPattern2InProgress = false;
     private bool pattern1;
     static public bool groundHit;
     #endregion
@@ -62,8 +74,6 @@ public class bossAI : MonoBehaviour
     // Delay for Updating StateMachine
     private WaitForSeconds UpdateStateMachineDelay;
 
-    // Check Die
-    public bool isDie;
 
     // Check Attack Inprogress
     static public bool attackInProgress;
@@ -92,12 +102,17 @@ public class bossAI : MonoBehaviour
     [Header("Hp Values")]
     public float maxHp;
     public float curHp;
+    private float curHpPercentage = 1f;
+    public Slider sliderHp;
     #endregion
 
     private void Awake()
     {
+        sliderHp.maxValue = maxHp;
         instance = this;
 
+        cameraShake = GetComponent<RFX4_CameraShake>();
+        
         // Get volume From Post Processing
         postProcessVolume.profile.TryGetSettings(out lensDistortion);
 
@@ -147,6 +162,8 @@ public class bossAI : MonoBehaviour
             // Update curHp
             curHpPercentage = curHp / maxHp;
 
+            sliderHp.value = curHp;
+
             // Update Distance between player & thisobj
             MoveDistance = Vector3.Distance(playerPos.position, thisPos.position);
 
@@ -154,17 +171,19 @@ public class bossAI : MonoBehaviour
             if (stateMachine == StateMachine.DieState)
                 yield break;
 
-            // Pattern 6 Active Condition
-            if (curHpPercentage <= 0.4f && !isSpecialPattern1Active)
+            #region special pattern 1
+            // special pattern1 Active Condition
+            if (curHpPercentage <= 0.6f && !isSpecialPattern1Active)
             {
-                // Stop Animation
                 animator.StopPlayback();
 
                 isSpecialPattern1Active = true;
 
                 attackInProgress = true;
 
-                // Pattern 6
+                // Move Object away from player
+                StartCoroutine(MoveObjectAwayFromPlayer());
+
                 AnimatorTrigger("SpecialPattern1Start");
             }
 
@@ -172,6 +191,22 @@ public class bossAI : MonoBehaviour
             {
                 transform.LookAt(playerPos.position);
             }
+            #endregion
+
+            #region special pattern2
+
+            // special pattern1 Active Condition
+            if (curHpPercentage <= 0.4f && !isSpecialPattern2Active)
+            {
+                animator.StopPlayback();
+
+                isSpecialPattern2Active = true;
+
+                attackInProgress = true;
+
+                AnimatorTrigger("SpecialPattern2Start");
+            }
+            #endregion
 
             yield return UpdateStateMachineDelay;
         }
@@ -326,21 +361,23 @@ public class bossAI : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
+        // Set player hp -> 1
+        playerHP1 = true;
+
         // lensDistortion on
         lensDistortion.active = true;
 
         // Load Prefabs
-        EyeLights[1].SetActive(true);
-
-        // camera shake
-        cameraShake.Instance.specialShake = true;
+        SpecialPattern1[1].SetActive(true);
+        SpecialPattern1[2].SetActive(true);
 
         yield return new WaitForSeconds(2f);
 
         // lensDistortion off
         lensDistortion.active = false;
 
-        EyeLights[1].SetActive(false);
+        SpecialPattern1[2].SetActive(false);
+        SpecialPattern1[1].SetActive(false);
 
         // Aniamtion Trigger
         AnimatorTrigger("SpecialPattern1Finish");
@@ -352,15 +389,68 @@ public class bossAI : MonoBehaviour
         isSpecialPattern1InProgress = false;
 
         // EyeOff
-        EyeLights[0].SetActive(false);
+        SpecialPattern1[0].SetActive(false);
 
         // Reset Animator Speed 100%
         animator.speed = 1f;
     }
 
+    private IEnumerator MoveObjectAwayFromPlayer()
+    {
+
+        Vector3 originalPosition = thisPos.position;
+        Vector3 targetPosition = playerPos.position - (playerPos.forward * distanceToMove);
+
+        float elapsedTime = 0f;
+        float moveTime = 1f; // 1초 동안 이동
+
+        while (elapsedTime < moveTime)
+        {
+            thisPos.position = Vector3.Lerp(originalPosition, targetPosition, elapsedTime / moveTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // 움직인 후의 위치가 targetPosition이 아닐 수 있으므로 마지막으로 목표 위치로 정확하게 설정
+        thisPos.position = targetPosition;
+    }
+    // Special Pattern2
+
+    IEnumerator SpecialPattern2AnimStart()
+    {
+        animator.speed = 0.5f;
+
+        // Stop Agent
+        agent.isStopped = true;
+
+        // Set true value -> Dont React
+        isSpecialPattern2InProgress = true;
+
+        yield return new WaitForSeconds(2f);
+
+        SpecialPattern2[0].SetActive(true);
+
+        yield return new WaitForSeconds(3f);
+
+        animator.speed = 1;
+
+        isSpecialPattern2InProgress = false;
+
+        agent.isStopped = false;
+
+        yield return new WaitForSeconds(2f);
+
+        SpecialPattern2[0].SetActive(false);
+    }
+
+    private void SpecialPattern2AnimEffectOn()
+    {
+        SpecialPattern2[0].SetActive(true);
+    }
+
     private void SpecialPattern1AnimEyeOn()
     {
-        EyeLights[0].SetActive(true);
+        SpecialPattern1[0].SetActive(true);
     }
 
     // Animation Trigger Function
@@ -397,10 +487,14 @@ public class bossAI : MonoBehaviour
     }
 
     // DieAnimFinish
-    public void DieStateFisnish()
+    void DieStateFisnish()
     {
-        isDie = true;
+        DieCanvas[0].SetActive(true);
+        DieCanvas[1].SetActive(true);
+        bloodRain.SetActive(true);
+
         Destroy(gameObject);
+        isDie = true;
     }
 
     // AttackAnimFinish
@@ -442,8 +536,15 @@ public class bossAI : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Weapone" && TPSChraracterController.instance.isAttack && !isReact && !isSpecialPattern1InProgress)
+        if (other.tag == "Weapon" && TPSChraracterController.instance.isAttack && !isReact 
+            && !isSpecialPattern1InProgress && !isSpecialPattern2InProgress)
         {
+            if (!camShake.activeSelf)
+            {
+                camShake.SetActive(true);
+                StartCoroutine(camShakeOff());
+            }
+
             // Reduction
             curHp -= AttackDamage;
 
@@ -571,6 +672,12 @@ public class bossAI : MonoBehaviour
         {
             reactAnimation = "ReactBack" + hitCount;
         }
+    }
+
+    IEnumerator camShakeOff()
+    {
+        yield return new WaitForSeconds(1);
+        camShake.SetActive(false);
     }
     #endregion
 }

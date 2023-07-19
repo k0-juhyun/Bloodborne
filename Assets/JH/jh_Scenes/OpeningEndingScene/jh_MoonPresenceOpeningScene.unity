@@ -319,6 +319,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6747605082830863415, guid: 25e8fbb39cde8f34a8fe4e5d50d4045f,
         type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1812473358}
+    - target: {fileID: 6747605082830863415, guid: 25e8fbb39cde8f34a8fe4e5d50d4045f,
+        type: 3}
       propertyPath: nextScene
       value: jh_HuntersDream
       objectReference: {fileID: 0}
