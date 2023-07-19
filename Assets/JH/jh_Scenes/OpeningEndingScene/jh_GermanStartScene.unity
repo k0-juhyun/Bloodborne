@@ -17021,7 +17021,6 @@ GameObject:
   - component: {fileID: 2730793017935464580}
   - component: {fileID: 2730793017935464579}
   - component: {fileID: 2730793017935464578}
-  - component: {fileID: 2730793017935464581}
   - component: {fileID: 2730793017935464602}
   - component: {fileID: 2730793017935464603}
   m_Layer: 30
@@ -17097,18 +17096,6 @@ Transform:
   m_Father: {fileID: 7239571966651677351}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2730793017935464581
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2730793017935464577}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0d890fd8a3cb88488d89131f5da7e68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2730793017935464602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17875,6 +17862,7 @@ MonoBehaviour:
   HPslider: {fileID: 0}
   Audioclip:
   - {fileID: 8300000, guid: 959c1c6fdac61544ba79d6850b34454c, type: 3}
+  nutback: 0
 --- !u!143 &7239571965805443013
 CharacterController:
   m_ObjectHideFlags: 0
@@ -18644,7 +18632,17 @@ MonoBehaviour:
   minDist: 6
   maxDist: 7
   moveSpeed: 3
+  player: {fileID: 0}
+  boss: {fileID: 0}
+  cameraRotSpeed: 20
+  offset: {x: 0, y: 0, z: 0}
+  isLockedOn: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  collisionOffset: 2.2
   isAttack: 1
+  playerRotationSpeed: 10
 --- !u!1 &7239571966421872846
 GameObject:
   m_ObjectHideFlags: 0

@@ -117,12 +117,13 @@ public class Test2 : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Boss") || other.CompareTag("Weapon"))
+        if (other.CompareTag("Hand") || other.CompareTag("Weapon"))
         {
             if (BossAlpha.instance != null) 
             {
                 if (BossAlpha.instance.isGehrmanAttack)
                 {
+                    TPSChraracterController.instance.playerLock = true;
                     print("hit");
                     TakeDamage(5);
                     soundSource.clip = Audioclip[0];
@@ -131,6 +132,7 @@ public class Test2 : MonoBehaviour
                 }
                 if (BossAlpha.instance.bossState == BossAlpha.BossPatternState.SickelCombo1 && BossAlpha.instance.sickelSubState == BossAlpha.SickelSubState.Attack1)
                 {
+                    TPSChraracterController.instance.playerLock = true;
                     Debug.Log("dsds");
                     TakeDamage(5);
                     ani.SetTrigger("LieDown");

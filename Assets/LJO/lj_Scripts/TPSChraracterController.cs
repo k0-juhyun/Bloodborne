@@ -10,6 +10,7 @@ public class TPSChraracterController : MonoBehaviour
     {
         instance = this;
     }
+    public bool playerLock = false;
     [SerializeField]
     private Transform characterBody;
     [SerializeField]
@@ -79,6 +80,7 @@ public class TPSChraracterController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerLock = false;
         isAttack = false;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -88,11 +90,25 @@ public class TPSChraracterController : MonoBehaviour
         soundSource = gameObject.GetComponent<AudioSource>();
     }
 
+    float curTime = 0;
+    float lockOnTime = 2f;
     void Update()
     {
+        if (playerLock)
+        {
+            curTime += Time.deltaTime;
+            if (curTime > lockOnTime)
+            {
+                playerLock = false;
+                curTime = 0;
+            }
+            characterBody.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            return;
+        }
+        //LockCheck();
+        Move();
         print("isAttack: " + isAttack);
         LookAround();
-        Move();
         LockOn();
         if (Input.GetButtonDown("Fire1"))
         {
@@ -109,18 +125,6 @@ public class TPSChraracterController : MonoBehaviour
         }
 
         soundSource.enabled = true;
-
-
-
-        //if (Input.GetButtonDown("Fire2"))
-        //{
-        //    isLockedOn = !isLockedOn;
-        //}
-
-        //if (Input.GetButtonUp("Fire2"))
-        //{
-        //    isLockedOn = !isLockedOn;
-        //}
 
     }
 
@@ -155,11 +159,13 @@ public class TPSChraracterController : MonoBehaviour
         cameraArm.rotation = Quaternion.Euler(camAngle.x - mouseDelta.y, camAngle.y + mouseDelta.x, camAngle.z);
 
     }
+
     private void Move()
     {
         Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         bool isMove = moveInput.magnitude != 0;
         animator.SetBool("isMove", isMove);
+        animator.SetBool("Lock", playerLock);
         //animator.SetFloat("MoveSpeed", moveInput.magnitude);
         if (isMove)
         {
@@ -170,37 +176,10 @@ public class TPSChraracterController : MonoBehaviour
             characterBody.forward = moveDir;
             transform.position += moveDir * Time.deltaTime * 1.5f;
             cc.Move(moveDir * Time.deltaTime * moveSpeed + Physics.gravity * Time.deltaTime);
-
         }
 
     }
     public float playerRotationSpeed = 10f;
-    //void LateUpdate()
-    //{
-    //    if (isLockedOn)
-    //    {
-    //        // Calculate Camera Pos by player pos
-    //        Vector3 desiredPosition = player.position + offset;
-
-    //        RaycastHit hit;
-
-    //        if (Physics.Linecast(player.position, desiredPosition, out hit, groundLayer))
-    //        {
-    //            Vector3 normalPos = hit.point + hit.normal * collisionOffset;
-
-    //            transform.position = Vector3.Lerp(transform.position, normalPos, cameraRotSpeed * Time.deltaTime);
-    //        }
-
-    //        else
-    //        {
-    //            // Camera Lerp 
-    //            transform.position = Vector3.Lerp(transform.position, desiredPosition, cameraRotSpeed * Time.deltaTime);
-    //        }
-
-    //        characterBody.LookAt(boss);
-    //        transform.LookAt(boss);
-    //    }
-    //}
 
     private void LockOn()
     {
@@ -389,4 +368,9 @@ public class TPSChraracterController : MonoBehaviour
     float cameraHeight = 2.0f;    // 카메라의 높이값 변수
 
     float smoothSpeed = 10f;
+
+    void LockFalse()
+    {
+        playerLock = false;
+    }
 }

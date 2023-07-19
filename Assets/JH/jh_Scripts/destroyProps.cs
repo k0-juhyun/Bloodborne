@@ -18,7 +18,7 @@ public class destroyProps : MonoBehaviour
 
     private void OnCollisionEnter(Collision coll)
     {
-        if (coll.collider.tag == ("Weapon") && TPSChraracterController.instance.isAttack)
+        if (coll.collider.tag == ("p_Weapon") && TPSChraracterController.instance.isAttack)
         {
             Destroy(gameObject);
         }

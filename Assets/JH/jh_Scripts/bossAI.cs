@@ -536,7 +536,7 @@ public class bossAI : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Weapon" && TPSChraracterController.instance.isAttack && !isReact 
+        if (other.tag == "p_Weapon" && TPSChraracterController.instance.isAttack && !isReact 
             && !isSpecialPattern1InProgress && !isSpecialPattern2InProgress)
         {
             if (!camShake.activeSelf)
