@@ -4,7 +4,10 @@ using UnityEngine.UI;
 public class ClickToShowText : MonoBehaviour
 {
     public Text textObject;
-    public string fullText = "Well done good hunter, the end of the night is coming.";
+    public string fullText = "Well done good hunter," + '.' +
+        "the end of the night is coming."
+        ;
+
     private string[] sentences;
     private int currentSentenceIndex = 0;
 
