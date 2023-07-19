@@ -770,7 +770,7 @@ GameObject:
   - component: {fileID: 142585598}
   m_Layer: 9
   m_Name: scythe sword
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -798,7 +798,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 142585596}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.0035162761, y: 0.00638284, z: 0.012674056}
@@ -16232,6 +16232,11 @@ PrefabInstance:
       propertyPath: HPslider
       value: 
       objectReference: {fileID: 3007534510495430968}
+    - target: {fileID: 8867353877453441062, guid: 6d92162037bfa8f46ad5e54c11130cb5,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8867353877810089772, guid: 6d92162037bfa8f46ad5e54c11130cb5,
         type: 3}
       propertyPath: Boss
@@ -20307,11 +20312,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1324283376528166918}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0035162761, y: 0.00638284, z: 0.012674056}
-  m_Center: {x: -0.00010081632, y: -0.0018085839, z: 0.0050497167}
+  m_Size: {x: 0.0056691966, y: 0.008690951, z: 0.012674056}
+  m_Center: {x: 0.0009756443, y: -0.00065453444, z: 0.005049716}
 --- !u!33 &2766468836422544406
 MeshFilter:
   m_ObjectHideFlags: 0

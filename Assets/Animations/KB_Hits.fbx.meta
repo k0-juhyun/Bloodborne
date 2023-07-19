@@ -597,7 +597,7 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
-    motionNodeName: Root
+    motionNodeName: <Root Transform>
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
@@ -7823,12 +7823,14 @@ ModelImporter:
     - name: Root
       parentName: 
       position: {x: 0, y: -0.0000000063480936, z: 0}
-      rotation: {x: 0.0000000019164148, y: -0.0000000374507, z: -0.00000004500058, w: 1}
+      rotation: {x: 0.0000000019164148, y: -0.0000000374507, z: -0.00000004500058,
+        w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Hips
       parentName: 
       position: {x: -0.00000022550576, y: 0.9782696, z: -0.04472435}
-      rotation: {x: 0.0000000039043506, y: 0.00000006073376, z: 0.00000008865632, w: 1}
+      rotation: {x: 0.0000000039043506, y: 0.00000006073376, z: 0.00000008865632,
+        w: 1}
       scale: {x: 1.0000001, y: 0.9999999, z: 1}
     - name: RightUpLeg
       parentName: 
@@ -7983,7 +7985,8 @@ ModelImporter:
     - name: RightHandRing4
       parentName: 
       position: {x: 0.024415782, y: 0.0000003708218, z: 0.00000026696424}
-      rotation: {x: 0.00000000562289, y: 0.0000000023646616, z: 0.0000000073891884, w: 1}
+      rotation: {x: 0.00000000562289, y: 0.0000000023646616, z: 0.0000000073891884,
+        w: 1}
       scale: {x: 1.0000002, y: 0.9999998, z: 0.9999998}
     - name: RightHandPinky1
       parentName: 
@@ -8003,7 +8006,8 @@ ModelImporter:
     - name: RightHandPinky4
       parentName: 
       position: {x: 0.021579312, y: -0.0000056923086, z: -0.00000089368746}
-      rotation: {x: -0.000000010382383, y: -0.000000053225005, z: -0.00000003603549, w: 1}
+      rotation: {x: -0.000000010382383, y: -0.000000053225005, z: -0.00000003603549,
+        w: 1}
       scale: {x: 0.9999997, y: 0.9999997, z: 0.9999997}
     - name: RightHandMiddle1
       parentName: 
@@ -8043,7 +8047,8 @@ ModelImporter:
     - name: RightHandIndex4
       parentName: 
       position: {x: 0.02470796, y: 0.0000004386452, z: 0.00000095279546}
-      rotation: {x: -0.0000000033803795, y: -3.3790484e-10, z: 0.000000016216763, w: 1}
+      rotation: {x: -0.0000000033803795, y: -3.3790484e-10, z: 0.000000016216763,
+        w: 1}
       scale: {x: 1, y: 1, z: 1.0000001}
     - name: Neck
       parentName: 
@@ -8088,7 +8093,8 @@ ModelImporter:
     - name: LeftHandProp
       parentName: 
       position: {x: -0.072498724, y: -0.020220654, z: 0.0038001707}
-      rotation: {x: 0.000000023929449, y: 0.000000043233957, z: -0.0000000026563656, w: 1}
+      rotation: {x: 0.000000023929449, y: 0.000000043233957, z: -0.0000000026563656,
+        w: 1}
       scale: {x: 1, y: 1.0000002, z: 1}
     - name: LeftHandThumb1
       parentName: 
@@ -8108,7 +8114,8 @@ ModelImporter:
     - name: LeftHandThumb4
       parentName: 
       position: {x: -0.02704627, y: 0.0000001335144, z: 0}
-      rotation: {x: -0.000000022200018, y: -0.0000000017280082, z: -0.0000000044079465, w: 1}
+      rotation: {x: -0.000000022200018, y: -0.0000000017280082, z: -0.0000000044079465,
+        w: 1}
       scale: {x: 0.99999994, y: 1.0000001, z: 1.0000001}
     - name: LeftHandRing1
       parentName: 
@@ -8128,7 +8135,8 @@ ModelImporter:
     - name: LeftHandRing4
       parentName: 
       position: {x: -0.024415893, y: -0.000000009536743, z: 0.000000076293944}
-      rotation: {x: 0.000000011376513, y: 0.000000013265306, z: 0.0000000061052985, w: 1}
+      rotation: {x: 0.000000011376513, y: 0.000000013265306, z: 0.0000000061052985,
+        w: 1}
       scale: {x: 1.0000002, y: 0.9999998, z: 0.9999998}
     - name: LeftHandPinky1
       parentName: 
@@ -8148,7 +8156,8 @@ ModelImporter:
     - name: LeftHandPinky4
       parentName: 
       position: {x: -0.021585673, y: 0.00000014305114, z: 1.0658141e-16}
-      rotation: {x: 0.000000014148098, y: 0.000000009414854, z: 0.000000009150914, w: 1}
+      rotation: {x: 0.000000014148098, y: 0.000000009414854, z: 0.000000009150914,
+        w: 1}
       scale: {x: 0.9999997, y: 0.9999997, z: 0.9999997}
     - name: LeftHandMiddle1
       parentName: 
@@ -8188,7 +8197,8 @@ ModelImporter:
     - name: LeftHandIndex4
       parentName: 
       position: {x: -0.02470739, y: -0.000000038146972, z: 3.5527136e-17}
-      rotation: {x: -0.0000000064949, y: 0.0000000053138463, z: 0.000000015185153, w: 1}
+      rotation: {x: -0.0000000064949, y: 0.0000000053138463, z: 0.000000015185153,
+        w: 1}
       scale: {x: 1, y: 1, z: 1.0000001}
     armTwist: 0.5
     foreArmTwist: 0.5
