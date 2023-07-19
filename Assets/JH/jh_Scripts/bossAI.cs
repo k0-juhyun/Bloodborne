@@ -37,7 +37,7 @@ public class bossAI : MonoBehaviour
 
     [Header("Die")]
     public GameObject bloodRain;
-    public GameObject Message;
+    public GameObject[] DieCanvas;
     // post Processing Values
     [Header("Post Processing Volumes")]
     public PostProcessVolume postProcessVolume;
@@ -486,7 +486,8 @@ public class bossAI : MonoBehaviour
     // DieAnimFinish
     void DieStateFisnish()
     {
-        Message.SetActive(true);
+        DieCanvas[0].SetActive(true);
+        DieCanvas[1].SetActive(true);
         bloodRain.SetActive(true);
 
         Destroy(gameObject);
