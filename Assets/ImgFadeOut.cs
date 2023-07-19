@@ -17,11 +17,12 @@ public class ImgFadeOut : MonoBehaviour
     {
         float elapsedTime = 0f;
         Color originalColor = image.color;
+        float startAlpha = originalColor.a; // 현재 알파값 저장
 
         while (elapsedTime < fadeOutDuration)
         {
             elapsedTime += Time.deltaTime;
-            float alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeOutDuration);
+            float alpha = Mathf.Lerp(startAlpha, 0f, elapsedTime / fadeOutDuration);
             image.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
             yield return null;
         }

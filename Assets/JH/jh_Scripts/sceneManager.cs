@@ -39,7 +39,7 @@ public class sceneManager : MonoBehaviour
         // 달의존재 죽으면
         if (SceneManager.GetActiveScene().name == "jh_HuntersDream" && bossAI.instance.isDie)
         {
-            StartCoroutine(delayLoadScene(5f));
+            StartCoroutine(delayLoadScene(8f));
         }
 
     }
