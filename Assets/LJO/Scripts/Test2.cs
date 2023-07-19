@@ -117,20 +117,24 @@ public class Test2 : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Hand") || other.CompareTag("Weapon"))
+        #region 게르만
+        if (BossAlpha.instance != null)
         {
-            if (BossAlpha.instance != null) 
+            if (BossAlpha.instance.isGehrmanAttack)
             {
-                if (BossAlpha.instance.isGehrmanAttack)
+                if (other.CompareTag("Weapon"))
                 {
                     TPSChraracterController.instance.playerLock = true;
                     print("hit");
                     TakeDamage(5);
                     soundSource.clip = Audioclip[0];
                     soundSource.PlayOneShot(Audioclip[0]);
-
                 }
-                if (BossAlpha.instance.bossState == BossAlpha.BossPatternState.SickelCombo1 && BossAlpha.instance.sickelSubState == BossAlpha.SickelSubState.Attack1)
+
+            }
+            if (BossAlpha.instance.bossState == BossAlpha.BossPatternState.SickelCombo1 && BossAlpha.instance.sickelSubState == BossAlpha.SickelSubState.Attack1)
+            {
+                if (other.CompareTag("Weapon"))
                 {
                     TPSChraracterController.instance.playerLock = true;
                     Debug.Log("dsds");
@@ -138,23 +142,32 @@ public class Test2 : MonoBehaviour
                     ani.SetTrigger("LieDown");
                 }
             }
+        }
+        #endregion
 
-            if(bossAI.instance != null) 
+        #region 달의존재 
+        if (bossAI.instance != null)
+        {
+            if (bossAI.instance.moonpresenceAttack)
             {
-                if (bossAI.instance.moonpresenceAttack)
+                if (other.CompareTag("Hand"))
                 {
                     print("hit");
                     TakeDamage(5);
                     soundSource.clip = Audioclip[0];
                     soundSource.PlayOneShot(Audioclip[0]);
+                }
 
+                if(other.CompareTag("Tail") && bossAI.instance.stateMachine == bossAI.StateMachine.AttackState 
+                    && bossAI.instance.attackSubStateMachine == bossAI.AttackSubStateMachine.Pattern6)
+                {
+                    print("hit");
+                    TakeDamage(5);
+                    soundSource.clip = Audioclip[0];
+                    soundSource.PlayOneShot(Audioclip[0]);
                 }
             }
         }
-     
+        #endregion
     }
-
-
-
-
 }
