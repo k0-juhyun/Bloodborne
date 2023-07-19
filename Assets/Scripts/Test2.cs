@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Test2 : MonoBehaviour
 {
-    
+    public static Test2 instance;
     private int hp;
     public int maxHP = 100;
     public Slider HPslider;
@@ -17,6 +17,7 @@ public class Test2 : MonoBehaviour
     public AudioClip[] Audioclip;
     AudioSource soundSource;
     private bool isLiedown = false;
+    public bool nutback = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +35,7 @@ public class Test2 : MonoBehaviour
         }
 
         soundSource.enabled = true;
+        instance = this;
     }
 
     // Update is called once per frame
@@ -114,22 +116,29 @@ public class Test2 : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+         
         if (other.CompareTag("Boss") || other.CompareTag("Weapon") /*|| other.CompareTag("Weapon")*/)
         {
-            
-            if(BossAlpha.instance.isGehrmanAttack||bossAI.instance.moonpresenceAttack)
+
+            if (BossAlpha.instance.isGehrmanAttack || bossAI.instance.moonpresenceAttack)
             {
-                print("hit");   
+                print("hit");
                 TakeDamage(5);
                 soundSource.clip = Audioclip[0];
                 soundSource.PlayOneShot(Audioclip[0]);
 
-                //if (bossAI.instance.sickelSubState == SickelSubState.Attack3)
-                //{
-                //    isLiedown = true;
-                //}
+            }
+            if (BossAlpha.instance.bossState == BossAlpha.BossPatternState.SickelCombo1 && BossAlpha.instance.sickelSubState == BossAlpha.SickelSubState.Attack1)
+            {
+                Debug.Log("dsds");
+                TakeDamage(5);
+                ani.SetTrigger("LieDown");
             }
         }
-        
+     
     }
+
+
+
+
 }
