@@ -36049,7 +36049,7 @@ MonoBehaviour:
   playerHP1: 0
   stateMachine: 0
   attackSubStateMachine: 0
-  AttackRange: 4
+  AttackRange: 5
   AttackDamage: 10
   maxHp: 100
   curHp: 0
