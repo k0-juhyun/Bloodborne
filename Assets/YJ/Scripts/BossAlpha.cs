@@ -50,7 +50,7 @@ public class BossAlpha : MonoBehaviour
     public GameObject player;           // 플레이어
     Rigidbody rid;                      // 리지드바디
     RaycastHit hit;                     // 레이캐스트 히트
-    public Transform rayPos;            // ray 쏘는 곳
+    public Transform rayPos;            // ray 쏘는 곳, 게르만 중심
     public GameObject sickle;           // 무기
     public GameObject blade;            // 무기
     public GameObject gun;              // 무기
@@ -61,6 +61,7 @@ public class BossAlpha : MonoBehaviour
     Vector3 dir;                        // 이동 방향
     Vector3 avoidDir;                   // 회피 방향
     Vector3 moveDir;                    // 움직임 방향
+    Vector3 quickeningDir;              // 폭발시 플레이어 밀어낼 방향
     Vector3 targetPos;                  // 회피 목적지
     Vector3 moveTargetPos;              // 공격시 이동 목적지
     Vector3 attackdir;
@@ -77,15 +78,17 @@ public class BossAlpha : MonoBehaviour
 
     float currDistance;                        // 현재 거리
     [Header("거리")]
-    public float attackDistance = 8f;         // 공격시작 거리
+    public float attackDistance = 8f;          // 공격시작 거리
     public float hitDistance = 5f;             // 피격 거리
     public float avoidDistance = 5f;           // 회피 거리
     public float moveDis = 5f;                 // 공격 이동거리
+    public float quickeningDis = 2f;           // 폭발 범위 (거리, 구의 반지름
 
     [Header("속도")]
     public float moveSpeed = 1f;               // 이동 속도
     public float dashSpeed = 10f;              // 대시 속도
     public float attackMoveSpeed = 5f;         // 공격 이동 속도
+    public float quickeningForce = 5f;         // 폭발 공격시 힘의 크기
 
 
     [Header("시간")]
@@ -149,9 +152,7 @@ public class BossAlpha : MonoBehaviour
 
         //print("currDistacne : " + currDistance);
 
-        // 플레이어가 없어서 플레이어 공격 상태를 마우스 우클릭으로 설정한다(대체-플레이어에서)
-
-        // 피격 시간을 흐르게 한다 // 옮길지 말지 생각해보기 **수정
+        // 피격 시간을 흐르게 한다 // 옮길지 말지 생각해보기 **수정, 안바꿔도 잘됨 아마도
         hitcurrTime += Time.deltaTime;
         // 만약 피격 시간이 2차 피격시간보다 크다면,
         if (hitcurrTime >= hitTime)
@@ -226,7 +227,7 @@ public class BossAlpha : MonoBehaviour
 
         // 만약 현재 Phase3 이라면
         // Quickning 함수를 호출한다
-        // 3페이즈에서 공격을 랜덤으로 돌릴때, Quikning을 추가한다
+        // 3페이즈에서 공격을 랜덤으로 돌릴때, Quikning 호출을 추가한다
         // 알파에서는 순서대로 실행하게 한다(3 되면 무조건 실행), 3 패턴이 어떻게 되는 건지 기획과 협의 필요.
         if (bossPhase == BossPhase.Phase3)
         {
@@ -235,20 +236,42 @@ public class BossAlpha : MonoBehaviour
             // 한번만 호출해야함
             if (isQuickening == false)
             {
+                //애니메이션을 실행한다
+                anim.SetTrigger("Quickening");
+                //이펙트를 실행한다
+                // 한번만 호출하지만 Update로 작동해야함. 할거 다 끝나고 true로 하기
                 Quickening();
-                isQuickening = true;
             }
         }
+
+        // 끝나면 다시 상태를 Idle로 만든다. 
     }
+
+    
 
     private void Quickening()
     {
-        //게르만의 중심에서 Spher를 만든다
-        //시간이 지나면서 Spher의 스케일 점점 커진다
+        // 만약 isQuickening = true 일때, 플레이어가 충돌했다면(overlapSpher.layer로 비교)
+        int layer = 1 << LayerMask.NameToLayer("Player");
+        //게르만의 중심에서 overlapSpher를 만든다
+        Collider[] cols = Physics.OverlapSphere(rayPos.position, quickeningDis, layer);
+        if (cols.Length > 0)
+        {
+            // 플레이어의 리지드 바디를 받아온다
+            Rigidbody playerRid = player.GetComponent<Rigidbody>();
+            // 나에서 플레이어로 가는 방향의 벡터를 구한다 = 폭발시 플레이어에게 가할 힘의 방향을 구한다
+            quickeningDir = transform.forward + transform.up;
+            quickeningDir.Normalize();
+
+            // 플레이어의 피격시 움직임 못하게 하는 부울 상태를 트루로 한다
+
+            // 그 방향으로 Addforce를 한다
+            playerRid.AddForce(quickeningDir * quickeningForce, ForceMode.Impulse);
+
+        }
         //1초 후에 사라진다
-        //애니메이션을 실행한다
         //상태가 idle 로 바뀐다
-        //isQuickening = false 로 한다
+        //isQuickening = true 로 한다
     }
 
     private void UpdateIdle()           // 공격이 끝나면 idle 상태로 옴
@@ -442,7 +465,8 @@ public class BossAlpha : MonoBehaviour
         // 만약 현재 체력이 75보다 작다면
         if (bossHP.HP <= 7.5)
         {
-
+            // 현재 보스 상태를 페이즈 변경 상태로 한다
+            bossState = BossPatternState.PhaseChange;
             // 현재 페이즈를 2페이즈로 한다
             bossPhase = BossPhase.Phase2;
             // 보스 공격 상태를 ?로 바꾼다
@@ -451,8 +475,11 @@ public class BossAlpha : MonoBehaviour
             // 만약 현재 체력이 50보다 작다면
             if (bossHP.HP <= 5)
             {
+                // 현재 보스 상태를 페이즈 변경 상태로 한다
+                bossState = BossPatternState.PhaseChange;
                 // 현재 페이즈를 3페이즈로 한다
                 bossPhase = BossPhase.Phase3;
+                
                 // 보스 공격 상태를 ?로 바꾼다
                 //return;
             }
@@ -542,6 +569,7 @@ public class BossAlpha : MonoBehaviour
         isHitted2 = false;
         isHitted = false;
     }
+
 
     void AnimDie()
     {
@@ -811,10 +839,8 @@ public class BossAlpha : MonoBehaviour
 
         }
 
-        // 충돌 체크를 여기서 하는게 맞는지 확인 해보기
-        // 만약 isQuickening = true 일때, 플레이어가 충돌했다면(overlapSpher. Tag로 비교)
-        // 나에서 플레이어로 가는 방향의 벡터를 구한다
-        // 그 방향으로 Addforce를 한다
+        // 충돌 체크를 여기서 하는게 맞는지 확인 해보기(저 위에서 함.Quickening.)
+        
     }
 
     // 피격 출혈 이펙트
