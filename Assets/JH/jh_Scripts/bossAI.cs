@@ -46,7 +46,7 @@ public class bossAI : MonoBehaviour
     #region AttackPatternBoolValues
     private bool isSpecialPattern1Active = false;
     private bool isSpecialPattern1InProgress = false;
-
+    public bool playerHP1;
     private bool isSpecialPattern2Active = false;
     private bool isSpecialPattern2InProgress = false;
     private bool pattern1;
@@ -360,6 +360,9 @@ public class bossAI : MonoBehaviour
         isSpecialPattern1InProgress = true;
 
         yield return new WaitForSeconds(2f);
+
+        // Set player hp -> 1
+        playerHP1 = true;
 
         // lensDistortion on
         lensDistortion.active = true;

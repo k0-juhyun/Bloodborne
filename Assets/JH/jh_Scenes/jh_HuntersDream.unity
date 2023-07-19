@@ -35939,6 +35939,7 @@ MonoBehaviour:
   - {fileID: 555712451}
   - {fileID: 526406494}
   postProcessVolume: {fileID: 2730793017935464603}
+  playerHP1: 0
   stateMachine: 0
   attackSubStateMachine: 0
   AttackRange: 4
