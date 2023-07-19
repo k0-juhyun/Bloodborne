@@ -1,9 +1,12 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ClickToShowText : MonoBehaviour
 {
+    public static bool nextScene; 
     public Text textObject;
+    public Text talk;
     public string fullText = "Well done good hunter," + '.' +
         "the end of the night is coming."
         ;
@@ -20,6 +23,7 @@ public class ClickToShowText : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            talk.gameObject.SetActive(false);
             ShowNextSentence();
         }
     }
@@ -34,6 +38,7 @@ public class ClickToShowText : MonoBehaviour
         else
         {
             currentSentenceIndex = 0;
+            nextScene = true;
         }
     }
 }

@@ -3196,6 +3196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 095bd7b143954a84bab4fbfd5ef6aa8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camShake: {fileID: 0}
 --- !u!1 &399300691
 GameObject:
   m_ObjectHideFlags: 0
@@ -6843,6 +6844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 095bd7b143954a84bab4fbfd5ef6aa8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camShake: {fileID: 0}
 --- !u!1 &895456486
 GameObject:
   m_ObjectHideFlags: 0
@@ -6914,6 +6916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 095bd7b143954a84bab4fbfd5ef6aa8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camShake: {fileID: 0}
 --- !u!4 &928641080 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 568623f8f3c8225488b81dd597fc0496,
@@ -8227,6 +8230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 095bd7b143954a84bab4fbfd5ef6aa8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camShake: {fileID: 0}
 --- !u!1001 &1030431255
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9612,6 +9616,80 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e704d91efdec2b4aa2a525bb57df75c, type: 3}
+--- !u!1001 &1298065619
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6747605082830863414, guid: 25e8fbb39cde8f34a8fe4e5d50d4045f,
+        type: 3}
+      propertyPath: m_Name
+      value: SceneManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747605082830863415, guid: 25e8fbb39cde8f34a8fe4e5d50d4045f,
+        type: 3}
+      propertyPath: nextScene
+      value: jh_MoonPresenceOpeningScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747605082830863416, guid: 25e8fbb39cde8f34a8fe4e5d50d4045f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747605082830863416, guid: 25e8fbb39cde8f34a8fe4e5d50d4045f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747605082830863416, guid: 25e8fbb39cde8f34a8fe4e5d50d4045f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747605082830863416, guid: 25e8fbb39cde8f34a8fe4e5d50d4045f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747605082830863416, guid: 25e8fbb39cde8f34a8fe4e5d50d4045f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747605082830863416, guid: 25e8fbb39cde8f34a8fe4e5d50d4045f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747605082830863416, guid: 25e8fbb39cde8f34a8fe4e5d50d4045f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747605082830863416, guid: 25e8fbb39cde8f34a8fe4e5d50d4045f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747605082830863416, guid: 25e8fbb39cde8f34a8fe4e5d50d4045f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747605082830863416, guid: 25e8fbb39cde8f34a8fe4e5d50d4045f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747605082830863416, guid: 25e8fbb39cde8f34a8fe4e5d50d4045f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 25e8fbb39cde8f34a8fe4e5d50d4045f, type: 3}
 --- !u!1001 &1310263834
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15639,6 +15717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 095bd7b143954a84bab4fbfd5ef6aa8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camShake: {fileID: 0}
 --- !u!1 &2021968943 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100010, guid: 7617ab93bfcecf24194459b5e0abd33f,
@@ -19603,8 +19682,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d890fd8a3cb88488d89131f5da7e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  specialShake: 0
-  normalShake: 0
 --- !u!114 &2730793017935464602
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class PlayerCommunication : MonoBehaviour
     public Transform GermanChair;
     public Canvas canvas;
     // Start is called before the first frame update
+
     void Start()
     {
         
@@ -20,6 +21,10 @@ public class PlayerCommunication : MonoBehaviour
         if(dis < 3) 
         {
             canvas.gameObject.SetActive(true);
+        }
+        else
+        {
+            canvas.gameObject.SetActive(false);
         }
     }
 }

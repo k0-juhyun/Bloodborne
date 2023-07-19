@@ -35,6 +35,9 @@ public class bossAI : MonoBehaviour
     public GameObject camShake;
     public float distanceToMove = 10f;
 
+    [Header("Die")]
+    public GameObject bloodRain;
+    public GameObject Message;
     // post Processing Values
     [Header("Post Processing Volumes")]
     public PostProcessVolume postProcessVolume;
@@ -481,10 +484,13 @@ public class bossAI : MonoBehaviour
     }
 
     // DieAnimFinish
-    public void DieStateFisnish()
+    void DieStateFisnish()
     {
-        isDie = true;
+        Message.SetActive(true);
+        bloodRain.SetActive(true);
+
         Destroy(gameObject);
+        isDie = true;
     }
 
     // AttackAnimFinish
