@@ -23020,9 +23020,11 @@ MonoBehaviour:
   hitDistance: 5
   avoidDistance: 5
   moveDis: 5
+  quickeningDis: 2
   moveSpeed: 1
   dashSpeed: 10
   attackMoveSpeed: 5
+  quickeningForce: 5
   curTime: 0
   avoidcurTime: 0
   hitcurrTime: 0
@@ -23031,6 +23033,7 @@ MonoBehaviour:
   skTime_Sickel1_2: 2
   skTime_Sickel1_3: 3
   isHitted: 0
+  isHitted2: 0
   isAvoid: 0
   isCombo1done: 0
   isCombo2done: 0
@@ -23038,6 +23041,8 @@ MonoBehaviour:
   isMoveTargetPos: 0
   isGehrmanDie: 0
   isGehrmanAttack: 0
+  isPhase2: 0
+  isQuickening: 0
   a: 0
 --- !u!54 &6724778306941636922
 Rigidbody:
@@ -24044,6 +24049,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8346639077064210721}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &7239571966421872856 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1706046617540217325, guid: 6cc3d420bd1aabf499ac16a04e7a805d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8346639077064210721}
+  m_PrefabAsset: {fileID: 0}
 --- !u!23 &7262713889572134827
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -24930,9 +24941,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1706046617540217324, guid: 6cc3d420bd1aabf499ac16a04e7a805d,
         type: 3}
+      propertyPath: Boss
+      value: 
+      objectReference: {fileID: 6203961998090308482}
+    - target: {fileID: 1706046617540217324, guid: 6cc3d420bd1aabf499ac16a04e7a805d,
+        type: 3}
       propertyPath: boss
       value: 
       objectReference: {fileID: 6203961998090308482}
+    - target: {fileID: 1706046617540217324, guid: 6cc3d420bd1aabf499ac16a04e7a805d,
+        type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 7239571966421872856}
     - target: {fileID: 1706046617540217325, guid: 6cc3d420bd1aabf499ac16a04e7a805d,
         type: 3}
       propertyPath: m_RootOrder
