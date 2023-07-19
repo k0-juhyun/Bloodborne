@@ -117,7 +117,6 @@ public class Test2 : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        print(other.gameObject.name);
         if (other.CompareTag("Boss") || other.CompareTag("Weapon"))
         {
             if (BossAlpha.instance != null) 
