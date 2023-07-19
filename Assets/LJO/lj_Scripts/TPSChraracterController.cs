@@ -53,6 +53,29 @@ public class TPSChraracterController : MonoBehaviour
     [Header("PlayerSpeed")]
     public float moveSpeed = 3f;
 
+
+    // player
+    public Transform player;
+
+    // boss
+    public Transform boss;
+
+    // Camera Speed
+    public float cameraRotSpeed = 20f;
+
+    // Camera position Offset
+    public Vector3 offset;
+
+    // Camera LockOn
+    public bool isLockedOn;
+
+    // Ground Layer
+    public LayerMask groundLayer;
+
+    // collisionOffset
+    public float collisionOffset = 2.2f;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -67,7 +90,7 @@ public class TPSChraracterController : MonoBehaviour
 
     void Update()
     {
-        //print("isAttack: "+isAttack);
+        print("isAttack: " + isAttack);
         LookAround();
         Move();
         LockOn();
@@ -86,6 +109,18 @@ public class TPSChraracterController : MonoBehaviour
         }
 
         soundSource.enabled = true;
+
+
+
+        //if (Input.GetButtonDown("Fire2"))
+        //{
+        //    isLockedOn = !isLockedOn;
+        //}
+
+        //if (Input.GetButtonUp("Fire2"))
+        //{
+        //    isLockedOn = !isLockedOn;
+        //}
 
     }
 
@@ -138,11 +173,34 @@ public class TPSChraracterController : MonoBehaviour
 
         }
 
-
-
-        //Debug.DrawRay(cameraArm.position, new Vector3(cameraArm.forward.x, 0, cameraArm.forward.z).normalized,Color.red);
-
     }
+    public float playerRotationSpeed = 10f;
+    //void LateUpdate()
+    //{
+    //    if (isLockedOn)
+    //    {
+    //        // Calculate Camera Pos by player pos
+    //        Vector3 desiredPosition = player.position + offset;
+
+    //        RaycastHit hit;
+
+    //        if (Physics.Linecast(player.position, desiredPosition, out hit, groundLayer))
+    //        {
+    //            Vector3 normalPos = hit.point + hit.normal * collisionOffset;
+
+    //            transform.position = Vector3.Lerp(transform.position, normalPos, cameraRotSpeed * Time.deltaTime);
+    //        }
+
+    //        else
+    //        {
+    //            // Camera Lerp 
+    //            transform.position = Vector3.Lerp(transform.position, desiredPosition, cameraRotSpeed * Time.deltaTime);
+    //        }
+
+    //        characterBody.LookAt(boss);
+    //        transform.LookAt(boss);
+    //    }
+    //}
 
     private void LockOn()
     {
@@ -178,7 +236,7 @@ public class TPSChraracterController : MonoBehaviour
 
                 float zoomLevel = Mathf.InverseLerp(minDist, maxDist, distance);
                 // Field of view View 바꿈
-                float targetFOV = Mathf.Lerp(50f, 60f, zoomLevel);
+                float targetFOV = Mathf.Lerp(60f, 70f, zoomLevel);
                 Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetFOV, Time.deltaTime * zoomSpeed);
 
 
@@ -189,16 +247,24 @@ public class TPSChraracterController : MonoBehaviour
 
         }
     }
-    private Vector3 GetCenterPoint()
-    {
-        // 두 오브젝트의 중심점 계산
-        Vector3 centerPoint = (Player.position + Boss.position) / 2f;
 
-        return centerPoint;
-    }
+
+    //private Vector3 GetCenterPoint()
+    //{
+    //    // 두 오브젝트의 중심점 계산
+    //    Vector3 centerPoint = (Player.position + Boss.position) / 2f;
+
+    //    return centerPoint;
+    //}
+    private bool isAttacking = false;
 
     private void Attack()
     {
+        if (isAttacking)
+            return;
+
+        isAttacking = true;
+
         animator.SetTrigger("isAttack");
         Debug.Log("dfd");
 
@@ -224,6 +290,7 @@ public class TPSChraracterController : MonoBehaviour
             soundSource.clip = Audioclip[1];
             soundSource.PlayOneShot(Audioclip[1]);
         }
+        isAttacking = false;
     }
 
 

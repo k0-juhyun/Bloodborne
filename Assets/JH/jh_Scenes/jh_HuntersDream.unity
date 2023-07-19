@@ -6650,6 +6650,90 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 844249383}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &674390436
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8867353877453441061, guid: 6d92162037bfa8f46ad5e54c11130cb5,
+        type: 3}
+      propertyPath: HPslider
+      value: 
+      objectReference: {fileID: 3007534510495430968}
+    - target: {fileID: 8867353877810089772, guid: 6d92162037bfa8f46ad5e54c11130cb5,
+        type: 3}
+      propertyPath: Boss
+      value: 
+      objectReference: {fileID: 8278654584382069472}
+    - target: {fileID: 8867353877810089772, guid: 6d92162037bfa8f46ad5e54c11130cb5,
+        type: 3}
+      propertyPath: boss
+      value: 
+      objectReference: {fileID: 8278654584382069472}
+    - target: {fileID: 8867353877810089773, guid: 6d92162037bfa8f46ad5e54c11130cb5,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867353877810089773, guid: 6d92162037bfa8f46ad5e54c11130cb5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867353877810089773, guid: 6d92162037bfa8f46ad5e54c11130cb5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867353877810089773, guid: 6d92162037bfa8f46ad5e54c11130cb5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -15.063
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867353877810089773, guid: 6d92162037bfa8f46ad5e54c11130cb5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867353877810089773, guid: 6d92162037bfa8f46ad5e54c11130cb5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867353877810089773, guid: 6d92162037bfa8f46ad5e54c11130cb5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867353877810089773, guid: 6d92162037bfa8f46ad5e54c11130cb5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867353877810089773, guid: 6d92162037bfa8f46ad5e54c11130cb5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867353877810089773, guid: 6d92162037bfa8f46ad5e54c11130cb5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867353877810089773, guid: 6d92162037bfa8f46ad5e54c11130cb5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867353877810089775, guid: 6d92162037bfa8f46ad5e54c11130cb5,
+        type: 3}
+      propertyPath: m_Name
+      value: Player (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6d92162037bfa8f46ad5e54c11130cb5, type: 3}
 --- !u!4 &676176925 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 494fd1c423cc4d947ba2b7245f90a458,
@@ -39414,6 +39498,7 @@ MonoBehaviour:
   HPslider: {fileID: 3007534510495430968}
   Audioclip:
   - {fileID: 8300000, guid: 959c1c6fdac61544ba79d6850b34454c, type: 3}
+  nutback: 0
 --- !u!143 &7239571965805443013
 CharacterController:
   m_ObjectHideFlags: 0
@@ -40184,7 +40269,17 @@ MonoBehaviour:
   minDist: 6
   maxDist: 7
   moveSpeed: 3
+  player: {fileID: 0}
+  boss: {fileID: 0}
+  cameraRotSpeed: 20
+  offset: {x: 0, y: 0, z: 0}
+  isLockedOn: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  collisionOffset: 2.2
   isAttack: 1
+  playerRotationSpeed: 10
 --- !u!1 &7239571966421872846
 GameObject:
   m_ObjectHideFlags: 0
@@ -40209,7 +40304,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &7239571966421872847
 Rigidbody:
   m_ObjectHideFlags: 0

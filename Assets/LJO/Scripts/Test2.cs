@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Test2 : MonoBehaviour
 {
+    public static Test2 instance;
     private int hp;
     public int maxHP = 100;
     public Slider HPslider;
@@ -15,6 +17,8 @@ public class Test2 : MonoBehaviour
     // »ç¿îµå
     public AudioClip[] Audioclip;
     AudioSource soundSource;
+    private bool isLiedown = false;
+    public bool nutback = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +36,7 @@ public class Test2 : MonoBehaviour
         }
 
         soundSource.enabled = true;
+        instance = this;
     }
 
     // Update is called once per frame
@@ -79,20 +84,27 @@ public class Test2 : MonoBehaviour
 
             hitcount++;
 
-            if (hitcount == 1)
+            if (isLiedown)
             {
+                ani.SetTrigger("Liedown");
+            }
+            else
+            {
+                if (hitcount == 1)
+                {
 
-                ani.SetTrigger("Hit1");
-            }
-            else if (hitcount == 2)
-            {
-                Debug.Log("dsds");
-                ani.SetTrigger("Hit2");
-            }
-            else if (hitcount == 3)
-            {
-                ani.SetTrigger("Hit3");
-                hitcount = 0;
+                    ani.SetTrigger("Hit1");
+                }
+                else if (hitcount == 2)
+                {
+                    Debug.Log("dsds");
+                    ani.SetTrigger("Hit2");
+                }
+                else if (hitcount == 3)
+                {
+                    ani.SetTrigger("Hit3");
+                    hitcount = 0;
+                }
             }
         }
     }
@@ -105,16 +117,43 @@ public class Test2 : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Boss") || other.CompareTag("Hand") || other.CompareTag("Weapon"))
+        print(other.gameObject.name);
+        if (other.CompareTag("Boss") || other.CompareTag("Weapon"))
         {
-            if(bossAI.instance.moonpresenceAttack)
+            if (BossAlpha.instance != null) 
             {
-                print("hit");   
-                TakeDamage(5);
-                soundSource.clip = Audioclip[0];
-                soundSource.PlayOneShot(Audioclip[0]);
+                if (BossAlpha.instance.isGehrmanAttack)
+                {
+                    print("hit");
+                    TakeDamage(5);
+                    soundSource.clip = Audioclip[0];
+                    soundSource.PlayOneShot(Audioclip[0]);
+
+                }
+                if (BossAlpha.instance.bossState == BossAlpha.BossPatternState.SickelCombo1 && BossAlpha.instance.sickelSubState == BossAlpha.SickelSubState.Attack1)
+                {
+                    Debug.Log("dsds");
+                    TakeDamage(5);
+                    ani.SetTrigger("LieDown");
+                }
+            }
+
+            if(bossAI.instance != null) 
+            {
+                if (bossAI.instance.moonpresenceAttack)
+                {
+                    print("hit");
+                    TakeDamage(5);
+                    soundSource.clip = Audioclip[0];
+                    soundSource.PlayOneShot(Audioclip[0]);
+
+                }
             }
         }
-        
+     
     }
+
+
+
+
 }
