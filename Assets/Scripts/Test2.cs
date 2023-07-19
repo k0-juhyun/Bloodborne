@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Test2 : MonoBehaviour
 {
+    
     private int hp;
     public int maxHP = 100;
     public Slider HPslider;
@@ -15,6 +16,7 @@ public class Test2 : MonoBehaviour
     // »ç¿îµå
     public AudioClip[] Audioclip;
     AudioSource soundSource;
+    private bool isLiedown = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -79,20 +81,27 @@ public class Test2 : MonoBehaviour
 
             hitcount++;
 
-            if (hitcount == 1)
+            if (isLiedown)
             {
+                ani.SetTrigger("Liedown");
+            }
+            else
+            {
+                if (hitcount == 1)
+                {
 
-                ani.SetTrigger("Hit1");
-            }
-            else if (hitcount == 2)
-            {
-                Debug.Log("dsds");
-                ani.SetTrigger("Hit2");
-            }
-            else if (hitcount == 3)
-            {
-                ani.SetTrigger("Hit3");
-                hitcount = 0;
+                    ani.SetTrigger("Hit1");
+                }
+                else if (hitcount == 2)
+                {
+                    Debug.Log("dsds");
+                    ani.SetTrigger("Hit2");
+                }
+                else if (hitcount == 3)
+                {
+                    ani.SetTrigger("Hit3");
+                    hitcount = 0;
+                }
             }
         }
     }
@@ -114,6 +123,11 @@ public class Test2 : MonoBehaviour
                 TakeDamage(5);
                 soundSource.clip = Audioclip[0];
                 soundSource.PlayOneShot(Audioclip[0]);
+
+                //if (bossAI.instance.sickelSubState == SickelSubState.Attack3)
+                //{
+                //    isLiedown = true;
+                //}
             }
         }
         

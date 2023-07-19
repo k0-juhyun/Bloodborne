@@ -256,9 +256,15 @@ public class TPSChraracterController : MonoBehaviour
 
     //    return centerPoint;
     //}
+    private bool isAttacking = false;
 
     private void Attack()
     {
+        if (isAttacking)
+            return;
+
+        isAttacking = true;
+
         animator.SetTrigger("isAttack");
         Debug.Log("dfd");
 
@@ -284,6 +290,7 @@ public class TPSChraracterController : MonoBehaviour
             soundSource.clip = Audioclip[1];
             soundSource.PlayOneShot(Audioclip[1]);
         }
+        isAttacking = false;
     }
 
 

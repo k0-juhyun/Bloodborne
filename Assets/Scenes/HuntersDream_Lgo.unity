@@ -20408,8 +20408,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 158, y: -31}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 158, y: -23.1}
+  m_SizeDelta: {x: 100, y: 51.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3007534510495430970
 GameObject:
@@ -23234,7 +23234,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2d8b9f4795e50640965b60663efdf91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gehrmanAttack: 0
   bossState: 0
   bossPhase: 0
   sickelSubState: 0
@@ -23269,6 +23268,7 @@ MonoBehaviour:
   isMoveTargetPos: 0
   isGehrmanDie: 0
   isGehrmanAttack: 0
+  a: 0
 --- !u!54 &6724778306941636922
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -24992,7 +24992,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: 7617ab93bfcecf24194459b5e0abd33f, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: 7617ab93bfcecf24194459b5e0abd33f, type: 3}
       propertyPath: m_Controller
@@ -25046,15 +25046,13 @@ MonoBehaviour:
     m_Bits: 1024
   attackRadius: 1
   attackDamage: 10
-  Player: {fileID: 7239571966421872844}
-  Boss: {fileID: 6203961998090308482}
   zoomSpeed: 4
   minDist: 6
   maxDist: 7
   moveSpeed: 3
   player: {fileID: 7239571966421872844}
   boss: {fileID: 6203961998090308482}
-  cameraRotSpeed: 10
+  cameraRotSpeed: 20
   offset: {x: 0, y: 0, z: 0}
   isLockedOn: 0
   groundLayer:
