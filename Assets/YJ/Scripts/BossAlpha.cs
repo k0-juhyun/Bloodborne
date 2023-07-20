@@ -55,6 +55,7 @@ public class BossAlpha : MonoBehaviour
     public GameObject blade;            // 무기
     public GameObject gun;              // 무기
     private GameObject bloodEffect;     // 피 프리팹
+    public GameObject[] UI;             // 죽음 ui 
 
 
 
@@ -586,6 +587,8 @@ public class BossAlpha : MonoBehaviour
         Destroy(gameObject);
         // 씬 넘어가는 // 죽음 상태라고 알려주기(SceneManager에서 받아가기)
         // UI 넣고 몇 초 후에 불리는 것으로 수정하기
+        UI[0].SetActive(true);
+        UI[1].SetActive(true);
         isGehrmanDie = true;
     }
 
@@ -835,7 +838,7 @@ public class BossAlpha : MonoBehaviour
         }
     }
 
-    // 이벤트 함수로 다이 애니메이션이 끝나면 호출
+    // 가짜임. 이벤트 함수로 다이 애니메이션이 끝나면 호출
     private void UpdateDie()
     {
         // 만약 hp가 0이되면 Die 함수가 호출된다(hit에서)
