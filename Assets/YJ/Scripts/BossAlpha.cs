@@ -111,6 +111,7 @@ public class BossAlpha : MonoBehaviour
     public bool isGehrmanDie = false;                   // 죽음 상태 확인
     public bool isGehrmanAttack = false;                // 공격 상태 확인 to 플레이어용
     public bool isPhase2 = false;                       // 페이즈 2 상태 확인
+    public bool isPhase3 = false;                       // 페이즈 3 상태 확인
     public bool isQuickening = false;                   // Quickening 폭발 공격
     public bool a = false;                              // sickle2 에서 플레이어 위치 한번만 계산
 
@@ -131,6 +132,8 @@ public class BossAlpha : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
         // 밀림방지
         //rid.velocity = Vector3.zero;
         // 항상 플레이어를 바라보기
@@ -161,6 +164,7 @@ public class BossAlpha : MonoBehaviour
             //hitCount = 2;
             hitCount = 0;
             isHitted = false;
+            isHitted2 = false;
         }
 
         switch (bossState)
@@ -186,13 +190,8 @@ public class BossAlpha : MonoBehaviour
             case BossPatternState.SickelCombo3:
                 UpdateSickelCombo3();
                 break;
-            case BossPatternState.Die:
-                UpdateDie();
-                break;
             case BossPatternState.PhaseChange:
                 UpdatePhaseChange();
-                break;
-            default:
                 break;
         }
 
@@ -240,7 +239,8 @@ public class BossAlpha : MonoBehaviour
                 anim.SetTrigger("Quickening");
                 //이펙트를 실행한다
                 // 한번만 호출하지만 Update로 작동해야함. 할거 다 끝나고 true로 하기
-                Quickening();
+                isQuickening = true;
+                //Quickening();
             }
         }
 
@@ -466,19 +466,26 @@ public class BossAlpha : MonoBehaviour
         if (bossHP.HP <= 7.5)
         {
             // 현재 보스 상태를 페이즈 변경 상태로 한다
-            bossState = BossPatternState.PhaseChange;
+            //bossState = BossPatternState.PhaseChange;
             // 현재 페이즈를 2페이즈로 한다
             bossPhase = BossPhase.Phase2;
             // 보스 공격 상태를 ?로 바꾼다
             //return;     // 바로가기?? 아마 아래에 있는 피깎이를 위로 올려야할듯? 무적상태가 따로 있나? 없나? 체크필요
 
-            // 만약 현재 체력이 50보다 작다면
+            // 만약 현재 체력이 50보다 작다면 계속 들어옴
             if (bossHP.HP <= 5)
             {
-                // 현재 보스 상태를 페이즈 변경 상태로 한다
-                bossState = BossPatternState.PhaseChange;
-                // 현재 페이즈를 3페이즈로 한다
-                bossPhase = BossPhase.Phase3;
+                // 부울 값을 만들어서 한번만 되게 하자
+                if (isPhase3 == false)
+                {
+                    // 현재 보스 상태를 페이즈 변경 상태로 한다
+                    bossState = BossPatternState.PhaseChange;
+                    print("PhaseChange로 상태 바꿈");
+                    // 현재 페이즈를 3페이즈로 한다
+                    bossPhase = BossPhase.Phase3;
+                    print("Phase3로 상태 바꿈");
+                    isPhase3 = true;
+                }
                 
                 // 보스 공격 상태를 ?로 바꾼다
                 //return;
@@ -553,11 +560,12 @@ public class BossAlpha : MonoBehaviour
         // hit2 up 애니메이션이 끝나면 idle 상태로 돌린다(이벤트 함수로)
     }
 
-    // 이벤트 함수
+    // 애니메이션 이벤트 함수
     void AnimIdle()
     {
         // Idle상태로 한다
         bossState = BossPatternState.Idle;
+        print("AnimIdle 호출됨");
     }
 
     void AnimHitUp()
@@ -568,14 +576,25 @@ public class BossAlpha : MonoBehaviour
         anim.SetTrigger("HitUp");
         isHitted2 = false;
         isHitted = false;
+        print("AnimHitUP 호출됨");
     }
 
 
     void AnimDie()
     {
+        // 죽음 애니메이션이 끝나면 나를 삭제해라
         Destroy(gameObject);
+        // 씬 넘어가는 // 죽음 상태라고 알려주기(SceneManager에서 받아가기)
+        // UI 넣고 몇 초 후에 불리는 것으로 수정하기
+        isGehrmanDie = true;
     }
 
+    // 폭발 공격 이펙트 실행하는 이벤트 함수
+    void ActivateEffect()
+    {
+        // 여기서 만든 폭발 이펙트 실행하기(알파이후에..)
+        print("Effect : 나올예정임");
+    }
 
     private void UpdateSickelCombo1()
     {
@@ -816,6 +835,7 @@ public class BossAlpha : MonoBehaviour
         }
     }
 
+    // 이벤트 함수로 다이 애니메이션이 끝나면 호출
     private void UpdateDie()
     {
         // 만약 hp가 0이되면 Die 함수가 호출된다(hit에서)
