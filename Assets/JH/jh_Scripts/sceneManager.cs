@@ -53,4 +53,18 @@ public class sceneManager : MonoBehaviour
         yield return new WaitForSeconds(delayTime);
         SceneManager.LoadScene(nextScene);
     }
+
+    public void OnGameStart()
+    {
+        SceneManager.LoadScene(nextScene);
+    }
+
+    public void OnGameQuit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit(); // 어플리케이션 종료때
+#endif
+    }
 }

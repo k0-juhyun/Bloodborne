@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/JH/jh_Scenes/StartScene.unity
+    guid: ea3b326cfaf92f6479775a848b300ea1
+  - enabled: 1
     path: Assets/JH/jh_Scenes/OpeningEndingScene/jh_GermanStartScene.unity
     guid: 3924c700592cbe34fa75227422b16549
   - enabled: 1
