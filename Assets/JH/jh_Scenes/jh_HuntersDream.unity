@@ -6391,6 +6391,16 @@ PrefabInstance:
       propertyPath: HPslider
       value: 
       objectReference: {fileID: 3007534510495430968}
+    - target: {fileID: 8867353877453441061, guid: 6d92162037bfa8f46ad5e54c11130cb5,
+        type: 3}
+      propertyPath: Audioclip.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867353877453441081, guid: 6d92162037bfa8f46ad5e54c11130cb5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8867353877810089772, guid: 6d92162037bfa8f46ad5e54c11130cb5,
         type: 3}
       propertyPath: Boss
@@ -35182,6 +35192,7 @@ MonoBehaviour:
   - {fileID: 555712451}
   - {fileID: 526406494}
   postProcessVolume: {fileID: 621123108}
+  isSpecialPattern1Active: 0
   playerHP1: 0
   stateMachine: 0
   attackSubStateMachine: 0

@@ -44,7 +44,7 @@ public class bossAI : MonoBehaviour
     private LensDistortion lensDistortion;
 
     #region AttackPatternBoolValues
-    private bool isSpecialPattern1Active = false;
+    public bool isSpecialPattern1Active = false;
     private bool isSpecialPattern1InProgress = false;
     public bool playerHP1;
     private bool isSpecialPattern2Active = false;

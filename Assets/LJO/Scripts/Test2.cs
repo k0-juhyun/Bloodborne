@@ -19,6 +19,8 @@ public class Test2 : MonoBehaviour
     AudioSource soundSource;
     private bool isLiedown = false;
     public bool nutback = false;
+
+    private bool moonpresencepattern = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +50,12 @@ public class Test2 : MonoBehaviour
             ani.SetTrigger("Potion");
         }
 
+        if(bossAI.instance.isSpecialPattern1Active && !moonpresencepattern)
+        {
+            print("1·Î¸¸µë");
+            SetHP(1);
+            moonpresencepattern = true;
+        }
     }
     void SetHP(int value)
     {

@@ -17,8 +17,8 @@ public class TPSChraracterController : MonoBehaviour
     private Transform cameraArm;
 
     // »ç¿îµå
-    public AudioClip[] Audioclip;
-    AudioSource soundSource;
+    //public AudioClip[] Audioclip;
+    //AudioSource soundSource;
 
 
     // public Transform LockOnTransform;
@@ -89,7 +89,7 @@ public class TPSChraracterController : MonoBehaviour
         animator = GetComponent<Animator>();
         cc = GetComponent<CharacterController>();
 
-        soundSource = gameObject.GetComponent<AudioSource>();
+       // soundSource = gameObject.GetComponent<AudioSource>();
 
         GameObject playerObject = GameObject.FindGameObjectWithTag(playerTag);
         if (playerObject != null)
@@ -123,12 +123,12 @@ public class TPSChraracterController : MonoBehaviour
         L_Step();
         Dash_Atk();
 
-        if (soundSource == null)
-        {
-            soundSource = gameObject.AddComponent<AudioSource>();
-        }
+        //if (soundSource == null)
+        //{
+        //    soundSource = gameObject.AddComponent<AudioSource>();
+        //}
 
-        soundSource.enabled = true;
+        //soundSource.enabled = true;
 
     }
 
@@ -295,15 +295,15 @@ public class TPSChraracterController : MonoBehaviour
                 if (enemyHealth != null)
                 {
                     enemyHealth.TakeDamage(attackDamage);
-                    soundSource.clip = Audioclip[5];
-                    soundSource.PlayOneShot(Audioclip[5]);
+                    //soundSource.clip = Audioclip[5];
+                    //soundSource.PlayOneShot(Audioclip[5]);
                 }
             }
         }
         if (!hitBoss)
         {
-            soundSource.clip = Audioclip[1];
-            soundSource.PlayOneShot(Audioclip[1]);
+            //soundSource.clip = Audioclip[1];
+            //soundSource.PlayOneShot(Audioclip[1]);
         }
         isAttacking = false;
     }
@@ -329,8 +329,8 @@ public class TPSChraracterController : MonoBehaviour
         {
             // Move_B = true;
             animator.SetTrigger("Move_B");
-            soundSource.clip = Audioclip[2];
-            soundSource.PlayOneShot(Audioclip[2]);
+            //soundSource.clip = Audioclip[2];
+            //soundSource.PlayOneShot(Audioclip[2]);
         }
 
     }
@@ -350,8 +350,8 @@ public class TPSChraracterController : MonoBehaviour
         {
             //Move_L = true;
             animator.SetTrigger("Move_L");
-            soundSource.clip = Audioclip[2];
-            soundSource.PlayOneShot(Audioclip[2]);
+            //soundSource.clip = Audioclip[2];
+            //soundSource.PlayOneShot(Audioclip[2]);
         }
     }
 
@@ -370,8 +370,8 @@ public class TPSChraracterController : MonoBehaviour
         {
             //Move_R = true;
             animator.SetTrigger("Move_R");
-            soundSource.clip = Audioclip[2];
-            soundSource.PlayOneShot(Audioclip[2]);
+            //soundSource.clip = Audioclip[2];
+            //soundSource.PlayOneShot(Audioclip[2]);
 
         }
 
