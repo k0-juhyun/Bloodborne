@@ -33,7 +33,7 @@ public class sceneManager : MonoBehaviour
         // 게르만 죽으면
         if (SceneManager.GetActiveScene().name == "YJ_HuntersDream" && BossAlpha.instance.isGehrmanDie)
         {
-            SceneManager.LoadScene(nextScene);
+            StartCoroutine(delayLoadScene(3f));
         }
 
         // 달의존재 죽으면
