@@ -15,8 +15,8 @@ public class Test2 : MonoBehaviour
 
     Rigidbody rb;
     // »ç¿îµå
-    public AudioClip[] Audioclip;
-    AudioSource soundSource;
+    //public AudioClip[] Audioclip;
+    //AudioSource soundSource;
     private bool isLiedown = false;
     public bool nutback = false;
 
@@ -30,14 +30,14 @@ public class Test2 : MonoBehaviour
 
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;
-        soundSource = gameObject.GetComponent<AudioSource>();
+        //soundSource = gameObject.GetComponent<AudioSource>();
 
-        if (soundSource == null)
-        {
-            soundSource = gameObject.AddComponent<AudioSource>();
-        }
+        //if (soundSource == null)
+        //{
+        //    soundSource = gameObject.AddComponent<AudioSource>();
+        //}
 
-        soundSource.enabled = true;
+        //soundSource.enabled = true;
         instance = this;
     }
 
@@ -50,11 +50,14 @@ public class Test2 : MonoBehaviour
             ani.SetTrigger("Potion");
         }
 
-        if(bossAI.instance.isSpecialPattern1Active && !moonpresencepattern)
+        if(bossAI.instance != null) 
         {
-            print("1·Î¸¸µë");
-            SetHP(1);
-            moonpresencepattern = true;
+            if (bossAI.instance.isSpecialPattern1Active && !moonpresencepattern)
+            {
+                print("1·Î¸¸µë");
+                SetHP(1);
+                moonpresencepattern = true;
+            }
         }
     }
     void SetHP(int value)
@@ -135,8 +138,8 @@ public class Test2 : MonoBehaviour
                     TPSChraracterController.instance.playerLock = true;
                     print("hit");
                     TakeDamage(5);
-                    soundSource.clip = Audioclip[0];
-                    soundSource.PlayOneShot(Audioclip[0]);
+                    //soundSource.clip = Audioclip[0];
+                    //soundSource.PlayOneShot(Audioclip[0]);
                 }
 
             }
@@ -162,8 +165,8 @@ public class Test2 : MonoBehaviour
                 {
                     print("hit");
                     TakeDamage(5);
-                    soundSource.clip = Audioclip[0];
-                    soundSource.PlayOneShot(Audioclip[0]);
+                    //soundSource.clip = Audioclip[0];
+                    //soundSource.PlayOneShot(Audioclip[0]);
                 }
 
                 if(other.CompareTag("Tail") && bossAI.instance.stateMachine == bossAI.StateMachine.AttackState 
@@ -171,8 +174,8 @@ public class Test2 : MonoBehaviour
                 {
                     print("hit");
                     TakeDamage(5);
-                    soundSource.clip = Audioclip[0];
-                    soundSource.PlayOneShot(Audioclip[0]);
+                    //soundSource.clip = Audioclip[0];
+                    //soundSource.PlayOneShot(Audioclip[0]);
                 }
             }
         }

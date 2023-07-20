@@ -20,7 +20,7 @@ public class ClickToShowText : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             talk.gameObject.SetActive(false);
             ShowNextSentence();

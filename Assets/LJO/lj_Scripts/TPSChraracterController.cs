@@ -106,7 +106,7 @@ public class TPSChraracterController : MonoBehaviour
     }
 
     float curTime = 0;
-    float lockOnTime = 0.5f;
+   public  float lockOnTime = 0.5f;
     void Update()
     {
         //LockCheck();

@@ -853,7 +853,7 @@ public class BossAlpha : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // 만약 플레이어가 공격 상태이고, 플레이어의 무기와 충돌했을때
-        if (isHitted == false && isHitted2 == false && TPSChraracterController.instance.isAttack == true && other.gameObject.CompareTag("Weapon"))
+        if (isHitted == false && isHitted2 == false && TPSChraracterController.instance.isAttack == true && other.gameObject.CompareTag("p_Weapon"))
         {
             // 보스 피격 상태로 전환
             bossState = BossPatternState.Hit;

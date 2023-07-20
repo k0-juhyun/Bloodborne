@@ -168,8 +168,8 @@ public class bossAI : MonoBehaviour
             MoveDistance = Vector3.Distance(playerPos.position, thisPos.position);
 
             // Die state -> Stop Coroutine
-            if (stateMachine == StateMachine.DieState)
-                yield break;
+            //if (stateMachine == StateMachine.DieState)
+            //    yield break;
 
             #region special pattern 1
             // special pattern1 Active Condition
@@ -552,6 +552,8 @@ public class bossAI : MonoBehaviour
             // Hp, Die Animation
             if (curHp <= 0)
             {
+                print("test");
+
                 // Load Die Effect
                 LoadDieEffect();
 
