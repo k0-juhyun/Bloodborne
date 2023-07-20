@@ -18,9 +18,14 @@ public class sceneManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.K) && SceneManager.GetActiveScene().name != "jh_MoonPresenceEndingScene")
         {
             SceneManager.LoadScene(nextScene);
+        }
+
+        if(SceneManager.GetActiveScene().name == "jh_MoonPresenceEndingScene" && Input.GetKeyDown(KeyCode.K)) 
+        { 
+            OnGameQuit();
         }
 
         // 스타트 씬에서 넘어가기
