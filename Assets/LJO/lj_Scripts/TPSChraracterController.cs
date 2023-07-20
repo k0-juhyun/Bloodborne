@@ -31,10 +31,6 @@ public class TPSChraracterController : MonoBehaviour
     public float attackRadius = 1f;   // 공격 범위
     public float attackDamage = 10f;  // 공격력
 
-
-    public Transform Player;
-    public Transform Boss;
-
     private float Dist;
     [SerializeField]
     [Header("Lock-On Zoom")]
@@ -47,6 +43,12 @@ public class TPSChraracterController : MonoBehaviour
     bool Move_R = false;
     bool isMove = false;
     bool Dash_atk = false;
+
+    public bool isLockON;
+    public string playerTag = "Player";
+    public string bossTag = "Boss";
+    private Transform Player;
+    private Transform Boss;
 
     private int attackCount = 0;
 
@@ -88,6 +90,19 @@ public class TPSChraracterController : MonoBehaviour
         cc = GetComponent<CharacterController>();
 
         soundSource = gameObject.GetComponent<AudioSource>();
+
+        GameObject playerObject = GameObject.FindGameObjectWithTag(playerTag);
+        if (playerObject != null)
+        {
+            Player = playerObject.transform;
+        }
+
+        // Boss 오브젝트 찾기
+        GameObject bossObject = GameObject.FindGameObjectWithTag(bossTag);
+        if (bossObject != null)
+        {
+            Boss = bossObject.transform;
+        }
     }
 
     float curTime = 0;
@@ -169,7 +184,7 @@ public class TPSChraracterController : MonoBehaviour
             animator.SetBool("isMove", isMove);
             animator.SetBool("Lock", playerLock);
             //animator.SetFloat("MoveSpeed", moveInput.magnitude);
-            if (isMove)
+            if (isMove && !isAttack)
             {
                 Vector3 lookForward = new Vector3(cameraArm.forward.x, 0f, cameraArm.forward.z).normalized;
                 Vector3 lookRight = new Vector3(cameraArm.right.x, 0f, cameraArm.right.z).normalized;
@@ -192,18 +207,17 @@ public class TPSChraracterController : MonoBehaviour
     {
         GameObject lockOnObject = GameObject.FindGameObjectWithTag("Boss");  // LockOnTarget 태그로 오브젝트 찾기
 
-        if (lockOnObject != null)
+        if (Boss != null)
         {
             Transform lockOnTransform = lockOnObject.transform;
 
             //마우스 오른쪽 버튼을 눌렀을 때 
             if (Input.GetButton("Fire2"))
             {
+                isLockON = true;
                 //카메라와 player를 enemy에게 lookat 한다
 
-                transform.LookAt(Boss);
-
-
+                cameraArm.transform.LookAt(Boss);
 
                 //거리조절
                 float distance = Vector3.Distance(Player.position, Boss.position);
@@ -211,24 +225,39 @@ public class TPSChraracterController : MonoBehaviour
                 // 카메라와 Boss 사이의 거리가 최소 거리보다 작을 경우
                 if (distance < minDist)
                 {
+                    //// 카메라 위치를 최소 거리만큼 뒤로 조정합니다.
+                    //Vector3 offset = transform.position - Boss.position;
+                    //offset = offset.normalized * minDist;
+                    //transform.position = Boss.position + offset;
                     // 카메라 위치를 최소 거리만큼 뒤로 조정합니다.
-                    Vector3 offset = transform.position - Boss.position;
-                    offset = offset.normalized * minDist;
-                    transform.position = Boss.position + offset;
+                    Vector3 direction = transform.position - Boss.position;
+                    direction = direction.normalized * minDist;
+                    transform.position = Boss.position + direction;
                 }
-
+                else if (distance > maxDist)
+                {
+                    // 카메라 위치를 최대 거리만큼 앞으로 조정합니다.
+                    Vector3 direction = transform.position - Boss.position;
+                    direction = direction.normalized * maxDist;
+                    transform.position = Boss.position + direction;
+                }
+                characterBody.LookAt(Boss);
                 //카메라 줌인아웃
                 //float distance = Vector3.Distance(Player.position, Boss.position);
 
                 float zoomLevel = Mathf.InverseLerp(minDist, maxDist, distance);
                 // Field of view View 바꿈
-                float targetFOV = Mathf.Lerp(60f, 70f, zoomLevel);
+                float targetFOV = Mathf.Lerp(75f, 60f, zoomLevel);
                 Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetFOV, Time.deltaTime * zoomSpeed);
 
 
-                characterBody.LookAt(Boss);
+
                 //transform.LookAt(Boss);
 
+            }
+            else
+            {
+                isLockON = false;
             }
 
         }
