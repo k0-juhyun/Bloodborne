@@ -493,7 +493,7 @@ public class BossAlpha : MonoBehaviour
             }
 
             // 만약 현재 체력이 0이면
-            if (bossHP.HP == 0)
+            if (bossHP.HP <= 0)
             {
                 // 보스 상태를 죽음으로 한다
                 bossState = BossPatternState.Die;

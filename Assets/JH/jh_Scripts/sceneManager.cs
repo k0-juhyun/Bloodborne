@@ -18,15 +18,15 @@ public class sceneManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K) && SceneManager.GetActiveScene().name != "jh_MoonPresenceEndingScene")
+        if (Input.GetKeyDown(KeyCode.K) /*&& SceneManager.GetActiveScene().name != "jh_MoonPresenceEndingScene"*/)
         {
             SceneManager.LoadScene(nextScene);
         }
 
-        if(SceneManager.GetActiveScene().name == "jh_MoonPresenceEndingScene" && Input.GetKeyDown(KeyCode.K)) 
-        { 
-            OnGameQuit();
-        }
+        //if(SceneManager.GetActiveScene().name == "jh_MoonPresenceEndingScene" && Input.GetKeyDown(KeyCode.K)) 
+        //{ 
+        //    OnGameQuit();
+        //}
 
         // 스타트 씬에서 넘어가기
         if(SceneManager.GetActiveScene().name == "jh_GermanStartScene" && ClickToShowText.nextScene)
