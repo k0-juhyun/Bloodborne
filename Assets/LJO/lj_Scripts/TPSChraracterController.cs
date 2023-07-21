@@ -1,9 +1,11 @@
+using cam;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TPSChraracterController : MonoBehaviour
+
+public class TPSChraracterController : CharacterManager
 {
     public static TPSChraracterController instance;
     private void Awake()
@@ -78,10 +80,12 @@ public class TPSChraracterController : MonoBehaviour
     // collisionOffset
     public float collisionOffset = 2.2f;
 
-
+    CameraHandler cameraHandler;
     // Start is called before the first frame update
     void Start()
     {
+        cameraHandler = CameraHandler.instance;
+
         playerLock = false;
         isAttack = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -104,6 +108,14 @@ public class TPSChraracterController : MonoBehaviour
             Boss = bossObject.transform;
         }
     }
+    private void FixedUpdate()
+    {
+        float delta = Time.deltaTime;
+        Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+
+        cameraHandler.FollowTarget(delta);
+        cameraHandler.HandleCameraRotation(delta, mouseDelta);
+    }
 
     float curTime = 0;
    public  float lockOnTime = 0.5f;
@@ -112,7 +124,7 @@ public class TPSChraracterController : MonoBehaviour
         //LockCheck();
         Move();
         print("isAttack: " + isAttack);
-        LookAround();
+       // LookAround();
         LockOn();
         if (Input.GetButtonDown("Fire1"))
         {
@@ -122,14 +134,6 @@ public class TPSChraracterController : MonoBehaviour
         R_Step();
         L_Step();
         Dash_Atk();
-
-        //if (soundSource == null)
-        //{
-        //    soundSource = gameObject.AddComponent<AudioSource>();
-        //}
-
-        //soundSource.enabled = true;
-
     }
 
 
