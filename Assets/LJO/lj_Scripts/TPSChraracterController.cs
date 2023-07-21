@@ -8,10 +8,6 @@ using UnityEngine;
 public class TPSChraracterController : CharacterManager
 {
     public static TPSChraracterController instance;
-    private void Awake()
-    {
-        instance = this;
-    }
     public bool playerLock = false;
     [SerializeField]
     private Transform characterBody;
@@ -63,7 +59,7 @@ public class TPSChraracterController : CharacterManager
     public Transform player;
 
     // boss
-    public Transform boss;
+    //public Transform boss;
 
     // Camera Speed
     public float cameraRotSpeed = 20f;
@@ -79,12 +75,11 @@ public class TPSChraracterController : CharacterManager
 
     // collisionOffset
     public float collisionOffset = 2.2f;
-
-    CameraHandler cameraHandler;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        cameraHandler = CameraHandler.instance;
+        instance = this;
+        //cameraHandler = FindObjectOfType<CameraHandler>();
 
         playerLock = false;
         isAttack = false;
@@ -108,23 +103,17 @@ public class TPSChraracterController : CharacterManager
             Boss = bossObject.transform;
         }
     }
-    private void FixedUpdate()
-    {
-        float delta = Time.deltaTime;
-        Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
-        cameraHandler.FollowTarget(delta);
-        cameraHandler.HandleCameraRotation(delta, mouseDelta);
-    }
 
     float curTime = 0;
    public  float lockOnTime = 0.5f;
     void Update()
     {
+        HandleLockOnInput();
         //LockCheck();
         Move();
         print("isAttack: " + isAttack);
-       // LookAround();
+        //LookAround();
         LockOn();
         if (Input.GetButtonDown("Fire1"))
         {
@@ -136,7 +125,25 @@ public class TPSChraracterController : CharacterManager
         Dash_Atk();
     }
 
+    void HandleLockOnInput()
+    {
+        if(Input.GetButton("Fire2"))
+        {
+            float delta = Time.deltaTime;
+            CameraHandler.instance.lockOnInput = false;
+            CameraHandler.instance.lockOnFlag = true;
+            CameraHandler.instance.HandleLockOn();
+            CameraHandler.instance.FollowTarget(delta);
+        }
+        else
+        {
+            float delta = Time.deltaTime;
+            Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
+            CameraHandler.instance.FollowTarget(delta);
+            CameraHandler.instance.HandleCameraRotation(delta, mouseDelta);
+        }
+    }
 
     public bool isAttack = false;
 
@@ -268,13 +275,6 @@ public class TPSChraracterController : CharacterManager
     }
 
 
-    //private Vector3 GetCenterPoint()
-    //{
-    //    // 두 오브젝트의 중심점 계산
-    //    Vector3 centerPoint = (Player.position + Boss.position) / 2f;
-
-    //    return centerPoint;
-    //}
     private bool isAttacking = false;
 
     private void Attack()
@@ -311,9 +311,6 @@ public class TPSChraracterController : CharacterManager
         }
         isAttacking = false;
     }
-
-
-
 
     private bool isSKeyPressed = false; // 's' 키가 눌렸는지 여부를 저장하는 변수
 
