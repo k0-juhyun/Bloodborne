@@ -33,5 +33,5 @@ EditorBuildSettings:
     path: Assets/JH/jh_Scenes/OpeningEndingScene/jh_MoonPresenceEndingScene.unity
     guid: 329e6ef1d0e20d54587065a89ef399f7
   m_configObjects:
-    com.unity.input.settings: {fileID: 11400000, guid: 0320c5035b63b2f41b991c3d33a11d77,
+    com.unity.input.settings: {fileID: 11400000, guid: 44f551b421e9c5449aaa57b51cf871eb,
       type: 2}

@@ -109,9 +109,10 @@ public class TPSChraracterController : CharacterManager
    public  float lockOnTime = 0.5f;
     void Update()
     {
-        HandleLockOnInput();
+       // HandleLockOnInput();
         //LockCheck();
-        Move();
+
+        //Move();
         print("isAttack: " + isAttack);
         //LookAround();
         LockOn();
@@ -125,25 +126,25 @@ public class TPSChraracterController : CharacterManager
         Dash_Atk();
     }
 
-    void HandleLockOnInput()
-    {
-        if(Input.GetButton("Fire2"))
-        {
-            float delta = Time.deltaTime;
-            CameraHandler.instance.lockOnInput = false;
-            CameraHandler.instance.lockOnFlag = true;
-            CameraHandler.instance.HandleLockOn();
-            CameraHandler.instance.FollowTarget(delta);
-        }
-        else
-        {
-            float delta = Time.deltaTime;
-            Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+    //void HandleLockOnInput()
+    //{
+    //    if(Input.GetButton("Fire2"))
+    //    {
+    //        float delta = Time.deltaTime;
+    //        CameraHandler.instance.lockOnInput = false;
+    //        CameraHandler.instance.lockOnFlag = true;
+    //        CameraHandler.instance.HandleLockOn();
+    //        CameraHandler.instance.FollowTarget(delta);
+    //    }
+    //    else
+    //    {
+    //        float delta = Time.deltaTime;
+    //        Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
-            CameraHandler.instance.FollowTarget(delta);
-            CameraHandler.instance.HandleCameraRotation(delta, mouseDelta);
-        }
-    }
+    //        //CameraHandler.instance.FollowTarget(delta);
+    //        //CameraHandler.instance.HandleCameraRotation(delta, mouseDelta);
+    //    }
+    //}
 
     public bool isAttack = false;
 
