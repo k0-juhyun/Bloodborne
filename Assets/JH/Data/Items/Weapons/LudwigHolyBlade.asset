@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf7e1d5f85470e4c8223c2b1a03d798, type: 3}
+  m_Name: LudwigHolyBlade
+  m_EditorClassIdentifier: 
+  itemName: LudwigHolyBlade
+  modelPrefab: {fileID: 8668022215795278000, guid: d313dadb18d5eb04c9b1b0662526d447,
+    type: 3}
+  isUnarmed: 0
+  oneHandLightAttack: oneHandLightAttack
+  oneHandHeavyAttack: oneHandHeavyAttack
