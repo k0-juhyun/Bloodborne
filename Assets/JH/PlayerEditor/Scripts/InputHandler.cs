@@ -15,6 +15,8 @@ namespace bloodborne
         public bool b_Input;
         public bool rb_Input;
         public bool rt_Input;
+        public bool lf_Input;
+        public bool lg_Input;
 
         public bool rollFlag;
         public bool sprintFlag;
@@ -90,6 +92,8 @@ namespace bloodborne
         {
             inputActions.PlayerAction.RB.performed += i => rb_Input = true;
             inputActions.PlayerAction.RT.performed += i => rt_Input = true;
+            inputActions.PlayerAction.LF.performed += i => lf_Input = true;
+            inputActions.PlayerAction.LG.performed += i => lg_Input = true;
 
             if(rb_Input)
             {
@@ -99,6 +103,16 @@ namespace bloodborne
             if(rt_Input)
             {
                 playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);   
+            }
+
+            if (lf_Input)
+            {
+                playerAttacker.HandleLightAttack(playerInventory.leftWeapon);
+            }
+
+            if (lg_Input)
+            {
+                playerAttacker.HandleHeavyAttack(playerInventory.leftWeapon);
             }
         }
     }

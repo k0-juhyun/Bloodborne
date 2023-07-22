@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9cf7e1d5f85470e4c8223c2b1a03d798, type: 3}
-  m_Name: SawCleaver
+  m_Name: Pistol
   m_EditorClassIdentifier: 
-  itemName: SawCleaver
-  modelPrefab: {fileID: 5990100051905930407, guid: 4144371068d66114ab2e518228a42f67,
+  itemName: Pistol
+  modelPrefab: {fileID: 8457074420098972368, guid: e20f63e7e25c2cd45a7b4cc55d28f927,
     type: 3}
   isUnarmed: 0
-  oneHandLightAttack: rightHandLightAttack
-  oneHandHeavyAttack: rightHandHeavyAttack
+  oneHandLightAttack: leftHandLightAttack
+  oneHandHeavyAttack: leftHandHeavyAttack

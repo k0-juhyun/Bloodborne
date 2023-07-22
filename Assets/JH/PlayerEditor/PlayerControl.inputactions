@@ -134,6 +134,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "LF",
+                    "type": "Button",
+                    "id": "d17c3386-a1c8-4d07-ae09-f8e82af58c88",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LG",
+                    "type": "Button",
+                    "id": "1681281e-bf35-49e5-8671-05f742030193",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -167,6 +185,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "RT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d63a4ae6-ebcd-4879-8899-d9812cc768ae",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LF",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "77c68bf4-b489-4c61-84ad-fb4a938edbf8",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LG",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

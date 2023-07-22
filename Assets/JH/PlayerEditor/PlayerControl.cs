@@ -156,6 +156,24 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LF"",
+                    ""type"": ""Button"",
+                    ""id"": ""d17c3386-a1c8-4d07-ae09-f8e82af58c88"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LG"",
+                    ""type"": ""Button"",
+                    ""id"": ""1681281e-bf35-49e5-8671-05f742030193"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -191,6 +209,28 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""action"": ""RT"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d63a4ae6-ebcd-4879-8899-d9812cc768ae"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LF"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""77c68bf4-b489-4c61-84ad-fb4a938edbf8"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LG"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -206,6 +246,8 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         m_PlayerAction_Roll = m_PlayerAction.FindAction("Roll", throwIfNotFound: true);
         m_PlayerAction_RB = m_PlayerAction.FindAction("RB", throwIfNotFound: true);
         m_PlayerAction_RT = m_PlayerAction.FindAction("RT", throwIfNotFound: true);
+        m_PlayerAction_LF = m_PlayerAction.FindAction("LF", throwIfNotFound: true);
+        m_PlayerAction_LG = m_PlayerAction.FindAction("LG", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -324,6 +366,8 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerAction_Roll;
     private readonly InputAction m_PlayerAction_RB;
     private readonly InputAction m_PlayerAction_RT;
+    private readonly InputAction m_PlayerAction_LF;
+    private readonly InputAction m_PlayerAction_LG;
     public struct PlayerActionActions
     {
         private @PlayerControl m_Wrapper;
@@ -331,6 +375,8 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         public InputAction @Roll => m_Wrapper.m_PlayerAction_Roll;
         public InputAction @RB => m_Wrapper.m_PlayerAction_RB;
         public InputAction @RT => m_Wrapper.m_PlayerAction_RT;
+        public InputAction @LF => m_Wrapper.m_PlayerAction_LF;
+        public InputAction @LG => m_Wrapper.m_PlayerAction_LG;
         public InputActionMap Get() { return m_Wrapper.m_PlayerAction; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -349,6 +395,12 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @RT.started += instance.OnRT;
             @RT.performed += instance.OnRT;
             @RT.canceled += instance.OnRT;
+            @LF.started += instance.OnLF;
+            @LF.performed += instance.OnLF;
+            @LF.canceled += instance.OnLF;
+            @LG.started += instance.OnLG;
+            @LG.performed += instance.OnLG;
+            @LG.canceled += instance.OnLG;
         }
 
         private void UnregisterCallbacks(IPlayerActionActions instance)
@@ -362,6 +414,12 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @RT.started -= instance.OnRT;
             @RT.performed -= instance.OnRT;
             @RT.canceled -= instance.OnRT;
+            @LF.started -= instance.OnLF;
+            @LF.performed -= instance.OnLF;
+            @LF.canceled -= instance.OnLF;
+            @LG.started -= instance.OnLG;
+            @LG.performed -= instance.OnLG;
+            @LG.canceled -= instance.OnLG;
         }
 
         public void RemoveCallbacks(IPlayerActionActions instance)
@@ -389,5 +447,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         void OnRoll(InputAction.CallbackContext context);
         void OnRB(InputAction.CallbackContext context);
         void OnRT(InputAction.CallbackContext context);
+        void OnLF(InputAction.CallbackContext context);
+        void OnLG(InputAction.CallbackContext context);
     }
 }

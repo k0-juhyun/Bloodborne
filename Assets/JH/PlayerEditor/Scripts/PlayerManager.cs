@@ -53,6 +53,8 @@ namespace bloodborne
             inputHandler.sprintFlag = false;
             inputHandler.rb_Input = false;
             inputHandler.rt_Input = false;
+            inputHandler.lf_Input = false;
+            inputHandler.lg_Input = false;
 
             if (isInAir)
             {
