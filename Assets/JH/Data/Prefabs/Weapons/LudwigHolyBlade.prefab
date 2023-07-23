@@ -9,9 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3087741820893292331}
-  m_Layer: 0
+  - component: {fileID: 3462911602662174177}
+  - component: {fileID: 371775618163446246}
+  m_Layer: 9
   m_Name: LudwigHolyBlade
-  m_TagString: Untagged
+  m_TagString: p_Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,6 +36,32 @@ Transform:
   m_Father: {fileID: 3452660539682983576}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3462911602662174177
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2419009689498303889}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.084017366, y: 0.5660881, z: 0.03198054}
+  m_Center: {x: -0.00020565093, y: 0.481382, z: -0.0011694469}
+--- !u!114 &371775618163446246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2419009689498303889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7090c62c78c47045942ad9bc3fa1aa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentWeaponDamage: 10
 --- !u!1 &2632732425084921235
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9cf7e1d5f85470e4c8223c2b1a03d798, type: 3}
-  m_Name: Pistol
+  m_Name: UnArmed
   m_EditorClassIdentifier: 
-  itemName: Pistol
-  modelPrefab: {fileID: 8457074420098972368, guid: e20f63e7e25c2cd45a7b4cc55d28f927,
+  itemName: 
+  modelPrefab: {fileID: 3169701606832585171, guid: 9bfe36ca9f36e324ba7035d1837edebe,
     type: 3}
-  isUnarmed: 0
-  right_Hand_Idle: 
-  left_Hand_Idle: Left_Arm_Idle1
-  oneHandLightAttack1: leftHandLightAttack
+  isUnarmed: 1
+  right_Hand_Idle: Right Arm Empty
+  left_Hand_Idle: Left Arm Empty
+  oneHandLightAttack1: 
   oneHandLightAttack2: 
-  oneHandHeavyAttack1: leftHandHeavyAttack
+  oneHandHeavyAttack1: 
   oneHandHeavyAttack2: 
-  baseStamina: 20
-  lightAttackMultiplier: 1
-  heavyAttackMultiplier: 2
+  baseStamina: 0
+  lightAttackMultiplier: 0
+  heavyAttackMultiplier: 0

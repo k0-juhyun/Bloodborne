@@ -20,11 +20,13 @@ namespace bloodborne
 
         public bool rollFlag;
         public bool sprintFlag;
+        public bool comboFlag;
         public float rollInputTimer;
 
         PlayerControl inputActions;
         PlayerAttacker playerAttacker;
         PlayerInventory playerInventory;
+        PlayerManager playerManager;
 
         Vector2 movementInput;
         Vector2 cameraInput;
@@ -33,6 +35,7 @@ namespace bloodborne
         {
             playerAttacker = GetComponent<PlayerAttacker>();
             playerInventory = GetComponent<PlayerInventory>();
+            playerManager = GetComponent<PlayerManager>();
         }
 
         public void OnEnable()
@@ -97,12 +100,42 @@ namespace bloodborne
 
             if(rb_Input)
             {
-                playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
+                if(playerManager.canDoCombo)
+                {
+                    comboFlag = true;
+                    playerAttacker.HandleWeaponCombo(playerInventory.rightWeapon);
+                    comboFlag = false;
+                }
+                else    
+                {
+                    if (playerManager.isInteracting)
+                        return;
+
+                    if (playerManager.canDoCombo)
+                        return;
+
+                    playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
+                }
             }
 
             if(rt_Input)
             {
-                playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);   
+                if (playerManager.canDoCombo)
+                {
+                    comboFlag = true;
+                    playerAttacker.HandleWeaponCombo(playerInventory.rightWeapon);
+                    comboFlag = false;
+                }
+                else
+                {
+                    if (playerManager.isInteracting)
+                        return;
+
+                    if (playerManager.canDoCombo)
+                        return;
+
+                    playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
+                }
             }
 
             if (lf_Input)
@@ -114,6 +147,6 @@ namespace bloodborne
             {
                 playerAttacker.HandleHeavyAttack(playerInventory.leftWeapon);
             }
-        }
+        }  
     }
 }

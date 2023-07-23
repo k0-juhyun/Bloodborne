@@ -71,7 +71,7 @@ namespace bloodborne
             targetDir.Normalize();
             targetDir.y = 0;
 
-            if(targetDir == Vector3.zero)
+            if (targetDir == Vector3.zero)
                 targetDir = myTransform.forward;
 
             float rs = rotationSpeed;
@@ -97,15 +97,15 @@ namespace bloodborne
 
             float speed = movementSpeed;
 
-            if(inputHandler.sprintFlag && inputHandler.moveAmount > 0.5)
+            if (inputHandler.sprintFlag && inputHandler.moveAmount > 0.5)
             {
                 speed = sprintSpeed;
                 playerManager.isSprinting = true;
                 moveDirection *= speed;
             }
-            else 
+            else
             {
-                if(inputHandler.moveAmount < 0.5)
+                if (inputHandler.moveAmount < 0.5)
                 {
                     moveDirection *= walkingSpeed;
                     playerManager.isSprinting = false;
@@ -132,12 +132,12 @@ namespace bloodborne
         {
             if (animatorHandler.anim.GetBool("isInteracting"))
                 return;
-            if(inputHandler.rollFlag)
+            if (inputHandler.rollFlag)
             {
-                moveDirection =cameraObject.forward * inputHandler.vertical;
-                moveDirection+=cameraObject.right * inputHandler.horizontal;
+                moveDirection = cameraObject.forward * inputHandler.vertical;
+                moveDirection += cameraObject.right * inputHandler.horizontal;
 
-                if(inputHandler.moveAmount > 0)
+                if (inputHandler.moveAmount > 0)
                 {
                     animatorHandler.PlayTargetAnimation("Rolling", true);
                     moveDirection.y = 0;
@@ -191,7 +191,7 @@ namespace bloodborne
                     }
                     else
                     {
-                        animatorHandler.PlayTargetAnimation("Locomotion", false);
+                        animatorHandler.PlayTargetAnimation("Empty", false);
                         inAirTimer = 0;
                     }
 
@@ -204,9 +204,9 @@ namespace bloodborne
                 {
                     playerManager.isGrounded = false;
                 }
-                if (!playerManager.isInAir)
+                if (playerManager.isInAir == false)
                 {
-                    if (!playerManager.isInteracting)
+                    if (playerManager.isInteracting == false)
                     {
                         animatorHandler.PlayTargetAnimation("Falling", true);
                     }
@@ -225,8 +225,16 @@ namespace bloodborne
                 }
                 else
                 {
-                    myTransform.position =targetPosition;
+                    myTransform.position = targetPosition;
                 }
+            }
+            if(playerManager.isInteracting || inputHandler.moveAmount >0)
+            {
+                myTransform.position = Vector3.Lerp(myTransform.position, targetPosition, Time.deltaTime / 0.1f);
+            }
+            else
+            {
+                myTransform.position = targetPosition;
             }
         }
 

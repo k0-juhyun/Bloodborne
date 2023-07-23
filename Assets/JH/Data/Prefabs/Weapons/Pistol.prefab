@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1120703304999841824}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Pistol
-  m_TagString: Untagged
+  m_TagString: p_Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,6 +116,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c036b3ad48ba244e82b09cb8c945a97, type: 3}
+--- !u!1 &8258025636257141195 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0c036b3ad48ba244e82b09cb8c945a97,
+    type: 3}
+  m_PrefabInstance: {fileID: 9104887847116090522}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &5507805334514273604
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8258025636257141195}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.232638, y: 0.748112, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &819277674936616597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8258025636257141195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7090c62c78c47045942ad9bc3fa1aa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentWeaponDamage: 10
 --- !u!4 &8777997520381758321 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0c036b3ad48ba244e82b09cb8c945a97,

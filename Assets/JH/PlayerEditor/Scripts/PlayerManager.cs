@@ -16,10 +16,11 @@ namespace bloodborne
         public bool isSprinting;
         public bool isInAir;
         public bool isGrounded;
+        public bool canDoCombo;
 
         private void Start()
         {
-            cameraHandler = CameraHandler.instance;
+            cameraHandler = FindObjectOfType<CameraHandler>();
             inputHandler = GetComponent<InputHandler>();
             anim = GetComponentInChildren<Animator>();
             playerLocomotion = GetComponent<PlayerLocomotion>();
@@ -29,6 +30,7 @@ namespace bloodborne
         {
             float delta = Time.deltaTime;
             isInteracting = anim.GetBool("isInteracting");
+            canDoCombo = anim.GetBool("canDoCombo");
 
             inputHandler.TickInput(delta);
             playerLocomotion.HandleMovement(delta);

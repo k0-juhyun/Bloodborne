@@ -18,8 +18,29 @@ namespace bloodborne
 
         private void Start()
         {
-            weaponSlotManager.LoadWeaponOnSlot(rightWeapon, false);
-            weaponSlotManager.LoadWeaponOnSlot(leftWeapon, true);
+            weaponSlotManager.LoadWeaponOnSlot(rightWeapon,false);
+            weaponSlotManager.LoadWeaponOnSlot(leftWeapon,true);
         }
+
+        //public void ChangeRightWeapon()
+        //{
+        //    currentRightWeaponIndex = currentRightWeaponIndex + 1;
+
+        //    if (currentRightWeaponIndex > weaponsInRightHandSlots.Length - 1)
+        //    {
+        //        currentRightWeaponIndex = -1;
+        //        rightWeapon = unarmedWeapon;
+        //        weaponSlotManager.LoadWeaponOnSlot(unarmedWeapon, false);
+        //    }
+        //    else if (weaponsInRightHandSlots[currentRightWeaponIndex] != null)
+        //    {
+        //        rightWeapon = weaponsInRightHandSlots[currentRightWeaponIndex];
+        //        weaponSlotManager.LoadWeaponOnSlot(weaponsInRightHandSlots[currentRightWeaponIndex], false);
+        //    }
+        //    else
+        //    {
+        //        currentRightWeaponIndex = currentRightWeaponIndex + 1;
+        //    }
+        //}
     }
 }
