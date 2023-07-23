@@ -1,4 +1,3 @@
-using cam;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +5,7 @@ using UnityEngine.AI;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
 
-public class bossAI : CharacterManager
+public class bossAI : MonoBehaviour
 {
     public static bossAI instance;
     public bool moonpresenceAttack;

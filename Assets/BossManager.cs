@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace bloodborne
 {
-    public class CharacterManager : MonoBehaviour
+    public class BossManager : CharacterManager
     {
-        public Transform lockOnTransform;
+        
     }
 }

@@ -1,11 +1,10 @@
-using cam;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-public class TPSChraracterController : CharacterManager
+public class TPSChraracterController : MonoBehaviour
 {
     public static TPSChraracterController instance;
     public bool playerLock = false;
