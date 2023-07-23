@@ -17,9 +17,9 @@ namespace bloodborne
         private LayerMask ignoreLayers;
         private Vector3 cameraFollowVelocity = Vector3.zero;
 
-        public Transform currentLockOnTarget;
-        public Transform leftLockTarget;
-        public Transform rightLockTarget;
+        public CharacterManager currentLockOnTarget;
+        public CharacterManager leftLockTarget;
+        public CharacterManager rightLockTarget;
         #endregion
 
         public static CameraHandler instance;
@@ -51,7 +51,7 @@ namespace bloodborne
         #endregion
 
         List<CharacterManager> availableTargets = new List<CharacterManager>();
-        public Transform nearestLockOnTarget;
+        public CharacterManager nearestLockOnTarget;
         public float maximumLockOnDistance = 30;
 
         private void Awake()
@@ -96,14 +96,14 @@ namespace bloodborne
             {
                 float velocity = 0;
 
-                Vector3 dir = currentLockOnTarget.position - transform.position;
+                Vector3 dir = currentLockOnTarget.transform.position - transform.position;
                 dir.Normalize();
                 dir.y = 0;
 
                 Quaternion targetRotation = Quaternion.LookRotation(dir);
                 transform.rotation = targetRotation;
 
-                dir = currentLockOnTarget.position - cameraPivotTransform.position;
+                dir = currentLockOnTarget.transform.position - cameraPivotTransform.position;
                 dir.Normalize();
 
                 targetRotation = Quaternion.LookRotation(dir);
@@ -138,7 +138,7 @@ namespace bloodborne
         public void HandleLockOn()
         {
             float shortestDistance = Mathf.Infinity;
-            float shortestDistanceOfLeftTarget = Mathf.Infinity;
+            float shortestDistanceOfLeftTarget = -Mathf.Infinity;
             float shortestDistanceOfRightTarget = Mathf.Infinity;
 
             Collider[] colliders = Physics.OverlapSphere(targetTransform.position, 26);
@@ -168,25 +168,27 @@ namespace bloodborne
                 if(distanceFromTarget < shortestDistance)
                 {
                     shortestDistance = distanceFromTarget;
-                    nearestLockOnTarget = availableTargets[k].lockOnTransform;
+                    nearestLockOnTarget = availableTargets[k];
                 }
 
                 if(inputHandler.lockOnFlag)
                 {
-                    Vector3 relativeBossPosition = currentLockOnTarget.InverseTransformPoint(availableTargets[k].transform.position);
-                    var distanceFromLeftTarget = currentLockOnTarget.transform.position.x - availableTargets[k].transform.position.x;
-                    var distanceFromRightTarget = currentLockOnTarget.transform.position.x - availableTargets[k].transform.position.x;
+                    Vector3 relativeBossPosition = inputHandler.transform.InverseTransformPoint(availableTargets[k].transform.position);
+                    var distanceFromLeftTarget = relativeBossPosition.x;
+                    var distanceFromRightTarget = relativeBossPosition.x;
 
-                    if(relativeBossPosition.x > 0.00 && distanceFromLeftTarget < shortestDistanceOfLeftTarget)
+                    if (relativeBossPosition.x <= 0.00 && distanceFromLeftTarget > shortestDistanceOfLeftTarget 
+                        && availableTargets[k] != currentLockOnTarget)
                     {
                         shortestDistanceOfLeftTarget = distanceFromLeftTarget;
-                        leftLockTarget = availableTargets[k].lockOnTransform;
+                        leftLockTarget = availableTargets[k];
                     }
 
-                    if(relativeBossPosition.x < 0.00 && distanceFromRightTarget < shortestDistanceOfRightTarget)
+                    if(relativeBossPosition.x >= 0.00 && distanceFromRightTarget < shortestDistanceOfRightTarget
+                        && availableTargets[k] != currentLockOnTarget)
                     {
                         shortestDistanceOfRightTarget = distanceFromRightTarget;
-                        rightLockTarget = availableTargets[k].lockOnTransform;
+                        rightLockTarget = availableTargets[k];
                     }
                 }
             }
@@ -205,9 +207,9 @@ namespace bloodborne
             Vector3 newLockedPosition = new Vector3(0, lockedPivotPosition);
             Vector3 newUnLockedPosition = new Vector3(0, unlockedPivotPosition);
 
-            if(currentLockOnTarget != null)
+            if (currentLockOnTarget != null)
             {
-                cameraPivotTransform.transform.position = Vector3.SmoothDamp(cameraPivotTransform.transform.localPosition, newLockedPosition, ref velocity, Time.deltaTime);
+                cameraPivotTransform.transform.localPosition = Vector3.SmoothDamp(cameraPivotTransform.transform.localPosition, newLockedPosition, ref velocity, Time.deltaTime);
             }
 
             else

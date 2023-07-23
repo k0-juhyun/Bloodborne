@@ -33,30 +33,31 @@ namespace bloodborne
             canDoCombo = anim.GetBool("canDoCombo");
 
             inputHandler.TickInput(delta);
-            playerLocomotion.HandleMovement(delta);
             playerLocomotion.HandleRollingAndSprinting(delta);
-            playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
         }
 
         private void FixedUpdate()
         {
             float delta = Time.fixedDeltaTime;
+            playerLocomotion.HandleMovement(delta);
+            playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
+        }
+
+        private void LateUpdate()
+        {
+            inputHandler.rollFlag = false;
+            inputHandler.rb_Input = false;
+            inputHandler.rt_Input = false;
+            inputHandler.lf_Input = false;
+            inputHandler.lg_Input = false;
+
+            float delta = Time.deltaTime;
 
             if (cameraHandler != null)
             {
                 cameraHandler.FollowTarget(delta);
                 cameraHandler.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
             }
-        }
-
-        private void LateUpdate()
-        {
-            inputHandler.rollFlag = false;
-            inputHandler.sprintFlag = false;
-            inputHandler.rb_Input = false;
-            inputHandler.rt_Input = false;
-            inputHandler.lf_Input = false;
-            inputHandler.lg_Input = false;
 
             if (isInAir)
             {
