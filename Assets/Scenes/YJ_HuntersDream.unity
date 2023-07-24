@@ -11585,6 +11585,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
   canRotate: 1
+  isAttack: 0
 --- !u!114 &1272550621
 MonoBehaviour:
   m_ObjectHideFlags: 0
