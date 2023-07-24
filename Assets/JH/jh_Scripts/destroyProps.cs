@@ -2,30 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class destroyProps : MonoBehaviour
+namespace bloodborne
 {
-    // Start is called before the first frame update
-    void Start()
+    public class destroyProps : MonoBehaviour
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    private void OnCollisionEnter(Collision coll)
-    {
-        if (coll.collider.tag == ("p_Weapon") && TPSChraracterController.instance.isAttack)
+        AnimatorHandler animatorHandler;
+        BossAlpha bossAlpha;
+        // Start is called before the first frame update
+        void Start()
         {
-            Destroy(gameObject);
+            animatorHandler = FindObjectOfType<AnimatorHandler>();
+            bossAlpha = GetComponent<BossAlpha>();
         }
 
-        else if (coll.collider.tag == ("Weapon")/* && BossAlpha.instance.isGehrmanAttack == true*/)
+
+        private void OnCollisionEnter(Collision coll)
         {
-            Destroy(gameObject);
+            if (coll.collider.tag == ("p_Weapon") && animatorHandler.isAttack)
+            {
+                Destroy(gameObject);
+            }
+
+            else if (coll.collider.tag == ("Weapon") && bossAlpha.isGehrmanAttack == true)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

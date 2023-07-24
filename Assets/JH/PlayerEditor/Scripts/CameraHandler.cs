@@ -75,7 +75,7 @@ namespace bloodborne
 
         public void HandleCameraRotation(float delta, float mouseXInput, float mouseYInput)
         {
-            if(inputHandler.lockOnFlag == false && currentLockOnTarget == null)
+            if (inputHandler.lockOnFlag == false && currentLockOnTarget == null)
             {
                 lookAngle += (mouseXInput * lookSpeed) / delta;
                 pivotAngle -= (mouseYInput * pivotSpeed) / delta;
@@ -165,26 +165,26 @@ namespace bloodborne
             {
                 float distanceFromTarget = Vector3.Distance(targetTransform.position, availableTargets[k].transform.position);
 
-                if(distanceFromTarget < shortestDistance)
+                if (distanceFromTarget < shortestDistance)
                 {
                     shortestDistance = distanceFromTarget;
                     nearestLockOnTarget = availableTargets[k];
                 }
 
-                if(inputHandler.lockOnFlag)
+                if (inputHandler.lockOnFlag)
                 {
                     Vector3 relativeBossPosition = inputHandler.transform.InverseTransformPoint(availableTargets[k].transform.position);
                     var distanceFromLeftTarget = relativeBossPosition.x;
                     var distanceFromRightTarget = relativeBossPosition.x;
 
-                    if (relativeBossPosition.x <= 0.00 && distanceFromLeftTarget > shortestDistanceOfLeftTarget 
+                    if (relativeBossPosition.x <= 0.00 && distanceFromLeftTarget > shortestDistanceOfLeftTarget
                         && availableTargets[k] != currentLockOnTarget)
                     {
                         shortestDistanceOfLeftTarget = distanceFromLeftTarget;
                         leftLockTarget = availableTargets[k];
                     }
 
-                    if(relativeBossPosition.x >= 0.00 && distanceFromRightTarget < shortestDistanceOfRightTarget
+                    if (relativeBossPosition.x >= 0.00 && distanceFromRightTarget < shortestDistanceOfRightTarget
                         && availableTargets[k] != currentLockOnTarget)
                     {
                         shortestDistanceOfRightTarget = distanceFromRightTarget;
@@ -204,8 +204,8 @@ namespace bloodborne
         public void SetCameraHeight()
         {
             Vector3 velocity = Vector3.zero;
-            Vector3 newLockedPosition = new Vector3(0, lockedPivotPosition);
-            Vector3 newUnLockedPosition = new Vector3(0, unlockedPivotPosition);
+            Vector3 newLockedPosition = new Vector3(0, lockedPivotPosition, -2);
+            Vector3 newUnLockedPosition = new Vector3(0, unlockedPivotPosition, -1);
 
             if (currentLockOnTarget != null)
             {
