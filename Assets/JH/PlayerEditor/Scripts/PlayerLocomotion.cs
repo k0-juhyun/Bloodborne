@@ -285,6 +285,18 @@ namespace bloodborne
                 myTransform.position = targetPosition;
             }
         }
+        
+        public void HandleKnockBack()
+        {
+            if (inputHandler.player_knock_back_Input)
+            {
+                animatorHandler.PlayTargetAnimation("KnockBack", true);
+                Vector3 backwardDirection = -transform.forward;
+                Vector3 backwardForceVector = backwardDirection * 10;
+                rigidbody.AddForce(backwardForceVector, ForceMode.Impulse);
+                inputHandler.player_knock_back_Input = false;
+            }
+        }
 
         #endregion
     }

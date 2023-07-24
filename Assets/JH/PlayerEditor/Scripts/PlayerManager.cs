@@ -34,6 +34,7 @@ namespace bloodborne
 
             inputHandler.TickInput(delta);
             playerLocomotion.HandleRollingAndSprinting(delta);
+            playerLocomotion.HandleKnockBack();
         }
 
         private void FixedUpdate()

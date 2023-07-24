@@ -400,6 +400,7 @@ MonoBehaviour:
   lockOnInput: 0
   left_Target_LockOn_Input: 0
   right_Target_LockOn_Input: 0
+  player_knock_back_Input: 0
   rollFlag: 0
   sprintFlag: 0
   comboFlag: 0
@@ -12334,7 +12335,7 @@ MonoBehaviour:
   leftLockTarget: {fileID: 0}
   rightLockTarget: {fileID: 0}
   lookSpeed: 0.01
-  followSpeed: 0.09
+  followSpeed: 0.01
   pivotSpeed: 0.003
   minimumPivot: -35
   maximumPivot: 35

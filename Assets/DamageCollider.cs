@@ -8,7 +8,9 @@ namespace bloodborne
     {
         Collider damageCollider;
 
+        public static bool isAttack;
         public int currentWeaponDamage = 10;
+
         private void Awake()
         {
             damageCollider = GetComponent<Collider>();
@@ -20,11 +22,13 @@ namespace bloodborne
         public void EnableDamageCollider()
         {
             damageCollider.enabled = true;
+            isAttack = true;
         }
 
         public void DisableDamageCollider()
         {
             damageCollider.enabled = false;
+            isAttack = false;
         }
 
         private void OnTriggerEnter(Collider collision)

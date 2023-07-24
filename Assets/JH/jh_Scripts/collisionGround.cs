@@ -2,41 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class collisionGround : MonoBehaviour
+namespace bloodborne
 {
-    private GameObject dustEffect;
-    public GameObject camShake;
-
-    private void Awake()
+    public class collisionGround : MonoBehaviour
     {
-        dustEffect = Resources.Load<GameObject>("DustSmoke");
+        private GameObject dustEffect;
+        public GameObject camShake;
 
-    }
-    private void OnCollisionEnter(Collision coll)
-    {
-        if (coll.collider.CompareTag("Hand") && bossAI.attackInProgress && bossAI.groundHit)
+        private void Awake()
         {
-            if(!camShake.activeSelf)
-            {
-                camShake.SetActive(true);
-                StartCoroutine(camShakeOff());
-            }
+            dustEffect = Resources.Load<GameObject>("DustSmoke");
 
-            Vector3 pos = coll.contacts[0].point;
-
-            Vector3 _normal = coll.contacts[0].normal;
-
-            Quaternion rot = Quaternion.FromToRotation(-Vector3.forward, _normal);
-
-            GameObject dust = Instantiate<GameObject>(dustEffect, pos, rot);
-
-            Destroy(dust, 1.0f);
         }
-    }
+        private void OnCollisionEnter(Collision coll)
+        {
+            if (coll.collider.CompareTag("Hand") && bossAI.attackInProgress && bossAI.groundHit)
+            {
+                if (!camShake.activeSelf)
+                {
+                    camShake.SetActive(true);
+                    StartCoroutine(camShakeOff());
+                }
 
-    IEnumerator camShakeOff()
-    {
-        yield return new WaitForSeconds(1);
-        camShake.SetActive(false);
+                Vector3 pos = coll.contacts[0].point;
+
+                Vector3 _normal = coll.contacts[0].normal;
+
+                Quaternion rot = Quaternion.FromToRotation(-Vector3.forward, _normal);
+
+                GameObject dust = Instantiate<GameObject>(dustEffect, pos, rot);
+
+                Destroy(dust, 1.0f);
+            }
+        }
+
+        IEnumerator camShakeOff()
+        {
+            yield return new WaitForSeconds(1);
+            camShake.SetActive(false);
+        }
     }
 }
