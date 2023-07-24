@@ -6,8 +6,9 @@ namespace bloodborne
 {
     public class DamageCollider : MonoBehaviour
     {
-        Collider damageCollider;
+        public static Collider damageCollider;
 
+        public bool isAttack;
         public int currentWeaponDamage = 10;
         private void Awake()
         {
@@ -19,11 +20,13 @@ namespace bloodborne
 
         public void EnableDamageCollider()
         {
+            isAttack = true;
             damageCollider.enabled = true;
         }
 
         public void DisableDamageCollider()
         {
+            isAttack = false;
             damageCollider.enabled = false;
         }
 

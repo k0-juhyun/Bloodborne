@@ -286,6 +286,20 @@ namespace bloodborne
             }
         }
 
+        public void HandleKnockBack()
+        {
+            if(BossAlpha.instance.playerExplosion)
+            {
+                Vector3 backwardDirection = -transform.forward;
+                Vector3 backwardForce = backwardDirection * 100;
+
+                rigidbody.AddForce(backwardForce,ForceMode.Impulse);
+                animatorHandler.PlayTargetAnimation("KnockBack", true);
+
+                BossAlpha.instance.playerExplosion = false;
+            }
+        }
+
         #endregion
     }
 }
