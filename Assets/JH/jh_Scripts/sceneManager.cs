@@ -38,7 +38,7 @@ namespace bloodborne
             }
 
             // 게르만 죽으면
-            if (SceneManager.GetActiveScene().name == "YJ_HuntersDream" && BossAlpha.instance.isGehrmanDie)
+            if (SceneManager.GetActiveScene().name == "YJ_HuntersDream" /*&& BossAlpha.instance.isGehrmanDie*/)
             {
                 StartCoroutine(delayLoadScene(3f));
             }

@@ -24,7 +24,7 @@ namespace bloodborne {
                 Destroy(gameObject);
             }
 
-            else if (coll.collider.tag == ("Weapon") && BossAlpha.instance.isGehrmanAttack == true)
+            else if (coll.collider.tag == ("Weapon") /*&& BossAlpha.instance.isGehrmanAttack == true*/)
             {
                 Destroy(gameObject);
             }
