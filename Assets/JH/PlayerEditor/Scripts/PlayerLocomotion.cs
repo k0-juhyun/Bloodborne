@@ -290,6 +290,9 @@ namespace bloodborne
         {
             if(inputHandler.kn_Input)
             {
+                Vector3 backwardDirection = -transform.forward;
+                Vector3 backwardForceVector = backwardDirection * 100;
+                rigidbody.AddForce(backwardForceVector, ForceMode.Impulse);
                 animatorHandler.PlayTargetAnimation("KnockBack", true);
                 inputHandler.kn_Input = false;
             }

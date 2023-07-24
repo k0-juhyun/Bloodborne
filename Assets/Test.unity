@@ -750,6 +750,7 @@ MonoBehaviour:
   lockOnInput: 0
   left_Target_LockOn_Input: 0
   right_Target_LockOn_Input: 0
+  kn_Input: 0
   rollFlag: 0
   sprintFlag: 0
   comboFlag: 0
@@ -792,7 +793,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 112
@@ -25571,6 +25572,8 @@ GameObject:
   - component: {fileID: 8278654583355315646}
   - component: {fileID: 6308587343863671953}
   - component: {fileID: 1559212035}
+  - component: {fileID: 8278654584391890180}
+  - component: {fileID: 8278654584391890179}
   m_Layer: 6
   m_Name: Moon presence
   m_TagString: Boss
@@ -29687,6 +29690,41 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8278654584391890179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8278654584382490304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a7f78e7db09daf4c98c491bd419f78d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthLevel: 10
+  maxHealth: 100
+  currentHealth: 0
+  staminaLevel: 10
+  maxStamina: 0
+  currentStamina: 0
+--- !u!114 &8278654584391890180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8278654584382490304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00dfb398df337f747996310b9b46953a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockOnTransform: {fileID: 2132098799}
+  isPerformingAction: 0
+  detectionRadius: 50
+  maximumDetectionAngle: 180
+  minimumDetectionAngle: -180
 --- !u!4 &8278654584506460056
 Transform:
   m_ObjectHideFlags: 0

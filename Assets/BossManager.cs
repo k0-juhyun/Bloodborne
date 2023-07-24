@@ -21,7 +21,7 @@ namespace bloodborne
 
         private void Update()
         {
-            Debug.Log(bossLocomotionManager.currentTarget.transform.position);
+            
         }
 
         public void HandleCurrentAction()
