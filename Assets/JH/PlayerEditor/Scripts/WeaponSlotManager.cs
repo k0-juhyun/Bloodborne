@@ -11,9 +11,6 @@ namespace bloodborne
         WeaponHolderSlot leftHandSlot;
         WeaponHolderSlot rightHandSlot;
 
-        DamageCollider leftHandDamageCollider;
-        DamageCollider rightHandDamageCollider;
-
         Animator anim;
         
         PlayerStats playerStats;
@@ -43,7 +40,6 @@ namespace bloodborne
             if (isLeft)
             {
                 leftHandSlot.LoadWeaponModel(weaponItem);
-                LoadLeftWeaponDamageCollider();
                 #region Handle Left Weapon Idle Anims
                 if (weaponItem != null)
                 {
@@ -58,7 +54,6 @@ namespace bloodborne
             else
             {
                 rightHandSlot.LoadWeaponModel(weaponItem);
-                LoadRightWeaponDamageCollider();
                 #region Handle Right Weapon Idle Anims
                 if (weaponItem != null)
                 {
@@ -71,38 +66,6 @@ namespace bloodborne
                 #endregion
             }
         }
-
-        #region Handle Weapon Damage Collider
-        private void LoadLeftWeaponDamageCollider()
-        {
-            leftHandDamageCollider = leftHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
-        }
-
-        private void LoadRightWeaponDamageCollider()
-        {
-            rightHandDamageCollider = rightHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
-        }
-
-        public void OpenRightHandDamageCollider()
-        {
-            rightHandDamageCollider.EnableDamageCollider();
-        }
-
-        public void OpenLeftHandDamageCollider()
-        {
-            leftHandDamageCollider.EnableDamageCollider();
-        }
-
-        public void CloseRightHandDamageCollider()
-        {
-            rightHandDamageCollider?.DisableDamageCollider();
-        }
-
-        public void CloseLeftHandDamageCollider()
-        {
-            leftHandDamageCollider?.DisableDamageCollider();
-        }
-        #endregion
 
         #region Handle Weapon Stamina Damage
         public void DrainStaminaLightAttack()

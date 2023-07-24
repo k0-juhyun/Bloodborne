@@ -7,10 +7,13 @@ namespace bloodborne
 {
     public class PlayerLocomotion : MonoBehaviour
     {
+        BossAlpha bossAlpha;
+        bossAI bossAi;
         CameraHandler cameraHandler;
         PlayerManager playerManager;
         Transform cameraObject;
         InputHandler inputHandler;
+        PlayerStats playerStats;
         public Vector3 moveDirection;
 
         [HideInInspector]
@@ -50,10 +53,13 @@ namespace bloodborne
 
         private void Start()
         {
+            playerStats = GetComponent<PlayerStats>();
             playerManager = GetComponent<PlayerManager>();
             rigidbody = GetComponent<Rigidbody>();
             inputHandler = GetComponent<InputHandler>();
             animatorHandler = GetComponentInChildren<AnimatorHandler>();
+            bossAlpha = FindObjectOfType<BossAlpha>();
+            bossAi = FindObjectOfType<bossAI>();
             cameraObject = Camera.main.transform;
             myTransform = transform;
             animatorHandler.Initialize();
@@ -288,7 +294,7 @@ namespace bloodborne
 
         public void HandleKnockBack()
         {
-            if(BossAlpha.instance.playerExplosion)
+            if(bossAlpha.playerExplosion)
             {
                 Vector3 backwardDirection = -transform.forward;
                 Vector3 backwardForce = backwardDirection * 100;
@@ -296,7 +302,32 @@ namespace bloodborne
                 rigidbody.AddForce(backwardForce,ForceMode.Impulse);
                 animatorHandler.PlayTargetAnimation("KnockBack", true);
 
-                BossAlpha.instance.playerExplosion = false;
+                bossAlpha.playerExplosion = false;
+            }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if(bossAlpha != null)
+            {
+                if(bossAlpha.isGehrmanAttack)
+                {
+                    if(other.CompareTag("Weapon"))
+                    {
+                        playerStats.TakeDamage(10);
+                    }
+                }
+            }
+
+            if(bossAi != null)
+            {
+                if(bossAi.moonpresenceAttack)
+                {
+                    if(other.CompareTag("Hand"))
+                    {
+                        playerStats.TakeDamage(10);
+                    }
+                }
             }
         }
 

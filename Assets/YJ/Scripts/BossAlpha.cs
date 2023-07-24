@@ -9,9 +9,7 @@ namespace bloodborne
     // 대체, 추가 : 나중에 합치면 교체해야 하는 것
     public class BossAlpha : MonoBehaviour
     {
-        //싱글톤
-        public static BossAlpha instance;
-
+        AnimatorHandler animatorHandler;     // 플레이어 애니메이터 조정
         NavMeshAgent agent;                 // 길찾기
         Animator anim;                  // 애니메이터
         
@@ -129,7 +127,6 @@ namespace bloodborne
         // Start is called before the first frame update
         void Awake()
         {
-            instance = this;
             agent = GetComponent<NavMeshAgent>();                       // agent
                                                                         //agent.isStopped = true;                                   // 이동 멈추기
             rid = GetComponent<Rigidbody>();                            // 리지드바디
@@ -137,6 +134,7 @@ namespace bloodborne
             bossHP = GetComponent<BossHP>();                            // 보스 hp를 받아오자
             bossPhase = BossPhase.Phase1;                               // 시작시 보스 페이즈를 1로 설정한다
             bloodEffect = Resources.Load<GameObject>("DAX_Blood_Spray_00(Fade_2s)");        // 블러드 이펙트 불러오기
+            animatorHandler = FindObjectOfType<AnimatorHandler>();
         }
 
         // Update is called once per frame
@@ -486,7 +484,7 @@ namespace bloodborne
                 print("ldel > Attack");
             }
             // 만약 현재 거리가 피격거리이고, 플레이어가 공격중이라면(교체)
-            else if (currDistance <= hitDistance && TPSChraracterController.instance.isAttack == true)
+            else if (currDistance <= hitDistance && animatorHandler.isAttack)
             {
                 // 회피 상태로 변화시킨다
                 bossState = BossPatternState.Avoid;
@@ -1064,7 +1062,7 @@ namespace bloodborne
         private void OnTriggerEnter(Collider other)
         {
             // 만약 플레이어가 공격 상태이고, 플레이어의 무기와 충돌했을때
-            if (isHitted == false && isHitted2 == false && TPSChraracterController.instance.isAttack == true && other.gameObject.CompareTag("p_Weapon"))
+            if (isHitted == false && isHitted2 == false && animatorHandler.isAttack && other.gameObject.CompareTag("p_Weapon"))
             {
                 // 보스 피격 상태로 전환
                 bossState = BossPatternState.Hit;

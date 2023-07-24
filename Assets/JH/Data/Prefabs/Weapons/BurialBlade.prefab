@@ -496,7 +496,7 @@ GameObject:
   - component: {fileID: 2782643614644896235}
   m_Layer: 9
   m_Name: BurialBlade
-  m_TagString: Untagged
+  m_TagString: p_Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -543,6 +543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7090c62c78c47045942ad9bc3fa1aa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAttack: 0
   currentWeaponDamage: 10
 --- !u!1 &5426131262886854065
 GameObject:

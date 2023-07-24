@@ -15,7 +15,7 @@ namespace bloodborne
         int horizontal;
 
         public bool canRotate;
-
+        public bool isAttack;
         public void Initialize()
         {
             playerManager = GetComponentInParent<PlayerManager>();
@@ -116,11 +116,13 @@ namespace bloodborne
         public void EnableCombo()
         {
             anim.SetBool("canDoCombo", true);
+            isAttack = true;
         }
 
         public void DisableCombo()
         {
             anim.SetBool("canDoCombo", false);
+            isAttack = false;
         }
 
         private void OnAnimatorMove()

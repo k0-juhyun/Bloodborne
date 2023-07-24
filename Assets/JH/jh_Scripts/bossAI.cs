@@ -5,681 +5,689 @@ using UnityEngine.AI;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
 
-public class bossAI : MonoBehaviour
+namespace bloodborne
 {
-    public static bossAI instance;
-    public bool moonpresenceAttack;
-    public bool isDie;
-    // TransformConponents
-    #region TransformComponent
-    private Transform playerPos;
-    private Transform thisPos;
-    #endregion
-
-    // Components
-    private Animator animator;
-    private NavMeshAgent agent;
-    RFX4_CameraShake cameraShake;
-
-    // target obj -> Player
-    private GameObject target;
-    private string reactAnimation;
-    private GameObject bloodEffect;
-    private GameObject dieEffect;
-    private bool isReact;
-    private int hitCount = 0;
-
-    [Header("SpecialPattern")]
-    public GameObject[] SpecialPattern1;
-    public GameObject[] SpecialPattern2;
-    public GameObject camShake;
-    public float distanceToMove = 10f;
-
-    [Header("Die")]
-    public GameObject bloodRain;
-    public GameObject[] DieCanvas;
-    // post Processing Values
-    [Header("Post Processing Volumes")]
-    public PostProcessVolume postProcessVolume;
-    private LensDistortion lensDistortion;
-
-    #region AttackPatternBoolValues
-    public bool isSpecialPattern1Active = false;
-    private bool isSpecialPattern1InProgress = false;
-    public bool playerHP1;
-    private bool isSpecialPattern2Active = false;
-    private bool isSpecialPattern2InProgress = false;
-    private bool pattern1;
-    static public bool groundHit;
-    #endregion
-
-    #region StateMachine
-    // StateMachine
-    public enum StateMachine
+    public class bossAI : MonoBehaviour
     {
-        IdleState,
-        MoveState,
-        AttackState,
-        AttackDelayState,
-        ReactState,
-        DieState
-    }
+        AnimatorHandler animatorHandler;
+        public static bossAI instance;
+        public bool moonpresenceAttack;
+        public bool isDie;
+        // TransformConponents
+        #region TransformComponent
+        private Transform playerPos;
+        private Transform thisPos;
+        #endregion
 
-    // Set IdleState
-    public StateMachine stateMachine = StateMachine.IdleState;
+        // Components
+        private Animator animator;
+        private NavMeshAgent agent;
+        RFX4_CameraShake cameraShake;
 
-    // Distance playr & moonpresence
-    private float MoveDistance;
+        // target obj -> Player
+        private GameObject target;
+        private string reactAnimation;
+        private GameObject bloodEffect;
+        private GameObject dieEffect;
+        private bool isReact;
+        private int hitCount = 0;
 
-    // Delay for Updating StateMachine
-    private WaitForSeconds UpdateStateMachineDelay;
+        [Header("SpecialPattern")]
+        public GameObject[] SpecialPattern1;
+        public GameObject[] SpecialPattern2;
+        public GameObject camShake;
+        public float distanceToMove = 10f;
 
+        [Header("Die")]
+        public GameObject bloodRain;
+        public GameObject[] DieCanvas;
+        // post Processing Values
+        [Header("Post Processing Volumes")]
+        public PostProcessVolume postProcessVolume;
+        private LensDistortion lensDistortion;
 
-    // Check Attack Inprogress
-    static public bool attackInProgress;
+        #region AttackPatternBoolValues
+        public bool isSpecialPattern1Active = false;
+        private bool isSpecialPattern1InProgress = false;
+        public bool playerHP1;
+        private bool isSpecialPattern2Active = false;
+        private bool isSpecialPattern2InProgress = false;
+        private bool pattern1;
+        static public bool groundHit;
+        #endregion
 
-    // AttackSubStateMachine
-    public enum AttackSubStateMachine
-    {
-        AttackDelay,
-        Pattern1,
-        Pattern2,
-        Pattern3,
-        Pattern4,
-        Pattern5,
-        Pattern6,
-        SpecialPattern1
-    }
-    public AttackSubStateMachine attackSubStateMachine = AttackSubStateMachine.AttackDelay;
-    #endregion
-
-    #region Public Values
-    // Attack Values
-    [Header("Attack Values")]
-    public float AttackRange;
-    public float AttackDamage;
-
-    [Header("Hp Values")]
-    public float maxHp;
-    public float curHp;
-    private float curHpPercentage = 1f;
-    public Slider sliderHp;
-    #endregion
-
-    private void Awake()
-    {
-        sliderHp.maxValue = maxHp;
-        instance = this;
-
-        cameraShake = GetComponent<RFX4_CameraShake>();
-        
-        // Get volume From Post Processing
-        postProcessVolume.profile.TryGetSettings(out lensDistortion);
-
-        if (lensDistortion == null)
+        #region StateMachine
+        // StateMachine
+        public enum StateMachine
         {
-            // LensDistortion
-            lensDistortion = postProcessVolume.profile.AddSettings<LensDistortion>();
+            IdleState,
+            MoveState,
+            AttackState,
+            AttackDelayState,
+            ReactState,
+            DieState
         }
 
-        // Set Hp
-        curHp = maxHp;
+        // Set IdleState
+        public StateMachine stateMachine = StateMachine.IdleState;
 
-        // Get Animation Component
-        animator = GetComponent<Animator>();
+        // Distance playr & moonpresence
+        private float MoveDistance;
 
-        // Get NavmeshAgent Component
-        agent = GetComponent<NavMeshAgent>();
+        // Delay for Updating StateMachine
+        private WaitForSeconds UpdateStateMachineDelay;
 
-        // Get Player Transform Component
-        var player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-            playerPos = player.GetComponent<Transform>();
 
-        // Get this obj Transform Component
-        thisPos = GetComponent<Transform>();
+        // Check Attack Inprogress
+        static public bool attackInProgress;
 
-        // Set UpdateStateMachineDelay
-        UpdateStateMachineDelay = new WaitForSeconds(0.2f);
-
-        // Load Effects
-        bloodEffect = Resources.Load<GameObject>("DAX_Blood_Spray_00(Fade_2s)");
-        dieEffect = Resources.Load<GameObject>("DieEffect");
-    }
-
-    private void OnEnable()
-    {
-        // Call Couroutines
-        StartCoroutine(UpdateStateMachine());
-        StartCoroutine(ChangeStateMachine());
-    }
-
-    // Updating StateMachine Before DieState
-    private IEnumerator UpdateStateMachine()
-    {
-        while (!isDie)
+        // AttackSubStateMachine
+        public enum AttackSubStateMachine
         {
-            // Update curHp
-            curHpPercentage = curHp / maxHp;
+            AttackDelay,
+            Pattern1,
+            Pattern2,
+            Pattern3,
+            Pattern4,
+            Pattern5,
+            Pattern6,
+            SpecialPattern1
+        }
+        public AttackSubStateMachine attackSubStateMachine = AttackSubStateMachine.AttackDelay;
+        #endregion
 
-            sliderHp.value = curHp;
+        #region Public Values
+        // Attack Values
+        [Header("Attack Values")]
+        public float AttackRange;
+        public float AttackDamage;
 
-            // Update Distance between player & thisobj
-            MoveDistance = Vector3.Distance(playerPos.position, thisPos.position);
+        [Header("Hp Values")]
+        public float maxHp;
+        public float curHp;
+        private float curHpPercentage = 1f;
+        public Slider sliderHp;
+        #endregion
 
-            // Die state -> Stop Coroutine
-            //if (stateMachine == StateMachine.DieState)
-            //    yield break;
+        private void Start()
+        {
+            animatorHandler = FindObjectOfType<AnimatorHandler>();
+        }
+        private void Awake()
+        {
+            sliderHp.maxValue = maxHp;
+            instance = this;
 
-            #region special pattern 1
-            // special pattern1 Active Condition
-            if (curHpPercentage <= 0.6f && !isSpecialPattern1Active)
+            cameraShake = GetComponent<RFX4_CameraShake>();
+
+            // Get volume From Post Processing
+            postProcessVolume.profile.TryGetSettings(out lensDistortion);
+
+            if (lensDistortion == null)
             {
-                animator.StopPlayback();
-
-                isSpecialPattern1Active = true;
-
-                attackInProgress = true;
-
-                // Move Object away from player
-                StartCoroutine(MoveObjectAwayFromPlayer());
-
-                AnimatorTrigger("SpecialPattern1Start");
+                // LensDistortion
+                lensDistortion = postProcessVolume.profile.AddSettings<LensDistortion>();
             }
 
-            if (isSpecialPattern1InProgress)
-            {
-                transform.LookAt(playerPos.position);
-            }
-            #endregion
+            // Set Hp
+            curHp = maxHp;
 
-            #region special pattern2
+            // Get Animation Component
+            animator = GetComponent<Animator>();
 
-            // special pattern1 Active Condition
-            if (curHpPercentage <= 0.4f && !isSpecialPattern2Active)
-            {
-                animator.StopPlayback();
+            // Get NavmeshAgent Component
+            agent = GetComponent<NavMeshAgent>();
 
-                isSpecialPattern2Active = true;
+            // Get Player Transform Component
+            var player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+                playerPos = player.GetComponent<Transform>();
 
-                attackInProgress = true;
+            // Get this obj Transform Component
+            thisPos = GetComponent<Transform>();
 
-                AnimatorTrigger("SpecialPattern2Start");
-            }
-            #endregion
+            // Set UpdateStateMachineDelay
+            UpdateStateMachineDelay = new WaitForSeconds(0.2f);
 
-            yield return UpdateStateMachineDelay;
+            // Load Effects
+            bloodEffect = Resources.Load<GameObject>("DAX_Blood_Spray_00(Fade_2s)");
+            dieEffect = Resources.Load<GameObject>("DieEffect");
         }
-    }
 
-    // per Action for StateMachine
-    private IEnumerator ChangeStateMachine()
-    {
-        while (!isDie)
+        private void OnEnable()
         {
-            // Update per UpdateStateMachineDelay
-            yield return UpdateStateMachineDelay;
+            // Call Couroutines
+            StartCoroutine(UpdateStateMachine());
+            StartCoroutine(ChangeStateMachine());
+        }
 
-            switch (stateMachine)
+        // Updating StateMachine Before DieState
+        private IEnumerator UpdateStateMachine()
+        {
+            while (!isDie)
             {
-                case StateMachine.IdleState:
-                    UpdateIdleState();
-                    break;
+                // Update curHp
+                curHpPercentage = curHp / maxHp;
 
-                case StateMachine.MoveState:
-                    UpdateMoveState();
-                    break;
+                sliderHp.value = curHp;
 
-                case StateMachine.AttackState:
-                    UpdateAttackState();
-                    break;
+                // Update Distance between player & thisobj
+                MoveDistance = Vector3.Distance(playerPos.position, thisPos.position);
 
-                case StateMachine.ReactState:
-                    break;
+                // Die state -> Stop Coroutine
+                //if (stateMachine == StateMachine.DieState)
+                //    yield break;
 
-                case StateMachine.DieState:
-                    break;
-            }
-        }
-    }
+                #region special pattern 1
+                // special pattern1 Active Condition
+                if (curHpPercentage <= 0.6f && !isSpecialPattern1Active)
+                {
+                    animator.StopPlayback();
 
-    #region UpdateStateFunctions
-    //Update Idle
-    private void UpdateIdleState()
-    {
-        // Find Player
-        target = GameObject.Find("Player");
+                    isSpecialPattern1Active = true;
 
-        if (target != null)
-        {
-            // Switch State
-            stateMachine = StateMachine.MoveState;
-
-            // Move Animation Trigger
-            // animator.SetTrigger("Move");
-            animator.SetTrigger("Move");
-
-            // Agent Move
-            agent.isStopped = false;
-        }
-    }
-
-    // Update Move
-    private void UpdateMoveState()
-    {
-        // Set Destination -> Target
-        agent.SetDestination(target.transform.position);
-
-        // Move Close State Change to Attack
-        if (MoveDistance < AttackRange)
-        {
-            stateMachine = StateMachine.AttackState;
-
-            //animator.SetTrigger("AttackState");
-            AnimatorTrigger("AttackState");
-            // Agent Stop
-            agent.isStopped = true;
-        }
-    }
-
-    // Update Attack
-    private void UpdateAttackState()
-    {
-        // Not in Attack Progress
-        if (!attackInProgress && !isSpecialPattern1InProgress)
-        {
-            // Trigger On
-            AnimatorTrigger("AttackState");
-
-            // Random Attack Index 
-            int randomIndex = Random.Range((int)AttackSubStateMachine.Pattern1, (int)AttackSubStateMachine.Pattern6 + 1);
-
-            attackSubStateMachine = (AttackSubStateMachine)randomIndex;
-
-            switch (attackSubStateMachine)
-            {
-                case AttackSubStateMachine.Pattern1:
-                    AnimatorTrigger("Pattern1");
                     attackInProgress = true;
-                    break;
 
-                case AttackSubStateMachine.Pattern2:
-                    AnimatorTrigger("Pattern2");
-                    attackInProgress = true;
-                    break;
+                    // Move Object away from player
+                    StartCoroutine(MoveObjectAwayFromPlayer());
 
-                case AttackSubStateMachine.Pattern3:
-                    AnimatorTrigger("Pattern3");
-                    attackInProgress = true;
-                    break;
+                    AnimatorTrigger("SpecialPattern1Start");
+                }
 
-                case AttackSubStateMachine.Pattern4:
-                    AnimatorTrigger("Pattern4");
-                    attackInProgress = true;
-                    break;
+                if (isSpecialPattern1InProgress)
+                {
+                    transform.LookAt(playerPos.position);
+                }
+                #endregion
 
-                case AttackSubStateMachine.Pattern5:
-                    AnimatorTrigger("Pattern5");
-                    attackInProgress = true;
-                    break;
+                #region special pattern2
 
-                case AttackSubStateMachine.Pattern6:
-                    AnimatorTrigger("Pattern6");
+                // special pattern1 Active Condition
+                if (curHpPercentage <= 0.4f && !isSpecialPattern2Active)
+                {
+                    animator.StopPlayback();
+
+                    isSpecialPattern2Active = true;
+
                     attackInProgress = true;
-                    break;
+
+                    AnimatorTrigger("SpecialPattern2Start");
+                }
+                #endregion
+
+                yield return UpdateStateMachineDelay;
             }
         }
-    }
-    #endregion
 
-
-    #region AnimEventFun
-    // Ground Hit
-    private void GroundHitTrue()
-    {
-        groundHit = true;
-        moonpresenceAttack = true;
-    }
-
-    private void GroundHitFalse()
-    {
-        groundHit = false;
-        moonpresenceAttack = false;
-    }
-
-    // Special Pattern1
-    private IEnumerator SpecialPattern1AnimStart()
-    {
-        // Set Animator Speed 50%
-        animator.speed = 0.5f;
-
-        // Stop Agent
-        agent.isStopped = true;
-
-        // Set true value -> Dont React
-        isSpecialPattern1InProgress = true;
-
-        yield return new WaitForSeconds(2f);
-
-        // Set player hp -> 1
-        playerHP1 = true;
-
-        // lensDistortion on
-        lensDistortion.active = true;
-
-        // Load Prefabs
-        SpecialPattern1[1].SetActive(true);
-        SpecialPattern1[2].SetActive(true);
-
-        yield return new WaitForSeconds(2f);
-
-        // lensDistortion off
-        lensDistortion.active = false;
-
-        SpecialPattern1[2].SetActive(false);
-        SpecialPattern1[1].SetActive(false);
-
-        // Aniamtion Trigger
-        AnimatorTrigger("SpecialPattern1Finish");
-
-        // Move Agent
-        agent.isStopped = false;
-
-        // React true 
-        isSpecialPattern1InProgress = false;
-
-        // EyeOff
-        SpecialPattern1[0].SetActive(false);
-
-        // Reset Animator Speed 100%
-        animator.speed = 1f;
-    }
-
-    private IEnumerator MoveObjectAwayFromPlayer()
-    {
-
-        Vector3 originalPosition = thisPos.position;
-        Vector3 targetPosition = playerPos.position - (playerPos.forward * distanceToMove);
-
-        float elapsedTime = 0f;
-        float moveTime = 1f; // 1초 동안 이동
-
-        while (elapsedTime < moveTime)
+        // per Action for StateMachine
+        private IEnumerator ChangeStateMachine()
         {
-            thisPos.position = Vector3.Lerp(originalPosition, targetPosition, elapsedTime / moveTime);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        // 움직인 후의 위치가 targetPosition이 아닐 수 있으므로 마지막으로 목표 위치로 정확하게 설정
-        thisPos.position = targetPosition;
-    }
-    // Special Pattern2
-
-    IEnumerator SpecialPattern2AnimStart()
-    {
-        animator.speed = 0.5f;
-
-        // Stop Agent
-        agent.isStopped = true;
-
-        // Set true value -> Dont React
-        isSpecialPattern2InProgress = true;
-
-        yield return new WaitForSeconds(2f);
-
-        SpecialPattern2[0].SetActive(true);
-
-        yield return new WaitForSeconds(3f);
-
-        animator.speed = 1;
-
-        isSpecialPattern2InProgress = false;
-
-        agent.isStopped = false;
-
-        yield return new WaitForSeconds(2f);
-
-        SpecialPattern2[0].SetActive(false);
-    }
-
-    private void SpecialPattern2AnimEffectOn()
-    {
-        SpecialPattern2[0].SetActive(true);
-    }
-
-    private void SpecialPattern1AnimEyeOn()
-    {
-        SpecialPattern1[0].SetActive(true);
-    }
-
-    // Animation Trigger Function
-    private void AnimatorTrigger(string TriggerName)
-    {
-        animator.SetTrigger(TriggerName);
-    }
-
-    // Attack Finish Animation Event
-    private void StateAnimFinishFunction()
-    {
-        // Reset
-        attackInProgress = false;
-
-        // Out of Attack Range
-        if (MoveDistance > AttackRange)
-        {
-            stateMachine = StateMachine.MoveState;
-
-            // Move Animation Trigger
-            animator.SetTrigger("Move");
-
-            // Agent Move
-            agent.isStopped = false;
-        }
-        // In Attack Range
-        else
-        {
-            // Agent Move
-            agent.isStopped = true;
-
-            stateMachine = StateMachine.AttackState;
-        }
-    }
-
-    // DieAnimFinish
-    void DieStateFisnish()
-    {
-        DieCanvas[0].SetActive(true);
-        DieCanvas[1].SetActive(true);
-        bloodRain.SetActive(true);
-
-        Destroy(gameObject);
-        isDie = true;
-    }
-
-    // AttackAnimFinish
-    public void AttackStateFinish()
-    {
-        StateAnimFinishFunction();
-    }
-
-    // AttackDelayAnimFinish
-    public void AttackDelayStateFinished()
-    {
-        StateAnimFinishFunction();
-    }
-
-    // ReactStateAnimFinish
-    internal void ReactStateFinished()
-    {
-        StateAnimFinishFunction();
-    }
-    #endregion
-
-    #region ReactProcess
-
-    // Calculate Angle From Other with Pos
-    private float GetAngle(Vector3 from, Vector3 to)
-    {
-        return Quaternion.FromToRotation(transform.forward, to - from).eulerAngles.y;
-    }
-
-    void attackTrue()
-    {   
-        moonpresenceAttack = true;
-    }
-
-    void attackFalse()
-    {
-        moonpresenceAttack = false;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "p_Weapon" && TPSChraracterController.instance.isAttack && !isReact 
-            && !isSpecialPattern1InProgress && !isSpecialPattern2InProgress)
-        {
-            if (!camShake.activeSelf)
+            while (!isDie)
             {
-                camShake.SetActive(true);
-                StartCoroutine(camShakeOff());
+                // Update per UpdateStateMachineDelay
+                yield return UpdateStateMachineDelay;
+
+                switch (stateMachine)
+                {
+                    case StateMachine.IdleState:
+                        UpdateIdleState();
+                        break;
+
+                    case StateMachine.MoveState:
+                        UpdateMoveState();
+                        break;
+
+                    case StateMachine.AttackState:
+                        UpdateAttackState();
+                        break;
+
+                    case StateMachine.ReactState:
+                        break;
+
+                    case StateMachine.DieState:
+                        break;
+                }
             }
+        }
 
-            // Reduction
-            curHp -= AttackDamage;
+        #region UpdateStateFunctions
+        //Update Idle
+        private void UpdateIdleState()
+        {
+            // Find Player
+            target = GameObject.Find("Player");
 
-            // ReactState Process
-            // Hp, Die Animation
-            if (curHp <= 0)
+            if (target != null)
             {
-                print("test");
+                // Switch State
+                stateMachine = StateMachine.MoveState;
 
-                // Load Die Effect
-                LoadDieEffect();
+                // Move Animation Trigger
+                // animator.SetTrigger("Move");
+                animator.SetTrigger("Move");
 
+                // Agent Move
+                agent.isStopped = false;
+            }
+        }
+
+        // Update Move
+        private void UpdateMoveState()
+        {
+            // Set Destination -> Target
+            agent.SetDestination(target.transform.position);
+
+            // Move Close State Change to Attack
+            if (MoveDistance < AttackRange)
+            {
+                stateMachine = StateMachine.AttackState;
+
+                //animator.SetTrigger("AttackState");
+                AnimatorTrigger("AttackState");
                 // Agent Stop
                 agent.isStopped = true;
-
-                // Die State
-                stateMachine = StateMachine.DieState;
-
-                // Die Anim
-                AnimatorTrigger("Die");
             }
+        }
 
-            // Increase Hit Count
-            if (hitCount < 3)
+        // Update Attack
+        private void UpdateAttackState()
+        {
+            // Not in Attack Progress
+            if (!attackInProgress && !isSpecialPattern1InProgress)
             {
-                hitCount++;
+                // Trigger On
+                AnimatorTrigger("AttackState");
+
+                // Random Attack Index 
+                int randomIndex = Random.Range((int)AttackSubStateMachine.Pattern1, (int)AttackSubStateMachine.Pattern6 + 1);
+
+                attackSubStateMachine = (AttackSubStateMachine)randomIndex;
+
+                switch (attackSubStateMachine)
+                {
+                    case AttackSubStateMachine.Pattern1:
+                        AnimatorTrigger("Pattern1");
+                        attackInProgress = true;
+                        break;
+
+                    case AttackSubStateMachine.Pattern2:
+                        AnimatorTrigger("Pattern2");
+                        attackInProgress = true;
+                        break;
+
+                    case AttackSubStateMachine.Pattern3:
+                        AnimatorTrigger("Pattern3");
+                        attackInProgress = true;
+                        break;
+
+                    case AttackSubStateMachine.Pattern4:
+                        AnimatorTrigger("Pattern4");
+                        attackInProgress = true;
+                        break;
+
+                    case AttackSubStateMachine.Pattern5:
+                        AnimatorTrigger("Pattern5");
+                        attackInProgress = true;
+                        break;
+
+                    case AttackSubStateMachine.Pattern6:
+                        AnimatorTrigger("Pattern6");
+                        attackInProgress = true;
+                        break;
+                }
+            }
+        }
+        #endregion
+
+
+        #region AnimEventFun
+        // Ground Hit
+        private void GroundHitTrue()
+        {
+            groundHit = true;
+            moonpresenceAttack = true;
+        }
+
+        private void GroundHitFalse()
+        {
+            groundHit = false;
+            moonpresenceAttack = false;
+        }
+
+        // Special Pattern1
+        private IEnumerator SpecialPattern1AnimStart()
+        {
+            // Set Animator Speed 50%
+            animator.speed = 0.5f;
+
+            // Stop Agent
+            agent.isStopped = true;
+
+            // Set true value -> Dont React
+            isSpecialPattern1InProgress = true;
+
+            yield return new WaitForSeconds(2f);
+
+            // Set player hp -> 1
+            playerHP1 = true;
+
+            // lensDistortion on
+            lensDistortion.active = true;
+
+            // Load Prefabs
+            SpecialPattern1[1].SetActive(true);
+            SpecialPattern1[2].SetActive(true);
+
+            yield return new WaitForSeconds(2f);
+
+            // lensDistortion off
+            lensDistortion.active = false;
+
+            SpecialPattern1[2].SetActive(false);
+            SpecialPattern1[1].SetActive(false);
+
+            // Aniamtion Trigger
+            AnimatorTrigger("SpecialPattern1Finish");
+
+            // Move Agent
+            agent.isStopped = false;
+
+            // React true 
+            isSpecialPattern1InProgress = false;
+
+            // EyeOff
+            SpecialPattern1[0].SetActive(false);
+
+            // Reset Animator Speed 100%
+            animator.speed = 1f;
+        }
+
+        private IEnumerator MoveObjectAwayFromPlayer()
+        {
+
+            Vector3 originalPosition = thisPos.position;
+            Vector3 targetPosition = playerPos.position - (playerPos.forward * distanceToMove);
+
+            float elapsedTime = 0f;
+            float moveTime = 1f; // 1초 동안 이동
+
+            while (elapsedTime < moveTime)
+            {
+                thisPos.position = Vector3.Lerp(originalPosition, targetPosition, elapsedTime / moveTime);
+                elapsedTime += Time.deltaTime;
+                yield return null;
             }
 
-            // Set React True
-            isReact = true;
+            // 움직인 후의 위치가 targetPosition이 아닐 수 있으므로 마지막으로 목표 위치로 정확하게 설정
+            thisPos.position = targetPosition;
+        }
+        // Special Pattern2
 
-            // Make Array Child Collider
+        IEnumerator SpecialPattern2AnimStart()
+        {
+            animator.speed = 0.5f;
+
+            // Stop Agent
+            agent.isStopped = true;
+
+            // Set true value -> Dont React
+            isSpecialPattern2InProgress = true;
+
+            yield return new WaitForSeconds(2f);
+
+            SpecialPattern2[0].SetActive(true);
+
+            yield return new WaitForSeconds(3f);
+
+            animator.speed = 1;
+
+            isSpecialPattern2InProgress = false;
+
+            agent.isStopped = false;
+
+            yield return new WaitForSeconds(2f);
+
+            SpecialPattern2[0].SetActive(false);
+        }
+
+        private void SpecialPattern2AnimEffectOn()
+        {
+            SpecialPattern2[0].SetActive(true);
+        }
+
+        private void SpecialPattern1AnimEyeOn()
+        {
+            SpecialPattern1[0].SetActive(true);
+        }
+
+        // Animation Trigger Function
+        private void AnimatorTrigger(string TriggerName)
+        {
+            animator.SetTrigger(TriggerName);
+        }
+
+        // Attack Finish Animation Event
+        private void StateAnimFinishFunction()
+        {
+            // Reset
+            attackInProgress = false;
+
+            // Out of Attack Range
+            if (MoveDistance > AttackRange)
+            {
+                stateMachine = StateMachine.MoveState;
+
+                // Move Animation Trigger
+                animator.SetTrigger("Move");
+
+                // Agent Move
+                agent.isStopped = false;
+            }
+            // In Attack Range
+            else
+            {
+                // Agent Move
+                agent.isStopped = true;
+
+                stateMachine = StateMachine.AttackState;
+            }
+        }
+
+        // DieAnimFinish
+        void DieStateFisnish()
+        {
+            DieCanvas[0].SetActive(true);
+            DieCanvas[1].SetActive(true);
+            bloodRain.SetActive(true);
+
+            Destroy(gameObject);
+            isDie = true;
+        }
+
+        // AttackAnimFinish
+        public void AttackStateFinish()
+        {
+            StateAnimFinishFunction();
+        }
+
+        // AttackDelayAnimFinish
+        public void AttackDelayStateFinished()
+        {
+            StateAnimFinishFunction();
+        }
+
+        // ReactStateAnimFinish
+        internal void ReactStateFinished()
+        {
+            StateAnimFinishFunction();
+        }
+        #endregion
+
+        #region ReactProcess
+
+        // Calculate Angle From Other with Pos
+        private float GetAngle(Vector3 from, Vector3 to)
+        {
+            return Quaternion.FromToRotation(transform.forward, to - from).eulerAngles.y;
+        }
+
+        void attackTrue()
+        {
+            moonpresenceAttack = true;
+        }
+
+        void attackFalse()
+        {
+            moonpresenceAttack = false;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.tag == "p_Weapon" && animatorHandler.isAttack && !isReact
+                && !isSpecialPattern1InProgress && !isSpecialPattern2InProgress)
+            {
+                if (!camShake.activeSelf)
+                {
+                    camShake.SetActive(true);
+                    StartCoroutine(camShakeOff());
+                }
+
+                // Reduction
+                curHp -= AttackDamage;
+
+                // ReactState Process
+                // Hp, Die Animation
+                if (curHp <= 0)
+                {
+                    print("test");
+
+                    // Load Die Effect
+                    LoadDieEffect();
+
+                    // Agent Stop
+                    agent.isStopped = true;
+
+                    // Die State
+                    stateMachine = StateMachine.DieState;
+
+                    // Die Anim
+                    AnimatorTrigger("Die");
+                }
+
+                // Increase Hit Count
+                if (hitCount < 3)
+                {
+                    hitCount++;
+                }
+
+                // Set React True
+                isReact = true;
+
+                // Make Array Child Collider
+                Collider[] childColliders = GetComponentsInChildren<Collider>();
+
+                // Collider -> is trigger true
+                foreach (Collider collider in childColliders)
+                {
+                    collider.isTrigger = true;
+                }
+
+                // Reset React
+                StartCoroutine(ReactDelayCoroutine());
+
+                // Get Angle from Distance
+                float directionHitFrom = (GetAngle(transform.position, playerPos.transform.position));
+
+                // Calculate Angle -> Call Animation
+                WhichDirectionDamageCameFrom(directionHitFrom);
+
+                // Set Trigger React Animation
+                AnimatorTrigger(reactAnimation);
+
+                // Load Blood Effect Particle System
+                LoadBloodEffect(other);
+            }
+        }
+
+        private void LoadBloodEffect(Collider collider)
+        {
+            Vector3 pos = collider.ClosestPointOnBounds(transform.position);
+            Vector3 normal = transform.position - collider.transform.position;
+
+            Quaternion rot = Quaternion.FromToRotation(-Vector3.forward, normal);
+            GameObject blood = Instantiate<GameObject>(bloodEffect, pos, rot);
+            Destroy(blood, 1.0f);
+        }
+
+
+        protected virtual void WhichDirectionDamageCameFrom(float direction)
+        {
+            // Front
+            switch (hitCount)
+            {
+                case 0:
+                    ReactPerAngle(direction);
+                    break;
+                case 1:
+                    ReactPerAngle(direction);
+                    break;
+                case 2:
+                    ReactPerAngle(direction);
+                    break;
+            }
+            return;
+        }
+
+        // Load Blood Effect From Resources
+
+        private void LoadDieEffect()
+        {
+            GameObject DieEffect = Instantiate<GameObject>(dieEffect, thisPos);
+        }
+
+        // Delay Coroutine -> React Delay
+        private IEnumerator ReactDelayCoroutine()
+        {
+            // Prevent Double Checking Collider
+            yield return new WaitForSeconds(0.3f);
+
+            // Reset Hit Count
+            if (hitCount == 2)
+                hitCount = 0;
+
             Collider[] childColliders = GetComponentsInChildren<Collider>();
 
-            // Collider -> is trigger true
             foreach (Collider collider in childColliders)
             {
-                collider.isTrigger = true;
+                collider.isTrigger = false;
             }
 
-            // Reset React
-            StartCoroutine(ReactDelayCoroutine());
-
-            // Get Angle from Distance
-            float directionHitFrom = (GetAngle(transform.position, playerPos.transform.position));
-
-            // Calculate Angle -> Call Animation
-            WhichDirectionDamageCameFrom(directionHitFrom);
-
-            // Set Trigger React Animation
-            AnimatorTrigger(reactAnimation);
-
-            // Load Blood Effect Particle System
-            LoadBloodEffect(other);
+            // Reset isReact
+            isReact = false;
         }
-    }
 
-    private void LoadBloodEffect(Collider collider)
-    {
-        Vector3 pos = collider.ClosestPointOnBounds(transform.position);
-        Vector3 normal = transform.position - collider.transform.position;
-
-        Quaternion rot = Quaternion.FromToRotation(-Vector3.forward, normal);
-        GameObject blood = Instantiate<GameObject>(bloodEffect, pos, rot);
-        Destroy(blood, 1.0f);
-    }
-
-
-    protected virtual void WhichDirectionDamageCameFrom(float direction)
-    {
-        // Front
-        switch (hitCount)
+        void ReactPerAngle(float direction)
         {
-            case 0:
-                ReactPerAngle(direction);
-                break;
-            case 1:
-                ReactPerAngle(direction);
-                break;
-            case 2:
-                ReactPerAngle(direction);
-                break;
+            if (direction >= 0 && direction < 90)
+            {
+                reactAnimation = "ReactFront" + hitCount;
+            }
+            else if (direction >= 270 && direction < 360)
+            {
+                reactAnimation = "ReactFront" + hitCount;
+            }
+            // Back
+            else if (direction >= 90 && direction < 270)
+            {
+                reactAnimation = "ReactBack" + hitCount;
+            }
         }
-        return;
-    }
 
-    // Load Blood Effect From Resources
-
-    private void LoadDieEffect()
-    {
-        GameObject DieEffect = Instantiate<GameObject>(dieEffect, thisPos);
-    }
-
-    // Delay Coroutine -> React Delay
-    private IEnumerator ReactDelayCoroutine()
-    {
-        // Prevent Double Checking Collider
-        yield return new WaitForSeconds(0.3f);
-
-        // Reset Hit Count
-        if (hitCount == 2)
-            hitCount = 0;
-
-        Collider[] childColliders = GetComponentsInChildren<Collider>();
-
-        foreach (Collider collider in childColliders)
+        IEnumerator camShakeOff()
         {
-            collider.isTrigger = false;
+            yield return new WaitForSeconds(1);
+            camShake.SetActive(false);
         }
-
-        // Reset isReact
-        isReact = false;
+        #endregion
     }
-
-    void ReactPerAngle(float direction)
-    {
-        if (direction >= 0 && direction < 90)
-        {
-            reactAnimation = "ReactFront" + hitCount;
-        }
-        else if (direction >= 270 && direction < 360)
-        {
-            reactAnimation = "ReactFront" + hitCount;
-        }
-        // Back
-        else if (direction >= 90 && direction < 270)
-        {
-            reactAnimation = "ReactBack" + hitCount;
-        }
-    }
-
-    IEnumerator camShakeOff()
-    {
-        yield return new WaitForSeconds(1);
-        camShake.SetActive(false);
-    }
-    #endregion
 }

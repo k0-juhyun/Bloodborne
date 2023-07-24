@@ -3681,8 +3681,6 @@ GameObject:
   - component: {fileID: 543450652287856832}
   - component: {fileID: 1412372270}
   - component: {fileID: 1412372273}
-  - component: {fileID: 919132148284402299}
-  - component: {fileID: 919132148284402300}
   - component: {fileID: 919132148284402301}
   - component: {fileID: 919132148284402302}
   - component: {fileID: 919132148284402303}
@@ -3693,49 +3691,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!195 &919132148284402299
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132148284402298}
-  m_Enabled: 0
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!95 &919132148284402300
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132148284402298}
-  m_Enabled: 0
-  m_Avatar: {fileID: 9000000, guid: 1b031b4bb950a2946a7a02a27615a4a2, type: 3}
-  m_Controller: {fileID: 9100000, guid: ad7c74d33af83f0428144499c9c69d3c, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!54 &919132148284402301
 Rigidbody:
   m_ObjectHideFlags: 0
