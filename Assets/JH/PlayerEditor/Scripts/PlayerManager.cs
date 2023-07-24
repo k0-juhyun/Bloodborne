@@ -41,6 +41,7 @@ namespace bloodborne
             float delta = Time.fixedDeltaTime;
             playerLocomotion.HandleMovement(delta);
             playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
+            playerLocomotion.HandleKnockBack();
         }
 
         private void LateUpdate()

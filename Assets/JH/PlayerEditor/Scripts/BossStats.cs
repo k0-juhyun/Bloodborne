@@ -4,12 +4,8 @@ using UnityEngine;
 
 namespace bloodborne
 {
-    public class BossStats : MonoBehaviour
+    public class BossStats : CharacterStats
     {
-        public int healthLevel = 10;
-        public int maxHealth;
-        public int currentHealth;
-
         Animator animator;
 
         private void Awake()

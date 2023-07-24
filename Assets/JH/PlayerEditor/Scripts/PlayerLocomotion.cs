@@ -286,6 +286,15 @@ namespace bloodborne
             }
         }
 
+        public void HandleKnockBack()
+        {
+            if(inputHandler.kn_Input)
+            {
+                animatorHandler.PlayTargetAnimation("KnockBack", true);
+                inputHandler.kn_Input = false;
+            }
+        }
+
         #endregion
     }
 }

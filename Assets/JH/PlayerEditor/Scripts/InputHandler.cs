@@ -23,7 +23,9 @@ namespace bloodborne
         public bool lockOnInput;
         public bool left_Target_LockOn_Input;
         public bool right_Target_LockOn_Input;
+        public bool kn_Input;
         #endregion
+
 
         #region Flags
         public bool rollFlag;
@@ -80,6 +82,7 @@ namespace bloodborne
             HandleRollInput(delta);
             HandleAttackInput(delta);
             HandleLockOnInput();
+            HandleKnockBackInput();
         }
 
         private void HandleMoveInput(float delta)
@@ -206,6 +209,15 @@ namespace bloodborne
             }
 
             cameraHandler.SetCameraHeight();
+        }
+
+        private void HandleKnockBackInput()
+        {
+            if(Input.GetKeyDown(KeyCode.N))
+            {
+                kn_Input = true;
+                Debug.Log("kninput = true");
+            }
         }
     }
 }

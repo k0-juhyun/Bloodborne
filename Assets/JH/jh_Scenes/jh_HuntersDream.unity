@@ -35412,12 +35412,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8278654584382490304}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d06d63eee7ece24380d38d814a93895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockOnTransform: {fileID: 2132098799}
   moonpresenceAttack: 0
   isDie: 0
   SpecialPattern1:
@@ -51264,9 +51263,9 @@ MonoBehaviour:
   targetTransform: {fileID: 991592362}
   cameraTransform: {fileID: 4220632400744765121}
   cameraPivotTransform: {fileID: 1898662746}
-  ignoreLayers:
-    serializedVersion: 2
-    m_Bits: 0
+  currentLockOnTarget: {fileID: 0}
+  leftLockTarget: {fileID: 0}
+  rightLockTarget: {fileID: 0}
   lookSpeed: 0.1
   followSpeed: 0.1
   pivotSpeed: 0.3
@@ -51274,10 +51273,11 @@ MonoBehaviour:
   maximumPivot: 35
   cameraSphereRadius: 2
   cameraCollisionOffset: 2
-  minimunCollisionOffset: 2
+  minimumCollisionOffset: 0.2
+  lockedPivotPosition: 2.25
+  unlockedPivotPosition: 1.65
+  nearestLockOnTarget: {fileID: 0}
   maximumLockOnDistance: 10
-  lockOnInput: 0
-  lockOnFlag: 0
 --- !u!4 &8867353877410737801
 Transform:
   m_ObjectHideFlags: 0
@@ -51904,11 +51904,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 204a9976f1d4a1f4f9849a2e62d54f7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveDirection: {x: 0, y: 0, z: 0}
   myTransform: {fileID: 0}
+  animatorHandler: {fileID: 0}
   rigidbody: {fileID: 0}
   normalCamera: {fileID: 0}
+  groundDetectionRayStartPoint: 0.5
+  minimumDistanceNeededToBeginFall: 1
+  groundDirectionRayDistance: 0.2
+  inAirTimer: 0
   movementSpeed: 5
+  walkingSpeed: 1
+  sprintSpeed: 7
   rotationSpeed: 10
+  fallingSpeed: 45
 --- !u!114 &8867353877859133857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51926,6 +51935,19 @@ MonoBehaviour:
   moveAmount: 0
   mouseX: 0
   mouseY: 0
+  b_Input: 0
+  rb_Input: 0
+  rt_Input: 0
+  lf_Input: 0
+  lg_Input: 0
+  lockOnInput: 0
+  left_Target_LockOn_Input: 0
+  right_Target_LockOn_Input: 0
+  rollFlag: 0
+  sprintFlag: 0
+  comboFlag: 0
+  rollInputTimer: 0
+  lockOnFlag: 0
 --- !u!136 &8867353877859133858
 CapsuleCollider:
   m_ObjectHideFlags: 0
