@@ -8683,9 +8683,9 @@ MonoBehaviour:
   minimumDistanceNeededToBeginFall: 1
   groundDirectionRayDistance: 0.2
   inAirTimer: 0
-  movementSpeed: 4
-  walkingSpeed: 2
-  sprintSpeed: 8
+  movementSpeed: 2
+  walkingSpeed: 1
+  sprintSpeed: 4
   rotationSpeed: 2
   fallingSpeed: 45
 --- !u!54 &841997845
