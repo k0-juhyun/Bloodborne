@@ -143,7 +143,7 @@ public class Test2 : MonoBehaviour
                 }
 
             }
-            if (BossAlpha.instance.bossState == BossAlpha.BossPatternState.SickelCombo1 && BossAlpha.instance.sickelSubState == BossAlpha.SickelSubState.Attack1)
+            if (BossAlpha.instance.bossState == BossAlpha.BossPatternState.SickelCombo1 && BossAlpha.instance.attackSubState == BossAlpha.AttackSubState.Attack1)
             {
                 if (other.CompareTag("Weapon"))
                 {

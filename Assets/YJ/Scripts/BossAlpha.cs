@@ -25,7 +25,11 @@ public class BossAlpha : MonoBehaviour
         SickelCombo1,
         SickelCombo2,
         SickelCombo3,
+        GunCombo,
+        SwordCombo1,
+        SwordCombo2,
         PhaseChange,
+        Quickening,
         Die
     }
     public BossPatternState bossState;         // 보스 상태 = 0: 대기, 1:이동, 2:회피, 4:피격, 5:낫 공격(대시,점프 포함), 6: 칼 공격(대시 점프포함?), 7: 총 공격 8: 죽음
@@ -38,14 +42,15 @@ public class BossAlpha : MonoBehaviour
     }
     public BossPhase bossPhase;                // 보스 페이즈 상태 = 1페이즈(시작), 2페이즈(체력75%이하), 3페이즈(체력 50%이하)
 
-    public enum SickelSubState                     // 낫 공격 상태
+    public enum AttackSubState                     // 낫 공격 하위 콤보 상태로 만들었지만, 같이 쓰자 > 이름바꿈
     {
         Attack1,
         Attack2,
         Attack3,
     }
 
-    public SickelSubState sickelSubState;
+    public AttackSubState attackSubState;
+
 
     public GameObject player;           // 플레이어
     Rigidbody rid;                      // 리지드바디
@@ -109,11 +114,14 @@ public class BossAlpha : MonoBehaviour
     public bool isCombo2done = false;                   // 프로토타입용 낫패턴 2
     public bool isCombo3done = false;                   // 프로토타입용 낫패턴 3
     public bool isMoveTargetPos = false;                // SC2_a2 이동 계산용 상태확인
-    public bool isGehrmanDie = false;                   // 죽음 상태 확인
+    public bool isGehrmanDie = false;                   // 죽음 상태 확인(씬매니저용
+    public bool ImDie = false;                          // 죽음 상태 확인(죽음 함수용
     public bool isGehrmanAttack = false;                // 공격 상태 확인 to 플레이어용
     public bool isPhase2 = false;                       // 페이즈 2 상태 확인
     public bool isPhase3 = false;                       // 페이즈 3 상태 확인
     public bool isQuickening = false;                   // Quickening 폭발 공격
+    public bool playerExplosion = false;                // 플레이어가 Quickening 폭발 공격 맞았음
+    public bool isPhaseChangeQ = false;                 // 페이즈 전환 폭발
     public bool a = false;                              // sickle2 에서 플레이어 위치 한번만 계산
 
 
@@ -168,6 +176,25 @@ public class BossAlpha : MonoBehaviour
             isHitted2 = false;
         }
 
+        if (ImDie == false)
+        {
+            // 만약 현재 체력이 0이면
+            if (bossHP.HP <= 0)
+            {
+                print("Update : Die");
+                // 보스 상태를 죽음으로 한다
+                bossState = BossPatternState.Die;
+                // 죽음 애니메이션을 실행한다
+                anim.SetTrigger("Die");
+                // 무기를 끈다 or 땅으로 떨어뜨려야 하나..?
+                gun.SetActive(false);
+                blade.SetActive(false);
+                // 파티클을 켠다
+                ImDie = true;
+            }
+        }
+
+
         switch (bossState)
         {
             case BossPatternState.Idle:
@@ -191,8 +218,20 @@ public class BossAlpha : MonoBehaviour
             case BossPatternState.SickelCombo3:
                 UpdateSickelCombo3();
                 break;
+            case BossPatternState.GunCombo:
+                UpdateGunCombo();
+                break;
             case BossPatternState.PhaseChange:
                 UpdatePhaseChange();
+                break;
+            case BossPatternState.Quickening:
+                UpdateQuickening();
+                break;
+            case BossPatternState.SwordCombo1:
+                UpdateSwordCombo1();
+                break;
+            case BossPatternState.SwordCombo2:
+                UpdateSwordCombo2();
                 break;
         }
 
@@ -214,6 +253,115 @@ public class BossAlpha : MonoBehaviour
         }
     }
 
+    private void UpdateSwordCombo2()
+    {
+        // 칼공격 콤보 2
+        isGehrmanAttack = true;
+        curTime += Time.deltaTime;
+        // 이동하면서
+        // 칼공격을 한다
+        // 애니메이션을 키면
+        // 애니메이션에 AnimMove라는 이벤트 함수에서 이동을 한다?
+        switch (attackSubState)
+        {
+            case AttackSubState.Attack1:
+                if (curTime > skTime_Sickel1_1)
+                {
+                    // 칼공격 3 애니메이션 켜기
+                    anim.SetTrigger("Sword3");
+                    attackSubState = AttackSubState.Attack2;
+                }
+                break;
+            case AttackSubState.Attack2:
+                if (curTime > skTime_Sickel1_2)
+                {
+                    // 이동한다
+                    moveTargetPos.y = transform.position.y;
+                    transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
+
+                    //print("moveTargetPos :" + moveTargetPos);
+                    if (Vector3.Distance(transform.position, moveTargetPos) < 1f)
+                    {
+                        anim.SetBool("Leg", false);
+                        // 서브상태를 액션 3로 바꾼다
+                        attackSubState = AttackSubState.Attack3;
+                    }
+                }
+                break;
+            case AttackSubState.Attack3:
+                if (curTime > skTime_Sickel1_3)
+                {
+                    // 끝나면 총공격을 호출한다
+                    bossState = BossPatternState.GunCombo;
+                }
+                break;
+        }
+    }
+
+    private void UpdateSwordCombo1()
+    {
+        // 칼공격 콤보 1
+        isGehrmanAttack = true;
+        curTime += Time.deltaTime;
+        // 한번 공격하고
+        // x자로 공격한다
+        // 끝나면 총공격을 호출한다
+        switch (attackSubState)
+        {
+            case AttackSubState.Attack1:
+                if (curTime > skTime_Sickel1_1)
+                {
+                    // 한번 공격한다
+                    anim.SetTrigger("Sword1");
+                    // 서브스테이트 상태를 Atttack2로 한다
+                    attackSubState = AttackSubState.Attack2;
+                }
+                break;
+            case AttackSubState.Attack2:
+                if (curTime > skTime_Sickel1_2)
+                {
+                    // x자로 공격한다
+                    anim.SetTrigger("Sword2");
+                    // 서브스테이트 상태를 Atttack3로 한다
+                    attackSubState = AttackSubState.Attack3;
+                }
+                break;
+            case AttackSubState.Attack3:
+                if (curTime > skTime_Sickel1_3)
+                {
+                    // 끝나면 총공격을 호출한다
+                    bossState = BossPatternState.GunCombo;
+                }
+                break;
+
+        }
+    }
+
+    private void UpdateGunCombo()
+    {
+        print("총공격이다 만드는 중이다");
+        // 2페이즈부터 등장한다
+        // 칼콤보 끝나면 무조건 총으로 오기
+        // substate필요 없을듯. 총만 쏘면됨
+        // 칼 콤보1,2 가 끝나면 상태를 총 공격 상태로 바꾼다
+        // 총 공격 부울값을 만들어서, false이면
+        // 왼손에 든 총을 발사하는 애니메이션을 실행한다
+        // 애니메이션이 시작할때, 총을 90도 회전 시킨다
+        // 애니메이션의 총쏘는 타이밍에 이벤트 함수를 만든다
+        // 캡슐콜라이더를 발사한다
+        // 총알 이펙트를 찾아서 이펙트를 쓴다
+        // 불나오는 거
+        // 총알이 퍼지는거 muzzle effect
+        // 총공격이 끝나면 Idle 상태로 한다
+        curTime = 0;
+        isCombo1done = true;
+        bossState = BossPatternState.Idle;
+        // 애니메이션 재생
+        anim.SetTrigger("Idle");
+        attackSubState = AttackSubState.Attack1;
+        isGehrmanAttack = false;
+    }
+
     // 페이즈 변경 상태
     private void UpdatePhaseChange()
     {
@@ -221,8 +369,12 @@ public class BossAlpha : MonoBehaviour
         // 만약 현재 bossPhase.Phase2 라면
         if (isPhase2 == false && bossPhase == BossPhase.Phase2)
         {
-            // 무기교체 함수를 실행한다(무기 교체 함수 만들기
-            // 무기 교체 함수에서 애니메이션도 같이 실행한다
+            // 무기교체 함수를 실행한다(무기 교체 함수 만들기> 이벤트함수로 애니메이션에서 호출함
+            // 무기 교체 애니메이션 실행
+            anim.SetTrigger("WeaponChange");
+            isPhase2 = true;
+            print("무기 바꿈 > 칼, 총");
+            // 상태를 다시 idle로 한다(애니메이션 이벤트에서)
         }
 
         // 만약 현재 Phase3 이라면
@@ -234,13 +386,13 @@ public class BossAlpha : MonoBehaviour
             // 여기서 시간을 흐르게 한다(1초후에 사라지게 하려구..??
 
             // 한번만 호출해야함
-            if (isQuickening == false)
+            if (isPhaseChangeQ == false)
             {
                 //애니메이션을 실행한다
                 anim.SetTrigger("Quickening");
-                //이펙트를 실행한다
+                //이펙트를 실행한다 = 이벤트 함수로 할까ㅇㅇ
                 // 한번만 호출하지만 Update로 작동해야함. 할거 다 끝나고 true로 하기
-                isQuickening = true;
+                isPhaseChangeQ = true;
                 //Quickening();
             }
         }
@@ -248,7 +400,35 @@ public class BossAlpha : MonoBehaviour
         // 끝나면 다시 상태를 Idle로 만든다. 
     }
 
-    
+    // 무기 교체함수(이벤트 함수임)
+    private void WeaponChange()
+    {
+        // 2페이즈때 한번만
+        // 낫을 끈다
+        sickle.SetActive(false);
+        // 칼과 총을 킨다
+        gun.SetActive(true);
+        blade.SetActive(true);
+    }
+
+    // 폭발 공격 함수 > 상태로 만들어서 주기적으로 호출한다
+    private void UpdateQuickening()
+    {
+        // 폭발 공격 상태
+        if (isQuickening == false)
+        {
+            // 폭발 공격 애니메이션을 실행한다(한번만 호출
+            anim.SetTrigger("Quickening");
+            // 폭발 공격 이펙트를 실행한다(애니메이션의 이벤트 함수에서(상태 아래에 만들어놓음 Activeeffect
+            // 폭발 공격 함수를 호출한다
+            Quickening();
+            // 폭발 공격 상태를 true로 한다
+            isQuickening = true;
+        }
+        
+        // 만약 폭발 공격 상태일때 플레이어가 폭발 공격 범위 안에 있다면
+        // 플레이어에게 날아가라고 신호를 준다(플레이어의 함수를 호출해도 되나? 아니면 부울 값을 넘겨주면 되나?
+    }
 
     private void Quickening()
     {
@@ -258,16 +438,11 @@ public class BossAlpha : MonoBehaviour
         Collider[] cols = Physics.OverlapSphere(rayPos.position, quickeningDis, layer);
         if (cols.Length > 0)
         {
-            // 플레이어의 리지드 바디를 받아온다
-            Rigidbody playerRid = player.GetComponent<Rigidbody>();
-            // 나에서 플레이어로 가는 방향의 벡터를 구한다 = 폭발시 플레이어에게 가할 힘의 방향을 구한다
-            quickeningDir = transform.forward + transform.up;
-            quickeningDir.Normalize();
-
-            // 플레이어의 피격시 움직임 못하게 하는 부울 상태를 트루로 한다
-
-            // 그 방향으로 Addforce를 한다
-            playerRid.AddForce(quickeningDir * quickeningForce, ForceMode.Impulse);
+            // 플레이어에서 이동하기로 함
+            // 여기서 부울 값이나 상태 함수를 호출할 것.
+            playerExplosion = true;
+            //player.instance.inputHandler.kn_input = true;
+            // 플레이어의 피격시 움직임 못하게 하는 부울 상태를 트루로 한다(플레이어에서?
 
         }
         //1초 후에 사라진다
@@ -304,6 +479,8 @@ public class BossAlpha : MonoBehaviour
             {
                 SickelC3();
             }
+            // 여기 어떻게 하지??? 부울로 하면 부울이 너무 많아지는데...
+            // int 만들어서 할까..???
 
             print("ldel > Attack");
         }
@@ -322,9 +499,26 @@ public class BossAlpha : MonoBehaviour
         }
     }
 
+    private void Sword01()
+    {
+        // 칼공격1으로 상태 변화시킨다
+        bossState = BossPatternState.SwordCombo1;
+        print("SwordCombo1");
+        anim.SetBool("Leg", true);
+    }
+
+    private void Sword02()
+    {
+        // 칼공격2으로 상태 변화시킨다
+        bossState = BossPatternState.SwordCombo2;
+        print("SwordCombo2");
+        FindMoveTargetPos();
+        anim.SetBool("Leg", true);
+    }
+
     private void SickelC3()
     {
-        // 낫공격3으로 상태 변화시킨다 (랜덤 뽑기 나중에)
+        // 낫공격3으로 상태 변화시킨다
         bossState = BossPatternState.SickelCombo3;
         print("SickelCombo3");
         FindMoveTargetPos();
@@ -333,7 +527,7 @@ public class BossAlpha : MonoBehaviour
 
     private void SickelC2()
     {
-        // 낫공격2으로 상태 변화시킨다 (랜덤 뽑기 나중에)
+        // 낫공격2으로 상태 변화시킨다
         bossState = BossPatternState.SickelCombo2;
         print("SickelCombo2");
         FindMoveTargetPos();
@@ -342,7 +536,7 @@ public class BossAlpha : MonoBehaviour
 
     private void SickelC1()
     {
-        // 낫공격1으로 상태 변화시킨다 (랜덤 뽑기 나중에)
+        // 낫공격1으로 상태 변화시킨다
         bossState = BossPatternState.SickelCombo1;
         print("SickelCombo1");
         FindMoveTargetPos();
@@ -367,7 +561,6 @@ public class BossAlpha : MonoBehaviour
         // 만약 현재 거리가 공격 가능 범위보다 작거나 같다면
         if (currDistance <= attackDistance)
         {
-            // 랜덤으로 뽑는다
             // 일단 무조건 SickelCombo1으로 가게해서 완성한다
             SickelC1();
 
@@ -466,10 +659,16 @@ public class BossAlpha : MonoBehaviour
         // 만약 현재 체력이 75보다 작다면
         if (bossHP.HP <= 7.5)
         {
-            // 현재 보스 상태를 페이즈 변경 상태로 한다
-            //bossState = BossPatternState.PhaseChange;
-            // 현재 페이즈를 2페이즈로 한다
-            bossPhase = BossPhase.Phase2;
+            if (isPhase2 == false)
+            {
+                // 현재 보스 상태를 페이즈 변경 상태로 한다
+                bossState = BossPatternState.PhaseChange;
+                print("PhaseChange2로 상태 바꿈");
+                // 현재 페이즈를 2페이즈로 한다
+                bossPhase = BossPhase.Phase2;
+                print("Phase2로 상태 바꿈");
+            }
+                
             // 보스 공격 상태를 ?로 바꾼다
             //return;     // 바로가기?? 아마 아래에 있는 피깎이를 위로 올려야할듯? 무적상태가 따로 있나? 없나? 체크필요
 
@@ -481,7 +680,7 @@ public class BossAlpha : MonoBehaviour
                 {
                     // 현재 보스 상태를 페이즈 변경 상태로 한다
                     bossState = BossPatternState.PhaseChange;
-                    print("PhaseChange로 상태 바꿈");
+                    print("PhaseChange3로 상태 바꿈");
                     // 현재 페이즈를 3페이즈로 한다
                     bossPhase = BossPhase.Phase3;
                     print("Phase3로 상태 바꿈");
@@ -492,9 +691,12 @@ public class BossAlpha : MonoBehaviour
                 //return;
             }
 
+            // 죽음상태로 만들기
+            // 업데이트에서 그냥 부울만들어서 확인하고 있어서 여기 없어도 될거같음
             // 만약 현재 체력이 0이면
             if (bossHP.HP <= 0)
             {
+                print("Hit : Die");
                 // 보스 상태를 죽음으로 한다
                 bossState = BossPatternState.Die;
                 // 죽음 애니메이션을 실행한다
@@ -569,6 +771,12 @@ public class BossAlpha : MonoBehaviour
         print("AnimIdle 호출됨");
     }
 
+    void AnimMove()
+    {
+        // 공격시 이동한다
+
+    }
+
     void AnimHitUp()
     {
         // Idle상태로 한다
@@ -584,6 +792,7 @@ public class BossAlpha : MonoBehaviour
     void AnimDie()
     {
         // 죽음 애니메이션이 끝나면 나를 삭제해라
+        // 삭제하기 말고 setactive false할까
         Destroy(gameObject);
         // 씬 넘어가는 // 죽음 상태라고 알려주기(SceneManager에서 받아가기)
         // UI 넣고 몇 초 후에 불리는 것으로 수정하기
@@ -602,14 +811,13 @@ public class BossAlpha : MonoBehaviour
     private void UpdateSickelCombo1()
     {
         isGehrmanAttack = true;
-
         // int로 값을 정해서 그 값에서만 실행되고, 다른 상태일때 다시 초기화되게 바꾸기
 
         curTime += Time.deltaTime;
 
-        switch (sickelSubState)
+        switch (attackSubState)
         {
-            case SickelSubState.Attack1:
+            case AttackSubState.Attack1:
                 if (curTime > skTime_Sickel1_1)
                 {
                     //anim.SetBool("Leg", true);
@@ -623,7 +831,7 @@ public class BossAlpha : MonoBehaviour
                     {
                         anim.SetBool("Leg", false);
                         // 서브상태를 액션 2로 바꾼다
-                        sickelSubState = SickelSubState.Attack2;
+                        attackSubState = AttackSubState.Attack2;
                         // 애니메이션 재생
                         anim.SetTrigger("Attack2");
                         print("com1_attack_move");
@@ -632,7 +840,7 @@ public class BossAlpha : MonoBehaviour
                     }
                 }
                 break;
-            case SickelSubState.Attack2:
+            case AttackSubState.Attack2:
                 if (curTime > skTime_Sickel1_2)
                 {
                     print("SubState : Attack2");
@@ -658,18 +866,20 @@ public class BossAlpha : MonoBehaviour
 
                     }
 
-                    //print("목적지2 : " + attackMovePos);
-                    //anim.SetBool("Leg", true);
+                    print("목적지2 : " + attackMovePos);
+                    anim.SetBool("Leg", true);
 
                     attackMovePos.y = transform.position.y;
+                    print("목적지3 : " + attackMovePos);
+                    print("CurrPos:" + currPos);
                     transform.position = Vector3.Lerp(currPos, attackMovePos, 0.5f);
 
-                    //print("현재위치2 :" + transform.position);
+                    print("현재위치2 :" + transform.position);
                     print("위치차 : " + Vector3.Distance(transform.position, attackMovePos));
                     if (Vector3.Distance(transform.position, attackMovePos) < 5f)
                     {
                         anim.SetBool("Leg", false);
-                        sickelSubState = SickelSubState.Attack3;
+                        attackSubState = AttackSubState.Attack3;
                         // 애니메이션 재생
                         anim.SetTrigger("Attack1");
                     }
@@ -678,7 +888,7 @@ public class BossAlpha : MonoBehaviour
                     //transform.position += attackdir * 50 * Time.deltaTime;
                 }
                 break;
-            case SickelSubState.Attack3:
+            case AttackSubState.Attack3:
                 if (curTime > skTime_Sickel1_3)
                 {
                     print("SubState : Attack3");
@@ -690,7 +900,7 @@ public class BossAlpha : MonoBehaviour
                     bossState = BossPatternState.Idle;
                     // 애니메이션 재생
                     anim.SetTrigger("Idle");
-                    sickelSubState = SickelSubState.Attack1;
+                    attackSubState = AttackSubState.Attack1;
                     isGehrmanAttack = false;
                 }
                 break;
@@ -702,9 +912,9 @@ public class BossAlpha : MonoBehaviour
     {
         isGehrmanAttack = true;
         curTime += Time.deltaTime;
-        switch (sickelSubState)
+        switch (attackSubState)
         {
-            case SickelSubState.Attack1:
+            case AttackSubState.Attack1:
                 if (curTime > skTime_Sickel1_1)
                 {
                     //print("C2A1");
@@ -716,7 +926,7 @@ public class BossAlpha : MonoBehaviour
                     {
 
                         // 서브상태를 액션 2로 바꾼다
-                        sickelSubState = SickelSubState.Attack2;
+                        attackSubState = AttackSubState.Attack2;
                         // 애니메이션 재생
                         anim.SetTrigger("Attack3");
                         anim.SetBool("Leg", false);
@@ -725,7 +935,7 @@ public class BossAlpha : MonoBehaviour
 
                 }
                 break;
-            case SickelSubState.Attack2:
+            case AttackSubState.Attack2:
                 if (curTime > skTime_Sickel1_2)
                 {
 
@@ -750,7 +960,7 @@ public class BossAlpha : MonoBehaviour
                     {
 
                         // 서브상태를 액션 3로 바꾼다
-                        sickelSubState = SickelSubState.Attack3;
+                        attackSubState = AttackSubState.Attack3;
                         // 애니메이션 재생
                         anim.SetTrigger("Attack4");
                         anim.SetBool("Leg", false);
@@ -759,7 +969,7 @@ public class BossAlpha : MonoBehaviour
 
                 }
                 break;
-            case SickelSubState.Attack3:
+            case AttackSubState.Attack3:
                 if (curTime > skTime_Sickel1_3)
                 {
                     print("C2A3");
@@ -772,7 +982,7 @@ public class BossAlpha : MonoBehaviour
                     curTime = 0;
                     bossState = BossPatternState.Idle;
                     anim.SetTrigger("Idle");
-                    sickelSubState = SickelSubState.Attack1;
+                    attackSubState = AttackSubState.Attack1;
                     isGehrmanAttack = false;
                 }
                 break;
@@ -783,9 +993,9 @@ public class BossAlpha : MonoBehaviour
     {
         isGehrmanAttack = true;
         curTime += Time.deltaTime;
-        switch (sickelSubState)
+        switch (attackSubState)
         {
-            case SickelSubState.Attack1:
+            case AttackSubState.Attack1:
                 if (curTime > skTime_Sickel1_1)
                 {
                     // 앞으로 이동하면서
@@ -799,7 +1009,7 @@ public class BossAlpha : MonoBehaviour
                     if (Vector3.Distance(transform.position, moveTargetPos) < 0.1f)
                     {
                         // 서브상태를 액션 2로 바꾼다
-                        sickelSubState = SickelSubState.Attack2;
+                        attackSubState = AttackSubState.Attack2;
                         // 애니메이션 재생
                         anim.SetTrigger("Attack6");
                         anim.SetBool("Leg", false);
@@ -807,17 +1017,17 @@ public class BossAlpha : MonoBehaviour
                     }
                 }
                 break;
-            case SickelSubState.Attack2:
+            case AttackSubState.Attack2:
                 if (curTime > skTime_Sickel1_2)
                 {
                     // 서브상태를 액션 3로 바꾼다
-                    sickelSubState = SickelSubState.Attack3;
+                    attackSubState = AttackSubState.Attack3;
                     // 애니메이션 재생
                     // 낫이 360 도 돌아가는 게 있어야하는데...없네
                     print("com3_attack_Rdu");
                 }
                 break;
-            case SickelSubState.Attack3:
+            case AttackSubState.Attack3:
                 if (curTime > skTime_Sickel1_3)
                 {
                     print("C3A3");
@@ -830,7 +1040,7 @@ public class BossAlpha : MonoBehaviour
                     bossState = BossPatternState.Idle;
                     // 애니메이션 재생
                     anim.SetTrigger("Idle");
-                    sickelSubState = SickelSubState.Attack1;
+                    attackSubState = AttackSubState.Attack1;
                     print("3 > idle");
                     isGehrmanAttack = false;
                 }

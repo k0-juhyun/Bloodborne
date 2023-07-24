@@ -112,7 +112,6 @@ public class TPSChraracterController : MonoBehaviour
         //LockCheck();
 
         //Move();
-        print("isAttack: " + isAttack);
         //LookAround();
         LockOn();
         if (Input.GetButtonDown("Fire1"))
