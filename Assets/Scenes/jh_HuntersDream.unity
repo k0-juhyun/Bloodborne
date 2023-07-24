@@ -9559,6 +9559,95 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62b391571386ff84fa0c07bcf7516b7e, type: 3}
+--- !u!1001 &952008743
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4915253626733402451, guid: 34d95931a3aa87e41a29c6f56855fae1,
+        type: 3}
+      propertyPath: camShake
+      value: 
+      objectReference: {fileID: 94459747}
+    - target: {fileID: 4915253626733402451, guid: 34d95931a3aa87e41a29c6f56855fae1,
+        type: 3}
+      propertyPath: sliderHp
+      value: 
+      objectReference: {fileID: 303817520}
+    - target: {fileID: 4915253626733402451, guid: 34d95931a3aa87e41a29c6f56855fae1,
+        type: 3}
+      propertyPath: bloodRain
+      value: 
+      objectReference: {fileID: 186540138}
+    - target: {fileID: 4915253626733402451, guid: 34d95931a3aa87e41a29c6f56855fae1,
+        type: 3}
+      propertyPath: postProcessVolume
+      value: 
+      objectReference: {fileID: 621123108}
+    - target: {fileID: 7014734209443000098, guid: 34d95931a3aa87e41a29c6f56855fae1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7014734209443000098, guid: 34d95931a3aa87e41a29c6f56855fae1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.808072
+      objectReference: {fileID: 0}
+    - target: {fileID: 7014734209443000098, guid: 34d95931a3aa87e41a29c6f56855fae1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 7014734209443000098, guid: 34d95931a3aa87e41a29c6f56855fae1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.1969738
+      objectReference: {fileID: 0}
+    - target: {fileID: 7014734209443000098, guid: 34d95931a3aa87e41a29c6f56855fae1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.990276
+      objectReference: {fileID: 0}
+    - target: {fileID: 7014734209443000098, guid: 34d95931a3aa87e41a29c6f56855fae1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7014734209443000098, guid: 34d95931a3aa87e41a29c6f56855fae1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.1391169
+      objectReference: {fileID: 0}
+    - target: {fileID: 7014734209443000098, guid: 34d95931a3aa87e41a29c6f56855fae1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7014734209443000098, guid: 34d95931a3aa87e41a29c6f56855fae1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7014734209443000098, guid: 34d95931a3aa87e41a29c6f56855fae1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -15.994
+      objectReference: {fileID: 0}
+    - target: {fileID: 7014734209443000098, guid: 34d95931a3aa87e41a29c6f56855fae1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7014734209443361538, guid: 34d95931a3aa87e41a29c6f56855fae1,
+        type: 3}
+      propertyPath: m_Name
+      value: Moon presence (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 34d95931a3aa87e41a29c6f56855fae1, type: 3}
 --- !u!4 &958450901 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 69c2ceb5bac8f6d43b09bbb9bd01c776,
@@ -14456,8 +14545,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Moon Presence
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 42a06c56157b7084f8e5833fdd3c51b2, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 0ba7884350c0ebf4fbfab15e9f49bb65, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -45472,7 +45561,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &8278654584382490306
 GameObject:
   m_ObjectHideFlags: 0
