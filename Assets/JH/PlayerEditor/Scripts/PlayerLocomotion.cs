@@ -51,6 +51,7 @@ namespace bloodborne
         [SerializeField]
         int rollStaminaCost = 10;
         int backSttepStaminaCost = 10;
+        int sprintStaminaCost = 1;
 
         private void Awake()
         {
@@ -158,6 +159,7 @@ namespace bloodborne
                 speed = sprintSpeed;
                 playerManager.isSprinting = true;
                 moveDirection *= speed;
+                playerStats.TakeStaminaDamage(sprintStaminaCost);
             }
             else
             {

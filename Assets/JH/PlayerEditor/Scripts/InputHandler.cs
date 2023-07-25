@@ -108,12 +108,18 @@ namespace bloodborne
                     b_Input = false;
                     sprintFlag = false;
                 }
+
+                if(moveAmount > 0.5f && playerStats.currentStamina > 0)
+                {
+                    sprintFlag = true;
+                }
             }
             else
             {
+                sprintFlag = false;
+
                 if (rollInputTimer > 0 && rollInputTimer < 0.5f)
                 {
-                    sprintFlag = false;
                     rollFlag = true;
                 }
 
