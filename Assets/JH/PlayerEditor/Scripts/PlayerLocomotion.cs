@@ -74,9 +74,9 @@ namespace bloodborne
 
         private void HandleRotation(float delta)
         {
-            if(inputHandler.lockOnFlag)
+            if (inputHandler.lockOnFlag)
             {
-                if(inputHandler.sprintFlag || inputHandler.rollFlag)
+                if (inputHandler.sprintFlag || inputHandler.rollFlag)
                 {
                     Vector3 targetDirection = Vector3.zero;
                     targetDirection = cameraHandler.cameraTransform.forward * inputHandler.vertical;
@@ -167,7 +167,7 @@ namespace bloodborne
             Vector3 proectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
             rigidbody.velocity = proectedVelocity;
 
-            if(inputHandler.lockOnFlag && inputHandler.sprintFlag == false)
+            if (inputHandler.lockOnFlag && inputHandler.sprintFlag == false)
             {
                 animatorHandler.UpdateAnimatorValues(inputHandler.vertical, inputHandler.horizontal, playerManager.isSprinting);
             }
@@ -282,7 +282,7 @@ namespace bloodborne
                     myTransform.position = targetPosition;
                 }
             }
-            if(playerManager.isInteracting || inputHandler.moveAmount >0)
+            if (playerManager.isInteracting || inputHandler.moveAmount > 0)
             {
                 myTransform.position = Vector3.Lerp(myTransform.position, targetPosition, Time.deltaTime / 0.1f);
             }
@@ -294,12 +294,12 @@ namespace bloodborne
 
         public void HandleKnockBack()
         {
-            if(bossAlpha.playerExplosion)
+            if (bossAlpha.playerExplosion)
             {
                 Vector3 backwardDirection = -transform.forward;
                 Vector3 backwardForce = backwardDirection * 100;
 
-                rigidbody.AddForce(backwardForce,ForceMode.Impulse);
+                rigidbody.AddForce(backwardForce, ForceMode.Impulse);
                 animatorHandler.PlayTargetAnimation("KnockBack", true);
 
                 bossAlpha.playerExplosion = false;
@@ -308,7 +308,7 @@ namespace bloodborne
 
         public void HandleDrinkPotion()
         {
-            if(inputHandler.potion_Input)
+            if (inputHandler.potion_Input && playerStats.potionAmount > 0)
             {
                 animatorHandler.PlayTargetAnimation("Potion", true);
                 playerStats.RegenerateHealth();
@@ -317,22 +317,22 @@ namespace bloodborne
 
         private void OnTriggerEnter(Collider other)
         {
-            if(bossAlpha != null)
+            if (bossAlpha != null)
             {
-                if(bossAlpha.isGehrmanAttack)
+                if (bossAlpha.isGehrmanAttack)
                 {
-                    if(other.CompareTag("Weapon"))
+                    if (other.CompareTag("Weapon"))
                     {
                         playerStats.TakeDamage(10);
                     }
                 }
             }
 
-            if(bossAi != null)
+            if (bossAi != null)
             {
-                if(bossAi.moonpresenceAttack)
+                if (bossAi.moonpresenceAttack)
                 {
-                    if(other.CompareTag("Hand"))
+                    if (other.CompareTag("Hand"))
                     {
                         playerStats.TakeDamage(10);
                     }

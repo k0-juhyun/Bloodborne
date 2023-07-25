@@ -84,6 +84,7 @@ namespace bloodborne
         {
             if(potionAmount > 0)
             {
+                --potionAmount;
                 currentHealth += 10;
                 healthBar.SetCurrentHealth(currentHealth);
             }
