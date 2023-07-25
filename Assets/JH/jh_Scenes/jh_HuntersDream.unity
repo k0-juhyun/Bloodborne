@@ -8800,6 +8800,7 @@ MonoBehaviour:
   sprintSpeed: 4
   rotationSpeed: 2
   fallingSpeed: 45
+  rollStaminaCost: 10
 --- !u!54 &841997845
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8909,7 +8910,7 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   staminaLevel: 10
-  maxStamina: 0
+  maxStamina: 200
   currentStamina: 0
   healthBar: {fileID: 1027397244}
   staminaBar: {fileID: 235071583}

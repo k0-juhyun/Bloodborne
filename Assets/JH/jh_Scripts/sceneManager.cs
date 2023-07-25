@@ -11,9 +11,11 @@ namespace bloodborne
         public string nextScene;
         public VideoPlayer player;
         BossAlpha bossAlpha;
+        bossAI bossAi;
 
         private void Awake()
         {
+            bossAi = FindObjectOfType<bossAI>();
             bossAlpha = FindObjectOfType<BossAlpha>();
             Scene curScene = SceneManager.GetActiveScene();
             // 영상씬 넘어가기
@@ -46,7 +48,7 @@ namespace bloodborne
             }
 
             // 달의존재 죽으면
-            if (SceneManager.GetActiveScene().name == "jh_HuntersDream" && bossAI.instance.isDie)
+            if (SceneManager.GetActiveScene().name == "jh_HuntersDream" && bossAi.isFinished)
             {
                 StartCoroutine(delayLoadScene(8f));
             }

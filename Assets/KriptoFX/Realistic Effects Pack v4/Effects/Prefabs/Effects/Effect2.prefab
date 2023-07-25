@@ -14201,6 +14201,7 @@ GameObject:
   - component: {fileID: 467804}
   - component: {fileID: 19807114}
   - component: {fileID: 19920666}
+  - component: {fileID: 769463565264116045}
   m_Layer: 0
   m_Name: Splashes (3)
   m_TagString: Untagged
@@ -17834,8 +17835,8 @@ ParticleSystem:
     subEmitters:
     - serializedVersion: 3
       emitter: {fileID: 0}
-      type: 0
-      properties: 0
+      type: 3
+      properties: -1
       emitProbability: 1
   LightsModule:
     enabled: 0
@@ -18838,6 +18839,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &769463565264116045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c381d55bd4bf2124abee1473a0b52e49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &120858
 GameObject:
   m_ObjectHideFlags: 0
@@ -23607,6 +23620,7 @@ GameObject:
   - component: {fileID: 19881152}
   - component: {fileID: 19996060}
   - component: {fileID: 114502969914553514}
+  - component: {fileID: 3124749575417433163}
   m_Layer: 0
   m_Name: Splashes
   m_TagString: Untagged
@@ -23702,7 +23716,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -28295,6 +28309,18 @@ MonoBehaviour:
   DisableOnMobiles: 0
   RenderMobileDistortion: 1
   ParticleBudgetForMobiles: 0.5
+--- !u!114 &3124749575417433163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c381d55bd4bf2124abee1473a0b52e49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &130974
 GameObject:
   m_ObjectHideFlags: 0
@@ -38161,6 +38187,7 @@ GameObject:
   - component: {fileID: 19887880}
   - component: {fileID: 19910876}
   - component: {fileID: 114520586712999022}
+  - component: {fileID: 6611185249006828309}
   m_Layer: 0
   m_Name: ModelSplashes2D
   m_TagString: Untagged
@@ -42765,6 +42792,18 @@ MonoBehaviour:
   DisableOnMobiles: 0
   RenderMobileDistortion: 1
   ParticleBudgetForMobiles: 0.5
+--- !u!114 &6611185249006828309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 161994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c381d55bd4bf2124abee1473a0b52e49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &163546
 GameObject:
   m_ObjectHideFlags: 0
@@ -42823,6 +42862,7 @@ GameObject:
   - component: {fileID: 19891890}
   - component: {fileID: 19941768}
   - component: {fileID: 114311557828551372}
+  - component: {fileID: 8055815260456288832}
   m_Layer: 0
   m_Name: Splashes
   m_TagString: Untagged
@@ -42918,7 +42958,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -46492,8 +46532,8 @@ ParticleSystem:
     subEmitters:
     - serializedVersion: 3
       emitter: {fileID: 0}
-      type: 0
-      properties: 0
+      type: 3
+      properties: -1
       emitProbability: 1
   LightsModule:
     enabled: 0
@@ -47511,6 +47551,18 @@ MonoBehaviour:
   DisableOnMobiles: 1
   RenderMobileDistortion: 0
   ParticleBudgetForMobiles: 0.5
+--- !u!114 &8055815260456288832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c381d55bd4bf2124abee1473a0b52e49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &166946
 GameObject:
   m_ObjectHideFlags: 0
@@ -52675,6 +52727,7 @@ GameObject:
   - component: {fileID: 1612982244562811697}
   - component: {fileID: 579521450664201659}
   - component: {fileID: 6619962296719575259}
+  - component: {fileID: 8809854764821361160}
   m_Layer: 0
   m_Name: Splashes (2)
   m_TagString: Untagged
@@ -52770,7 +52823,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -57363,6 +57416,18 @@ MonoBehaviour:
   DisableOnMobiles: 1
   RenderMobileDistortion: 0
   ParticleBudgetForMobiles: 0.5
+--- !u!114 &8809854764821361160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148035456583940609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c381d55bd4bf2124abee1473a0b52e49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4922875303996794896
 GameObject:
   m_ObjectHideFlags: 0
@@ -57375,6 +57440,7 @@ GameObject:
   - component: {fileID: 827310286720146949}
   - component: {fileID: 4169154675812383448}
   - component: {fileID: 8885571305002423900}
+  - component: {fileID: 3819357910596774519}
   m_Layer: 0
   m_Name: Splashes (2)
   m_TagString: Untagged
@@ -57470,7 +57536,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -62063,6 +62129,18 @@ MonoBehaviour:
   DisableOnMobiles: 0
   RenderMobileDistortion: 1
   ParticleBudgetForMobiles: 0.5
+--- !u!114 &3819357910596774519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4922875303996794896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c381d55bd4bf2124abee1473a0b52e49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5432874155273126969
 GameObject:
   m_ObjectHideFlags: 0
@@ -62075,6 +62153,7 @@ GameObject:
   - component: {fileID: 6618708501392618078}
   - component: {fileID: 484421069112927633}
   - component: {fileID: 6512441901659816439}
+  - component: {fileID: 6584297893084321877}
   m_Layer: 0
   m_Name: Splashes (1)
   m_TagString: Untagged
@@ -62170,7 +62249,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -66763,6 +66842,18 @@ MonoBehaviour:
   DisableOnMobiles: 0
   RenderMobileDistortion: 1
   ParticleBudgetForMobiles: 0.5
+--- !u!114 &6584297893084321877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5432874155273126969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c381d55bd4bf2124abee1473a0b52e49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7585613210626700175
 GameObject:
   m_ObjectHideFlags: 0
@@ -66775,6 +66866,7 @@ GameObject:
   - component: {fileID: 5755803730353163463}
   - component: {fileID: 8056744452599315575}
   - component: {fileID: 7866257067447276022}
+  - component: {fileID: 3561430007867594533}
   m_Layer: 0
   m_Name: Splashes (1)
   m_TagString: Untagged
@@ -66870,7 +66962,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -71463,3 +71555,15 @@ MonoBehaviour:
   DisableOnMobiles: 1
   RenderMobileDistortion: 0
   ParticleBudgetForMobiles: 0.5
+--- !u!114 &3561430007867594533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7585613210626700175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c381d55bd4bf2124abee1473a0b52e49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

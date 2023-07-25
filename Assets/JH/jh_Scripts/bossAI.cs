@@ -10,16 +10,14 @@ namespace bloodborne
     public class bossAI : MonoBehaviour
     {
         PlayerAnimatorManager playerAnimatorManager;
-        public static bossAI instance;
         public bool moonpresenceAttack;
         public bool isDie;
-        // TransformConponents
+        public bool isFinished;
         #region TransformComponent
         private Transform playerPos;
         private Transform thisPos;
         #endregion
 
-        // Components
         private Animator animator;
         private NavMeshAgent agent;
         RFX4_CameraShake cameraShake;
@@ -116,7 +114,6 @@ namespace bloodborne
         private void Awake()
         {
             sliderHp.maxValue = maxHp;
-            instance = this;
 
             cameraShake = GetComponent<RFX4_CameraShake>();
 
@@ -166,11 +163,6 @@ namespace bloodborne
         {
             while (!isDie)
             {
-                // Update curHp
-                curHpPercentage = curHp / maxHp;
-
-                sliderHp.value = curHp;
-
                 // Update Distance between player & thisobj
                 MoveDistance = Vector3.Distance(playerPos.position, thisPos.position);
 
@@ -339,6 +331,12 @@ namespace bloodborne
         }
         #endregion
 
+        private void Update()
+        {
+            curHpPercentage = curHp / maxHp;
+
+            sliderHp.value = curHp;
+        }
 
         #region AnimEventFun
         // Ground Hit
@@ -357,6 +355,8 @@ namespace bloodborne
         // Special Pattern1
         private IEnumerator SpecialPattern1AnimStart()
         {
+            moonpresenceAttack = false;
+
             // Set Animator Speed 50%
             animator.speed = 0.5f;
 
@@ -425,6 +425,8 @@ namespace bloodborne
 
         IEnumerator SpecialPattern2AnimStart()
         {
+            moonpresenceAttack = false;
+
             animator.speed = 0.5f;
 
             // Stop Agent
@@ -501,7 +503,7 @@ namespace bloodborne
             bloodRain.SetActive(true);
 
             Destroy(gameObject);
-            isDie = true;
+            isFinished = true;
         }
 
         // AttackAnimFinish
@@ -544,21 +546,58 @@ namespace bloodborne
         private void OnTriggerEnter(Collider other)
         {
             if (other.tag == "p_Weapon" && playerAnimatorManager.isAttack && !isReact
-                && !isSpecialPattern1InProgress && !isSpecialPattern2InProgress)
+                && !isSpecialPattern1InProgress && !isSpecialPattern2InProgress && !isDie)
             {
-                if (!camShake.activeSelf)
+                if(curHp > 0)
                 {
-                    camShake.SetActive(true);
-                    StartCoroutine(camShakeOff());
-                }
+                    curHp -= AttackDamage;
 
-                // Reduction
-                curHp -= AttackDamage;
+                    if (!camShake.activeSelf)
+                    {
+                        camShake.SetActive(true);
+                        StartCoroutine(camShakeOff());
+                    }
+
+                    // Increase Hit Count
+                    if (hitCount < 3)
+                    {
+                        hitCount++;
+                    }
+
+                    // Set React True
+                    isReact = true;
+
+                    // Make Array Child Collider
+                    Collider[] childColliders = GetComponentsInChildren<Collider>();
+
+                    // Collider -> is trigger true
+                    foreach (Collider collider in childColliders)
+                    {
+                        collider.isTrigger = true;
+                    }
+
+                    // Reset React
+                    StartCoroutine(ReactDelayCoroutine());
+
+                    // Get Angle from Distance
+                    float directionHitFrom = (GetAngle(transform.position, playerPos.transform.position));
+
+                    // Calculate Angle -> Call Animation
+                    WhichDirectionDamageCameFrom(directionHitFrom);
+
+                    // Set Trigger React Animation
+                    AnimatorTrigger(reactAnimation);
+
+                    // Load Blood Effect Particle System
+                    LoadBloodEffect(other);
+                }
 
                 // ReactState Process
                 // Hp, Die Animation
-                if (curHp <= 0)
+                else
                 {
+                    isDie = true;
+
                     print("test");
 
                     // Load Die Effect
@@ -572,40 +611,9 @@ namespace bloodborne
 
                     // Die Anim
                     AnimatorTrigger("Die");
+
+                    return;
                 }
-
-                // Increase Hit Count
-                if (hitCount < 3)
-                {
-                    hitCount++;
-                }
-
-                // Set React True
-                isReact = true;
-
-                // Make Array Child Collider
-                Collider[] childColliders = GetComponentsInChildren<Collider>();
-
-                // Collider -> is trigger true
-                foreach (Collider collider in childColliders)
-                {
-                    collider.isTrigger = true;
-                }
-
-                // Reset React
-                StartCoroutine(ReactDelayCoroutine());
-
-                // Get Angle from Distance
-                float directionHitFrom = (GetAngle(transform.position, playerPos.transform.position));
-
-                // Calculate Angle -> Call Animation
-                WhichDirectionDamageCameFrom(directionHitFrom);
-
-                // Set Trigger React Animation
-                AnimatorTrigger(reactAnimation);
-
-                // Load Blood Effect Particle System
-                LoadBloodEffect(other);
             }
         }
 

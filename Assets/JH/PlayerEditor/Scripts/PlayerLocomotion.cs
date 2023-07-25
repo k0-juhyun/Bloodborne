@@ -346,7 +346,7 @@ namespace bloodborne
                 {
                     if (other.CompareTag("Hand"))
                     {
-                        playerStats.TakeDamage(10);
+                        playerStats.TakeDamage(5);
                     }
                 }
             }
