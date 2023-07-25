@@ -223,6 +223,15 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Potion"",
+                    ""type"": ""Button"",
+                    ""id"": ""f93cf61e-9fae-425b-bc70-678993484b60"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -289,6 +298,17 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""LockOn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e1c7a5dd-898f-4e4c-bdc1-ac0466190cf5"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Potion"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -399,6 +419,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         m_PlayerAction_LF = m_PlayerAction.FindAction("LF", throwIfNotFound: true);
         m_PlayerAction_LG = m_PlayerAction.FindAction("LG", throwIfNotFound: true);
         m_PlayerAction_LockOn = m_PlayerAction.FindAction("LockOn", throwIfNotFound: true);
+        m_PlayerAction_Potion = m_PlayerAction.FindAction("Potion", throwIfNotFound: true);
         // D-Pad
         m_DPad = asset.FindActionMap("D-Pad", throwIfNotFound: true);
         m_DPad_DPadUp = m_DPad.FindAction("D-Pad Up", throwIfNotFound: true);
@@ -542,6 +563,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerAction_LF;
     private readonly InputAction m_PlayerAction_LG;
     private readonly InputAction m_PlayerAction_LockOn;
+    private readonly InputAction m_PlayerAction_Potion;
     public struct PlayerActionActions
     {
         private @PlayerControl m_Wrapper;
@@ -552,6 +574,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         public InputAction @LF => m_Wrapper.m_PlayerAction_LF;
         public InputAction @LG => m_Wrapper.m_PlayerAction_LG;
         public InputAction @LockOn => m_Wrapper.m_PlayerAction_LockOn;
+        public InputAction @Potion => m_Wrapper.m_PlayerAction_Potion;
         public InputActionMap Get() { return m_Wrapper.m_PlayerAction; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -579,6 +602,9 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @LockOn.started += instance.OnLockOn;
             @LockOn.performed += instance.OnLockOn;
             @LockOn.canceled += instance.OnLockOn;
+            @Potion.started += instance.OnPotion;
+            @Potion.performed += instance.OnPotion;
+            @Potion.canceled += instance.OnPotion;
         }
 
         private void UnregisterCallbacks(IPlayerActionActions instance)
@@ -601,6 +627,9 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @LockOn.started -= instance.OnLockOn;
             @LockOn.performed -= instance.OnLockOn;
             @LockOn.canceled -= instance.OnLockOn;
+            @Potion.started -= instance.OnPotion;
+            @Potion.performed -= instance.OnPotion;
+            @Potion.canceled -= instance.OnPotion;
         }
 
         public void RemoveCallbacks(IPlayerActionActions instance)
@@ -703,6 +732,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         void OnLF(InputAction.CallbackContext context);
         void OnLG(InputAction.CallbackContext context);
         void OnLockOn(InputAction.CallbackContext context);
+        void OnPotion(InputAction.CallbackContext context);
     }
     public interface IDPadActions
     {

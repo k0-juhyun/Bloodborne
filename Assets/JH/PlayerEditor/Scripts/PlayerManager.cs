@@ -10,6 +10,7 @@ namespace bloodborne
         Animator anim;
         CameraHandler cameraHandler;
         PlayerLocomotion playerLocomotion;
+        PlayerStats playerStats;
 
         [Header("Player Flags")]
         public bool isInteracting;
@@ -17,9 +18,11 @@ namespace bloodborne
         public bool isInAir;
         public bool isGrounded;
         public bool canDoCombo;
+        public bool isInvulnerable;
 
         private void Start()
         {
+            playerStats = GetComponent<PlayerStats>();
             cameraHandler = FindObjectOfType<CameraHandler>();
             inputHandler = GetComponent<InputHandler>();
             anim = GetComponentInChildren<Animator>();
@@ -31,9 +34,12 @@ namespace bloodborne
             float delta = Time.deltaTime;
             isInteracting = anim.GetBool("isInteracting");
             canDoCombo = anim.GetBool("canDoCombo");
+            isInvulnerable = anim.GetBool("isInvulnerable");
 
             inputHandler.TickInput(delta);
             playerLocomotion.HandleRollingAndSprinting(delta);
+            playerLocomotion.HandleDrinkPotion();
+            playerStats.RegenerateStamina();
         }
 
         private void FixedUpdate()
@@ -50,6 +56,7 @@ namespace bloodborne
             inputHandler.rt_Input = false;
             inputHandler.lf_Input = false;
             inputHandler.lg_Input = false;
+            inputHandler.potion_Input = false;
 
             float delta = Time.deltaTime;
 

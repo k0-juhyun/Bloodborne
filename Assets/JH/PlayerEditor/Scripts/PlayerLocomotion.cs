@@ -306,6 +306,15 @@ namespace bloodborne
             }
         }
 
+        public void HandleDrinkPotion()
+        {
+            if(inputHandler.potion_Input)
+            {
+                animatorHandler.PlayTargetAnimation("Potion", true);
+                playerStats.RegenerateHealth();
+            }
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if(bossAlpha != null)

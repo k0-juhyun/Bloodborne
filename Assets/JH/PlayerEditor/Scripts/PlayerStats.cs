@@ -11,30 +11,36 @@ namespace bloodborne
         public int currentHealth;
 
         public int staminaLevel = 10;
-        public int maxStamina;
-        public int currentStamina;
+        public float maxStamina;
+        public float currentStamina;
 
         public HealthBar healthBar;
         public StaminaBar staminaBar;
 
         AnimatorHandler animatorHandler;
+        PlayerManager playerManager;
+
+        public int potionAmount = 10;
+        public float staminaRegenerationAmount = 1;
+        public float staminaRegenTimer = 0;
 
         private void Awake()
         {
             animatorHandler = GetComponentInChildren<AnimatorHandler>();
             healthBar = FindObjectOfType<HealthBar>();
             staminaBar = FindObjectOfType<StaminaBar>();
+            playerManager = GetComponent<PlayerManager>();
         }
 
         void Start()
         {
             maxHealth = SetMaxHealthFromHealthLevel();
-            currentHealth = maxHealth; 
+            currentHealth = maxHealth;
             healthBar.SetMaxHealth(maxHealth);
-            
+
             maxStamina = SetMaxStaminaFromStaminaLevel();
             currentStamina = maxStamina;
-            staminaBar.SetMaxHealth(maxStamina);
+            staminaBar.SetMaxStamina(maxStamina);
         }
 
         private int SetMaxHealthFromHealthLevel()
@@ -43,7 +49,7 @@ namespace bloodborne
             return maxHealth;
         }
 
-        private int SetMaxStaminaFromStaminaLevel()
+        private float SetMaxStaminaFromStaminaLevel()
         {
             maxStamina = staminaLevel * 10;
             return maxStamina;
@@ -51,13 +57,16 @@ namespace bloodborne
 
         public void TakeDamage(int damage)
         {
+            if (playerManager.isInvulnerable)
+                return;
+
             currentHealth = currentHealth - damage;
 
             healthBar.SetCurrentHealth(currentHealth);
 
             animatorHandler.PlayTargetAnimation("Damage", true);
 
-            if(currentHealth <= 0)
+            if (currentHealth <= 0)
             {
                 currentHealth = 0;
                 animatorHandler.PlayTargetAnimation("Dead", true);
@@ -69,6 +78,32 @@ namespace bloodborne
             currentStamina = currentStamina - damage;
 
             staminaBar.SetCurrentStamina(currentStamina);
+        }
+
+        public void RegenerateHealth()
+        {
+            if(potionAmount > 0)
+            {
+                currentHealth += 10;
+                healthBar.SetCurrentHealth(currentHealth);
+            }
+        }
+
+        public void RegenerateStamina()
+        {
+            if (playerManager.isInteracting)
+            {
+                staminaRegenTimer = 0;
+            }
+            else
+            {
+                staminaRegenTimer += Time.deltaTime;
+                if (currentStamina < maxStamina && staminaRegenTimer > 1f)
+                {
+                    currentStamina += staminaRegenerationAmount * Time.deltaTime;
+                    staminaBar.SetCurrentStamina(Mathf.RoundToInt(currentStamina));
+                }
+            }
         }
     }
 }

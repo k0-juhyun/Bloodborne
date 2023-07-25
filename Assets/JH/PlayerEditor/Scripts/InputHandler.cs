@@ -23,6 +23,7 @@ namespace bloodborne
         public bool lockOnInput;
         public bool left_Target_LockOn_Input;
         public bool right_Target_LockOn_Input;
+        public bool potion_Input;
         #endregion
 
         #region Flags
@@ -64,6 +65,7 @@ namespace bloodborne
                 inputActions.PlayerAction.LockOn.performed += i => lockOnInput = true;
                 inputActions.PlayerMovement.LockOnTargetRight.performed += i => right_Target_LockOn_Input = true;
                 inputActions.PlayerMovement.LockOnTargetLeft.performed += i => left_Target_LockOn_Input = true;
+                inputActions.PlayerAction.Potion.performed += i => potion_Input = true;
             }
 
             inputActions.Enable();
@@ -206,6 +208,11 @@ namespace bloodborne
             }
 
             cameraHandler.SetCameraHeight();
+        }
+
+        private void HandlePotionInput()
+        {
+
         }
     }
 }

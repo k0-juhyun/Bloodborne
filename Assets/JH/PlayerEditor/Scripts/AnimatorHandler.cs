@@ -136,5 +136,15 @@ namespace bloodborne
             Vector3 velocity = deltaPosition / delta;
             playerLocomotion.rigidbody.velocity = velocity;
         }
+
+        public void EnableIsInvulnerable()
+        {
+            anim.SetBool("isInvulnerable", true);
+        }
+
+        public void DisableIsInvulerable()
+        {
+            anim.SetBool("isInvulnerable",false);
+        }
     }
 }
