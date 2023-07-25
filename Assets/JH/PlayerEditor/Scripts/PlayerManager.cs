@@ -11,6 +11,7 @@ namespace bloodborne
         CameraHandler cameraHandler;
         PlayerLocomotion playerLocomotion;
         PlayerStats playerStats;
+        PlayerAnimatorManager playerAnimatorManager;
 
         [Header("Player Flags")]
         public bool isInteracting;
@@ -27,6 +28,7 @@ namespace bloodborne
             inputHandler = GetComponent<InputHandler>();
             anim = GetComponentInChildren<Animator>();
             playerLocomotion = GetComponent<PlayerLocomotion>();
+            playerAnimatorManager = GetComponentInChildren<PlayerAnimatorManager>();
         }
 
         private void Update()
@@ -36,16 +38,19 @@ namespace bloodborne
             canDoCombo = anim.GetBool("canDoCombo");
             isInvulnerable = anim.GetBool("isInvulnerable");
 
+
             inputHandler.TickInput(delta);
             playerLocomotion.HandleRollingAndSprinting(delta);
             playerLocomotion.HandleDrinkPotion();
             playerStats.RegenerateStamina();
+            playerAnimatorManager.canRotate = anim.GetBool("canRotate");
         }
 
         private void FixedUpdate()
         {
             float delta = Time.fixedDeltaTime;
             playerLocomotion.HandleMovement(delta);
+            playerLocomotion.HandleRotation(delta);
             playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
         }
 

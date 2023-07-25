@@ -60,8 +60,15 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.31022176
+      - time: 0.27038947
         functionName: EnableCombo
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.3026499
+        functionName: DrainStaminaHeavyAttack
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -74,8 +81,15 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.30684274
-        functionName: DrainStaminaHeavyAttack
+      - time: 0.08655226
+        functionName: CanRotate
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.23907964
+        functionName: StopRotation
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

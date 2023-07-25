@@ -9,7 +9,7 @@ namespace bloodborne
 {
     public class bossAI : MonoBehaviour
     {
-        AnimatorHandler animatorHandler;
+        PlayerAnimatorManager playerAnimatorManager;
         public static bossAI instance;
         public bool moonpresenceAttack;
         public bool isDie;
@@ -111,7 +111,7 @@ namespace bloodborne
 
         private void Start()
         {
-            animatorHandler = FindObjectOfType<AnimatorHandler>();
+            playerAnimatorManager = FindObjectOfType<PlayerAnimatorManager>();
         }
         private void Awake()
         {
@@ -543,7 +543,7 @@ namespace bloodborne
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.tag == "p_Weapon" && animatorHandler.isAttack && !isReact
+            if (other.tag == "p_Weapon" && playerAnimatorManager.isAttack && !isReact
                 && !isSpecialPattern1InProgress && !isSpecialPattern2InProgress)
             {
                 if (!camShake.activeSelf)

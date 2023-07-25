@@ -9,7 +9,7 @@ namespace bloodborne
     // 대체, 추가 : 나중에 합치면 교체해야 하는 것
     public class BossAlpha : MonoBehaviour
     {
-        AnimatorHandler animatorHandler;     // 플레이어 애니메이터 조정
+        PlayerAnimatorManager animatorHandler;     // 플레이어 애니메이터 조정
         NavMeshAgent agent;                 // 길찾기
         Animator anim;                  // 애니메이터
         
@@ -134,7 +134,7 @@ namespace bloodborne
             bossHP = GetComponent<BossHP>();                            // 보스 hp를 받아오자
             bossPhase = BossPhase.Phase1;                               // 시작시 보스 페이즈를 1로 설정한다
             bloodEffect = Resources.Load<GameObject>("DAX_Blood_Spray_00(Fade_2s)");        // 블러드 이펙트 불러오기
-            animatorHandler = FindObjectOfType<AnimatorHandler>();
+            animatorHandler = FindObjectOfType<PlayerAnimatorManager>();
         }
 
         // Update is called once per frame

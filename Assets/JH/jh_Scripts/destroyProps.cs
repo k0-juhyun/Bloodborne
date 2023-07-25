@@ -6,19 +6,19 @@ namespace bloodborne
 {
     public class destroyProps : MonoBehaviour
     {
-        AnimatorHandler animatorHandler;
+        PlayerAnimatorManager playerAnimatorManager;
         BossAlpha bossAlpha;
         // Start is called before the first frame update
         void Start()
         {
-            animatorHandler = FindObjectOfType<AnimatorHandler>();
+            playerAnimatorManager = FindObjectOfType<PlayerAnimatorManager>();
             bossAlpha = GetComponent<BossAlpha>();
         }
 
 
         private void OnCollisionEnter(Collision coll)
         {
-            if (coll.collider.tag == ("p_Weapon") && animatorHandler.isAttack)
+            if (coll.collider.tag == ("p_Weapon") && playerAnimatorManager.isAttack)
             {
                 Destroy(gameObject);
             }

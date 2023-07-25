@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace bloodborne
 {
-    public class AnimatorHandler : MonoBehaviour
+    public class PlayerAnimatorManager : MonoBehaviour
     {
         public Animator anim;
         InputHandler inputHandler;
@@ -60,17 +60,17 @@ namespace bloodborne
             #region Horizontal
             float h = 0;
 
-            if(horizontalMovement > 0 && horizontalMovement < 0.55f)
+            if (horizontalMovement > 0 && horizontalMovement < 0.55f)
             {
                 h = 0.5f;
             }
 
-            else if(horizontalMovement > 0.55f)
+            else if (horizontalMovement > 0.55f)
             {
                 h = 1;
             }
 
-            else if(horizontalMovement < 0 && horizontalMovement > -0.55f)
+            else if (horizontalMovement < 0 && horizontalMovement > -0.55f)
             {
                 h = -0.5f;
             }
@@ -86,7 +86,7 @@ namespace bloodborne
             }
             #endregion
 
-            if(isSprinting)
+            if (isSprinting)
             {
                 v = 2;
                 h = horizontalMovement;
@@ -99,18 +99,19 @@ namespace bloodborne
         public void PlayTargetAnimation(string targetAnim, bool isInteracting)
         {
             anim.applyRootMotion = isInteracting;
-            anim.SetBool("isInteracting",isInteracting);
+            anim.SetBool("canRotate", false);
+            anim.SetBool("isInteracting", isInteracting);
             anim.CrossFade(targetAnim, 0.2f);
         }
 
         public void CanRotate()
         {
-            canRotate = true;
+            anim.SetBool("canRotate", true);
         }
 
         public void StopRotation()
         {
-            canRotate = false;
+            anim.SetBool("canRotate", false);
         }
 
         public void EnableCombo()
@@ -142,9 +143,9 @@ namespace bloodborne
             anim.SetBool("isInvulnerable", true);
         }
 
-        public void DisableIsInvulerable()
+        public void DisableIsInvulnerable()
         {
-            anim.SetBool("isInvulnerable",false);
+            anim.SetBool("isInvulnerable", false);
         }
     }
 }

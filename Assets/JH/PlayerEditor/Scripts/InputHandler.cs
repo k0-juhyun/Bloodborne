@@ -39,12 +39,14 @@ namespace bloodborne
         PlayerInventory playerInventory;
         PlayerManager playerManager;
         CameraHandler cameraHandler;
+        PlayerStats playerStats;
 
         Vector2 movementInput;
         Vector2 cameraInput;
 
         private void Awake()
         {
+            playerStats = GetComponent<PlayerStats>();
             playerAttacker = GetComponent<PlayerAttacker>();
             playerInventory = GetComponent<PlayerInventory>();
             playerManager = GetComponent<PlayerManager>();
@@ -62,6 +64,8 @@ namespace bloodborne
                 inputActions.PlayerAction.RT.performed += i => rt_Input = true;
                 inputActions.PlayerAction.LF.performed += i => lf_Input = true;
                 inputActions.PlayerAction.LG.performed += i => lg_Input = true;
+                inputActions.PlayerAction.Roll.performed += i => b_Input = true;
+                inputActions.PlayerAction.Roll.canceled += i => b_Input = false;
                 inputActions.PlayerAction.LockOn.performed += i => lockOnInput = true;
                 inputActions.PlayerMovement.LockOnTargetRight.performed += i => right_Target_LockOn_Input = true;
                 inputActions.PlayerMovement.LockOnTargetLeft.performed += i => left_Target_LockOn_Input = true;
@@ -94,13 +98,16 @@ namespace bloodborne
         }
 
         public void HandleRollInput(float delta)
-        {
-            b_Input = inputActions.PlayerAction.Roll.phase == UnityEngine.InputSystem.InputActionPhase.Performed;
-            sprintFlag = b_Input;
-
+        {        
             if (b_Input)
             {
                 rollInputTimer += delta;
+
+                if(playerStats.currentStamina <= 0)
+                {
+                    b_Input = false;
+                    sprintFlag = false;
+                }
             }
             else
             {
@@ -208,11 +215,6 @@ namespace bloodborne
             }
 
             cameraHandler.SetCameraHeight();
-        }
-
-        private void HandlePotionInput()
-        {
-
         }
     }
 }

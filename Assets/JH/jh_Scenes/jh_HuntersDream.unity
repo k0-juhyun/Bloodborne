@@ -8913,7 +8913,7 @@ MonoBehaviour:
   currentStamina: 0
   healthBar: {fileID: 1027397244}
   staminaBar: {fileID: 235071583}
-  potionAmount: 0
+  potionAmount: 2
   staminaRegenerationAmount: 1
   staminaRegenTimer: 0
 --- !u!1001 &842543299
@@ -15996,6 +15996,7 @@ GameObject:
   - component: {fileID: 1626638222}
   - component: {fileID: 1626638224}
   - component: {fileID: 1626638223}
+  - component: {fileID: 1626638225}
   m_Layer: 5
   m_Name: potionAmount
   m_TagString: Untagged
@@ -16065,6 +16066,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1626638221}
   m_CullTransparentMesh: 1
+--- !u!114 &1626638225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626638221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a973340d20790340afb1e0b0b97c726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  potionAmountText: {fileID: 1626638223}
 --- !u!1001 &1635659202
 PrefabInstance:
   m_ObjectHideFlags: 0

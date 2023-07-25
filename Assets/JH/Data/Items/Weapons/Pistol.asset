@@ -22,6 +22,6 @@ MonoBehaviour:
   oneHandLightAttack2: 
   oneHandHeavyAttack1: leftHandHeavyAttack
   oneHandHeavyAttack2: 
-  baseStamina: 20
+  baseStamina: 5
   lightAttackMultiplier: 1
   heavyAttackMultiplier: 2

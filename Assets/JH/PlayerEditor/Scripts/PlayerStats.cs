@@ -17,7 +17,7 @@ namespace bloodborne
         public HealthBar healthBar;
         public StaminaBar staminaBar;
 
-        AnimatorHandler animatorHandler;
+        PlayerAnimatorManager animatorHandler;
         PlayerManager playerManager;
 
         public int potionAmount = 10;
@@ -26,7 +26,7 @@ namespace bloodborne
 
         private void Awake()
         {
-            animatorHandler = GetComponentInChildren<AnimatorHandler>();
+            animatorHandler = GetComponentInChildren<PlayerAnimatorManager>();
             healthBar = FindObjectOfType<HealthBar>();
             staminaBar = FindObjectOfType<StaminaBar>();
             playerManager = GetComponent<PlayerManager>();
