@@ -2304,7 +2304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db30d5c56ffb58e4f801b2f5dcc6d546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 0}
+  slider: {fileID: 235071584}
 --- !u!114 &235071584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31336,6 +31336,11 @@ PrefabInstance:
       objectReference: {fileID: 1027397244}
     - target: {fileID: 5086411828454696817, guid: 9c3f397d353a3c949ad3c65fd1c16f91,
         type: 3}
+      propertyPath: maxStamina
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5086411828454696817, guid: 9c3f397d353a3c949ad3c65fd1c16f91,
+        type: 3}
       propertyPath: staminaBar
       value: 
       objectReference: {fileID: 235071583}
@@ -35939,6 +35944,7 @@ MonoBehaviour:
   moonpresenceAttack: 0
   isDie: 0
   isFinished: 0
+  isBulletHit: 0
   SpecialPattern1:
   - {fileID: 6308587343982010940}
   - {fileID: 100494651}

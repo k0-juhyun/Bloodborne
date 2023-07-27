@@ -172,11 +172,6 @@ namespace bloodborne
             if (lf_Input)
             {
                 playerAttacker.HandleLightAttack(playerInventory.leftWeapon);
-                Ray ray = new Ray(transform.position, transform.forward);
-
-                RaycastHit hit;
-
-                //if(Physics.Raycast)
             }
 
             if (lg_Input)

@@ -13,6 +13,7 @@ namespace bloodborne
         public bool moonpresenceAttack;
         public bool isDie;
         public bool isFinished;
+        public bool isBulletHit;
         #region TransformComponent
         private Transform playerPos;
         private Transform thisPos;
@@ -546,7 +547,8 @@ namespace bloodborne
         private void OnTriggerEnter(Collider other)
         {
             if (other.tag == "p_Weapon" && playerAnimatorManager.isAttack && !isReact
-                && !isSpecialPattern1InProgress && !isSpecialPattern2InProgress && !isDie)
+                && !isSpecialPattern1InProgress && !isSpecialPattern2InProgress && !isDie 
+                || isBulletHit)
             {
                 if(curHp > 0)
                 {
@@ -590,6 +592,8 @@ namespace bloodborne
 
                     // Load Blood Effect Particle System
                     LoadBloodEffect(other);
+
+                    isBulletHit = false;
                 }
 
                 // ReactState Process
