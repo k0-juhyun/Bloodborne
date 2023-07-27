@@ -308,6 +308,7 @@ namespace bloodborne
         {
             if (bossAlpha.playerExplosion)
             {
+                print("knockback");
                 Vector3 backwardDirection = -transform.forward;
                 Vector3 backwardForce = backwardDirection * 100;
 

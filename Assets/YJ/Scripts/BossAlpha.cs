@@ -9,11 +9,12 @@ namespace bloodborne
     // 대체, 추가 : 나중에 합치면 교체해야 하는 것
     public class BossAlpha : MonoBehaviour
     {
-        PlayerAnimatorManager animatorHandler;     // 플레이어 애니메이터 조정
-        NavMeshAgent agent;                 // 길찾기
-        Animator anim;                  // 애니메이터
+        PlayerAnimatorManager animatorHandler;        // 플레이어 애니메이터 조정
+        ObjectPool objectPool;                  // 이펙트용 오브젝트 풀
+        NavMeshAgent agent;                     // 길찾기
+        Animator anim;                          // 애니메이터
         
-        BossHP bossHP;                      // 보스 hp
+        BossHP bossHP;                          // 보스 hp
 
         public enum BossPatternState               // 열거형, 보스 패턴 상태
         {
@@ -55,24 +56,28 @@ namespace bloodborne
         Rigidbody rid;                      // 리지드바디
         RaycastHit hit;                     // 레이캐스트 히트
         public Transform rayPos;            // ray 쏘는 곳, 게르만 중심
+        public Transform firePos;           // 총 쏘는 곳(이펙트
         public GameObject sickle;           // 무기
         public GameObject blade;            // 무기
         public GameObject gun;              // 무기
         private GameObject bloodEffect;     // 피 프리팹
+        private GameObject dieEffect;       // 죽음 이펙트 프리팹
+        //private GameObject phase3Effect;    // 페이즈3 불꽃 이펙트 프리팹
+        private GameObject quickeningEffect;// 폭발공격 이펙트 프리팹
+        private GameObject gunEffect;       // 총공격 이펙트 프리팹
         public GameObject[] UI;             // 죽음 ui 
 
 
-
+        #region 방향
         Vector3 dir;                        // 이동 방향
         Vector3 avoidDir;                   // 회피 방향
         Vector3 moveDir;                    // 움직임 방향
-        Vector3 quickeningDir;              // 폭발시 플레이어 밀어낼 방향
         Vector3 targetPos;                  // 회피 목적지
         Vector3 moveTargetPos;              // 공격시 이동 목적지
         Vector3 attackdir;
         Vector3 attackMovePos;
         Vector3 currPos;                    // 패턴1.2 공격 위치
-
+        #endregion
         int damage = 2;                         // 데미지 (플레이어한테 어떤 공격인지 상태를 받아오기, 공격에 따라 다른 데미지를 구현)
         public int hitCount = 0;                   // 피격 횟수 (맞은 횟수)
 
@@ -119,6 +124,7 @@ namespace bloodborne
         public bool isPhase2 = false;                       // 페이즈 2 상태 확인
         public bool isPhase3 = false;                       // 페이즈 3 상태 확인
         public bool isQuickening = false;                   // Quickening 폭발 공격
+        public bool gunAttack = false;                      // 총공격 상태 확인
         public bool playerExplosion = false;                // 플레이어가 Quickening 폭발 공격 맞았음
         public bool isPhaseChangeQ = false;                 // 페이즈 전환 폭발
         public bool a = false;                              // sickle2 에서 플레이어 위치 한번만 계산
@@ -128,20 +134,23 @@ namespace bloodborne
         void Awake()
         {
             agent = GetComponent<NavMeshAgent>();                       // agent
-                                                                        //agent.isStopped = true;                                   // 이동 멈추기
+            //agent.isStopped = true;                                   // 이동 멈추기
             rid = GetComponent<Rigidbody>();                            // 리지드바디
             anim = GetComponent<Animator>();                            // 애니메이터 컴포턴트를 받아온다
             bossHP = GetComponent<BossHP>();                            // 보스 hp를 받아오자
             bossPhase = BossPhase.Phase1;                               // 시작시 보스 페이즈를 1로 설정한다
-            bloodEffect = Resources.Load<GameObject>("DAX_Blood_Spray_00(Fade_2s)");        // 블러드 이펙트 불러오기
-            animatorHandler = FindObjectOfType<PlayerAnimatorManager>();
+            bloodEffect = Resources.Load<GameObject>("BloodEffect_Gehrman");        // 블러드 이펙트 불러오기
+            dieEffect = Resources.Load<GameObject>("DieEffect_Gehrman");            // 죽음 이펙트 불러오기
+            //phase3Effect = Resources.Load<GameObject>("Phase3 Fire Particle System");    // 페이즈3 이펙트 불러오기
+            objectPool = FindObjectOfType<ObjectPool>();                                    // objpool 이펙트용
+            quickeningEffect = Resources.Load<GameObject>("Gehrman_Effect_Quickening");    // 폭발공격 이펙트 불러오기
+            gunEffect = Resources.Load<GameObject>("GunFireEfferct_Gehrman");       // 총공격 이펙트 불러오기
+            animatorHandler = FindObjectOfType<PlayerAnimatorManager>();      // 플레이어 피격 상태 애니메이션
         }
 
         // Update is called once per frame
         void Update()
         {
-
-
             // 밀림방지
             //rid.velocity = Vector3.zero;
             // 항상 플레이어를 바라보기
@@ -185,10 +194,11 @@ namespace bloodborne
                     bossState = BossPatternState.Die;
                     // 죽음 애니메이션을 실행한다
                     anim.SetTrigger("Die");
+                    // 파티클을 켠다
+                    GameObject dieEff = Instantiate<GameObject>(dieEffect, rayPos);
                     // 무기를 끈다 or 땅으로 떨어뜨려야 하나..?
                     gun.SetActive(false);
                     blade.SetActive(false);
-                    // 파티클을 켠다
                     ImDie = true;
                 }
             }
@@ -246,16 +256,30 @@ namespace bloodborne
                     break;
                 case BossPhase.Phase3:
                     // 페이즈 3에서 실행할 공격 콤보
+                    // 페이즈 3 이펙트를 생성
+                    UpdatePhase3();
                     break;
                 default:
                     break;
             }
         }
 
+        private void UpdatePhase3()
+        {
+            // 페이즈 3 일때 계속 할일
+            // 불꽃 이펙트를 계속 생성한다
+            // 오브젝트 풀로 관리한다
+            GameObject fireEffect = objectPool.GetDeactiveObject();
+            if (fireEffect != null)
+            {
+                fireEffect.GetComponent<FireAutoDeacitve>().Play(2);
+
+            }
+        }
+
         private void UpdateSwordCombo2()
         {
             // 칼공격 콤보 2
-            isGehrmanAttack = true;
             curTime += Time.deltaTime;
             // 이동하면서
             // 칼공격을 한다
@@ -300,7 +324,6 @@ namespace bloodborne
         private void UpdateSwordCombo1()
         {
             // 칼공격 콤보 1
-            isGehrmanAttack = true;
             curTime += Time.deltaTime;
             // 한번 공격하고
             // x자로 공격한다
@@ -338,28 +361,63 @@ namespace bloodborne
 
         private void UpdateGunCombo()
         {
-            print("총공격이다 만드는 중이다");
+            print("총공격 콤보");
             // 2페이즈부터 등장한다
             // 칼콤보 끝나면 무조건 총으로 오기
             // substate필요 없을듯. 총만 쏘면됨
             // 칼 콤보1,2 가 끝나면 상태를 총 공격 상태로 바꾼다
             // 총 공격 부울값을 만들어서, false이면
-            // 왼손에 든 총을 발사하는 애니메이션을 실행한다
-            // 애니메이션이 시작할때, 총을 90도 회전 시킨다
-            // 애니메이션의 총쏘는 타이밍에 이벤트 함수를 만든다
-            // 캡슐콜라이더를 발사한다
+            if (gunAttack == false)
+            {
+                // 왼손에 든 총을 발사하는 애니메이션을 실행한다
+                anim.SetTrigger("Gun");
+                gunAttack = true;
+            }
+            // 애니메이션의 총쏘는 타이밍에 이벤트 함수를 만든다 
+        }
+
+        // 총알 발사 이벤트 함수
+        void GunFire()
+        {
+            // 레이를 쏜다
+            Ray ray = new Ray(rayPos.position, transform.forward);
+            // 레이가 부딪힌 대상의 정보를 저장
+            RaycastHit hitInfo = new RaycastHit();
+
+            if (Physics.Raycast(ray, out hitInfo))
+            {
+                if (hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
+                {
+                    // 플레이어에게 너 맞았다고 한다?
+                    playerExplosion = true;
+                }
+            }
+            // 이벤트 함수로 이펙트 실행
+            // 총공격이 끝나면 이벤트 ToIdle 상태로 한다
+        }
+        
+        // 총알 이펙트 이벤트 함수
+        void GunEffect()
+        {
             // 총알 이펙트를 찾아서 이펙트를 쓴다
             // 불나오는 거
             // 총알이 퍼지는거 muzzle effect
-            // 총공격이 끝나면 Idle 상태로 한다
+            // 총알 이펙트를 firePos의 위치에 배치한다
+            GameObject GEffect = Instantiate<GameObject>(gunEffect, firePos);
+            Destroy(GEffect, 1.0f);
+        }
+
+
+        void ToIdle()
+        {
             curTime = 0;
-            isCombo1done = true;
+            gunAttack = false;
             bossState = BossPatternState.Idle;
             // 애니메이션 재생
             anim.SetTrigger("Idle");
             attackSubState = AttackSubState.Attack1;
-            isGehrmanAttack = false;
         }
+
 
         // 페이즈 변경 상태
         private void UpdatePhaseChange()
@@ -397,6 +455,15 @@ namespace bloodborne
             }
 
             // 끝나면 다시 상태를 Idle로 만든다. 
+        }
+
+        // 폭발 공격 이펙트 실행하는 이벤트 함수
+        void ActivateEffect()
+        {
+            // 여기서 만든 폭발 이펙트 실행하기(알파이후에..)
+            print("Effect : quick");
+            GameObject quick = Instantiate<GameObject>(quickeningEffect, rayPos);
+            Destroy(quick, 2.0f);
         }
 
         // 무기 교체함수(이벤트 함수임)
@@ -578,16 +645,6 @@ namespace bloodborne
             print("Avoid");
             avoidDir = -transform.forward;
 
-            // 회피상태가 true가 되면
-            // 뒤로 Ray를 쏜다
-            // 맞은 정보를 확인해서, 만약 맞은 곳이 땅 또는 벽이고, 거리가 회피가능 거리보다 크거나 같으면
-            // 뒤로 회피한다
-            // 만약 맞은 거리가 더 작다면
-            // 오른쪽으로 Ray를 쏜다
-            // 만약 맞은 거리가 회피 가능 거리보다 크면,
-            // 오른쪽으로 회피한다
-            // 
-
             // 뒤로 회피
             if (isAvoid == true)
             {
@@ -634,19 +691,7 @@ namespace bloodborne
                         isMoveTargetPos = false;
                     }
                 }
-                // 뒤로 회피                     
-                //transform.position += avoidDir * 50 * Time.deltaTime;
-                //a += 50 * Time.deltaTime;
 
-                //if (a >= 1)
-                //{
-                //    // 정확하게 하려면 보정값을 빼주는 작업이 한 줄 있어야한다
-                //    transform.position -= avoidDir * (a - 1);
-                //    // 1초 후 상태를 idle로
-                //    bossState = BossPatternState.Idle;
-                //    print("Idle");
-                //    avoidcurTime = 0;
-                //}
             }
         }
 
@@ -770,12 +815,6 @@ namespace bloodborne
             print("AnimIdle 호출됨");
         }
 
-        void AnimMove()
-        {
-            // 공격시 이동한다
-
-        }
-
         void AnimHitUp()
         {
             // Idle상태로 한다
@@ -800,16 +839,21 @@ namespace bloodborne
             isGehrmanDie = true;
         }
 
-        // 폭발 공격 이펙트 실행하는 이벤트 함수
-        void ActivateEffect()
+        // 공격 상태 켜고 끄기(한번에 여러번 공격 되지 않도록 모든 공격 애니메이션에서 켜고 끄기
+        void AttackTrue()
         {
-            // 여기서 만든 폭발 이펙트 실행하기(알파이후에..)
-            print("Effect : 나올예정임");
+            isGehrmanAttack = true;
         }
+
+        void AttackFalse()
+        {
+            isGehrmanAttack = false;
+        }
+
 
         private void UpdateSickelCombo1()
         {
-            isGehrmanAttack = true;
+            
             // int로 값을 정해서 그 값에서만 실행되고, 다른 상태일때 다시 초기화되게 바꾸기
 
             curTime += Time.deltaTime;
@@ -900,16 +944,13 @@ namespace bloodborne
                         // 애니메이션 재생
                         anim.SetTrigger("Idle");
                         attackSubState = AttackSubState.Attack1;
-                        isGehrmanAttack = false;
                     }
                     break;
             }
         }
 
-
         private void UpdateSickelCombo2()
         {
-            isGehrmanAttack = true;
             curTime += Time.deltaTime;
             switch (attackSubState)
             {
@@ -982,7 +1023,7 @@ namespace bloodborne
                         bossState = BossPatternState.Idle;
                         anim.SetTrigger("Idle");
                         attackSubState = AttackSubState.Attack1;
-                        isGehrmanAttack = false;
+
                     }
                     break;
             }
@@ -990,7 +1031,7 @@ namespace bloodborne
 
         private void UpdateSickelCombo3()
         {
-            isGehrmanAttack = true;
+
             curTime += Time.deltaTime;
             switch (attackSubState)
             {
@@ -1041,7 +1082,6 @@ namespace bloodborne
                         anim.SetTrigger("Idle");
                         attackSubState = AttackSubState.Attack1;
                         print("3 > idle");
-                        isGehrmanAttack = false;
                     }
                     break;
             }

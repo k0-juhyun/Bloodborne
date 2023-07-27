@@ -342,7 +342,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4988281979517295927}
   - component: {fileID: 2837034185708981775}
-  - component: {fileID: 4726534946946201394}
   m_Layer: 9
   m_Name: SawCleaver
   m_TagString: p_Weapon
@@ -390,19 +389,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 205.0191, y: 99.99996, z: 20}
   m_Center: {x: -117.490074, y: 10.000001, z: 10}
---- !u!114 &4726534946946201394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5652616373703804813}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7090c62c78c47045942ad9bc3fa1aa0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentWeaponDamage: 10
 --- !u!1 &5829316685475470670
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,7 +580,7 @@ Transform:
   m_GameObject: {fileID: 5990100051905930407}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4988281979517295927}
