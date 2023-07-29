@@ -311,16 +311,19 @@ namespace bloodborne
 
         public void HandleKnockBack()
         {
-            if (/*bossAlpha.playerExplosion*/Input.GetKey(KeyCode.H))
+            if (bossAlpha != null)
             {
-                print("knockback");
-                Vector3 backwardDirection = -transform.forward;
-                Vector3 backwardForce = backwardDirection * 10;
+                if (bossAlpha.playerExplosion)
+                {
+                    print("knockback");
+                    Vector3 backwardDirection = -transform.forward;
+                    Vector3 backwardForce = backwardDirection * 10;
 
-                rigidbody.AddForce(backwardForce, ForceMode.Impulse);
-                animatorHandler.PlayTargetAnimation("KnockBack", true);
+                    rigidbody.AddForce(backwardForce, ForceMode.Impulse);
+                    animatorHandler.PlayTargetAnimation("KnockBack", true);
 
-                //bossAlpha.playerExplosion = false;
+                    bossAlpha.playerExplosion = false;
+                }
             }
         }
 

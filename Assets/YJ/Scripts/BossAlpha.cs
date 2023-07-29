@@ -543,6 +543,7 @@ namespace bloodborne
         private void UpdateIdle()           // 공격이 끝나면 idle 상태로 옴
         {
             isAvoid = false;
+            isGehrmanAttack = false;
 
             // 만약 현재 거리가 공격 가능 거리보다 크다면
             if (currDistance > attackDistance)
