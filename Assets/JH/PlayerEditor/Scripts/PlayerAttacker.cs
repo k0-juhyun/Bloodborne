@@ -27,7 +27,7 @@ namespace bloodborne
         {
             if (playerStats.currentStamina <= 0)
                 return;
-
+           
             if (inputHandler.comboFlag)
             {
                 playerAnimatorManager.anim.SetBool("canDoCombo", false);
@@ -35,11 +35,14 @@ namespace bloodborne
                 if (lastAttack == weapon.oneHandLightAttack1)
                 {
                     playerAnimatorManager.PlayTargetAnimation(weapon.oneHandLightAttack2, true);
+                    AudioManager2.instance.PlaySFX("Playerwhip");
+                    
                 }
 
                 if (lastAttack == weapon.oneHandHeavyAttack1)
                 {
                     playerAnimatorManager.PlayTargetAnimation(weapon.oneHandHeavyAttack2, true);
+                    AudioManager2.instance.PlaySFX("PlayerShooting");
                 }
 
             }
@@ -52,10 +55,10 @@ namespace bloodborne
             weaponSlotManager.attackingWeapon = weapon;
             playerAnimatorManager.PlayTargetAnimation(weapon.oneHandLightAttack1, true);
             lastAttack = weapon.oneHandLightAttack1;
-
             AudioManager2.instance.PlaySFX("Playerwhip");
-          
-          
+
+
+
 
         }
         public void HandleHeavyAttack(WeaponItem weapon)

@@ -61,7 +61,7 @@ namespace bloodborne
                 return;
 
             currentHealth = currentHealth - damage;
-
+            AudioManager2.instance.PlaySFX("Player_Hit");
             healthBar.SetCurrentHealth(currentHealth);
 
             animatorHandler.PlayTargetAnimation("Damage", true);
@@ -87,6 +87,7 @@ namespace bloodborne
                 --potionAmount;
                 currentHealth += 10;
                 healthBar.SetCurrentHealth(currentHealth);
+                AudioManager2.instance.PlaySFX("PlayerPotion");
             }
         }
 

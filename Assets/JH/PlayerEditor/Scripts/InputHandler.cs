@@ -91,13 +91,13 @@ namespace bloodborne
 
         private void HandleMoveInput(float delta)
         {
-            horizontal = movementInput.x;
+            horizontal = movementInput.x; 
             vertical = movementInput.y;
             moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal) + Mathf.Abs(vertical));
             mouseX = cameraInput.x;
             mouseY = cameraInput.y;
 
-         
+           
 
         }
 
@@ -109,6 +109,7 @@ namespace bloodborne
 
                 if(playerStats.currentStamina <= 0)
                 {
+                   
                     b_Input = false;
                     sprintFlag = false;
                 }

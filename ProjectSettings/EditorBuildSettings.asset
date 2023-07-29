@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/JH/jh_Scenes/OpeningEndingScene/jh_GermanOpeningScene.unity
     guid: 11994fe4ace28c0469ba155aa10233c3
   - enabled: 1
-    path: Assets/Scenes/YJ_HuntersDream.unity
+    path: Assets/Scenes/HuntersDream_LJ.unity
     guid: 69d173f2492871d49967123c154c7219
   - enabled: 0
     path: Assets/JH/jh_Scenes/jh_yj_test_HuntersDream.unity

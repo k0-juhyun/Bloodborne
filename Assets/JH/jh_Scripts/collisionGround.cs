@@ -44,7 +44,7 @@ namespace bloodborne
         }
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("PlayerFoot"))
+            if (other.CompareTag("playerFoot"))
             {
                 AudioManager2.instance.PlaySFX("PlayerWalk");
                 Debug.Log("PlayerFoot과 충돌 발생!");
