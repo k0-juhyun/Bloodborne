@@ -377,14 +377,12 @@ namespace bloodborne
 
             // Load Prefabs
             SpecialPattern1[1].SetActive(true);
-            SpecialPattern1[2].SetActive(true);
 
             yield return new WaitForSeconds(2f);
 
             // lensDistortion off
             lensDistortion.active = false;
 
-            SpecialPattern1[2].SetActive(false);
             SpecialPattern1[1].SetActive(false);
 
             // Aniamtion Trigger
