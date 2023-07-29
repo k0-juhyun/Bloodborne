@@ -39,10 +39,10 @@ namespace bloodborne
 
         private void OnTriggerEnter(Collider other)
         {
-            if(other.CompareTag("playerFoot"))
-            {
-                soundManager.PlaySFX(SoundManager.SoundEffectType.Player, 2);
-            }
+            //if(other.CompareTag("playerFoot"))
+            //{
+            //    soundManager.PlaySFX(SoundManager.SoundEffectType.Player, 2);
+            //}
         }
         IEnumerator camShakeOff()
         {

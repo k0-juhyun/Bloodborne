@@ -55,6 +55,13 @@ namespace bloodborne
             return maxStamina;
         }
 
+        public int SetCurrentHealthFromBoss()
+        {
+            currentHealth = 1;
+            healthBar.SetCurrentHealth(currentHealth);
+            return currentHealth;
+        }
+
         public void TakeDamage(int damage)
         {
             if (playerManager.isInvulnerable)

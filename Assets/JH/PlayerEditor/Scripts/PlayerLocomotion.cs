@@ -25,6 +25,7 @@ namespace bloodborne
 
         public new Rigidbody rigidbody;
         public GameObject normalCamera;
+        public bool canDrinkPotions = true;
 
         [Header("Ground & Air Detection Stats")]
         [SerializeField]
@@ -329,7 +330,7 @@ namespace bloodborne
 
         public void HandleDrinkPotion()
         {
-            if (inputHandler.potion_Input && playerStats.potionAmount > 0)
+            if (inputHandler.potion_Input && playerStats.potionAmount > 0 && canDrinkPotions)
             {
                 animatorHandler.PlayTargetAnimation("Potion", true);
                 playerStats.RegenerateHealth();
@@ -354,6 +355,11 @@ namespace bloodborne
                 if (bossAi.moonpresenceAttack)
                 {
                     if (other.CompareTag("Hand"))
+                    {
+                        playerStats.TakeDamage(5);
+                    }
+
+                    else if (other.CompareTag("Tail") && bossAi.attackSubStateMachine == bossAI.AttackSubStateMachine.Pattern6)
                     {
                         playerStats.TakeDamage(5);
                     }

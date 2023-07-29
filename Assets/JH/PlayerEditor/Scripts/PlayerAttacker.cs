@@ -75,7 +75,10 @@ namespace bloodborne
             {
                 if(hitInfo.collider.CompareTag("Boss") || hitInfo.collider.CompareTag("Hand"))
                 {
-                    bossAi.isBulletHit = true;
+                    if(bossAi != null)
+                    {
+                        bossAi.isBulletHit = true;
+                    }
                 }
             }
 

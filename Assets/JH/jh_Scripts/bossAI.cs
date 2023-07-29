@@ -10,6 +10,9 @@ namespace bloodborne
     public class bossAI : MonoBehaviour
     {
         PlayerAnimatorManager playerAnimatorManager;
+        PlayerLocomotion playerLocomotion;
+        PlayerStats playerStats;
+
         public bool moonpresenceAttack;
         public bool isDie;
         public bool isFinished;
@@ -30,6 +33,7 @@ namespace bloodborne
         private GameObject dieEffect;
         private bool isReact;
         private int hitCount = 0;
+        private float potionBanTime = 0;
 
         [Header("SpecialPattern")]
         public GameObject[] SpecialPattern1;
@@ -71,7 +75,7 @@ namespace bloodborne
         public StateMachine stateMachine = StateMachine.IdleState;
 
         // Distance playr & moonpresence
-        private float MoveDistance;
+        private float DistanceFromPlayer;
 
         // Delay for Updating StateMachine
         private WaitForSeconds UpdateStateMachineDelay;
@@ -89,8 +93,7 @@ namespace bloodborne
             Pattern3,
             Pattern4,
             Pattern5,
-            Pattern6,
-            SpecialPattern1
+            Pattern6
         }
         public AttackSubStateMachine attackSubStateMachine = AttackSubStateMachine.AttackDelay;
         #endregion
@@ -110,6 +113,8 @@ namespace bloodborne
 
         private void Start()
         {
+            playerStats = FindObjectOfType<PlayerStats>();
+            playerLocomotion = FindObjectOfType<PlayerLocomotion>();
             playerAnimatorManager = FindObjectOfType<PlayerAnimatorManager>();
         }
         private void Awake()
@@ -165,7 +170,7 @@ namespace bloodborne
             while (!isDie)
             {
                 // Update Distance between player & thisobj
-                MoveDistance = Vector3.Distance(playerPos.position, thisPos.position);
+                DistanceFromPlayer = Vector3.Distance(playerPos.position, thisPos.position);
 
                 // Die state -> Stop Coroutine
                 //if (stateMachine == StateMachine.DieState)
@@ -207,6 +212,15 @@ namespace bloodborne
                     AnimatorTrigger("SpecialPattern2Start");
                 }
                 #endregion
+
+                if (playerLocomotion.canDrinkPotions == false)
+                {
+                    potionBanTime += Time.deltaTime;
+                    if(potionBanTime > 10)
+                    {
+                        playerLocomotion.canDrinkPotions = true; 
+                    }
+                }
 
                 yield return UpdateStateMachineDelay;
             }
@@ -271,7 +285,7 @@ namespace bloodborne
             agent.SetDestination(target.transform.position);
 
             // Move Close State Change to Attack
-            if (MoveDistance < AttackRange)
+            if (DistanceFromPlayer < AttackRange)
             {
                 stateMachine = StateMachine.AttackState;
 
@@ -367,16 +381,19 @@ namespace bloodborne
             // Set true value -> Dont React
             isSpecialPattern1InProgress = true;
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
+
+            SpecialPattern1[1].SetActive(true);
 
             // Set player hp -> 1
-            playerHP1 = true;
+            playerStats.SetCurrentHealthFromBoss();
+            yield return new WaitForSeconds(1f);
 
             // lensDistortion on
             lensDistortion.active = true;
 
             // Load Prefabs
-            SpecialPattern1[1].SetActive(true);
+            SpecialPattern1[2].SetActive(true);
 
             yield return new WaitForSeconds(2f);
 
@@ -384,6 +401,7 @@ namespace bloodborne
             lensDistortion.active = false;
 
             SpecialPattern1[1].SetActive(false);
+            SpecialPattern1[2].SetActive(false);
 
             // Aniamtion Trigger
             AnimatorTrigger("SpecialPattern1Finish");
@@ -438,6 +456,12 @@ namespace bloodborne
 
             SpecialPattern2[0].SetActive(true);
 
+            if(DistanceFromPlayer <= 10)
+            {
+                playerLocomotion.canDrinkPotions = false;
+            }
+
+
             yield return new WaitForSeconds(3f);
 
             animator.speed = 1;
@@ -449,6 +473,8 @@ namespace bloodborne
             yield return new WaitForSeconds(2f);
 
             SpecialPattern2[0].SetActive(false);
+
+            playerLocomotion.canDrinkPotions = true;
         }
 
         private void SpecialPattern2AnimEffectOn()
@@ -474,7 +500,7 @@ namespace bloodborne
             attackInProgress = false;
 
             // Out of Attack Range
-            if (MoveDistance > AttackRange)
+            if (DistanceFromPlayer > AttackRange)
             {
                 stateMachine = StateMachine.MoveState;
 
