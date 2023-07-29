@@ -57,6 +57,7 @@ namespace bloodborne
         RaycastHit hit;                     // 레이캐스트 히트
         public Transform rayPos;            // ray 쏘는 곳, 게르만 중심
         public Transform firePos;           // 총 쏘는 곳(이펙트
+        public Transform effectPos;         // (이펙트
         public GameObject sickle;           // 무기
         public GameObject blade;            // 무기
         public GameObject gun;              // 무기
@@ -127,6 +128,7 @@ namespace bloodborne
         public bool gunAttack = false;                      // 총공격 상태 확인
         public bool playerExplosion = false;                // 플레이어가 Quickening 폭발 공격 맞았음
         public bool isPhaseChangeQ = false;                 // 페이즈 전환 폭발
+        public bool isSword1done = false;                   // 칼공격..패턴1
         public bool a = false;                              // sickle2 에서 플레이어 위치 한번만 계산
 
 
@@ -242,6 +244,8 @@ namespace bloodborne
                 case BossPatternState.SwordCombo2:
                     UpdateSwordCombo2();
                     break;
+                case BossPatternState.Die:
+                    break;
             }
 
             switch (bossPhase)
@@ -268,12 +272,13 @@ namespace bloodborne
         {
             // 페이즈 3 일때 계속 할일
             // 불꽃 이펙트를 계속 생성한다
+
             // 오브젝트 풀로 관리한다
             GameObject fireEffect = objectPool.GetDeactiveObject();
             if (fireEffect != null)
             {
-                fireEffect.GetComponent<FireAutoDeacitve>().Play(2);
-
+                fireEffect.transform.position = effectPos.transform.position;
+                fireEffect.GetComponent<FireAutoDeacitve>().Play(1);
             }
         }
 
@@ -316,6 +321,7 @@ namespace bloodborne
                     {
                         // 끝나면 총공격을 호출한다
                         bossState = BossPatternState.GunCombo;
+                        isSword1done = false;
                     }
                     break;
             }
@@ -353,6 +359,7 @@ namespace bloodborne
                     {
                         // 끝나면 총공격을 호출한다
                         bossState = BossPatternState.GunCombo;
+                        isSword1done = true;
                     }
                     break;
 
@@ -361,7 +368,7 @@ namespace bloodborne
 
         private void UpdateGunCombo()
         {
-            print("총공격 콤보");
+            //print("총공격 콤보");
             // 2페이즈부터 등장한다
             // 칼콤보 끝나면 무조건 총으로 오기
             // substate필요 없을듯. 총만 쏘면됨
@@ -369,6 +376,7 @@ namespace bloodborne
             // 총 공격 부울값을 만들어서, false이면
             if (gunAttack == false)
             {
+                print("총공격 콤보");
                 // 왼손에 든 총을 발사하는 애니메이션을 실행한다
                 anim.SetTrigger("Gun");
                 gunAttack = true;
@@ -379,17 +387,20 @@ namespace bloodborne
         // 총알 발사 이벤트 함수
         void GunFire()
         {
+            print("c총");
             // 레이를 쏜다
             Ray ray = new Ray(rayPos.position, transform.forward);
             // 레이가 부딪힌 대상의 정보를 저장
             RaycastHit hitInfo = new RaycastHit();
-
+            Debug.DrawRay(rayPos.position, transform.forward * currDistance, Color.blue);
             if (Physics.Raycast(ray, out hitInfo))
             {
-                if (hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
+                print("ccc");
+                if (hitInfo.collider.CompareTag("Player"))
                 {
                     // 플레이어에게 너 맞았다고 한다?
                     playerExplosion = true;
+                    print("총공격맞음");
                 }
             }
             // 이벤트 함수로 이펙트 실행
@@ -445,12 +456,13 @@ namespace bloodborne
                 // 한번만 호출해야함
                 if (isPhaseChangeQ == false)
                 {
+                    bossState = BossPatternState.Quickening;
                     //애니메이션을 실행한다
                     anim.SetTrigger("Quickening");
                     //이펙트를 실행한다 = 이벤트 함수로 할까ㅇㅇ
                     // 한번만 호출하지만 Update로 작동해야함. 할거 다 끝나고 true로 하기
-                    isPhaseChangeQ = true;
                     //Quickening();
+                    isPhaseChangeQ = true;
                 }
             }
 
@@ -480,16 +492,19 @@ namespace bloodborne
         // 폭발 공격 함수 > 상태로 만들어서 주기적으로 호출한다
         private void UpdateQuickening()
         {
+            print("qu");
             // 폭발 공격 상태
             if (isQuickening == false)
             {
+                print("wwi");
                 // 폭발 공격 애니메이션을 실행한다(한번만 호출
                 anim.SetTrigger("Quickening");
                 // 폭발 공격 이펙트를 실행한다(애니메이션의 이벤트 함수에서(상태 아래에 만들어놓음 Activeeffect
                 // 폭발 공격 함수를 호출한다
-                Quickening();
-                // 폭발 공격 상태를 true로 한다
+                //Quickening();
                 isQuickening = true;
+                // 폭발 공격 상태를 true로 한다
+
             }
 
             // 만약 폭발 공격 상태일때 플레이어가 폭발 공격 범위 안에 있다면
@@ -498,22 +513,31 @@ namespace bloodborne
 
         private void Quickening()
         {
+            print("폭발공격중");
             // 만약 isQuickening = true 일때, 플레이어가 충돌했다면(overlapSpher.layer로 비교)
-            int layer = 1 << LayerMask.NameToLayer("Player");
-            //게르만의 중심에서 overlapSpher를 만든다
-            Collider[] cols = Physics.OverlapSphere(rayPos.position, quickeningDis, layer);
-            if (cols.Length > 0)
-            {
-                // 플레이어에서 이동하기로 함
-                // 여기서 부울 값이나 상태 함수를 호출할 것.
-                playerExplosion = true;
-                //player.instance.inputHandler.kn_input = true;
-                // 플레이어의 피격시 움직임 못하게 하는 부울 상태를 트루로 한다(플레이어에서?
+            //int layer = 1 << LayerMask.NameToLayer("Player");
+            ////게르만의 중심에서 overlapSpher를 만든다
+            //Collider[] cols = Physics.OverlapSphere(rayPos.position, quickeningDis, layer);
+            //print("들어옴" + cols);
+            //if (cols.Length > 0)
+            //{
+            //    print("ON");
+            //    // 플레이어에서 이동하기로 함
+            //    // 여기서 부울 값이나 상태 함수를 호출할 것.
+            //    playerExplosion = true;
+            //    //player.instance.inputHandler.kn_input = true;
+            //    // 플레이어의 피격시 움직임 못하게 하는 부울 상태를 트루로 한다(플레이어에서?
 
+            //}
+            if (currDistance <= 5)
+            {
+                print("ON");
+                playerExplosion = true;
             }
             //1초 후에 사라진다
             //상태가 idle 로 바뀐다
             //isQuickening = true 로 한다
+            
         }
 
         private void UpdateIdle()           // 공격이 끝나면 idle 상태로 옴
@@ -529,24 +553,39 @@ namespace bloodborne
                 anim.SetTrigger("Move");
             }
             // 만약 현재 거리가 공격 가능 범위보다 작거나 같다면, 그 거리가 피격 거리보다 크다면
-            else if (currDistance <= attackDistance && currDistance >= hitDistance)
+            else if (currDistance <= attackDistance && currDistance >= hitDistance && bossState != BossPatternState.Die)
             {
-                if (isCombo1done == false)
+                if (bossPhase == BossPhase.Phase1)
                 {
-                    SickelC1();
+                    if (isCombo1done == false)
+                    {
+                        SickelC1();
+                    }
+
+                    else if (isCombo1done == true && isCombo2done == false)
+                    {
+                        SickelC2();
+                    }
+
+                    else if (isCombo2done == true && isCombo3done == false)
+                    {
+                        SickelC3();
+                    }
                 }
 
-                else if (isCombo1done == true && isCombo2done == false)
+                else
                 {
-                    SickelC2();
-                }
+                    //그냥 하나만들자..
+                    if (isSword1done == false)
+                    {
+                        Sword01();
+                    }
 
-                else if (isCombo2done == true && isCombo3done == false)
-                {
-                    SickelC3();
+                    else if (isSword1done == true)
+                    {
+                        Sword02();
+                    }
                 }
-                // 여기 어떻게 하지??? 부울로 하면 부울이 너무 많아지는데...
-                // int 만들어서 할까..???
 
                 print("ldel > Attack");
             }
@@ -642,7 +681,7 @@ namespace bloodborne
             avoidcurTime += Time.deltaTime;
             // 회피 상태임
             isAvoid = true;
-            print("Avoid");
+            //print("Avoid");
             avoidDir = -transform.forward;
 
             // 뒤로 회피
@@ -810,8 +849,11 @@ namespace bloodborne
         // 애니메이션 이벤트 함수
         void AnimIdle()
         {
+            curTime = 0;
+            isQuickening = false;
             // Idle상태로 한다
             bossState = BossPatternState.Idle;
+            attackSubState = AttackSubState.Attack1;
             print("AnimIdle 호출됨");
         }
 

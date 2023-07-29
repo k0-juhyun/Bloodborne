@@ -12,7 +12,7 @@ namespace bloodborne
     {
 
         private GameObject phase3Effect;    // 페이즈3 불꽃 이펙트 프리팹
-        public Transform GehrmanPos;        // 게르만 위치
+        //public Transform GehrmanPos;        // 게르만 위치
 
 
         public int poolCount = 10;
@@ -25,7 +25,7 @@ namespace bloodborne
             pool = new List<GameObject>();
             for (int i = 0; i < poolCount; i++)
             {
-                GameObject obj = Instantiate(phase3Effect, GehrmanPos);
+                GameObject obj = Instantiate(phase3Effect);
                 obj.SetActive(false);
                 pool.Add(obj);
             }

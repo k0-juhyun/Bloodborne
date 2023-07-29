@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 53641725113086609}
   - component: {fileID: 4402328996033935566}
   - component: {fileID: 5574749669027990473}
+  - component: {fileID: -149402816004087261}
   m_Layer: 0
   m_Name: Phase3 Fire Particle System
   m_TagString: Untagged
@@ -4812,3 +4813,15 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &-149402816004087261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8625834105390064780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cad9aac832db8c42b2319c56b91370e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
