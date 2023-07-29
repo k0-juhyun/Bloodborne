@@ -14,6 +14,7 @@ namespace bloodborne
         Transform cameraObject;
         InputHandler inputHandler;
         PlayerStats playerStats;
+        BossManager bossManager;
 
         public Vector3 moveDirection;
 
@@ -60,6 +61,7 @@ namespace bloodborne
 
         private void Start()
         {
+            bossManager = FindObjectOfType<BossManager>();
             playerStats = GetComponent<PlayerStats>();
             playerManager = GetComponent<PlayerManager>();
             rigidbody = GetComponent<Rigidbody>();
@@ -111,7 +113,10 @@ namespace bloodborne
                         rotationDirection.Normalize();
                         Quaternion tr = Quaternion.LookRotation(rotationDirection);
                         Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, rotationSpeed * Time.deltaTime);
-                        transform.rotation = targetRotation;
+                        if (tr != null)
+                        {
+                            transform.rotation = targetRotation;
+                        }
                     }
                 }
 
@@ -306,16 +311,16 @@ namespace bloodborne
 
         public void HandleKnockBack()
         {
-            if (bossAlpha.playerExplosion)
+            if (/*bossAlpha.playerExplosion*/Input.GetKey(KeyCode.H))
             {
                 print("knockback");
                 Vector3 backwardDirection = -transform.forward;
-                Vector3 backwardForce = backwardDirection * 100;
+                Vector3 backwardForce = backwardDirection * 10;
 
                 rigidbody.AddForce(backwardForce, ForceMode.Impulse);
                 animatorHandler.PlayTargetAnimation("KnockBack", true);
 
-                bossAlpha.playerExplosion = false;
+                //bossAlpha.playerExplosion = false;
             }
         }
 

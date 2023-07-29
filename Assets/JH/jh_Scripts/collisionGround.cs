@@ -6,13 +6,14 @@ namespace bloodborne
 {
     public class collisionGround : MonoBehaviour
     {
+        SoundManager soundManager;
         private GameObject dustEffect;
         public GameObject camShake;
 
         private void Awake()
         {
+            soundManager = FindObjectOfType<SoundManager>();
             dustEffect = Resources.Load<GameObject>("DustSmoke");
-
         }
         private void OnCollisionEnter(Collision coll)
         {
@@ -36,6 +37,13 @@ namespace bloodborne
             }
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            if(other.CompareTag("playerFoot"))
+            {
+                soundManager.PlaySFX(SoundManager.SoundEffectType.Player, 2);
+            }
+        }
         IEnumerator camShakeOff()
         {
             yield return new WaitForSeconds(1);

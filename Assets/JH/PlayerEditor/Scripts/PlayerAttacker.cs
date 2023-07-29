@@ -11,11 +11,13 @@ namespace bloodborne
         WeaponSlotManager weaponSlotManager;
         PlayerStats playerStats;
         bossAI bossAi;
+        SoundManager soundManager;
 
         public string lastAttack;
 
         private void Awake()
         {
+            soundManager = FindObjectOfType<SoundManager>();
             playerStats = GetComponent<PlayerStats>();
             playerAnimatorManager = GetComponentInChildren<PlayerAnimatorManager>();
             weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
@@ -48,7 +50,7 @@ namespace bloodborne
         {
             if (playerStats.currentStamina <= 0)
                 return;
-
+            soundManager.PlaySFX(SoundManager.SoundEffectType.Player, 5);
             weaponSlotManager.attackingWeapon = weapon;
             playerAnimatorManager.PlayTargetAnimation(weapon.oneHandLightAttack1, true);
             lastAttack = weapon.oneHandLightAttack1;

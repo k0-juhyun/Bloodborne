@@ -10,6 +10,7 @@ TagManager:
   - Boss
   - Weapon
   - Tail
+  - playerFoot
   layers:
   - Default
   - TransparentFX

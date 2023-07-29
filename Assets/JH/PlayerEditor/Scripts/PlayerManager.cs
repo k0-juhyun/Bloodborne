@@ -42,6 +42,7 @@ namespace bloodborne
             inputHandler.TickInput(delta);
             playerLocomotion.HandleRollingAndSprinting(delta);
             playerLocomotion.HandleDrinkPotion();
+            playerLocomotion.HandleKnockBack();
             playerStats.RegenerateStamina();
             playerAnimatorManager.canRotate = anim.GetBool("canRotate");
         }
