@@ -55,13 +55,6 @@ namespace bloodborne
             return maxStamina;
         }
 
-        public int SetCurrentHealthFromBoss()
-        {
-            currentHealth = 1;
-            healthBar.SetCurrentHealth(currentHealth);
-            return currentHealth;
-        }
-
         public void TakeDamage(int damage)
         {
             if (playerManager.isInvulnerable)
@@ -72,7 +65,7 @@ namespace bloodborne
             healthBar.SetCurrentHealth(currentHealth);
 
             animatorHandler.PlayTargetAnimation("Damage", true);
-
+            AudioManager2.instance.PlaySFX("Player_Hit");
             if (currentHealth <= 0)
             {
                 currentHealth = 0;

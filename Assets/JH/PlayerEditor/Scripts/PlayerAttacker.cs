@@ -10,7 +10,7 @@ namespace bloodborne
         InputHandler inputHandler;
         WeaponSlotManager weaponSlotManager;
         PlayerStats playerStats;
-        bossAI bossAi;
+        AudioManager2 theAudioManager;
 
         public string lastAttack;
 
@@ -20,7 +20,7 @@ namespace bloodborne
             playerAnimatorManager = GetComponentInChildren<PlayerAnimatorManager>();
             weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
             inputHandler = GetComponent<InputHandler>();
-            bossAi = FindObjectOfType<bossAI>();
+            theAudioManager = AudioManager2.instance;
         }
 
         public void HandleWeaponCombo(WeaponItem weapon)
@@ -48,46 +48,25 @@ namespace bloodborne
         {
             if (playerStats.currentStamina <= 0)
                 return;
+
             weaponSlotManager.attackingWeapon = weapon;
             playerAnimatorManager.PlayTargetAnimation(weapon.oneHandLightAttack1, true);
             lastAttack = weapon.oneHandLightAttack1;
+
+            AudioManager2.instance.PlaySFX("Playerwhip");
+          
+          
+
         }
         public void HandleHeavyAttack(WeaponItem weapon)
         {
             if (playerStats.currentStamina <= 0)
                 return;
-
+            Debug.Log("fdffd");
             weaponSlotManager.attackingWeapon = weapon;
             playerAnimatorManager.PlayTargetAnimation(weapon.oneHandHeavyAttack1, true);
             lastAttack = weapon.oneHandHeavyAttack1;
+            AudioManager2.instance.PlaySFX("PlayerShooting");
         }
-        public void HandlePistolAttack(GameObject pistol)
-        {
-            if (pistol == null)
-                return;
-
-            float raycastDistance = 10f;
-
-            Ray ray = new Ray(pistol.transform.position, pistol.transform.forward);
-            RaycastHit hitInfo;
-
-            if (Physics.Raycast(ray, out hitInfo, raycastDistance))
-            {
-                if(hitInfo.collider.CompareTag("Boss") || hitInfo.collider.CompareTag("Hand"))
-                {
-                    if(bossAi != null)
-                    {
-                        bossAi.isBulletHit = true;
-                    }
-                }
-            }
-
-            Debug.DrawRay(ray.origin, ray.direction * raycastDistance, Color.red, 1f);
-        }
-        public GameObject HandleShootPoint()
-        {
-            return GameObject.Find("MuzzlePoint");
-        }
-
     }
 }

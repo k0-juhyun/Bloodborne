@@ -14,7 +14,6 @@ namespace bloodborne
         Transform cameraObject;
         InputHandler inputHandler;
         PlayerStats playerStats;
-        BossManager bossManager;
 
         public Vector3 moveDirection;
 
@@ -25,7 +24,6 @@ namespace bloodborne
 
         public new Rigidbody rigidbody;
         public GameObject normalCamera;
-        public bool canDrinkPotions = true;
 
         [Header("Ground & Air Detection Stats")]
         [SerializeField]
@@ -62,7 +60,6 @@ namespace bloodborne
 
         private void Start()
         {
-            bossManager = FindObjectOfType<BossManager>();
             playerStats = GetComponent<PlayerStats>();
             playerManager = GetComponent<PlayerManager>();
             rigidbody = GetComponent<Rigidbody>();
@@ -76,6 +73,7 @@ namespace bloodborne
 
             playerManager.isGrounded = true;
             ignoreForGroundCheck = ~(1 << 8 | 1 << 11);
+            
         }
 
         #region Movement
@@ -114,10 +112,7 @@ namespace bloodborne
                         rotationDirection.Normalize();
                         Quaternion tr = Quaternion.LookRotation(rotationDirection);
                         Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, rotationSpeed * Time.deltaTime);
-                        if (tr != null)
-                        {
-                            transform.rotation = targetRotation;
-                        }
+                        transform.rotation = targetRotation;
                     }
                 }
 
@@ -312,28 +307,27 @@ namespace bloodborne
 
         public void HandleKnockBack()
         {
-            if (bossAlpha != null)
+            if (bossAlpha.playerExplosion)
             {
-                if (bossAlpha.playerExplosion)
-                {
-                    print("knockback");
-                    Vector3 backwardDirection = -transform.forward;
-                    Vector3 backwardForce = backwardDirection * 10;
+                Vector3 backwardDirection = -transform.forward;
+                Vector3 backwardForce = backwardDirection * 100;
 
-                    rigidbody.AddForce(backwardForce, ForceMode.Impulse);
-                    animatorHandler.PlayTargetAnimation("KnockBack", true);
+                rigidbody.AddForce(backwardForce, ForceMode.Impulse);
+                animatorHandler.PlayTargetAnimation("KnockBack", true);
 
-                    bossAlpha.playerExplosion = false;
-                }
+                bossAlpha.playerExplosion = false;
             }
         }
 
         public void HandleDrinkPotion()
         {
-            if (inputHandler.potion_Input && playerStats.potionAmount > 0 && canDrinkPotions)
+            if (inputHandler.potion_Input && playerStats.potionAmount > 0)
             {
                 animatorHandler.PlayTargetAnimation("Potion", true);
                 playerStats.RegenerateHealth();
+
+               
+
             }
         }
 
@@ -346,6 +340,7 @@ namespace bloodborne
                     if (other.CompareTag("Weapon"))
                     {
                         playerStats.TakeDamage(10);
+
                     }
                 }
             }
@@ -355,11 +350,6 @@ namespace bloodborne
                 if (bossAi.moonpresenceAttack)
                 {
                     if (other.CompareTag("Hand"))
-                    {
-                        playerStats.TakeDamage(5);
-                    }
-
-                    else if (other.CompareTag("Tail") && bossAi.attackSubStateMachine == bossAI.AttackSubStateMachine.Pattern6)
                     {
                         playerStats.TakeDamage(5);
                     }

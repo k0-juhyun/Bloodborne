@@ -43,7 +43,8 @@ namespace bloodborne
 
         Vector2 movementInput;
         Vector2 cameraInput;
-
+        
+       
         private void Awake()
         {
             playerStats = GetComponent<PlayerStats>();
@@ -95,6 +96,9 @@ namespace bloodborne
             moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal) + Mathf.Abs(vertical));
             mouseX = cameraInput.x;
             mouseY = cameraInput.y;
+
+         
+
         }
 
         public void HandleRollInput(float delta)

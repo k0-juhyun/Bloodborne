@@ -10,7 +10,6 @@ namespace bloodborne
         InputHandler inputHandler;
         PlayerLocomotion playerLocomotion;
         PlayerManager playerManager;
-        PlayerAttacker playerAttacker;
 
         int vertical;
         int horizontal;
@@ -19,7 +18,6 @@ namespace bloodborne
         public bool isAttack;
         public void Initialize()
         {
-            playerAttacker = GetComponentInParent<PlayerAttacker>();
             playerManager = GetComponentInParent<PlayerManager>();
             anim = GetComponent<Animator>();
             inputHandler = GetComponentInParent<InputHandler>();
@@ -148,11 +146,6 @@ namespace bloodborne
         public void DisableIsInvulnerable()
         {
             anim.SetBool("isInvulnerable", false);
-        }
-
-        public void EnableFireBullet()
-        {
-            playerAttacker.HandlePistolAttack(playerAttacker.HandleShootPoint());
         }
     }
 }

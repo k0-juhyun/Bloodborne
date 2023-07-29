@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Specialeffect2 : MonoBehaviour
@@ -20,6 +22,6 @@ public class Specialeffect2 : MonoBehaviour
         RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRect, screenPos, null, out anchoredPos);
 
         // 파티클 시스템의 위치를 부드럽게 업데이트
-        particleRect.anchoredPosition = Vector2.Lerp(particleRect.anchoredPosition, anchoredPos, Time.deltaTime * 10f);
+        particleRect.anchoredPosition = Vector2.Lerp(particleRect.anchoredPosition, anchoredPos, Time.deltaTime * 5f);
     }
 }
