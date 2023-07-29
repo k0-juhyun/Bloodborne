@@ -10,6 +10,9 @@ namespace bloodborne
     public class bossAI : MonoBehaviour
     {
         PlayerAnimatorManager playerAnimatorManager;
+        PlayerLocomotion playerLocomotion;
+        PlayerStats playerStats;
+
         public bool moonpresenceAttack;
         public bool isDie;
         public bool isFinished;
@@ -110,8 +113,11 @@ namespace bloodborne
 
         private void Start()
         {
+            playerStats = FindObjectOfType<PlayerStats>();
+            playerLocomotion = FindObjectOfType<PlayerLocomotion>();
             playerAnimatorManager = FindObjectOfType<PlayerAnimatorManager>();
         }
+
         private void Awake()
         {
             sliderHp.maxValue = maxHp;
@@ -168,8 +174,8 @@ namespace bloodborne
                 MoveDistance = Vector3.Distance(playerPos.position, thisPos.position);
 
                 // Die state -> Stop Coroutine
-                //if (stateMachine == StateMachine.DieState)
-                //    yield break;
+                if (stateMachine == StateMachine.DieState)
+                    yield break;
 
                 #region special pattern 1
                 // special pattern1 Active Condition
@@ -377,6 +383,9 @@ namespace bloodborne
 
             // Load Prefabs
             SpecialPattern1[1].SetActive(true);
+            SpecialPattern1[2].SetActive(true);
+
+            playerStats.SetCurrentHpOne();
 
             yield return new WaitForSeconds(2f);
 
@@ -384,6 +393,7 @@ namespace bloodborne
             lensDistortion.active = false;
 
             SpecialPattern1[1].SetActive(false);
+            SpecialPattern1[2].SetActive(false);
 
             // Aniamtion Trigger
             AnimatorTrigger("SpecialPattern1Finish");
@@ -437,6 +447,11 @@ namespace bloodborne
             yield return new WaitForSeconds(2f);
 
             SpecialPattern2[0].SetActive(true);
+
+            if(MoveDistance < 10)
+            {
+                playerLocomotion.canDrinkPotion = false;
+            }
 
             yield return new WaitForSeconds(3f);
 

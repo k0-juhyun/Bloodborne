@@ -106,5 +106,12 @@ namespace bloodborne
                 }
             }
         }
+
+        public int SetCurrentHpOne()
+        {
+            currentHealth = 1;
+            healthBar.SetCurrentHealth(currentHealth);
+            return currentHealth;
+        }
     }
 }

@@ -25,6 +25,8 @@ namespace bloodborne
 
         public new Rigidbody rigidbody;
         public GameObject normalCamera;
+        public bool canDrinkPotion = true;
+        float potionBanTime = 0;
 
         [Header("Ground & Air Detection Stats")]
         [SerializeField]
@@ -329,7 +331,17 @@ namespace bloodborne
 
         public void HandleDrinkPotion()
         {
-            if (inputHandler.potion_Input && playerStats.potionAmount > 0)
+            if(canDrinkPotion == false)
+            {
+                potionBanTime += Time.deltaTime;
+
+                if(potionBanTime > 10f)
+                {
+                    canDrinkPotion = true;
+                }
+            }
+
+            else if (inputHandler.potion_Input && playerStats.potionAmount > 0 && canDrinkPotion)
             {
                 animatorHandler.PlayTargetAnimation("Potion", true);
                 playerStats.RegenerateHealth();
