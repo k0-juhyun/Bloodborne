@@ -17,5 +17,11 @@ namespace bloodborne
             yield return new WaitForSeconds(time);
             gameObject.SetActive(false);
         }
+
+        public void objActiveFalse()
+        {
+            gameObject.SetActive(false);
+        }
+
     }
 }

@@ -10,10 +10,19 @@ namespace bloodborne
     public class BossAlpha : MonoBehaviour
     {
         PlayerAnimatorManager animatorHandler;        // 플레이어 애니메이터 조정
+        PlayerLocomotion playerLocomotion;          // 플레이어 날라가는 상태
         ObjectPool objectPool;                  // 이펙트용 오브젝트 풀
+        FireAutoDeacitve fire;                  // 불 이펙트
         NavMeshAgent agent;                     // 길찾기
         Animator anim;                          // 애니메이터
-        
+        //GehrmanSoundManager soundManager;              // 사운드 매니저
+
+        //[SerializeField]
+        //private string HitSound;                     // 피격 피 터지는 소리 사운드
+        //[SerializeField]
+        //private string MoveSound;                   // 이동 바람 사운드
+
+
         BossHP bossHP;                          // 보스 hp
 
         public enum BossPatternState               // 열거형, 보스 패턴 상태
@@ -62,8 +71,8 @@ namespace bloodborne
         public GameObject blade;            // 무기
         public GameObject gun;              // 무기
         private GameObject bloodEffect;     // 피 프리팹
-        private GameObject dieEffect;       // 죽음 이펙트 프리팹
-        //private GameObject phase3Effect;    // 페이즈3 불꽃 이펙트 프리팹
+        public GameObject dieEffect;       // 죽음 이펙트 프리팹
+        public GameObject phase3Effect;    // 페이즈3 불꽃 이펙트 프리팹
         private GameObject quickeningEffect;// 폭발공격 이펙트 프리팹
         private GameObject gunEffect;       // 총공격 이펙트 프리팹
         public GameObject[] UI;             // 죽음 ui 
@@ -126,10 +135,12 @@ namespace bloodborne
         public bool isPhase3 = false;                       // 페이즈 3 상태 확인
         public bool isQuickening = false;                   // Quickening 폭발 공격
         public bool gunAttack = false;                      // 총공격 상태 확인
-        public bool playerExplosion = false;                // 플레이어가 Quickening 폭발 공격 맞았음
+        //public bool playerExplosion = false;                // 플레이어가 Quickening 폭발 공격 맞았음
         public bool isPhaseChangeQ = false;                 // 페이즈 전환 폭발
         public bool isSword1done = false;                   // 칼공격..패턴1
         public bool a = false;                              // sickle2 에서 플레이어 위치 한번만 계산
+        public bool isGunHit = false;                       // 플레이어의 총에 맞은 상태
+        public bool isMove = false;                         // 게르만 이동상태 phase 3 이펙트용
 
 
         // Start is called before the first frame update
@@ -142,12 +153,15 @@ namespace bloodborne
             bossHP = GetComponent<BossHP>();                            // 보스 hp를 받아오자
             bossPhase = BossPhase.Phase1;                               // 시작시 보스 페이즈를 1로 설정한다
             bloodEffect = Resources.Load<GameObject>("BloodEffect_Gehrman");        // 블러드 이펙트 불러오기
-            dieEffect = Resources.Load<GameObject>("DieEffect_Gehrman");            // 죽음 이펙트 불러오기
+            //dieEffect = Resources.Load<GameObject>("DieEffect_Gehrman");            // 죽음 이펙트 불러오기
             //phase3Effect = Resources.Load<GameObject>("Phase3 Fire Particle System");    // 페이즈3 이펙트 불러오기
             objectPool = FindObjectOfType<ObjectPool>();                                    // objpool 이펙트용
+            fire = FindObjectOfType<FireAutoDeacitve>();                            // 불 이펙트용
             quickeningEffect = Resources.Load<GameObject>("Gehrman_Effect_Quickening");    // 폭발공격 이펙트 불러오기
             gunEffect = Resources.Load<GameObject>("GunFireEfferct_Gehrman");       // 총공격 이펙트 불러오기
             animatorHandler = FindObjectOfType<PlayerAnimatorManager>();      // 플레이어 피격 상태 애니메이션
+            playerLocomotion = FindObjectOfType<PlayerLocomotion>();            // 플레이어 날라가는 상태
+            //soundManager = FindObjectOfType<GehrmanSoundManager>();                    // 사운드 매니저
         }
 
         // Update is called once per frame
@@ -194,16 +208,21 @@ namespace bloodborne
                     print("Update : Die");
                     // 보스 상태를 죽음으로 한다
                     bossState = BossPatternState.Die;
+                    Destroy(phase3Effect.gameObject);
+                    //phase3Effect.SetActive(false);
                     // 죽음 애니메이션을 실행한다
                     anim.SetTrigger("Die");
                     // 파티클을 켠다
-                    GameObject dieEff = Instantiate<GameObject>(dieEffect, rayPos);
+                    //GameObject dieEff = Instantiate<GameObject>(dieEffect, rayPos);
+                    dieEffect.SetActive(true);
                     // 무기를 끈다 or 땅으로 떨어뜨려야 하나..?
                     gun.SetActive(false);
                     blade.SetActive(false);
                     ImDie = true;
                 }
             }
+
+
 
 
             switch (bossState)
@@ -271,8 +290,18 @@ namespace bloodborne
         private void UpdatePhase3()
         {
             // 페이즈 3 일때 계속 할일
-            // 불꽃 이펙트를 계속 생성한다
+            // 하나 따로 만들어져 있는 불꽃 이펙트 오브젝트를 켠다
+            if (bossState != BossPatternState.Die)
+            {
+                phase3Effect.SetActive(true);
 
+            }
+            // is Move 가 켜져있을때만
+            //if (isMove == false)
+            //{
+            //    if(fire.gameObject != null)     // 오류계속남
+            //    fire.objActiveFalse();
+            //}
             // 오브젝트 풀로 관리한다
             GameObject fireEffect = objectPool.GetDeactiveObject();
             if (fireEffect != null)
@@ -280,6 +309,7 @@ namespace bloodborne
                 fireEffect.transform.position = effectPos.transform.position;
                 fireEffect.GetComponent<FireAutoDeacitve>().Play(1);
             }
+
         }
 
         private void UpdateSwordCombo2()
@@ -399,14 +429,15 @@ namespace bloodborne
                 if (hitInfo.collider.CompareTag("Player"))
                 {
                     // 플레이어에게 너 맞았다고 한다?
-                    playerExplosion = true;
+                    //playerExplosion = true;
+                    playerLocomotion.playerExplosion = true; //합치고 바꾸기
                     print("총공격맞음");
                 }
             }
             // 이벤트 함수로 이펙트 실행
             // 총공격이 끝나면 이벤트 ToIdle 상태로 한다
         }
-        
+
         // 총알 이펙트 이벤트 함수
         void GunEffect()
         {
@@ -492,11 +523,9 @@ namespace bloodborne
         // 폭발 공격 함수 > 상태로 만들어서 주기적으로 호출한다
         private void UpdateQuickening()
         {
-            print("qu");
             // 폭발 공격 상태
             if (isQuickening == false)
             {
-                print("wwi");
                 // 폭발 공격 애니메이션을 실행한다(한번만 호출
                 anim.SetTrigger("Quickening");
                 // 폭발 공격 이펙트를 실행한다(애니메이션의 이벤트 함수에서(상태 아래에 만들어놓음 Activeeffect
@@ -532,18 +561,20 @@ namespace bloodborne
             if (currDistance <= 5)
             {
                 print("ON");
-                playerExplosion = true;
+                //layerExplosion = true;
+                playerLocomotion.playerExplosion = true; //합치고 바꾸기
             }
             //1초 후에 사라진다
             //상태가 idle 로 바뀐다
             //isQuickening = true 로 한다
-            
+
         }
 
         private void UpdateIdle()           // 공격이 끝나면 idle 상태로 옴
         {
             isAvoid = false;
             isGehrmanAttack = false;
+            isMove = false;
 
             // 만약 현재 거리가 공격 가능 거리보다 크다면
             if (currDistance > attackDistance)
@@ -605,6 +636,7 @@ namespace bloodborne
             }
         }
 
+# region 공격상태변환
         private void Sword01()
         {
             // 칼공격1으로 상태 변화시킨다
@@ -649,6 +681,9 @@ namespace bloodborne
             anim.SetBool("Leg", true);
         }
 
+        #endregion 
+
+
         // 이동 목적지 찾기 함수
         private void FindMoveTargetPos()
         {
@@ -674,8 +709,9 @@ namespace bloodborne
             }
 
         }
-        // float a = 0;
-        int avoidCount = 0;         // 프로토타입용
+
+        int avoidCount = 0;         // 순서대로 호출용
+
         private void UpdateAvoid()
         {
             // 시간을 잰다
@@ -690,6 +726,7 @@ namespace bloodborne
             {
                 if (avoidCount == 0)
                 {
+                    isMove = true;
                     // 뒤로회피
                     targetPos.y = transform.position.y;
                     transform.position = Vector3.Lerp(transform.position, targetPos, dashSpeed * Time.deltaTime);
@@ -704,6 +741,7 @@ namespace bloodborne
                         avoidcurTime = 0;
                         avoidCount++;
                         print("avoidcount :" + avoidCount);
+                        isMove = false;
                     }
                 }
                 else        // 오른쪽으로 회피
@@ -718,8 +756,11 @@ namespace bloodborne
                         isMoveTargetPos = true;
                     }
 
+                    isMove = true;
+
                     moveTargetPos.y = transform.position.y;
                     transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
+
                     if (Vector3.Distance(transform.position, moveTargetPos) < 0.1f)
                     {
                         bossState = BossPatternState.Idle;
@@ -729,6 +770,7 @@ namespace bloodborne
                         avoidcurTime = 0;
                         avoidCount = 0;
                         isMoveTargetPos = false;
+                        isMove = false;
                     }
                 }
 
@@ -778,15 +820,16 @@ namespace bloodborne
                 // 죽음상태로 만들기
                 // 업데이트에서 그냥 부울만들어서 확인하고 있어서 여기 없어도 될거같음
                 // 만약 현재 체력이 0이면
-                if (bossHP.HP <= 0)
-                {
-                    print("Hit : Die");
-                    // 보스 상태를 죽음으로 한다
-                    bossState = BossPatternState.Die;
-                    // 죽음 애니메이션을 실행한다
-                    anim.SetTrigger("Die");
-                    // 파티클을 켠다
-                }
+                //if (bossHP.HP <= 0)
+                //{
+                //    print("Hit : Die");
+                //    // 보스 상태를 죽음으로 한다
+                //    bossState = BossPatternState.Die;
+                //    // 죽음 애니메이션을 실행한다
+                //    anim.SetTrigger("Die");
+                //    // 파티클을 켠다
+                //    phase3Effect.SetActive(false);
+                //}
             }
             // 만약 isHitted 가 false일때,
             // 왜 false여야하지?
@@ -843,7 +886,7 @@ namespace bloodborne
             // 밖에서 부울값이 false이면 시간 증가
             // 일정 시간이 증가하면
             // 부울 값 모두 초기화
-
+            isGunHit = false;
             // hit2 up 애니메이션이 끝나면 idle 상태로 돌린다(이벤트 함수로)
         }
 
@@ -896,7 +939,7 @@ namespace bloodborne
 
         private void UpdateSickelCombo1()
         {
-            
+
             // int로 값을 정해서 그 값에서만 실행되고, 다른 상태일때 다시 초기화되게 바꾸기
 
             curTime += Time.deltaTime;
@@ -908,6 +951,7 @@ namespace bloodborne
                     {
                         //anim.SetBool("Leg", true);
                         print("SubState : Attack1");
+                        isMove = true;
                         // 앞으로 이동하고 싶다
                         moveTargetPos.y = transform.position.y;
                         transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
@@ -923,6 +967,7 @@ namespace bloodborne
                             print("com1_attack_move");
                             // 현재 위치 기억하기
                             currPos = transform.position;
+                            isMove = false;
                         }
                     }
                     break;
@@ -954,6 +999,7 @@ namespace bloodborne
 
                         print("목적지2 : " + attackMovePos);
                         anim.SetBool("Leg", true);
+                        isMove = true;
 
                         attackMovePos.y = transform.position.y;
                         print("목적지3 : " + attackMovePos);
@@ -968,6 +1014,7 @@ namespace bloodborne
                             attackSubState = AttackSubState.Attack3;
                             // 애니메이션 재생
                             anim.SetTrigger("Attack1");
+                            isMove = false;
                         }
 
 
@@ -1002,6 +1049,7 @@ namespace bloodborne
                     {
                         //print("C2A1");
                         //anim.SetBool("Leg", true);
+                        isMove = true;
                         // 앞으로 이동하고 싶다
                         moveTargetPos.y = transform.position.y;
                         transform.position = Vector3.Lerp(transform.position, moveTargetPos, attackMoveSpeed * Time.deltaTime);
@@ -1014,6 +1062,7 @@ namespace bloodborne
                             anim.SetTrigger("Attack3");
                             anim.SetBool("Leg", false);
                             print("com2_attack_move");
+                            isMove = false;
                         }
 
                     }
@@ -1036,6 +1085,7 @@ namespace bloodborne
                             isMoveTargetPos = true;
                         }
                         //print("C2A2");
+                        isMove = true;
                         // 앞으로 이동하고 싶다
                         moveTargetPos.y = transform.position.y;
                         transform.position = Vector3.Lerp(transform.position, moveTargetPos, attackMoveSpeed * Time.deltaTime);
@@ -1048,6 +1098,7 @@ namespace bloodborne
                             anim.SetTrigger("Attack4");
                             anim.SetBool("Leg", false);
                             print("com2_attack_move");
+                            isMove = false;
                         }
 
                     }
@@ -1084,7 +1135,7 @@ namespace bloodborne
                         // 앞으로 이동하면서
                         // 이동할때 서서오니까 이상한데...
                         // 부울을 만들어서 켜고 끄자 굿
-
+                        isMove = true;
                         //anim.SetBool("Leg", true);
                         // 360 낫을 휘두르는 애니메이션을 한다
                         moveTargetPos.y = transform.position.y;
@@ -1097,6 +1148,7 @@ namespace bloodborne
                             anim.SetTrigger("Attack6");
                             anim.SetBool("Leg", false);
                             print("com3_attack_move");
+                            isMove = false;
                         }
                     }
                     break;
@@ -1135,7 +1187,8 @@ namespace bloodborne
         {
             // 만약 hp가 0이되면 Die 함수가 호출된다(hit에서)
             // 죽음 상태라고 알려주기(SceneManager에서 받아가기)
-            isGehrmanDie = true;
+            //isGehrmanDie = true;
+            phase3Effect.SetActive(false);
 
         }
 
@@ -1145,16 +1198,16 @@ namespace bloodborne
         private void OnTriggerEnter(Collider other)
         {
             // 만약 플레이어가 공격 상태이고, 플레이어의 무기와 충돌했을때
-            if (isHitted == false && isHitted2 == false && animatorHandler.isAttack && other.gameObject.CompareTag("p_Weapon"))
+            if (isHitted == false && isHitted2 == false && animatorHandler.isAttack && other.gameObject.CompareTag("p_Weapon") || isGunHit)
             {
                 // 보스 피격 상태로 전환
                 bossState = BossPatternState.Hit;
                 print("hittt");
                 LoadBloodEffect(other);
+                isGunHit = false;
+                //soundManager.PlaySound(HitSound); 사운드
 
             }
-
-            // 충돌 체크를 여기서 하는게 맞는지 확인 해보기(저 위에서 함.Quickening.)
 
         }
 

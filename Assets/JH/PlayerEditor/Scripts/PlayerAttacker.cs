@@ -11,6 +11,7 @@ namespace bloodborne
         WeaponSlotManager weaponSlotManager;
         PlayerStats playerStats;
         bossAI bossAi;
+        BossAlpha bossAlpha;
 
         public string lastAttack;
 
@@ -21,6 +22,7 @@ namespace bloodborne
             weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
             inputHandler = GetComponent<InputHandler>();
             bossAi = FindObjectOfType<bossAI>();
+            bossAlpha = FindObjectOfType<BossAlpha>();
         }
 
         public void HandleWeaponCombo(WeaponItem weapon)
@@ -35,11 +37,13 @@ namespace bloodborne
                 if (lastAttack == weapon.oneHandLightAttack1)
                 {
                     playerAnimatorManager.PlayTargetAnimation(weapon.oneHandLightAttack2, true);
+                    AudioManager2.instance.PlaySFX("Playerwhip");
                 }
 
                 if (lastAttack == weapon.oneHandHeavyAttack1)
                 {
                     playerAnimatorManager.PlayTargetAnimation(weapon.oneHandHeavyAttack2, true);
+                    AudioManager2.instance.PlaySFX("Playerwhip");
                 }
 
             }
@@ -51,6 +55,7 @@ namespace bloodborne
             weaponSlotManager.attackingWeapon = weapon;
             playerAnimatorManager.PlayTargetAnimation(weapon.oneHandLightAttack1, true);
             lastAttack = weapon.oneHandLightAttack1;
+            AudioManager2.instance.PlaySFX("Playerwhip");
         }
         public void HandleHeavyAttack(WeaponItem weapon)
         {
@@ -59,8 +64,10 @@ namespace bloodborne
 
             weaponSlotManager.attackingWeapon = weapon;
             playerAnimatorManager.PlayTargetAnimation(weapon.oneHandHeavyAttack1, true);
+            AudioManager2.instance.PlaySFX("Playerwhip");
             lastAttack = weapon.oneHandHeavyAttack1;
         }
+
         public void HandlePistolAttack(GameObject pistol)
         {
             if (pistol == null)
@@ -70,12 +77,20 @@ namespace bloodborne
 
             Ray ray = new Ray(pistol.transform.position, pistol.transform.forward);
             RaycastHit hitInfo;
-
+            AudioManager2.instance.PlaySFX("PlayerShooting");
             if (Physics.Raycast(ray, out hitInfo, raycastDistance))
             {
-                if(hitInfo.collider.CompareTag("Boss") || hitInfo.collider.CompareTag("Hand"))
+                Debug.Log(hitInfo.collider.name);
+                if (hitInfo.collider.CompareTag("Boss") || hitInfo.collider.CompareTag("Hand"))
                 {
-                    bossAi.isBulletHit = true;
+                    if (bossAi != null)
+                    {
+                        bossAi.isBulletHit = true;
+                    }
+                    else if (bossAlpha != null)
+                    {
+                        bossAlpha.isGunHit = true;
+                    }
                 }
             }
 

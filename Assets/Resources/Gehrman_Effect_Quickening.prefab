@@ -5461,7 +5461,7 @@ Transform:
   m_GameObject: {fileID: 6241980120950249703}
   m_LocalRotation: {x: 0.7071066, y: 0, z: 0, w: -0.70710695}
   m_LocalPosition: {x: 0, y: 0.11, z: -0}
-  m_LocalScale: {x: 0.5, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6241980120950594255}
@@ -5683,8 +5683,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 4
-      minScalar: 3
+      scalar: 3
+      minScalar: 2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -10054,7 +10054,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b97ebe0642539a74a81b97d8db4771a1, type: 2}
+  - {fileID: 2100000, guid: 433f55694cc474742b6d3655943b9f87, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19879,7 +19879,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 299369f945879d147a3e97f89f51f236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ActivatedGameObject: {fileID: 6241980120950289719}
   Delay: 4
 --- !u!1 &6241980120950295799
 GameObject:
@@ -19928,7 +19927,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 299369f945879d147a3e97f89f51f236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ActivatedGameObject: {fileID: 0}
   Delay: 4
 --- !u!114 &6241980120960491897
 MonoBehaviour:
@@ -19942,7 +19940,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 299369f945879d147a3e97f89f51f236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ActivatedGameObject: {fileID: 0}
   Delay: 0.05
 --- !u!114 &6271502455228793817
 MonoBehaviour:
@@ -19956,7 +19953,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 299369f945879d147a3e97f89f51f236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ActivatedGameObject: {fileID: 0}
   Delay: 0.05
 --- !u!114 &6241980120960485513
 MonoBehaviour:
@@ -19970,7 +19966,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 299369f945879d147a3e97f89f51f236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ActivatedGameObject: {fileID: 6241980120950291415}
   Delay: 4
 --- !u!1 &6241980120950307707
 GameObject:

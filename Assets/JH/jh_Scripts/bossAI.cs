@@ -12,7 +12,7 @@ namespace bloodborne
         PlayerAnimatorManager playerAnimatorManager;
         PlayerLocomotion playerLocomotion;
         PlayerStats playerStats;
-        AttackDamageSoundManager soundManager;
+        //AttackDamageSoundManager soundManager;
 
         public bool moonpresenceAttack;
         public bool isDie;
@@ -121,7 +121,7 @@ namespace bloodborne
             playerStats = FindObjectOfType<PlayerStats>();
             playerLocomotion = FindObjectOfType<PlayerLocomotion>();
             playerAnimatorManager = FindObjectOfType<PlayerAnimatorManager>();
-            soundManager = FindObjectOfType<AttackDamageSoundManager>();
+            //soundManager = FindObjectOfType<AttackDamageSoundManager>();
         }
 
         private void Awake()
@@ -312,37 +312,37 @@ namespace bloodborne
                 {
                     case AttackSubStateMachine.Pattern1:
                         AnimatorTrigger("Pattern1");
-                        soundManager.PlaySE("moon_attackSound1");
+                        //soundManager.PlaySE("moon_attackSound1");
                         attackInProgress = true;
                         break;
 
                     case AttackSubStateMachine.Pattern2:
                         AnimatorTrigger("Pattern2");
-                        soundManager.PlaySE("moon_attackSound2");
+                        //soundManager.PlaySE("moon_attackSound2");
                         attackInProgress = true;
                         break;
 
                     case AttackSubStateMachine.Pattern3:
                         AnimatorTrigger("Pattern3");
-                        soundManager.PlaySE("moon_attackSound2");
+                        //soundManager.PlaySE("moon_attackSound2");
                         attackInProgress = true;
                         break;
 
                     case AttackSubStateMachine.Pattern4:
                         AnimatorTrigger("Pattern4");
-                        soundManager.PlaySE("moon_attackSound3");
+                        //soundManager.PlaySE("moon_attackSound3");
                         attackInProgress = true;
                         break;
 
                     case AttackSubStateMachine.Pattern5:
                         AnimatorTrigger("Pattern5");
-                        soundManager.PlaySE("moon_attackSound2");
+                        //soundManager.PlaySE("moon_attackSound2");
                         attackInProgress = true;
                         break;
 
                     case AttackSubStateMachine.Pattern6:
                         AnimatorTrigger("Pattern6");
-                        soundManager.PlaySE("moon_attackSound1");
+                        //soundManager.PlaySE("moon_attackSound1");
                         attackInProgress = true;
                         break;
                 }
@@ -579,19 +579,19 @@ namespace bloodborne
                 switch (randomIndex)
                 {
                     case 0:
-                        soundManager.PlaySE("moon_damageSound1");
+                        //soundManager.PlaySE("moon_damageSound1");
                         break;
 
                     case 1:
-                        soundManager.PlaySE("mooon_damageSound2");
+                        //soundManager.PlaySE("mooon_damageSound2");
                         break;
 
                     case 2:
-                        soundManager.PlaySE("moon_damageSound3");
+                        //soundManager.PlaySE("moon_damageSound3");
                         break;
 
                     case 3:
-                        soundManager.PlaySE("moon_damageSound4");
+                        //soundManager.PlaySE("moon_damageSound4");
                         break;
                 }
 
