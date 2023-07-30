@@ -15,12 +15,32 @@ namespace bloodborne
         FireAutoDeacitve fire;                  // 불 이펙트
         NavMeshAgent agent;                     // 길찾기
         Animator anim;                          // 애니메이터
-        //GehrmanSoundManager soundManager;              // 사운드 매니저
+        GehrmanSoundManager soundManager;              // 사운드 매니저
 
-        //[SerializeField]
-        //private string HitSound;                     // 피격 피 터지는 소리 사운드
-        //[SerializeField]
-        //private string MoveSound;                   // 이동 바람 사운드
+        #region 사운드 목록
+        [SerializeField]
+        private string HitSound;                     // 1. 피격 피 터지는 소리 사운드
+        [SerializeField]
+        private string MoveSound;                   // 2. 이동 바람 사운드
+        [SerializeField]
+        private string GunSound;                    // 3. 총소리
+        [SerializeField]
+        private string QuickeningSound;             // 4. 폭발 공격 소리
+        [SerializeField]
+        private string ChangeWeaponSound;           // 5. 무기 교체 소리
+        [SerializeField]
+        private string SickleSound1;                // 6. 낫공격 1 소리
+        [SerializeField]
+        private string SickleSound2;                // 7. 낫공격 2 소리
+        [SerializeField]
+        private string SwordSound1;                 // 8. 칼공격 1 소리
+        [SerializeField]
+        private string SwordSound2;                 // 9. 낫공격 1 소리
+        [SerializeField]
+        private string AttackVoiceSound1;           // 10. 공격 목소리 1
+        [SerializeField]
+        private string AttackVoiceSound2;           // 11. 공격 목소리 2
+        #endregion
 
 
         BossHP bossHP;                          // 보스 hp
@@ -161,7 +181,7 @@ namespace bloodborne
             gunEffect = Resources.Load<GameObject>("GunFireEfferct_Gehrman");       // 총공격 이펙트 불러오기
             animatorHandler = FindObjectOfType<PlayerAnimatorManager>();      // 플레이어 피격 상태 애니메이션
             playerLocomotion = FindObjectOfType<PlayerLocomotion>();            // 플레이어 날라가는 상태
-            //soundManager = FindObjectOfType<GehrmanSoundManager>();                    // 사운드 매니저
+            soundManager = FindObjectOfType<GehrmanSoundManager>();                    // 사운드 매니저
         }
 
         // Update is called once per frame
@@ -628,6 +648,8 @@ namespace bloodborne
                 bossState = BossPatternState.Avoid;
                 // 애니메이션 호출
                 anim.SetTrigger("Avoid");
+                // 사운드 재생
+                soundManager.PlaySound(MoveSound);
                 // 회피 방향
                 avoidDir = -transform.forward;
                 // 회피 목적지
@@ -880,7 +902,6 @@ namespace bloodborne
                 bossState = BossPatternState.Idle;
                 //Idle 애니메이션 실행(상태바꿀때 한번만 호출)
                 anim.SetTrigger("Idle");
-
             }
 
             // 밖에서 부울값이 false이면 시간 증가
@@ -955,6 +976,8 @@ namespace bloodborne
                         // 앞으로 이동하고 싶다
                         moveTargetPos.y = transform.position.y;
                         transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
+                        // 사운드 재생
+                        soundManager.PlaySound(MoveSound);
 
                         //print("moveTargetPos :" + moveTargetPos);
                         if (Vector3.Distance(transform.position, moveTargetPos) < 1f)
@@ -964,6 +987,8 @@ namespace bloodborne
                             attackSubState = AttackSubState.Attack2;
                             // 애니메이션 재생
                             anim.SetTrigger("Attack2");
+                            // 사운드 재생
+                            soundManager.PlaySound(SickleSound1);
                             print("com1_attack_move");
                             // 현재 위치 기억하기
                             currPos = transform.position;
@@ -1005,6 +1030,8 @@ namespace bloodborne
                         print("목적지3 : " + attackMovePos);
                         print("CurrPos:" + currPos);
                         transform.position = Vector3.Lerp(currPos, attackMovePos, 0.5f);
+                        // 사운드 재생
+                        soundManager.PlaySound(MoveSound);
 
                         print("현재위치2 :" + transform.position);
                         print("위치차 : " + Vector3.Distance(transform.position, attackMovePos));
@@ -1014,6 +1041,8 @@ namespace bloodborne
                             attackSubState = AttackSubState.Attack3;
                             // 애니메이션 재생
                             anim.SetTrigger("Attack1");
+                            // 사운드 재생
+                            soundManager.PlaySound(SickleSound2);
                             isMove = false;
                         }
 
@@ -1060,6 +1089,8 @@ namespace bloodborne
                             attackSubState = AttackSubState.Attack2;
                             // 애니메이션 재생
                             anim.SetTrigger("Attack3");
+                            // 사운드 재생
+                            soundManager.PlaySound(SickleSound1);
                             anim.SetBool("Leg", false);
                             print("com2_attack_move");
                             isMove = false;
@@ -1096,6 +1127,8 @@ namespace bloodborne
                             attackSubState = AttackSubState.Attack3;
                             // 애니메이션 재생
                             anim.SetTrigger("Attack4");
+                            // 사운드 재생
+                            soundManager.PlaySound(SickleSound2);
                             anim.SetBool("Leg", false);
                             print("com2_attack_move");
                             isMove = false;
@@ -1146,6 +1179,8 @@ namespace bloodborne
                             attackSubState = AttackSubState.Attack2;
                             // 애니메이션 재생
                             anim.SetTrigger("Attack6");
+                            // 사운드 재생
+                            soundManager.PlaySound(SickleSound1);
                             anim.SetBool("Leg", false);
                             print("com3_attack_move");
                             isMove = false;
@@ -1205,7 +1240,7 @@ namespace bloodborne
                 print("hittt");
                 LoadBloodEffect(other);
                 isGunHit = false;
-                //soundManager.PlaySound(HitSound); 사운드
+                soundManager.PlaySound(HitSound); //사운드
 
             }
 

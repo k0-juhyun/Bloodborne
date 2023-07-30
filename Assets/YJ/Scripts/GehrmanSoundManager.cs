@@ -25,7 +25,12 @@ namespace bloodborne
         public Sound[] effectSounds;
         public Sound bgmSounds;
 
-
+        void Start()
+        {
+            PlaySound("HuntersDream");
+            // 시작하면 자동으로 목록갯수생성
+            playSoundName = new string[audioSourcesEffects.Length * 2];
+        }
 
         // 효과음 사운드 재생 함수
         public void PlaySound(string _name)
@@ -77,5 +82,9 @@ namespace bloodborne
             }
             Debug.Log("재생중인" + _name + "사운드가 없음");
         }
+
+        
     }
+
+   
 }

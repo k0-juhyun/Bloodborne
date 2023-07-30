@@ -1858,6 +1858,7 @@ GameObject:
   m_Component:
   - component: {fileID: 238372066}
   - component: {fileID: 238372065}
+  - component: {fileID: 238372078}
   - component: {fileID: 238372067}
   - component: {fileID: 238372077}
   - component: {fileID: 238372076}
@@ -1874,7 +1875,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &238372065
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2946,6 +2947,57 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &238372078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238372064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b8d25b5544b0a84d8ea05bbf069ca1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSourcesEffects:
+  - {fileID: 238372067}
+  - {fileID: 238372077}
+  - {fileID: 238372076}
+  - {fileID: 238372075}
+  - {fileID: 238372074}
+  - {fileID: 238372073}
+  - {fileID: 238372072}
+  - {fileID: 238372071}
+  - {fileID: 238372070}
+  - {fileID: 238372069}
+  audioSourceBgm: {fileID: 238372065}
+  playSoundName: []
+  effectSounds:
+  - name: Hit
+    clip: {fileID: 8300000, guid: 2dbb05381a45421479044cc698fef82f, type: 3}
+  - name: Move
+    clip: {fileID: 8300000, guid: 4e31b8e810be94c43949f952f7acfdb7, type: 3}
+  - name: Gun
+    clip: {fileID: 8300000, guid: b8076f0a0c8b06b4fa9d0705fa989201, type: 3}
+  - name: Quickening
+    clip: {fileID: 8300000, guid: c827cf968a59bcf4685f9ce68c7e4ffc, type: 3}
+  - name: ChangeWeapon
+    clip: {fileID: 8300000, guid: 2aceadb9a6e0f724c92353164eb0ffe1, type: 3}
+  - name: Sickle1
+    clip: {fileID: 8300000, guid: d63f77bf7b6167c46b970653d0b333bc, type: 3}
+  - name: Sickle2
+    clip: {fileID: 8300000, guid: e76ba7097180b124eb1ccc8c41505191, type: 3}
+  - name: Sword1
+    clip: {fileID: 8300000, guid: e15ecce3412fa854781bf97e692295f7, type: 3}
+  - name: Sword2
+    clip: {fileID: 8300000, guid: e764e29d5c243964c81e2d846ffacd4c, type: 3}
+  - name: Attack1
+    clip: {fileID: 8300000, guid: a80df723d25e4eb449e29c05644a8c16, type: 3}
+  - name: Attack2
+    clip: {fileID: 8300000, guid: 94498160c26278e4fa306c09947f7087, type: 3}
+  bgmSounds:
+    name: HuntersDream
+    clip: {fileID: 8300000, guid: 99c14e5334ce0ea45bf83f3808488e05, type: 3}
 --- !u!1 &247897088
 GameObject:
   m_ObjectHideFlags: 0
@@ -12956,6 +13008,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 862630811525886141, guid: 90e3e06578f81974cb8025283070b9b5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90e3e06578f81974cb8025283070b9b5, type: 3}
@@ -50313,6 +50370,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2d8b9f4795e50640965b60663efdf91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HitSound: Hit
+  MoveSound: Move
+  GunSound: Gun
+  QuickeningSound: Quickening
+  ChangeWeaponSound: ChangeWeapon
+  SickleSound1: Sickle1
+  SickleSound2: Sickle2
+  SwordSound1: Sword1
+  SwordSound2: Sword2
+  AttackVoiceSound1: Attack1
+  AttackVoiceSound2: Attack2
   bossState: 0
   bossPhase: 0
   attackSubState: 0
