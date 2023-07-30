@@ -14,6 +14,7 @@ namespace bloodborne
         BossAlpha bossAlpha;
 
         public string lastAttack;
+        private GameObject muzzleEffect;
 
         private void Awake()
         {
@@ -23,6 +24,8 @@ namespace bloodborne
             inputHandler = GetComponent<InputHandler>();
             bossAi = FindObjectOfType<bossAI>();
             bossAlpha = FindObjectOfType<BossAlpha>();
+
+            muzzleEffect = Resources.Load<GameObject>("GunFireEfferct_Player");
         }
 
         public void HandleWeaponCombo(WeaponItem weapon)
@@ -78,6 +81,11 @@ namespace bloodborne
             Ray ray = new Ray(pistol.transform.position, pistol.transform.forward);
             RaycastHit hitInfo;
             AudioManager2.instance.PlaySFX("PlayerShooting");
+
+            Transform MuzzlePoint = GameObject.Find("MuzzlePoint").GetComponent<Transform>();
+            GameObject MuzzleEffect = Instantiate<GameObject>(muzzleEffect, MuzzlePoint);
+            Destroy(MuzzleEffect, 0.5f);
+
             if (Physics.Raycast(ray, out hitInfo, raycastDistance))
             {
                 Debug.Log(hitInfo.collider.name);
