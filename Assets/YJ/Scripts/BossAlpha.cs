@@ -269,6 +269,8 @@ namespace bloodborne
                         // 칼공격 3 애니메이션 켜기
                         anim.SetTrigger("Sword3");
                         attackSubState = AttackSubState.Attack2;
+                        Debug.Log("dsdsds");
+                        AudioManager2.instance.PlaySFX("GehrmanSythe");
                     }
                     break;
                 case AttackSubState.Attack2:
@@ -284,6 +286,7 @@ namespace bloodborne
                             anim.SetBool("Leg", false);
                             // 서브상태를 액션 3로 바꾼다
                             attackSubState = AttackSubState.Attack3;
+                            AudioManager2.instance.PlaySFX("GehrmanSythe");
                         }
                     }
                     break;
@@ -292,6 +295,7 @@ namespace bloodborne
                     {
                         // 끝나면 총공격을 호출한다
                         bossState = BossPatternState.GunCombo;
+                        AudioManager2.instance.PlaySFX("GehrmanGun");
                     }
                     break;
             }
@@ -314,6 +318,8 @@ namespace bloodborne
                         anim.SetTrigger("Sword1");
                         // 서브스테이트 상태를 Atttack2로 한다
                         attackSubState = AttackSubState.Attack2;
+                        AudioManager2.instance.PlaySFX("GehrmanSythe");
+                        AudioManager2.instance.PlaySFX("Gehrman_atk1");
                     }
                     break;
                 case AttackSubState.Attack2:
@@ -323,6 +329,8 @@ namespace bloodborne
                         anim.SetTrigger("Sword2");
                         // 서브스테이트 상태를 Atttack3로 한다
                         attackSubState = AttackSubState.Attack3;
+                        AudioManager2.instance.PlaySFX("GehrmanSythe");
+                        AudioManager2.instance.PlaySFX("Gehrman_atk2");
                     }
                     break;
                 case AttackSubState.Attack3:
@@ -330,6 +338,7 @@ namespace bloodborne
                     {
                         // 끝나면 총공격을 호출한다
                         bossState = BossPatternState.GunCombo;
+                        AudioManager2.instance.PlaySFX("GehrmanGun");
                     }
                     break;
 
@@ -700,6 +709,8 @@ namespace bloodborne
                     bossState = BossPatternState.Die;
                     // 죽음 애니메이션을 실행한다
                     anim.SetTrigger("Die");
+                    Debug.Log("dsd");
+                    AudioManager2.instance.PlaySFX("Gehrman_Die");
                     // 파티클을 켠다
                 }
             }
@@ -833,6 +844,8 @@ namespace bloodborne
                             attackSubState = AttackSubState.Attack2;
                             // 애니메이션 재생
                             anim.SetTrigger("Attack2");
+                            AudioManager2.instance.PlaySFX("GehrmanSythe");
+                            AudioManager2.instance.PlaySFX("Gehrman_atk1");
                             print("com1_attack_move");
                             // 현재 위치 기억하기
                             currPos = transform.position;
@@ -881,6 +894,8 @@ namespace bloodborne
                             attackSubState = AttackSubState.Attack3;
                             // 애니메이션 재생
                             anim.SetTrigger("Attack1");
+                            AudioManager2.instance.PlaySFX("GehrmanSythe");
+                            AudioManager2.instance.PlaySFX("Gehrman_atk1");
                         }
 
 
@@ -962,6 +977,8 @@ namespace bloodborne
                             attackSubState = AttackSubState.Attack3;
                             // 애니메이션 재생
                             anim.SetTrigger("Attack4");
+                            AudioManager2.instance.PlaySFX("GehrmanSythe");
+                            AudioManager2.instance.PlaySFX("Gehrman_atk2");
                             anim.SetBool("Leg", false);
                             print("com2_attack_move");
                         }
@@ -1011,6 +1028,8 @@ namespace bloodborne
                             attackSubState = AttackSubState.Attack2;
                             // 애니메이션 재생
                             anim.SetTrigger("Attack6");
+                            AudioManager2.instance.PlaySFX("GehrmanSythe");
+                            AudioManager2.instance.PlaySFX("Gehrman_atk1");
                             anim.SetBool("Leg", false);
                             print("com3_attack_move");
                         }
