@@ -40,6 +40,10 @@ namespace bloodborne
         private string AttackVoiceSound1;           // 10. 공격 목소리 1
         [SerializeField]
         private string AttackVoiceSound2;           // 11. 공격 목소리 2
+        [SerializeField]
+        private string AttackVoiceSound3;           // 12. 폭발 공격 목소리
+        [SerializeField]
+        private string DieSound;                         // 13. 죽음 소리
         #endregion
 
 
@@ -232,6 +236,8 @@ namespace bloodborne
                     //phase3Effect.SetActive(false);
                     // 죽음 애니메이션을 실행한다
                     anim.SetTrigger("Die");
+                    // 사운드 재생
+                    soundManager.PlaySound(DieSound);
                     // 파티클을 켠다
                     //GameObject dieEff = Instantiate<GameObject>(dieEffect, rayPos);
                     dieEffect.SetActive(true);
@@ -347,6 +353,9 @@ namespace bloodborne
                     {
                         // 칼공격 3 애니메이션 켜기
                         anim.SetTrigger("Sword3");
+                        // 사운드 재생
+                        soundManager.PlaySound(SwordSound1);
+                        soundManager.PlaySound(AttackVoiceSound1);
                         attackSubState = AttackSubState.Attack2;
                     }
                     break;
@@ -391,6 +400,9 @@ namespace bloodborne
                     {
                         // 한번 공격한다
                         anim.SetTrigger("Sword1");
+                        // 사운드 재생
+                        soundManager.PlaySound(SwordSound1);
+                        soundManager.PlaySound(AttackVoiceSound2);
                         // 서브스테이트 상태를 Atttack2로 한다
                         attackSubState = AttackSubState.Attack2;
                     }
@@ -400,6 +412,8 @@ namespace bloodborne
                     {
                         // x자로 공격한다
                         anim.SetTrigger("Sword2");
+                        // 사운드 재생
+                        soundManager.PlaySound(SwordSound2);
                         // 서브스테이트 상태를 Atttack3로 한다
                         attackSubState = AttackSubState.Attack3;
                     }
@@ -462,6 +476,8 @@ namespace bloodborne
         void GunEffect()
         {
             // 총알 이펙트를 찾아서 이펙트를 쓴다
+            // 사운드 재생
+            soundManager.PlaySound(GunSound);
             // 불나오는 거
             // 총알이 퍼지는거 muzzle effect
             // 총알 이펙트를 firePos의 위치에 배치한다
@@ -491,6 +507,8 @@ namespace bloodborne
                 // 무기교체 함수를 실행한다(무기 교체 함수 만들기> 이벤트함수로 애니메이션에서 호출함
                 // 무기 교체 애니메이션 실행
                 anim.SetTrigger("WeaponChange");
+                // 사운드 재생
+                soundManager.PlaySound(ChangeWeaponSound);
                 isPhase2 = true;
                 print("무기 바꿈 > 칼, 총");
                 // 상태를 다시 idle로 한다(애니메이션 이벤트에서)
@@ -510,6 +528,9 @@ namespace bloodborne
                     bossState = BossPatternState.Quickening;
                     //애니메이션을 실행한다
                     anim.SetTrigger("Quickening");
+                    // 사운드 재생
+                    soundManager.PlaySound(QuickeningSound);
+                    soundManager.PlaySound(AttackVoiceSound3);
                     //이펙트를 실행한다 = 이벤트 함수로 할까ㅇㅇ
                     // 한번만 호출하지만 Update로 작동해야함. 할거 다 끝나고 true로 하기
                     //Quickening();
@@ -548,6 +569,8 @@ namespace bloodborne
             {
                 // 폭발 공격 애니메이션을 실행한다(한번만 호출
                 anim.SetTrigger("Quickening");
+                // 사운드 재생
+                soundManager.PlaySound(QuickeningSound);
                 // 폭발 공격 이펙트를 실행한다(애니메이션의 이벤트 함수에서(상태 아래에 만들어놓음 Activeeffect
                 // 폭발 공격 함수를 호출한다
                 //Quickening();
@@ -589,7 +612,7 @@ namespace bloodborne
             //isQuickening = true 로 한다
 
         }
-
+        
         private void UpdateIdle()           // 공격이 끝나면 idle 상태로 옴
         {
             isAvoid = false;
@@ -625,7 +648,7 @@ namespace bloodborne
                     }
                 }
 
-                else
+                else if (bossPhase == BossPhase.Phase2)
                 {
                     //그냥 하나만들자..
                     if (isSword1done == false)
@@ -636,6 +659,24 @@ namespace bloodborne
                     else if (isSword1done == true)
                     {
                         Sword02();
+                    }
+                }
+
+                if (bossPhase == BossPhase.Phase3)
+                {
+                    if (isCombo1done == false)
+                    {
+                        SickelC1();
+                    }
+
+                    else if (isCombo1done == true && isCombo2done == false)
+                    {
+                        SickelC2();
+                    }
+
+                    else if (isCombo2done == true && isCombo3done == false)
+                    {
+                        SickelC3();
                     }
                 }
 
@@ -976,8 +1017,7 @@ namespace bloodborne
                         // 앞으로 이동하고 싶다
                         moveTargetPos.y = transform.position.y;
                         transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
-                        // 사운드 재생
-                        soundManager.PlaySound(MoveSound);
+                        
 
                         //print("moveTargetPos :" + moveTargetPos);
                         if (Vector3.Distance(transform.position, moveTargetPos) < 1f)
@@ -989,6 +1029,7 @@ namespace bloodborne
                             anim.SetTrigger("Attack2");
                             // 사운드 재생
                             soundManager.PlaySound(SickleSound1);
+                            soundManager.PlaySound(AttackVoiceSound1);
                             print("com1_attack_move");
                             // 현재 위치 기억하기
                             currPos = transform.position;
@@ -1091,6 +1132,7 @@ namespace bloodborne
                             anim.SetTrigger("Attack3");
                             // 사운드 재생
                             soundManager.PlaySound(SickleSound1);
+                            soundManager.PlaySound(AttackVoiceSound2);
                             anim.SetBool("Leg", false);
                             print("com2_attack_move");
                             isMove = false;
@@ -1181,6 +1223,7 @@ namespace bloodborne
                             anim.SetTrigger("Attack6");
                             // 사운드 재생
                             soundManager.PlaySound(SickleSound1);
+                            soundManager.PlaySound(AttackVoiceSound1);
                             anim.SetBool("Leg", false);
                             print("com3_attack_move");
                             isMove = false;
