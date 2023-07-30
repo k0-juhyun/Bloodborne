@@ -65,11 +65,12 @@ namespace bloodborne
             healthBar.SetCurrentHealth(currentHealth);
 
             animatorHandler.PlayTargetAnimation("Damage", true);
-            AudioManager2.instance.PlaySFX("Player_Hit");
+      
             if (currentHealth <= 0)
             {
                 currentHealth = 0;
                 animatorHandler.PlayTargetAnimation("Dead", true);
+                AudioManager2.instance.PlaySFX("Player_Die");
             }
         }
 

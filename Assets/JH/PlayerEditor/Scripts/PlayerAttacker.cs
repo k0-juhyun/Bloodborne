@@ -47,13 +47,14 @@ namespace bloodborne
 
             }
         }
-        public void HandleLightAttack(WeaponItem weapon)
+        public void HandleLightAttack(WeaponItem weapon) 
         {
             if (playerStats.currentStamina <= 0)
                 return;
 
             weaponSlotManager.attackingWeapon = weapon;
             playerAnimatorManager.PlayTargetAnimation(weapon.oneHandLightAttack1, true);
+            AudioManager2.instance.PlaySFX("Playerwhip");
             lastAttack = weapon.oneHandLightAttack1;
             AudioManager2.instance.PlaySFX("Playerwhip");
 
@@ -67,9 +68,10 @@ namespace bloodborne
                 return;
             Debug.Log("fdffd");
             weaponSlotManager.attackingWeapon = weapon;
-            playerAnimatorManager.PlayTargetAnimation(weapon.oneHandHeavyAttack1, true);
-            lastAttack = weapon.oneHandHeavyAttack1;
+            playerAnimatorManager.PlayTargetAnimation(weapon.oneHandHeavyAttack1, true); 
             AudioManager2.instance.PlaySFX("PlayerShooting");
+            lastAttack = weapon.oneHandHeavyAttack1;
+           
         }
     }
 }

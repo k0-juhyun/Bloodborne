@@ -74,6 +74,8 @@ namespace bloodborne
             playerManager.isGrounded = true;
             ignoreForGroundCheck = ~(1 << 8 | 1 << 11);
             
+            
+            
         }
 
         #region Movement
@@ -205,6 +207,7 @@ namespace bloodborne
                 if (inputHandler.moveAmount > 0)
                 {
                     animatorHandler.PlayTargetAnimation("Rolling", true);
+                    AudioManager2.instance.PlaySFX("Player_Step");
                     moveDirection.y = 0;
                     Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
                     myTransform.rotation = rollRotation;
@@ -213,6 +216,7 @@ namespace bloodborne
                 else
                 {
                     animatorHandler.PlayTargetAnimation("Backstep", true);
+                    AudioManager2.instance.PlaySFX("Player_Step");
                     playerStats.TakeStaminaDamage(backSttepStaminaCost);
                 }
             }
@@ -314,7 +318,7 @@ namespace bloodborne
 
                 rigidbody.AddForce(backwardForce, ForceMode.Impulse);
                 animatorHandler.PlayTargetAnimation("KnockBack", true);
-
+                AudioManager2.instance.PlaySFX("Gehrman_explosion");
                 bossAlpha.playerExplosion = false;
             }
         }

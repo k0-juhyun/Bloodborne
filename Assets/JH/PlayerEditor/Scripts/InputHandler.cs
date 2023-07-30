@@ -151,15 +151,18 @@ namespace bloodborne
                         return;
 
                     playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
+                 
                 }
             }
 
             if (rt_Input)
             {
+                
                 if (playerManager.canDoCombo)
                 {
                     comboFlag = true;
                     playerAttacker.HandleWeaponCombo(playerInventory.rightWeapon);
+                   
                     comboFlag = false;
                 }
                 else
@@ -171,6 +174,8 @@ namespace bloodborne
                         return;
 
                     playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
+                  
+
                 }
             }
 
