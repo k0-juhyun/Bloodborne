@@ -82,7 +82,7 @@ namespace bloodborne
 
         public void RegenerateHealth()
         {
-            if(potionAmount > 0)
+            if (potionAmount > 0)
             {
                 --potionAmount;
                 currentHealth += 10;

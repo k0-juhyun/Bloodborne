@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 namespace bloodborne
 {
@@ -56,6 +57,8 @@ namespace bloodborne
         int backSttepStaminaCost = 10;
         int sprintStaminaCost = 1;
 
+        private GameObject blood;
+
         private void Awake()
         {
             cameraHandler = FindObjectOfType<CameraHandler>();
@@ -77,6 +80,7 @@ namespace bloodborne
 
             playerManager.isGrounded = true;
             ignoreForGroundCheck = ~(1 << 8 | 1 << 11);
+            blood = Resources.Load<GameObject>("BloodEffect_Player");
         }
 
         #region Movement
@@ -321,6 +325,8 @@ namespace bloodborne
                     Vector3 backwardDirection = -transform.forward;
                     Vector3 backwardForce = backwardDirection * 10;
 
+                    playerStats.TakeDamage(5);
+                    LoadBloodFromResource(playerManager.GetComponent<Collider>());
                     rigidbody.AddForce(backwardForce, ForceMode.Impulse);
                     animatorHandler.PlayTargetAnimation("KnockBack", true);
 
@@ -357,6 +363,7 @@ namespace bloodborne
                     if (other.CompareTag("Weapon"))
                     {
                         playerStats.TakeDamage(10);
+                        LoadBloodFromResource(other);
                     }
                 }
             }
@@ -368,9 +375,20 @@ namespace bloodborne
                     if (other.CompareTag("Hand"))
                     {
                         playerStats.TakeDamage(5);
+                        LoadBloodFromResource(other);
                     }
                 }
             }
+        }
+
+        private void LoadBloodFromResource(Collider other)
+        {
+            Vector3 hitPosition = other.ClosestPoint(transform.position);
+            Vector3 normalPosition = transform.position - other.transform.position;
+
+            Quaternion rotation = Quaternion.FromToRotation(-Vector3.forward, normalPosition);
+            GameObject _blood = Instantiate<GameObject>(blood, hitPosition, rotation);
+            Destroy(_blood, 1.0f);
         }
 
         #endregion

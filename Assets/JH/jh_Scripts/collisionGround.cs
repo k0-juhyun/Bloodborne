@@ -9,6 +9,8 @@ namespace bloodborne
         private GameObject dustEffect;
         public GameObject camShake;
 
+        private float knockBackDistance = 4;
+
         private void Awake()
         {
             dustEffect = Resources.Load<GameObject>("DustSmoke");
