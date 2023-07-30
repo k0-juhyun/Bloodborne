@@ -12,7 +12,6 @@ namespace bloodborne
         PlayerAnimatorManager playerAnimatorManager;
         PlayerLocomotion playerLocomotion;
         PlayerStats playerStats;
-        //AttackDamageSoundManager soundManager;
 
         public bool moonpresenceAttack;
         public bool isDie;
@@ -480,11 +479,13 @@ namespace bloodborne
 
         private void SpecialPattern2AnimEffectOn()
         {
+            AudioManager2.instance.PlaySFX("Moon_special");
             SpecialPattern2[0].SetActive(true);
         }
 
         private void SpecialPattern1AnimEyeOn()
         {
+            AudioManager2.instance.PlaySFX("Moon_Special2");
             SpecialPattern1[0].SetActive(true);
         }
 
@@ -492,6 +493,18 @@ namespace bloodborne
         private void AnimatorTrigger(string TriggerName)
         {
             animator.SetTrigger(TriggerName);
+
+            int randomValue = Random.Range(0, 2);
+            AudioManager2.instance.PlaySFX("Moon_Whip");
+
+            if (randomValue == 0)
+            {
+                AudioManager2.instance.PlaySFX("Moon_Attack1"); 
+            }
+            else
+            {
+                AudioManager2.instance.PlaySFX("Moon_Attack2");  
+            }
         }
 
         // Attack Finish Animation Event
@@ -575,29 +588,21 @@ namespace bloodborne
                 && !isSpecialPattern1InProgress && !isSpecialPattern2InProgress && !isDie
                 || isBulletHit)
             {
-                int randomIndex = Random.Range(0, 3);
-                switch (randomIndex)
-                {
-                    case 0:
-                        //soundManager.PlaySE("moon_damageSound1");
-                        break;
-
-                    case 1:
-                        //soundManager.PlaySE("mooon_damageSound2");
-                        break;
-
-                    case 2:
-                        //soundManager.PlaySE("moon_damageSound3");
-                        break;
-
-                    case 3:
-                        //soundManager.PlaySE("moon_damageSound4");
-                        break;
-                }
 
                 if (curHp > 0)
                 {
                     curHp -= AttackDamage;
+
+                    int randomValue = Random.Range(0, 2);
+
+                    if (randomValue == 0)
+                    {
+                        AudioManager2.instance.PlaySFX("Moon_Hit");    //사운드 추가
+                    }
+                    else
+                    {
+                        AudioManager2.instance.PlaySFX("Moon_Hit2");     //사운드 추가
+                    }
 
                     if (!camShake.activeSelf)
                     {
@@ -637,6 +642,7 @@ namespace bloodborne
 
                     // Load Blood Effect Particle System
                     LoadBloodEffect(other);
+                    AudioManager2.instance.PlaySFX("Moon_Die");
 
                     isBulletHit = false;
                 }

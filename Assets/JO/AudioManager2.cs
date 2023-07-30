@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class PlayerSounds
+public class Sound
 {
     public string name;
     public AudioClip clip;
@@ -12,8 +12,8 @@ public class AudioManager2 : MonoBehaviour
 {
     public static AudioManager2 instance;
 
-    [SerializeField] PlayerSounds[] sfx = null;
-    [SerializeField] PlayerSounds[] bgm = null;
+    [SerializeField] Sound[] sfx = null;
+    [SerializeField] Sound[] bgm = null;
 
     [SerializeField] AudioSource bgmPlayer = null;
     [SerializeField] AudioSource[] sfxPlayer = null;

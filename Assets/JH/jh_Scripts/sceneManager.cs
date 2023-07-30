@@ -30,6 +30,11 @@ namespace bloodborne
             Scene curScene = SceneManager.GetActiveScene();
             // 영상씬 넘어가기
             player.loopPointReached += OnVideoFinished;
+
+            if(SceneManager.GetActiveScene().name == "PlayerDie")
+            {
+                nextScene = thisScene;
+            }
         }
 
         private void Update()
@@ -39,11 +44,15 @@ namespace bloodborne
                 SceneManager.LoadScene(nextScene);
             }
 
-            if(playerAnimatorManager.playerDieScene)
+            if (playerAnimatorManager != null)
             {
-                thisScene = playerDieCurScene;
-                SceneManager.LoadScene(playerDieNextScene);
+                if (playerAnimatorManager.playerDieScene)
+                {
+                    thisScene = playerDieCurScene;
+                    SceneManager.LoadScene(playerDieNextScene);
+                }
             }
+
 
             // 스타트 씬에서 넘어가기
             if (SceneManager.GetActiveScene().name == "jh_GermanStartScene" && ClickToShowText.nextScene)
@@ -76,6 +85,10 @@ namespace bloodborne
             SceneManager.LoadScene(nextScene);
         }
 
+        public void ReTry()
+        {
+            SceneManager.LoadScene("StartScene");
+        }
         public void OnGameStart()
         {
             SceneManager.LoadScene(nextScene);
