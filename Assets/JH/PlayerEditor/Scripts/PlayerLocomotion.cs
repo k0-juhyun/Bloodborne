@@ -29,6 +29,7 @@ namespace bloodborne
 
         public new Rigidbody rigidbody;
         public GameObject normalCamera;
+        public Animator anim;
         public bool canDrinkPotion = true;
         float potionBanTime = 0;
 
@@ -77,6 +78,8 @@ namespace bloodborne
             animatorHandler = GetComponentInChildren<PlayerAnimatorManager>();
             bossAlpha = FindObjectOfType<BossAlpha>();
             bossAi = FindObjectOfType<bossAI>();
+            anim = GetComponentInChildren<Animator>();
+
             cameraObject = Camera.main.transform;
             myTransform = transform;
             animatorHandler.Initialize();
@@ -329,6 +332,7 @@ namespace bloodborne
                 Vector3 backwardForce = backwardDirection * 10;
 
                 playerStats.TakeDamage(5);
+                anim.SetBool("isDie", isPlayerDie);
                 LoadBloodFromResource(playerManager.GetComponent<Collider>());
                 rigidbody.AddForce(backwardForce, ForceMode.Impulse);
                 animatorHandler.PlayTargetAnimation("KnockBack", true);

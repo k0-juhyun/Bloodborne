@@ -32,6 +32,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/JH/jh_Scenes/OpeningEndingScene/jh_MoonPresenceEndingScene.unity
     guid: 329e6ef1d0e20d54587065a89ef399f7
+  - enabled: 1
+    path: Assets/Scenes/PlayerDie.unity
+    guid: 4c8c3162e16e83447a5832cea6302341
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 44f551b421e9c5449aaa57b51cf871eb,
       type: 2}

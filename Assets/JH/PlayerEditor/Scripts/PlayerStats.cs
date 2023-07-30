@@ -28,8 +28,6 @@ namespace bloodborne
         public float staminaRegenerationAmount = 1;
         public float staminaRegenTimer = 0;
 
-        public GameObject[] playerEndingUI;
-
         private bool playOnce;
 
         private void Awake()
@@ -80,8 +78,6 @@ namespace bloodborne
                 playerLocomotion.isPlayerDie = true;
                 currentHealth = 0;
                 animatorHandler.PlayTargetAnimation("Dead", true);
-                playerEndingUI[0].SetActive(true);
-                playerEndingUI[1].SetActive(true);
                 AudioManager2.instance.PlaySFX("Player_Die");
                 playOnce = true;
             }

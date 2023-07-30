@@ -33,48 +33,57 @@ namespace bloodborne
 
         private void Update()
         {
-            float delta = Time.deltaTime;
-            isInteracting = anim.GetBool("isInteracting");
-            canDoCombo = anim.GetBool("canDoCombo");
-            isInvulnerable = anim.GetBool("isInvulnerable");
+            if (this.gameObject != null)
+            {
+                float delta = Time.deltaTime;
+                isInteracting = anim.GetBool("isInteracting");
+                canDoCombo = anim.GetBool("canDoCombo");
+                isInvulnerable = anim.GetBool("isInvulnerable");
 
 
-            inputHandler.TickInput(delta);
-            playerLocomotion.HandleRollingAndSprinting(delta);
-            playerLocomotion.HandleDrinkPotion();
-            playerLocomotion.HandleKnockBack();
-            playerStats.RegenerateStamina();
-            playerAnimatorManager.canRotate = anim.GetBool("canRotate");
+                inputHandler.TickInput(delta);
+                playerLocomotion.HandleRollingAndSprinting(delta);
+                playerLocomotion.HandleDrinkPotion();
+                playerLocomotion.HandleKnockBack();
+                playerStats.RegenerateStamina();
+                playerAnimatorManager.canRotate = anim.GetBool("canRotate");
+            }
         }
 
         private void FixedUpdate()
         {
-            float delta = Time.fixedDeltaTime;
-            playerLocomotion.HandleMovement(delta);
-            playerLocomotion.HandleRotation(delta);
-            playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
+            if (this.gameObject != null)
+            {
+                float delta = Time.fixedDeltaTime;
+                playerLocomotion.HandleMovement(delta);
+                playerLocomotion.HandleRotation(delta);
+                playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
+            }
         }
 
         private void LateUpdate()
         {
-            inputHandler.rollFlag = false;
-            inputHandler.rb_Input = false;
-            inputHandler.rt_Input = false;
-            inputHandler.lf_Input = false;
-            inputHandler.lg_Input = false;
-            inputHandler.potion_Input = false;
-
-            float delta = Time.deltaTime;
-
-            if (cameraHandler != null)
+            if (this.gameObject != null)
             {
-                cameraHandler.FollowTarget(delta);
-                cameraHandler.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
-            }
+                inputHandler.rollFlag = false;
+                inputHandler.rb_Input = false;
+                inputHandler.rt_Input = false;
+                inputHandler.lf_Input = false;
+                inputHandler.lg_Input = false;
+                inputHandler.potion_Input = false;
 
-            if (isInAir)
-            {
-                playerLocomotion.inAirTimer = playerLocomotion.inAirTimer + Time.deltaTime;
+                float delta = Time.deltaTime;
+
+                if (cameraHandler != null)
+                {
+                    cameraHandler.FollowTarget(delta);
+                    cameraHandler.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
+                }
+
+                if (isInAir)
+                {
+                    playerLocomotion.inAirTimer = playerLocomotion.inAirTimer + Time.deltaTime;
+                }
             }
         }
     }

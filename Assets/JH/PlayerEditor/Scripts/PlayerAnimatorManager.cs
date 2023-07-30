@@ -17,6 +17,7 @@ namespace bloodborne
 
         public bool canRotate;
         public bool isAttack;
+        public bool playerDieScene;
         public void Initialize()
         {
             playerAttacker = GetComponentInParent<PlayerAttacker>();
@@ -153,6 +154,11 @@ namespace bloodborne
         public void EnableFireBullet()
         {
             playerAttacker.HandlePistolAttack(playerAttacker.HandleShootPoint());
+        }
+
+        public void DisablePlayer()
+        {
+            playerDieScene = true;
         }
     }
 }
