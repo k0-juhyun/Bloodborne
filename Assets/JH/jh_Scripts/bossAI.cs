@@ -13,10 +13,14 @@ namespace bloodborne
         PlayerLocomotion playerLocomotion;
         PlayerStats playerStats;
 
+        #region Boolean Values
         public bool moonpresenceAttack;
         public bool isDie;
         public bool isFinished;
         public bool isBulletHit;
+        private bool isReact;
+        #endregion
+
         #region TransformComponent
         private Transform playerPos;
         private Transform thisPos;
@@ -24,14 +28,18 @@ namespace bloodborne
 
         private Animator animator;
         private NavMeshAgent agent;
+        private AudioSource audioSource;
+        [Header("DieAudioClips")]
+        public AudioClip[] moonDieAudioClips;
         RFX4_CameraShake cameraShake;
 
-        // target obj -> Player
+        #region GameObject Values
         private GameObject target;
-        private string reactAnimation;
         private GameObject bloodEffect;
         private GameObject dieEffect;
-        private bool isReact;
+        #endregion
+
+        private string reactAnimation;
         private int hitCount = 0;
 
         [Header("SpecialPattern")]
@@ -120,7 +128,7 @@ namespace bloodborne
             playerStats = FindObjectOfType<PlayerStats>();
             playerLocomotion = FindObjectOfType<PlayerLocomotion>();
             playerAnimatorManager = FindObjectOfType<PlayerAnimatorManager>();
-            //soundManager = FindObjectOfType<AttackDamageSoundManager>();
+            audioSource = GetComponent<AudioSource>();
         }
 
         private void Awake()
@@ -499,11 +507,11 @@ namespace bloodborne
 
             if (randomValue == 0)
             {
-                AudioManager2.instance.PlaySFX("Moon_Attack1"); 
+                AudioManager2.instance.PlaySFX("Moon_Attack1");
             }
             else
             {
-                AudioManager2.instance.PlaySFX("Moon_Attack2");  
+                AudioManager2.instance.PlaySFX("Moon_Attack2");
             }
         }
 
@@ -642,7 +650,6 @@ namespace bloodborne
 
                     // Load Blood Effect Particle System
                     LoadBloodEffect(other);
-                    AudioManager2.instance.PlaySFX("Moon_Die");
 
                     isBulletHit = false;
                 }
@@ -752,6 +759,25 @@ namespace bloodborne
             yield return new WaitForSeconds(1);
             camShake.SetActive(false);
         }
+
+        void moonFirstDieSound()
+        {
+            audioSource.clip = moonDieAudioClips[0];
+            audioSource.Play();
+        }
+
+        void moonSecondDieSound()
+        {
+            audioSource.clip = moonDieAudioClips[1];
+            audioSource.Play();
+        }
+
+        void moonThirdDieSound()
+        {
+            audioSource.clip = moonDieAudioClips[2];
+            audioSource.Play();
+        }
+
         #endregion
     }
 }
