@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace bloodborne
 {
     public class PlayerStats : MonoBehaviour
     {
+        #region Stats
         public int healthLevel = 10;
         public int maxHealth;
         public int currentHealth;
@@ -13,19 +15,26 @@ namespace bloodborne
         public int staminaLevel = 10;
         public float maxStamina;
         public float currentStamina;
+        #endregion
 
         public HealthBar healthBar;
         public StaminaBar staminaBar;
 
         PlayerAnimatorManager animatorHandler;
         PlayerManager playerManager;
+        PlayerLocomotion playerLocomotion;
 
         public int potionAmount = 10;
         public float staminaRegenerationAmount = 1;
         public float staminaRegenTimer = 0;
 
+        public GameObject[] playerEndingUI;
+
+        private bool playOnce;
+
         private void Awake()
         {
+            playerLocomotion = GetComponent<PlayerLocomotion>();    
             animatorHandler = GetComponentInChildren<PlayerAnimatorManager>();
             healthBar = FindObjectOfType<HealthBar>();
             staminaBar = FindObjectOfType<StaminaBar>();
@@ -66,11 +75,15 @@ namespace bloodborne
 
             animatorHandler.PlayTargetAnimation("Damage", true);
 
-            if (currentHealth <= 0)
+            if (currentHealth <= 0 && playOnce == false)
             {
+                playerLocomotion.isPlayerDie = true;
                 currentHealth = 0;
                 animatorHandler.PlayTargetAnimation("Dead", true);
+                playerEndingUI[0].SetActive(true);
+                playerEndingUI[1].SetActive(true);
                 AudioManager2.instance.PlaySFX("Player_Die");
+                playOnce = true;
             }
         }
 

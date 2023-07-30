@@ -19,6 +19,8 @@ namespace bloodborne
 
         public Vector3 moveDirection;
         public bool playerExplosion;
+        public bool isPlayerDamaged;
+        public bool isPlayerDie;
 
         [HideInInspector]
         public Transform myTransform;
@@ -320,7 +322,7 @@ namespace bloodborne
 
         public void HandleKnockBack()
         {
-            if (playerExplosion)
+            if (playerExplosion && isPlayerDie == false)
             {
                 print("knockback");
                 Vector3 backwardDirection = -transform.forward;
@@ -356,26 +358,33 @@ namespace bloodborne
 
         private void OnTriggerEnter(Collider other)
         {
-            if (bossAlpha != null)
+            if (!isPlayerDamaged && !isPlayerDie)
             {
-                if (bossAlpha.isGehrmanAttack)
+                if (bossAlpha != null)
                 {
-                    if (other.CompareTag("Weapon"))
+                    if (bossAlpha.isGehrmanAttack)
                     {
-                        playerStats.TakeDamage(10);
-                        LoadBloodFromResource(other);
+                        if (other.CompareTag("Weapon"))
+                        {
+                            isPlayerDamaged = true;
+                            playerStats.TakeDamage(10);
+                            StartCoroutine(HandleDamageDelay());
+                            LoadBloodFromResource(other);
+                        }
                     }
                 }
-            }
 
-            if (bossAi != null)
-            {
-                if (bossAi.moonpresenceAttack)
+                if (bossAi != null)
                 {
-                    if (other.CompareTag("Hand"))
+                    if (bossAi.moonpresenceAttack)
                     {
-                        playerStats.TakeDamage(5);
-                        LoadBloodFromResource(other);
+                        if (other.CompareTag("Hand"))
+                        {
+                            isPlayerDamaged = true;
+                            playerStats.TakeDamage(5);
+                            StartCoroutine(HandleDamageDelay());
+                            LoadBloodFromResource(other);
+                        }
                     }
                 }
             }
@@ -389,6 +398,13 @@ namespace bloodborne
             Quaternion rotation = Quaternion.FromToRotation(-Vector3.forward, normalPosition);
             GameObject _blood = Instantiate<GameObject>(blood, hitPosition, rotation);
             Destroy(_blood, 1.0f);
+        }
+
+        private IEnumerator HandleDamageDelay()
+        {
+            yield return new WaitForSeconds(0.5f);
+
+            isPlayerDamaged = false;
         }
 
         #endregion
