@@ -204,7 +204,7 @@ namespace bloodborne
         public void SetCameraHeight()
         {
             Vector3 velocity = Vector3.zero;
-            Vector3 newLockedPosition = new Vector3(0, lockedPivotPosition, -2);
+            Vector3 newLockedPosition = new Vector3(0, lockedPivotPosition, -1);
             Vector3 newUnLockedPosition = new Vector3(0, unlockedPivotPosition, -1);
 
             if (currentLockOnTarget != null)

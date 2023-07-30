@@ -12,6 +12,7 @@ namespace bloodborne
         PlayerAnimatorManager playerAnimatorManager;
         PlayerLocomotion playerLocomotion;
         PlayerStats playerStats;
+        SoundManager soundManager;
 
         public bool moonpresenceAttack;
         public bool isDie;
@@ -47,6 +48,10 @@ namespace bloodborne
         [Header("Post Processing Volumes")]
         public PostProcessVolume postProcessVolume;
         private LensDistortion lensDistortion;
+
+        [Header("SoundFX")]
+        public string[] attackSound;
+        public string[] damageSound;
 
         #region AttackPatternBoolValues
         public bool isSpecialPattern1Active = false;
@@ -116,6 +121,7 @@ namespace bloodborne
             playerStats = FindObjectOfType<PlayerStats>();
             playerLocomotion = FindObjectOfType<PlayerLocomotion>();
             playerAnimatorManager = FindObjectOfType<PlayerAnimatorManager>();
+            soundManager = FindObjectOfType<SoundManager>();
         }
 
         private void Awake()
@@ -306,31 +312,37 @@ namespace bloodborne
                 {
                     case AttackSubStateMachine.Pattern1:
                         AnimatorTrigger("Pattern1");
+                        soundManager.PlaySE("moon_attackSound1");
                         attackInProgress = true;
                         break;
 
                     case AttackSubStateMachine.Pattern2:
                         AnimatorTrigger("Pattern2");
+                        soundManager.PlaySE("moon_attackSound2");
                         attackInProgress = true;
                         break;
 
                     case AttackSubStateMachine.Pattern3:
                         AnimatorTrigger("Pattern3");
+                        soundManager.PlaySE("moon_attackSound2");
                         attackInProgress = true;
                         break;
 
                     case AttackSubStateMachine.Pattern4:
                         AnimatorTrigger("Pattern4");
+                        soundManager.PlaySE("moon_attackSound3");
                         attackInProgress = true;
                         break;
 
                     case AttackSubStateMachine.Pattern5:
                         AnimatorTrigger("Pattern5");
+                        soundManager.PlaySE("moon_attackSound2");
                         attackInProgress = true;
                         break;
 
                     case AttackSubStateMachine.Pattern6:
                         AnimatorTrigger("Pattern6");
+                        soundManager.PlaySE("moon_attackSound1");
                         attackInProgress = true;
                         break;
                 }
@@ -448,7 +460,7 @@ namespace bloodborne
 
             SpecialPattern2[0].SetActive(true);
 
-            if(MoveDistance < 10)
+            if (MoveDistance < 10)
             {
                 playerLocomotion.canDrinkPotion = false;
             }
@@ -560,10 +572,30 @@ namespace bloodborne
         private void OnTriggerEnter(Collider other)
         {
             if (other.tag == "p_Weapon" && playerAnimatorManager.isAttack && !isReact
-                && !isSpecialPattern1InProgress && !isSpecialPattern2InProgress && !isDie 
+                && !isSpecialPattern1InProgress && !isSpecialPattern2InProgress && !isDie
                 || isBulletHit)
             {
-                if(curHp > 0)
+                int randomIndex = Random.Range(0, 3);
+                switch (randomIndex)
+                {
+                    case 0:
+                        soundManager.PlaySE("moon_damageSound1");
+                        break;
+
+                    case 1:
+                        soundManager.PlaySE("mooon_damageSound2");
+                        break;
+
+                    case 2:
+                        soundManager.PlaySE("moon_damageSound3");
+                        break;
+
+                    case 3:
+                        soundManager.PlaySE("moon_damageSound4");
+                        break;
+                }
+
+                if (curHp > 0)
                 {
                     curHp -= AttackDamage;
 
@@ -613,6 +645,7 @@ namespace bloodborne
                 // Hp, Die Animation
                 else
                 {
+
                     isDie = true;
 
                     print("test");

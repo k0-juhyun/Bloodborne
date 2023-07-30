@@ -26,5 +26,8 @@ namespace bloodborne
         public int baseStamina;
         public float lightAttackMultiplier;
         public float heavyAttackMultiplier;
+
+        [Header("SoundFX")]
+        public AudioClip[] weaponSwingSounds;
     }
 }

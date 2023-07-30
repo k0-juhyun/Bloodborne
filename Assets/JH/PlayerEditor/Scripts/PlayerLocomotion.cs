@@ -18,6 +18,7 @@ namespace bloodborne
         BossManager bossManager;
 
         public Vector3 moveDirection;
+        public bool playerExplosion;
 
         [HideInInspector]
         public Transform myTransform;
@@ -317,31 +318,28 @@ namespace bloodborne
 
         public void HandleKnockBack()
         {
-            if (bossAlpha != null)
+            if (playerExplosion)
             {
-                if (bossAlpha.playerExplosion)
-                {
-                    print("knockback");
-                    Vector3 backwardDirection = -transform.forward;
-                    Vector3 backwardForce = backwardDirection * 10;
+                print("knockback");
+                Vector3 backwardDirection = -transform.forward;
+                Vector3 backwardForce = backwardDirection * 10;
 
-                    playerStats.TakeDamage(5);
-                    LoadBloodFromResource(playerManager.GetComponent<Collider>());
-                    rigidbody.AddForce(backwardForce, ForceMode.Impulse);
-                    animatorHandler.PlayTargetAnimation("KnockBack", true);
+                playerStats.TakeDamage(5);
+                LoadBloodFromResource(playerManager.GetComponent<Collider>());
+                rigidbody.AddForce(backwardForce, ForceMode.Impulse);
+                animatorHandler.PlayTargetAnimation("KnockBack", true);
 
-                    bossAlpha.playerExplosion = false;
-                }
+                playerExplosion = false;
             }
         }
 
         public void HandleDrinkPotion()
         {
-            if(canDrinkPotion == false)
+            if (canDrinkPotion == false)
             {
                 potionBanTime += Time.deltaTime;
 
-                if(potionBanTime > 10f)
+                if (potionBanTime > 10f)
                 {
                     canDrinkPotion = true;
                 }

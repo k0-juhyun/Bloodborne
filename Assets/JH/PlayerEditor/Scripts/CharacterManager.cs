@@ -7,5 +7,9 @@ namespace bloodborne
     public class CharacterManager : MonoBehaviour
     {
         public Transform lockOnTransform;
+
+        private void Awake()
+        {
+        }
     }
 }
