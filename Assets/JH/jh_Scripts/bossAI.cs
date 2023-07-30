@@ -345,6 +345,8 @@ namespace bloodborne
         {
             groundHit = true;
             moonpresenceAttack = true;
+            
+
         }
 
         private void GroundHitFalse()
@@ -490,7 +492,7 @@ namespace bloodborne
 
                 // Move Animation Trigger
                 animator.SetTrigger("Move");
-
+                AudioManager2.instance.PlaySFX("Moon_walk");
                 // Agent Move
                 agent.isStopped = false;
             }
