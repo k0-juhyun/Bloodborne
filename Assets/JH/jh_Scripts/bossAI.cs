@@ -474,8 +474,17 @@ namespace bloodborne
         private void AnimatorTrigger(string TriggerName)
         {
             animator.SetTrigger(TriggerName);
-            AudioManager2.instance.PlaySFX("Moon_Attack2");
+            int randomValue = Random.Range(0, 2);
             AudioManager2.instance.PlaySFX("Moon_Whip");
+            // AudioManager2.instance를 이용하여 랜덤으로 선택된 오디오를 재생
+            if (randomValue == 0)
+            {
+                AudioManager2.instance.PlaySFX("Moon_Attack1");
+            }
+            else
+            {
+                AudioManager2.instance.PlaySFX("Moon_Attack2");
+            }
 
         }
 

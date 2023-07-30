@@ -42,7 +42,7 @@ namespace bloodborne
                 if (lastAttack == weapon.oneHandHeavyAttack1)
                 {
                     playerAnimatorManager.PlayTargetAnimation(weapon.oneHandHeavyAttack2, true);
-                    AudioManager2.instance.PlaySFX("PlayerShooting");
+                    AudioManager2.instance.PlaySFX("Playerwhip");
                 }
 
             }
@@ -66,12 +66,13 @@ namespace bloodborne
         {
             if (playerStats.currentStamina <= 0)
                 return;
-            Debug.Log("fdffd");
-            weaponSlotManager.attackingWeapon = weapon;
-            playerAnimatorManager.PlayTargetAnimation(weapon.oneHandHeavyAttack1, true); 
-            AudioManager2.instance.PlaySFX("PlayerShooting");
-            lastAttack = weapon.oneHandHeavyAttack1;
            
+            weaponSlotManager.attackingWeapon = weapon;
+            playerAnimatorManager.PlayTargetAnimation(weapon.oneHandHeavyAttack1, true);
+            AudioManager2.instance.PlaySFX("Playerwhip");
+            lastAttack = weapon.oneHandHeavyAttack1;
+            AudioManager2.instance.PlaySFX("PlayerShooting");
+
         }
     }
 }

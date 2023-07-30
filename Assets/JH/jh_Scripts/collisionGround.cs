@@ -49,6 +49,11 @@ namespace bloodborne
                 AudioManager2.instance.PlaySFX("PlayerWalk");
                 Debug.Log("PlayerFoot과 충돌 발생!");
             }
+            if (other.CompareTag("Hand") )
+            {
+                AudioManager2.instance.PlaySFX("Moon_Walk");
+               
+            }
         }
     }
 }
