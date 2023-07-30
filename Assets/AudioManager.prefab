@@ -79,6 +79,14 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 356188458db48994d8be8717e0141470, type: 3}
   - name: Moon_Whip
     clip: {fileID: 8300000, guid: df947cd3caf94f84aba9c36ec59167b2, type: 3}
+  - name: Player_Hit
+    clip: {fileID: 8300000, guid: df6409a737c3c8c4ca95e5724fe7d1b3, type: 3}
+  - name: Gehrman_atk1
+    clip: {fileID: 8300000, guid: 5459d6a31769f974c87d1f53b8bd3bfe, type: 3}
+  - name: Gehrman_atk2
+    clip: {fileID: 8300000, guid: 77ec4d60493215e4f8dbbcfae6605a7f, type: 3}
+  - name: Gehrman_Die
+    clip: {fileID: 8300000, guid: b1a76fce5dfdcac44b21b25717c67421, type: 3}
   bgm:
   - name: gehrman_bgm
     clip: {fileID: 8300000, guid: 354a762b22bd551458f120aaea006ddc, type: 3}
@@ -273,7 +281,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -369,7 +377,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -465,7 +473,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -561,7 +569,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -657,7 +665,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -753,7 +761,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -849,7 +857,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -945,7 +953,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0

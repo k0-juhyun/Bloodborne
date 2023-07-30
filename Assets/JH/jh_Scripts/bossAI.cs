@@ -149,6 +149,7 @@ namespace bloodborne
             // Load Effects
             bloodEffect = Resources.Load<GameObject>("DAX_Blood_Spray_00(Fade_2s)");
             dieEffect = Resources.Load<GameObject>("DieEffect");
+           
         }
 
         private void OnEnable()
@@ -389,6 +390,7 @@ namespace bloodborne
             // Aniamtion Trigger
             AnimatorTrigger("SpecialPattern1Finish");
 
+
             // Move Agent
             agent.isStopped = false;
 
@@ -455,17 +457,24 @@ namespace bloodborne
         private void SpecialPattern2AnimEffectOn()
         {
             SpecialPattern2[0].SetActive(true);
+            AudioManager2.instance.PlaySFX("Moon_special");
+
         }
 
         private void SpecialPattern1AnimEyeOn()
         {
             SpecialPattern1[0].SetActive(true);
+            AudioManager2.instance.PlaySFX("Moon_special");
+
         }
 
         // Animation Trigger Function
         private void AnimatorTrigger(string TriggerName)
         {
             animator.SetTrigger(TriggerName);
+            AudioManager2.instance.PlaySFX("Moon_Attack2");
+            AudioManager2.instance.PlaySFX("Moon_Whip");
+
         }
 
         // Attack Finish Animation Event
@@ -587,6 +596,8 @@ namespace bloodborne
 
                     // Set Trigger React Animation
                     AnimatorTrigger(reactAnimation);
+                    AudioManager2.instance.PlaySFX("Moon_Hit");
+
 
                     // Load Blood Effect Particle System
                     LoadBloodEffect(other);
@@ -611,7 +622,7 @@ namespace bloodborne
 
                     // Die Anim
                     AnimatorTrigger("Die");
-
+                    AudioManager2.instance.PlaySFX("Moon_Die");
                     return;
                 }
             }

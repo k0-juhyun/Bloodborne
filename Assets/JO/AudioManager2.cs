@@ -20,10 +20,17 @@ public class AudioManager2 : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
-        
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject); // 이 부분을 추가하여 게임 오브젝트를 영구적으로 유지합니다.
+        }
+        else
+        {
+            Destroy(gameObject); // 이미 인스턴스가 존재하면 중복된 AudioManager2 게임 오브젝트를 파괴합니다.
+        }
     }
-   
+
     public void PlayBGM(string p_bgmName)
     {
         for (int i = 0; i < bgm.Length; i++)
