@@ -12,7 +12,7 @@ namespace bloodborne
         PlayerAnimatorManager playerAnimatorManager;
         PlayerLocomotion playerLocomotion;
         PlayerStats playerStats;
-        SoundManager soundManager;
+        AttackDamageSoundManager soundManager;
 
         public bool moonpresenceAttack;
         public bool isDie;
@@ -121,7 +121,7 @@ namespace bloodborne
             playerStats = FindObjectOfType<PlayerStats>();
             playerLocomotion = FindObjectOfType<PlayerLocomotion>();
             playerAnimatorManager = FindObjectOfType<PlayerAnimatorManager>();
-            soundManager = FindObjectOfType<SoundManager>();
+            soundManager = FindObjectOfType<AttackDamageSoundManager>();
         }
 
         private void Awake()

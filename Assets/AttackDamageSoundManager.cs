@@ -11,7 +11,7 @@ public class Sound
 
 namespace bloodborne
 {
-    public class SoundManager : MonoBehaviour
+    public class AttackDamageSoundManager : MonoBehaviour
     {
         public AudioSource[] audioSourceEffects;
         public AudioSource audioSourceBgm;
@@ -68,7 +68,7 @@ namespace bloodborne
 
         void Start()
         {
-            PlaySE("BGM");       
+            PlaySE("bgm");       
         }
     }
 }

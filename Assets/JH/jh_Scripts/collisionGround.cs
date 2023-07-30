@@ -7,7 +7,8 @@ namespace bloodborne
     public class collisionGround : MonoBehaviour
     {
         PlayerLocomotion playerLocomotion;
-        SoundManager soundManager;
+        AttackDamageSoundManager attackdamageSoundManager;
+        FootSoundManager footSoundManager;
         bossAI bossAi;
 
         private GameObject dustEffect;
@@ -19,7 +20,8 @@ namespace bloodborne
 
         private void Awake()
         {
-            soundManager = FindObjectOfType<SoundManager>();
+            attackdamageSoundManager = FindObjectOfType<AttackDamageSoundManager>();
+            footSoundManager = FindObjectOfType<FootSoundManager>();
             playerLocomotion = FindObjectOfType<PlayerLocomotion>();
             bossAi = FindObjectOfType<bossAI>();
             dustEffect = Resources.Load<GameObject>("DustSmoke");
@@ -65,11 +67,11 @@ namespace bloodborne
                 switch (randomIndex)
                 {
                     case 0:
-                        soundManager.PlaySE("moon_foot1");
+                        footSoundManager.PlaySE("moon_foot1");
                         break;
 
                     case 1:
-                        soundManager.PlaySE("moon_foot2");
+                        footSoundManager.PlaySE("moon_foot2");
                         break;
                 }
             }
