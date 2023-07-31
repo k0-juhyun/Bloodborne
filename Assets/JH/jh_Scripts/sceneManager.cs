@@ -56,11 +56,9 @@ namespace bloodborne
             }
 
             // 스타트 씬에서 넘어가기
-            if (SceneManager.GetActiveScene().name == "jh_GermanStartScene" && ClickToShowText.nextScene
-                || SceneManager.GetActiveScene().name == "jh_GermanStartScene" && Input.GetKey(KeyCode.K))
+            if (SceneManager.GetActiveScene().name == "jh_GermanStartScene" && ClickToShowText.nextScene)
             {
                 SceneManager.LoadScene(nextScene);
-                ClickToShowText.nextScene = false;
             }
 
             // 게르만 죽으면

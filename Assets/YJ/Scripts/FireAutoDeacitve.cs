@@ -23,5 +23,10 @@ namespace bloodborne
             gameObject.SetActive(false);
         }
 
+        public void FireDestroy()
+        {
+            Destroy(gameObject);
+        }
+
     }
 }

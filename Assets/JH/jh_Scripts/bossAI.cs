@@ -376,6 +376,8 @@ namespace bloodborne
         // Special Pattern1
         private IEnumerator SpecialPattern1AnimStart()
         {
+            AudioManager2.instance.PlaySFX("Moon_Special2");
+
             moonpresenceAttack = false;
 
             // Set Animator Speed 50%
@@ -488,8 +490,13 @@ namespace bloodborne
 
         private void SpecialPattern1AnimEyeOn()
         {
-            AudioManager2.instance.PlaySFX("Moon_Special2");
             SpecialPattern1[0].SetActive(true);
+            StartCoroutine(SoundDelay());
+        }
+        IEnumerator SoundDelay()
+        {
+            yield return new WaitForSeconds(1);
+            AudioManager2.instance.PlaySFX("Moon_Whip2");
         }
 
         // Animation Trigger Function

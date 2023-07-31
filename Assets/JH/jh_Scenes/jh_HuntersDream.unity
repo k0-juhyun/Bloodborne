@@ -18481,6 +18481,66 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2419016539952435397, guid: a94823972f206b04f8244e9a78b3b88a,
+        type: 3}
+      propertyPath: sfx.Array.size
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 2419016539952435397, guid: a94823972f206b04f8244e9a78b3b88a,
+        type: 3}
+      propertyPath: sfx.Array.data[27].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5948016663c253941ae5a4dff1fd8a9f, type: 3}
+    - target: {fileID: 2419016539952435397, guid: a94823972f206b04f8244e9a78b3b88a,
+        type: 3}
+      propertyPath: sfx.Array.data[28].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 05add778de5a2ee43a20ea87cc834f2c, type: 3}
+    - target: {fileID: 2419016539952435397, guid: a94823972f206b04f8244e9a78b3b88a,
+        type: 3}
+      propertyPath: sfx.Array.data[28].name
+      value: Moon_Whip2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172842332171941936, guid: a94823972f206b04f8244e9a78b3b88a,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172842332171941937, guid: a94823972f206b04f8244e9a78b3b88a,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172842332171941938, guid: a94823972f206b04f8244e9a78b3b88a,
+        type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172842332171941939, guid: a94823972f206b04f8244e9a78b3b88a,
+        type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172842332171941948, guid: a94823972f206b04f8244e9a78b3b88a,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172842332171941949, guid: a94823972f206b04f8244e9a78b3b88a,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172842332171941950, guid: a94823972f206b04f8244e9a78b3b88a,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172842332171941951, guid: a94823972f206b04f8244e9a78b3b88a,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8172842332913095214, guid: a94823972f206b04f8244e9a78b3b88a,
         type: 3}
       propertyPath: m_RootOrder
@@ -22989,7 +23049,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 212305766301380365}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
@@ -32258,7 +32318,7 @@ PrefabInstance:
     - target: {fileID: 5086411828454696817, guid: 9c3f397d353a3c949ad3c65fd1c16f91,
         type: 3}
       propertyPath: potionAmount
-      value: 100
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5086411828454696817, guid: 9c3f397d353a3c949ad3c65fd1c16f91,
         type: 3}

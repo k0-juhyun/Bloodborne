@@ -16,6 +16,7 @@ namespace bloodborne
         NavMeshAgent agent;                     // 길찾기
         Animator anim;                          // 애니메이터
         GehrmanSoundManager soundManager;              // 사운드 매니저
+        FireAutoDeacitve fires;
 
         #region 사운드 목록
         [SerializeField]
@@ -43,7 +44,15 @@ namespace bloodborne
         [SerializeField]
         private string AttackVoiceSound3;           // 12. 폭발 공격 목소리
         [SerializeField]
-        private string DieSound;                         // 13. 죽음 소리
+        private string DieSound;                    // 13. 죽음 소리
+        [SerializeField]
+        private string FootSoundRight1;              // 14. 오른쪽 발소리
+        [SerializeField]
+        private string FootSoundRight2;              // 14. 오른쪽 발소리
+        [SerializeField]
+        private string FootSoundLeft1;               // 15. 왼쪽 발소리
+        [SerializeField]
+        private string FootSoundLeft2;               // 15. 왼쪽 발소리
         #endregion
 
 
@@ -186,6 +195,7 @@ namespace bloodborne
             animatorHandler = FindObjectOfType<PlayerAnimatorManager>();      // 플레이어 피격 상태 애니메이션
             playerLocomotion = FindObjectOfType<PlayerLocomotion>();            // 플레이어 날라가는 상태
             soundManager = FindObjectOfType<GehrmanSoundManager>();                    // 사운드 매니저
+            fires = FindObjectOfType<FireAutoDeacitve>();
         }
 
         // Update is called once per frame
@@ -351,17 +361,6 @@ namespace bloodborne
                 case AttackSubState.Attack1:
                     if (curTime > skTime_Sickel1_1)
                     {
-                        // 칼공격 3 애니메이션 켜기
-                        anim.SetTrigger("Sword3");
-                        // 사운드 재생
-                        soundManager.PlaySound(SwordSound1);
-                        soundManager.PlaySound(AttackVoiceSound1);
-                        attackSubState = AttackSubState.Attack2;
-                    }
-                    break;
-                case AttackSubState.Attack2:
-                    if (curTime > skTime_Sickel1_2)
-                    {
                         // 이동한다
                         moveTargetPos.y = transform.position.y;
                         transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
@@ -369,10 +368,19 @@ namespace bloodborne
                         //print("moveTargetPos :" + moveTargetPos);
                         if (Vector3.Distance(transform.position, moveTargetPos) < 1f)
                         {
-                            anim.SetBool("Leg", false);
-                            // 서브상태를 액션 3로 바꾼다
-                            attackSubState = AttackSubState.Attack3;
+                            // 칼공격 3 애니메이션 켜기
+                            anim.SetTrigger("Sword3");
+                            attackSubState = AttackSubState.Attack2;
                         }
+                        
+                    }
+                    break;
+                case AttackSubState.Attack2:
+                    if (curTime > skTime_Sickel1_2)
+                    {
+
+                        // 서브상태를 액션 3로 바꾼다
+                        attackSubState = AttackSubState.Attack3;
                     }
                     break;
                 case AttackSubState.Attack3:
@@ -384,6 +392,14 @@ namespace bloodborne
                     }
                     break;
             }
+        }
+
+        // 이벤트 함수 사운드
+        void SwordAttackSound()
+        {
+            // 사운드 재생
+            soundManager.PlaySound(SwordSound1);
+            soundManager.PlaySound(AttackVoiceSound1);
         }
 
         private void UpdateSwordCombo1()
@@ -398,13 +414,33 @@ namespace bloodborne
                 case AttackSubState.Attack1:
                     if (curTime > skTime_Sickel1_1)
                     {
-                        // 한번 공격한다
-                        anim.SetTrigger("Sword1");
-                        // 사운드 재생
-                        soundManager.PlaySound(SwordSound1);
-                        soundManager.PlaySound(AttackVoiceSound2);
-                        // 서브스테이트 상태를 Atttack2로 한다
-                        attackSubState = AttackSubState.Attack2;
+                        print("S1SubState : Attack1");
+                        isMove = true;
+                        // 앞으로 이동하고 싶다
+                        moveTargetPos.y = transform.position.y;
+                        transform.position = Vector3.Lerp(transform.position, moveTargetPos, dashSpeed * Time.deltaTime);
+
+                        print("S1 moveTargetPos :" + moveTargetPos);
+                        if (Vector3.Distance(transform.position, moveTargetPos) < 1f)
+                        {
+                            anim.SetBool("Leg", false);
+                            // 한번 공격한다
+                            anim.SetTrigger("Sword1");
+                            // 사운드 재생
+                            soundManager.PlaySound(SwordSound1);
+                            soundManager.PlaySound(AttackVoiceSound2);
+                            // 서브스테이트 상태를 Atttack2로 한다
+                            attackSubState = AttackSubState.Attack2;
+                            isMove = false;
+                        }
+
+                        //// 한번 공격한다
+                        //anim.SetTrigger("Sword1");
+                        //// 사운드 재생
+                        //soundManager.PlaySound(SwordSound1);
+                        //soundManager.PlaySound(AttackVoiceSound2);
+                        //// 서브스테이트 상태를 Atttack2로 한다
+                        //attackSubState = AttackSubState.Attack2;
                     }
                     break;
                 case AttackSubState.Attack2:
@@ -974,6 +1010,10 @@ namespace bloodborne
             print("AnimHitUP 호출됨");
         }
 
+        void effectDestroy()
+        {
+            fires.FireDestroy();
+        }
 
         void AnimDie()
         {
@@ -997,7 +1037,28 @@ namespace bloodborne
         {
             isGehrmanAttack = false;
         }
+        
 
+        // 발소리 이벤트 함수
+        void PlayFootSoundRight1()
+        {
+            soundManager.PlaySound(FootSoundRight1);
+        }
+
+        void PlayFootSoundRight2()
+        {
+            soundManager.PlaySound(FootSoundRight2);
+        }
+
+        void PlayFootSoundLeft1()
+        {
+            soundManager.PlaySound(FootSoundLeft1);
+        }
+
+        void PlayFootSoundLeft2()
+        {
+            soundManager.PlaySound(FootSoundLeft2);
+        }
 
         private void UpdateSickelCombo1()
         {
@@ -1071,8 +1132,6 @@ namespace bloodborne
                         print("목적지3 : " + attackMovePos);
                         print("CurrPos:" + currPos);
                         transform.position = Vector3.Lerp(currPos, attackMovePos, 0.5f);
-                        // 사운드 재생
-                        soundManager.PlaySound(MoveSound);
 
                         print("현재위치2 :" + transform.position);
                         print("위치차 : " + Vector3.Distance(transform.position, attackMovePos));

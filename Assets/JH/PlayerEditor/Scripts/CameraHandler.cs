@@ -217,5 +217,10 @@ namespace bloodborne
                 cameraPivotTransform.transform.localPosition = Vector3.SmoothDamp(cameraPivotTransform.transform.localPosition, newUnLockedPosition, ref velocity, Time.deltaTime);
             }
         }
+
+        public void ResetCameraPosition()
+        {
+            cameraTransform.localPosition = new Vector3(cameraTransform.localPosition.x, cameraTransform.localPosition.y, defaultPosition);
+        }
     }
 }

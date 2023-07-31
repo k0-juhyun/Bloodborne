@@ -8,24 +8,38 @@ namespace bloodborne
     {
         PlayerAnimatorManager playerAnimatorManager;
         BossAlpha bossAlpha;
+
+        AudioSource audioSource;
+        Rigidbody rb;
+        MeshRenderer[] mr;
+        public float knockbackForce = 5f;
         // Start is called before the first frame update
         void Start()
         {
             playerAnimatorManager = FindObjectOfType<PlayerAnimatorManager>();
+            audioSource = GetComponent<AudioSource>();
+            rb = GetComponent<Rigidbody>();
+            mr = GetComponentsInChildren<MeshRenderer>();
             bossAlpha = GetComponent<BossAlpha>();
         }
 
-
-        private void OnCollisionEnter(Collision coll)
+        private void OnTriggerEnter(Collider other)
         {
-            if (coll.collider.tag == ("p_Weapon") && playerAnimatorManager.isAttack)
+            if (other.gameObject.CompareTag("p_Weapon") && playerAnimatorManager.isAttack)
             {
-                Destroy(gameObject);
+                audioSource.enabled = true;
+                foreach (MeshRenderer renderer in mr)
+                {
+                    renderer.enabled = false;
+                }
             }
-
-            else if (coll.collider.tag == ("Weapon") && bossAlpha.isGehrmanAttack == true)
+            else if (other.gameObject.CompareTag("Weapon") && bossAlpha.isGehrmanAttack)
             {
-                Destroy(gameObject);
+                audioSource.enabled = true;
+                foreach (MeshRenderer renderer in mr)
+                {
+                    renderer.enabled = false;
+                }
             }
         }
     }

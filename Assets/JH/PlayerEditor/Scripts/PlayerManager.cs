@@ -48,6 +48,16 @@ namespace bloodborne
                 playerStats.RegenerateStamina();
                 playerAnimatorManager.canRotate = anim.GetBool("canRotate");
             }
+
+            if(Input.GetKey(KeyCode.Alpha1))
+            {
+                playerStats.DeveloperMode();
+            }
+            if(Input.GetKeyDown(KeyCode.Alpha2)) 
+            {
+                cameraHandler.ResetCameraPosition();
+                print("reset");
+            }
         }
 
         private void FixedUpdate()

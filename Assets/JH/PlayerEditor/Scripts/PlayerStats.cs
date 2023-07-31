@@ -128,5 +128,13 @@ namespace bloodborne
             healthBar.SetCurrentHealth(currentHealth);
             return currentHealth;
         }
+
+        public void DeveloperMode()
+        {
+            currentHealth = maxHealth;
+            currentStamina = maxStamina;
+            healthBar.SetCurrentHealth(currentHealth);
+            staminaBar.SetCurrentStamina(currentStamina);
+        }
     }
 }
