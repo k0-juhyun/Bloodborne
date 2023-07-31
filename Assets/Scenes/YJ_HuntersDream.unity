@@ -3075,6 +3075,14 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: a80df723d25e4eb449e29c05644a8c16, type: 3}
   - name: Die
     clip: {fileID: 8300000, guid: af51113ccf005df408faa9e43700a3ca, type: 3}
+  - name: FootRight1
+    clip: {fileID: 8300000, guid: 7a18a7db69188df4a974dc2896b85dd9, type: 3}
+  - name: FootRight2
+    clip: {fileID: 8300000, guid: e9a6d3db543d39944b60a79790177041, type: 3}
+  - name: FootLeft1
+    clip: {fileID: 8300000, guid: 46827167f9e36ed42b881067c5a7ae91, type: 3}
+  - name: FootLeft2
+    clip: {fileID: 8300000, guid: 5379bf7e85c5aee42be9eb03753f5111, type: 3}
   bgmSounds:
     name: HuntersDream
     clip: {fileID: 8300000, guid: 99c14e5334ce0ea45bf83f3808488e05, type: 3}
@@ -11619,6 +11627,11 @@ PrefabInstance:
         type: 3}
       propertyPath: potionAmount
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5086411828454696817, guid: 9c3f397d353a3c949ad3c65fd1c16f91,
+        type: 3}
+      propertyPath: staminaRegenerationAmount
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5086411828454696824, guid: 9c3f397d353a3c949ad3c65fd1c16f91,
         type: 3}
@@ -25435,7 +25448,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 212305766301380365}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.7300001, z: -1.61}
+  m_LocalPosition: {x: 0, y: 1.7300001, z: -2.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44423,7 +44436,7 @@ MonoBehaviour:
   cameraSphereRadius: 0.2
   cameraCollisionOffset: 0.2
   minimumCollisionOffset: 0.2
-  lockedPivotPosition: 1.6
+  lockedPivotPosition: 1.8
   unlockedPivotPosition: 1.2
   nearestLockOnTarget: {fileID: 0}
   maximumLockOnDistance: 30
@@ -50536,6 +50549,10 @@ MonoBehaviour:
   AttackVoiceSound2: Attack2
   AttackVoiceSound3: Attack3
   DieSound: Die
+  FootSoundRight1: FootRight1
+  FootSoundRight2: FootRight2
+  FootSoundLeft1: FootLeft1
+  FootSoundLeft2: FootLeft2
   bossState: 0
   bossPhase: 0
   attackSubState: 0
