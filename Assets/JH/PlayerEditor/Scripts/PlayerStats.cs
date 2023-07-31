@@ -95,7 +95,11 @@ namespace bloodborne
             if (potionAmount > 0)
             {
                 --potionAmount;
-                currentHealth += 10;
+                currentHealth += 30;
+                if(currentHealth >= maxHealth)
+                {
+                    currentHealth = maxHealth;
+                }
                 healthBar.SetCurrentHealth(currentHealth);
                 AudioManager2.instance.PlaySFX("PlayerPotion");
             }

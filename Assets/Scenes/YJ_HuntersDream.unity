@@ -11620,6 +11620,11 @@ PrefabInstance:
       propertyPath: potionAmount
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 5086411828454696817, guid: 9c3f397d353a3c949ad3c65fd1c16f91,
+        type: 3}
+      propertyPath: staminaRegenerationAmount
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5086411828454696824, guid: 9c3f397d353a3c949ad3c65fd1c16f91,
         type: 3}
       propertyPath: m_Name

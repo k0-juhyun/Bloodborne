@@ -319,37 +319,32 @@ namespace bloodborne
                 {
                     case AttackSubStateMachine.Pattern1:
                         AnimatorTrigger("Pattern1");
-                        //soundManager.PlaySE("moon_attackSound1");
                         attackInProgress = true;
                         break;
 
                     case AttackSubStateMachine.Pattern2:
                         AnimatorTrigger("Pattern2");
-                        //soundManager.PlaySE("moon_attackSound2");
                         attackInProgress = true;
                         break;
 
                     case AttackSubStateMachine.Pattern3:
                         AnimatorTrigger("Pattern3");
-                        //soundManager.PlaySE("moon_attackSound2");
                         attackInProgress = true;
                         break;
 
                     case AttackSubStateMachine.Pattern4:
                         AnimatorTrigger("Pattern4");
-                        //soundManager.PlaySE("moon_attackSound3");
                         attackInProgress = true;
                         break;
 
                     case AttackSubStateMachine.Pattern5:
                         AnimatorTrigger("Pattern5");
-                        //soundManager.PlaySE("moon_attackSound2");
                         attackInProgress = true;
                         break;
 
                     case AttackSubStateMachine.Pattern6:
                         AnimatorTrigger("Pattern6");
-                        //soundManager.PlaySE("moon_attackSound1");
+                        playerLocomotion.playerExplosion = true;
                         attackInProgress = true;
                         break;
                 }

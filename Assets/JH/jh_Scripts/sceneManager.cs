@@ -19,6 +19,7 @@ namespace bloodborne
         bossAI bossAi;
         PlayerLocomotion playerLocomotion;
         PlayerAnimatorManager playerAnimatorManager;
+        AudioSource audioSource;
 
         private void Awake()
         {
@@ -26,6 +27,7 @@ namespace bloodborne
             bossAlpha = FindObjectOfType<BossAlpha>();
             playerLocomotion = FindObjectOfType<PlayerLocomotion>();
             playerAnimatorManager = FindObjectOfType<PlayerAnimatorManager>();
+            audioSource = GetComponent<AudioSource>();
 
             Scene curScene = SceneManager.GetActiveScene();
             // 영상씬 넘어가기
@@ -53,9 +55,9 @@ namespace bloodborne
                 }
             }
 
-
             // 스타트 씬에서 넘어가기
-            if (SceneManager.GetActiveScene().name == "jh_GermanStartScene" && ClickToShowText.nextScene)
+            if (SceneManager.GetActiveScene().name == "jh_GermanStartScene" && ClickToShowText.nextScene
+                || SceneManager.GetActiveScene().name == "jh_GermanStartScene" && Input.GetKey(KeyCode.K))
             {
                 SceneManager.LoadScene(nextScene);
                 ClickToShowText.nextScene = false;
@@ -92,10 +94,12 @@ namespace bloodborne
         public void OnGameStart()
         {
             SceneManager.LoadScene(nextScene);
+            audioSource.enabled = true;
         }
 
         public void OnGameQuit()
         {
+            audioSource.enabled = true;
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
 #else

@@ -88,7 +88,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.8311458
+      - time: 0.46808845
         functionName: DisableCombo
         data: 
         objectReferenceParameter: {instanceID: 0}

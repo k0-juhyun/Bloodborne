@@ -23,7 +23,6 @@ public class AudioManager2 : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // 이 부분을 추가하여 게임 오브젝트를 영구적으로 유지합니다.
         }
         else
         {

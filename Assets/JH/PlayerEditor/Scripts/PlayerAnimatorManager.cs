@@ -6,6 +6,7 @@ namespace bloodborne
 {
     public class PlayerAnimatorManager : MonoBehaviour
     {
+        public static PlayerAnimatorManager instance;
         public Animator anim;
         InputHandler inputHandler;
         PlayerLocomotion playerLocomotion;
@@ -126,6 +127,16 @@ namespace bloodborne
         public void DisableCombo()
         {
             anim.SetBool("canDoCombo", false);
+            isAttack = false;
+        }
+
+        public void AttackTrue()
+        {
+            isAttack = true;
+        }
+
+        public void AttackFalse() 
+        { 
             isAttack = false;
         }
 
