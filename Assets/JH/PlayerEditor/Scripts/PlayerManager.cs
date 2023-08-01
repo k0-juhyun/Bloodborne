@@ -33,6 +33,7 @@ namespace bloodborne
 
         private void Update()
         {
+            Cursor.visible = false;
             if (this.gameObject != null)
             {
                 float delta = Time.deltaTime;

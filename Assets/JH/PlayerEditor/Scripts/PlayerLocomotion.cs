@@ -328,6 +328,7 @@ namespace bloodborne
             if (playerExplosion && isPlayerDie == false)
             {
                 print("knockback");
+                //Vector3 cameracurPos = cameraHandler.cameraTransform.localPosition;
                 Vector3 backwardDirection = -transform.forward;
                 Vector3 backwardForce = backwardDirection * 10;
 
@@ -337,6 +338,7 @@ namespace bloodborne
                 rigidbody.AddForce(backwardForce, ForceMode.Impulse);
                 animatorHandler.PlayTargetAnimation("KnockBack", true);
                 AudioManager2.instance.PlaySFX("Gehrman_explosion");
+                //cameraHandler.cameraTransform.localPosition = cameracurPos;
                 playerExplosion = false;
             }
         }

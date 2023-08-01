@@ -67,6 +67,11 @@ namespace bloodborne
                 StartCoroutine(delayLoadScene(3f));
             }
 
+            if(Input.GetKeyDown(KeyCode.J))
+            {
+                StartCoroutine(delayLoadScene2(3f));
+            }
+
             // 달의존재 죽으면
             if (SceneManager.GetActiveScene().name == "jh_HuntersDream" && bossAi.isFinished)
             {
@@ -83,6 +88,12 @@ namespace bloodborne
         {
             yield return new WaitForSeconds(delayTime);
             SceneManager.LoadScene(nextScene);
+        }
+
+        IEnumerator delayLoadScene2(float delayTime)
+        {
+            yield return new WaitForSeconds(delayTime);
+            SceneManager.LoadScene("jh_MoonPresenceOpeningScene");
         }
 
         public void ReTry()
