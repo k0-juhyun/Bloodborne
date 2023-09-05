@@ -1,2 +1,5 @@
 # Bloodborne
- Bloodborne
+ Bloodborne 모작
+
+ 1. 블러드본 모작으로 달의 존재, 게르만, 플레이어를 구현
+ 2. 최종 맵에서 전투와 각종 상호작용 구현
