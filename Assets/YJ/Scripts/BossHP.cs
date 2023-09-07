@@ -40,6 +40,8 @@ public class BossHP : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // 개발자 모드? p 누르면 게르만 hp = 1로 만드는?
+        // 근데 플레이어 죽음이 UI도 없고 다시 시작하는 상태가 없어서 필요 없으려나..
+        // 물약이 무한이라 괜찮겠다
     }
 }
