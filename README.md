@@ -36,7 +36,7 @@ Unity 2019.3.26f1
  
 ### 기획
 </summary>
-   토글 안 내용
+   패턴 분석: https://drive.google.com/drive/u/0/folders/1F4VwUdiuoXHEFoZ37tuTSyf0DZylfGn8
 </details>
 
 <details>
