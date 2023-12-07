@@ -55,6 +55,7 @@ Unity 2019.3.26f1
 
 ### ETC
 깃허브 노션 구글드라이브 (피그마)? 아이콘 추가해야됌.
+ <img src="https://github.com/k0-juhyun/Bloodborne/assets/135581469/111fec76-46d9-4c03-9251-831d97fd514b" alt="github" width="40" height="40"/>
 
 # 📃 결과물   
 ### 시연영상
