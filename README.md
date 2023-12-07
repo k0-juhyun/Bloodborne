@@ -1,6 +1,8 @@
 # 📖 프로젝트 명
 ### BloodBrone  
-   
+
+![MainImg](https://github.com/k0-juhyun/Bloodborne/assets/79074052/6122be59-06fd-41dc-a751-3216652861b1)
+
 2023.07.01 ~ 2023.07.31   
 Unity 2019.3.26f1    
 
