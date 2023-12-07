@@ -1,19 +1,23 @@
 # 📖 프로젝트 명
 ### BloodBrone  
+Unity 2019.3.26f1 
 
 ![MainImg](https://github.com/k0-juhyun/Bloodborne/assets/79074052/6122be59-06fd-41dc-a751-3216652861b1)
 
+# 📆 프로젝트 기간    
 2023.07.01 ~ 2023.07.31   
-Unity 2019.3.26f1    
+   
 
 # 📃 프로젝트 소개
 
 ### PS4게임 BloodBorne를 모작한 게임 BloodBorne 입니다.
 
-**Game** : Video Game  
-**Game mode**: Player vs AI     
-**Software** : Unity  
-**Language** : C#   
+|Category|Content|
+|:---:|:---:|
+|**Game**| Video Game|  
+|**Game mode**| Player vs AI  |     
+|**Software**|  Unity|  
+|**Language**|  C#| 
 
 # 👩‍🔧 팀원 소개 및 역할
 
