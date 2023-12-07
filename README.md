@@ -61,6 +61,6 @@ Unity 2019.3.26f1
 https://www.youtube.com/watch?v=1-FZ-I1-eb4
 
 ### 발표 자료   
-
+https://drive.google.com/drive/u/0/folders/1V5ZkszbCkS9E_-W30y-g-M2-ni3LnEcQ
 
 # 🔍 참고 자료   
