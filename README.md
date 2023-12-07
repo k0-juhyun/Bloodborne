@@ -36,7 +36,7 @@ Unity 2019.3.26f1
  
 ### 기획
 </summary>
-   패턴 분석: https://drive.google.com/drive/u/0/folders/1F4VwUdiuoXHEFoZ37tuTSyf0DZylfGn8
+    패턴 분석: https://drive.google.com/drive/u/0/folders/1F4VwUdiuoXHEFoZ37tuTSyf0DZylfGn8
 </details>
 
 <details>
@@ -58,7 +58,7 @@ Unity 2019.3.26f1
 
 # 📃 결과물   
 ### 시연영상
-
+https://www.youtube.com/watch?v=1-FZ-I1-eb4
 
 ### 발표 자료   
 
